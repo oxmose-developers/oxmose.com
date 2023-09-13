@@ -6,21 +6,11 @@ export interface MenuItem {
   title?: string;
 }
 
-export interface ShowcaseProject {
-  _type: string;
-  coverImage?: Image;
-  overview?: PortableTextBlock[];
-  slug?: string;
-  tags?: string[];
-  title?: string;
-}
-
 // Page payloads
 
 export interface HomePagePayload {
   footer?: PortableTextBlock[];
   overview?: PortableTextBlock[];
-  showcaseProjects?: ShowcaseProject[];
   title?: string;
 }
 
@@ -45,6 +35,20 @@ export interface ProjectPayload {
   slug: string;
   tags?: string[];
   title?: string;
+}
+
+export interface LinkPayload {
+  href: string;
+  name: string;
+}
+
+export interface ArtistPayload {
+  about?: PortableTextBlock[];
+  coverImage?: Image;
+  links?: LinkPayload[];
+  name?: string;
+  overview?: PortableTextBlock[];
+  slug: string;
 }
 
 export interface SettingsPayload {

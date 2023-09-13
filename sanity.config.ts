@@ -18,9 +18,12 @@ import Iframe, {
   IframeOptions,
 } from "sanity-plugin-iframe-pane";
 import { previewUrl } from "sanity-plugin-iframe-pane/preview-url";
+import artist from "schemas/documents/artist";
 import page from "schemas/documents/page";
 import project from "schemas/documents/project";
 import duration from "schemas/objects/duration";
+import link from "schemas/objects/link";
+import about from "schemas/singletons/about";
 import home from "schemas/singletons/home";
 import settings from "schemas/singletons/settings";
 
@@ -30,11 +33,14 @@ export const PREVIEWABLE_DOCUMENT_TYPES = [
   home.name,
   page.name,
   project.name,
+  about.name,
+  artist.name,
 ] satisfies string[];
 
 export const PREVIEWABLE_DOCUMENT_TYPES_REQUIRING_SLUGS = [
   page.name,
   project.name,
+  artist.name,
 ] satisfies typeof PREVIEWABLE_DOCUMENT_TYPES;
 
 // Used to generate URLs for drafts and live previews
@@ -60,16 +66,20 @@ export default defineConfig({
     types: [
       // Singletons
       home,
+      about,
       settings,
       // Documents
-      duration,
       page,
       project,
+      artist,
+      // Objects
+      duration,
+      link,
     ],
   },
   plugins: [
     deskTool({
-      structure: pageStructure([home, settings]),
+      structure: pageStructure([home, about, settings]),
       // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
       // You can add any React component to `S.view.component` and it will be rendered in the pane
       // and have access to content in the form in real-time.
@@ -89,7 +99,7 @@ export default defineConfig({
       },
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
-    singletonPlugin([home.name, settings.name]),
+    singletonPlugin([home.name, settings.name, about.name]),
     // Add the "Open preview" action
     previewUrl({
       base: PREVIEW_BASE_URL,

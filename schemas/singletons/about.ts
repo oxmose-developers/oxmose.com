@@ -1,11 +1,11 @@
-import { HomeIcon } from "@sanity/icons";
+import { DocumentIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "home",
-  title: "Home",
+  name: "about",
+  title: "About",
   type: "document",
-  icon: HomeIcon,
+  icon: DocumentIcon,
   // Uncomment below to have edits publish automatically as you type
   // liveEdit: true,
   fields: [
@@ -27,30 +27,8 @@ export default defineType({
         defineArrayMember({
           lists: [],
           marks: {
-            annotations: [
-              {
-                name: "link",
-                type: "object",
-                title: "Link",
-                fields: [
-                  {
-                    name: "href",
-                    type: "url",
-                    title: "Url",
-                  },
-                ],
-              },
-            ],
-            decorators: [
-              {
-                title: "Italic",
-                value: "em",
-              },
-              {
-                title: "Strong",
-                value: "strong",
-              },
-            ],
+            annotations: [],
+            decorators: [],
           },
           styles: [],
           type: "block",
@@ -65,7 +43,7 @@ export default defineType({
     },
     prepare({ title }) {
       return {
-        subtitle: "Home",
+        subtitle: "About",
         title,
       };
     },

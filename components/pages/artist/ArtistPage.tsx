@@ -9,7 +9,7 @@ export interface ArtistPageProps {
 
 export function ArtistPage({ data }: ArtistPageProps) {
   // Default to an empty object to allow previews on non-existent documents
-  const { coverImage, about, overview, name, links } = data ?? {};
+  const { coverImage, about, name, links } = data ?? {};
 
   return (
     <div>
@@ -17,15 +17,13 @@ export function ArtistPage({ data }: ArtistPageProps) {
         {/* Header */}
         <Header title={name} />
 
-        <div className="rounded-md border">
-          {/* Image */}
-          <ImageBox
-            image={coverImage}
-            imagePlaceholder={coverImage?.lqip}
-            alt={`Cover image for ${name}`}
-            classesWrapper="relative aspect-[16/9]"
-          />
-        </div>
+        {/* Image */}
+        <ImageBox
+          image={coverImage}
+          imagePlaceholder={coverImage?.lqip}
+          alt={`Cover image for ${name}`}
+          classesWrapper="relative aspect-[16/9]"
+        />
 
         {/* Description */}
         {about && (

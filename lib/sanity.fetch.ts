@@ -9,8 +9,6 @@ import {
   homePageTitleQuery,
   pagePaths,
   pagesBySlugQuery,
-  projectBySlugQuery,
-  projectPaths,
   settingsQuery,
 } from "lib/sanity.queries";
 import { draftMode } from "next/headers";
@@ -18,7 +16,6 @@ import type {
   ArtistPayload,
   HomePagePayload,
   PagePayload,
-  ProjectPayload,
   SettingsPayload,
 } from "types";
 
@@ -68,7 +65,7 @@ export async function sanityFetch<QueryResponse>({
 export function getSettings() {
   return sanityFetch<SettingsPayload>({
     query: settingsQuery,
-    tags: ["settings", "home", "page", "project"],
+    tags: ["settings", "home", "page"],
   });
 }
 
@@ -77,14 +74,6 @@ export function getPageBySlug(slug: string) {
     query: pagesBySlugQuery,
     params: { slug },
     tags: [`page:${slug}`],
-  });
-}
-
-export function getProjectBySlug(slug: string) {
-  return sanityFetch<ProjectPayload | null>({
-    query: projectBySlugQuery,
-    params: { slug },
-    tags: [`project:${slug}`],
   });
 }
 
@@ -99,7 +88,7 @@ export function getArtistBySlug(slug: string) {
 export function getHomePage() {
   return sanityFetch<HomePagePayload | null>({
     query: homePageQuery,
-    tags: ["home", "project"],
+    tags: ["home"],
   });
 }
 
@@ -113,14 +102,6 @@ export function getHomePageTitle() {
 export function getPagesPaths() {
   return client.fetch<string[]>(
     pagePaths,
-    {},
-    { token, perspective: "published" },
-  );
-}
-
-export function getProjectsPaths() {
-  return client.fetch<string[]>(
-    projectPaths,
     {},
     { token, perspective: "published" },
   );

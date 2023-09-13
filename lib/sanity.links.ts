@@ -7,8 +7,6 @@ export function resolveHref(
       return "/";
     case "page":
       return slug ? `/${slug}` : undefined;
-    case "project":
-      return slug ? `/projects/${slug}` : undefined;
     case "artist":
       return slug ? `/artists/${slug}` : undefined;
     default:

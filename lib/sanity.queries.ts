@@ -4,14 +4,6 @@ export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id,
     overview,
-    showcaseProjects[]->{
-      _type,
-      coverImage,
-      overview,
-      "slug": slug.current,
-      tags,
-      title,
-    },
     title,
   }
 `;
@@ -30,21 +22,6 @@ export const pagesBySlugQuery = groq`
   }
 `;
 
-export const projectBySlugQuery = groq`
-  *[_type == "project" && slug.current == $slug][0] {
-    _id,
-    client,
-    coverImage,
-    description,
-    duration,
-    overview,
-    site,
-    "slug": slug.current,
-    tags,
-    title,
-  }
-`;
-
 export const artistBySlugQuery = groq`
   *[_type == "artist" && slug.current == $slug][0] {
     _id,
@@ -58,10 +35,6 @@ export const artistBySlugQuery = groq`
     name,
     links,
   }
-`;
-
-export const projectPaths = groq`
-  *[_type == "project" && slug.current != null].slug.current
 `;
 
 export const artistPaths = groq`

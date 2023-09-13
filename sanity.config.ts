@@ -20,7 +20,6 @@ import Iframe, {
 import { previewUrl } from "sanity-plugin-iframe-pane/preview-url";
 import artist from "schemas/documents/artist";
 import page from "schemas/documents/page";
-import project from "schemas/documents/project";
 import duration from "schemas/objects/duration";
 import link from "schemas/objects/link";
 import about from "schemas/singletons/about";
@@ -32,14 +31,12 @@ const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Oxmose";
 export const PREVIEWABLE_DOCUMENT_TYPES = [
   home.name,
   page.name,
-  project.name,
   about.name,
   artist.name,
 ] satisfies string[];
 
 export const PREVIEWABLE_DOCUMENT_TYPES_REQUIRING_SLUGS = [
   page.name,
-  project.name,
   artist.name,
 ] satisfies typeof PREVIEWABLE_DOCUMENT_TYPES;
 
@@ -70,7 +67,6 @@ export default defineConfig({
       settings,
       // Documents
       page,
-      project,
       artist,
       // Objects
       duration,

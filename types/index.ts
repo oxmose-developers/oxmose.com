@@ -26,21 +26,6 @@ export interface PagePayload {
   slug?: string;
 }
 
-export interface ProjectPayload {
-  client?: string;
-  coverImage?: Image;
-  description?: PortableTextBlock[];
-  duration?: {
-    start?: string;
-    end?: string;
-  };
-  overview?: PortableTextBlock[];
-  site?: string;
-  slug: string;
-  tags?: string[];
-  title?: string;
-}
-
 export interface LinkPayload {
   href: string;
   name: string;

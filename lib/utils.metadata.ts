@@ -1,4 +1,3 @@
-import * as demo from "lib/demo.data";
 import { urlForImage } from "lib/sanity.image";
 import type { Metadata } from "next";
 import type { Image } from "sanity";
@@ -26,7 +25,7 @@ export function defineMetadata({
     image && urlForImage(image)?.width(1200).height(627).fit("crop").url();
 
   return {
-    title: metaTitle || demo.title,
+    title: metaTitle,
     themeColor: "#000",
     description,
     openGraph: imageUrl

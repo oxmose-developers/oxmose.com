@@ -16,7 +16,7 @@ export function defineMetadata({
   description?: string
   image?: Image
   title?: string
-}) {
+}): Metadata {
   const metaTitle = [
     ...(title ? [title] : []),
     ...(baseTitle ? [baseTitle] : []),

@@ -21,8 +21,6 @@ import { previewUrl } from "sanity-plugin-iframe-pane/preview-url";
 import page from "schemas/documents/page";
 import project from "schemas/documents/project";
 import duration from "schemas/objects/duration";
-import milestone from "schemas/objects/milestone";
-import timeline from "schemas/objects/timeline";
 import home from "schemas/singletons/home";
 import settings from "schemas/singletons/settings";
 
@@ -54,8 +52,8 @@ export const iframeOptions = {
 
 export default defineConfig({
   basePath: "/studio",
-  projectId: projectId || "",
-  dataset: dataset || "",
+  projectId,
+  dataset,
   title,
   schema: {
     // If you want more content types, you can add them to this array
@@ -67,9 +65,6 @@ export default defineConfig({
       duration,
       page,
       project,
-      // Objects
-      milestone,
-      timeline,
     ],
   },
   plugins: [

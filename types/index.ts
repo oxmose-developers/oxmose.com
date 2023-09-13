@@ -6,17 +6,6 @@ export interface MenuItem {
   title?: string;
 }
 
-export interface MilestoneItem {
-  description?: string;
-  duration?: {
-    start?: string;
-    end?: string;
-  };
-  image?: Image;
-  tags?: string[];
-  title?: string;
-}
-
 export interface ShowcaseProject {
   _type: string;
   coverImage?: Image;

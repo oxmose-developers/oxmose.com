@@ -18,8 +18,8 @@ export function defineMetadata({
   title?: string;
 }): Metadata {
   const metaTitle = [
-    ...(title ? [title] : []),
     ...(baseTitle ? [baseTitle] : []),
+    ...(title ? [title] : []),
   ].join(" | ");
 
   const imageUrl =

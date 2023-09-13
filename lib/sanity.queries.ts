@@ -45,8 +45,27 @@ export const projectBySlugQuery = groq`
   }
 `;
 
+export const artistBySlugQuery = groq`
+  *[_type == "artist" && slug.current == $slug][0] {
+    _id,
+    coverImage {
+      ...,
+      "lqip": asset->metadata.lqip
+    },
+    about,
+    overview,
+    "slug": slug.current,
+    name,
+    links,
+  }
+`;
+
 export const projectPaths = groq`
   *[_type == "project" && slug.current != null].slug.current
+`;
+
+export const artistPaths = groq`
+  *[_type == "artist" && slug.current != null].slug.current
 `;
 
 export const pagePaths = groq`

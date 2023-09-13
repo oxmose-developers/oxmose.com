@@ -1,12 +1,12 @@
 import { toPlainText } from "@portabletext/react";
-import { ProjectPage } from "components/pages/project/ProjectPage";
-import ProjectPreview from "components/pages/project/ProjectPreview";
+import ArtistPage from "components/pages/artist/ArtistPage";
+import ArtistPreview from "components/pages/artist/ArtistPreview";
 import {
+  getArtistBySlug,
+  getArtistPaths,
   getHomePageTitle,
-  getProjectBySlug,
-  getProjectsPaths,
 } from "lib/sanity.fetch";
-import { projectBySlugQuery } from "lib/sanity.queries";
+import { artistBySlugQuery } from "lib/sanity.queries";
 import { defineMetadata } from "lib/utils.metadata";
 import { Metadata } from "next";
 import { draftMode } from "next/headers";
@@ -22,26 +22,26 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = params;
 
-  const [homePageTitle, project] = await Promise.all([
+  const [homePageTitle, artist] = await Promise.all([
     getHomePageTitle(),
-    getProjectBySlug(slug),
+    getArtistBySlug(slug),
   ]);
 
   return defineMetadata({
     baseTitle: homePageTitle ?? undefined,
-    description: project?.overview ? toPlainText(project.overview) : "",
-    image: project?.coverImage,
-    title: project?.title,
+    description: artist?.overview ? toPlainText(artist.overview) : "",
+    image: artist?.coverImage,
+    title: artist?.name,
   });
 }
 
 export async function generateStaticParams() {
-  const slugs = await getProjectsPaths();
+  const slugs = await getArtistPaths();
   return slugs.map((slug) => ({ slug }));
 }
 
 export default async function ArtistSlugRoute({ params }: Props) {
-  const data = await getProjectBySlug(params.slug);
+  const data = await getArtistBySlug(params.slug);
 
   if (!data && !draftMode().isEnabled) {
     notFound();
@@ -50,12 +50,12 @@ export default async function ArtistSlugRoute({ params }: Props) {
   return (
     <LiveQuery
       enabled={draftMode().isEnabled}
-      query={projectBySlugQuery}
+      query={artistBySlugQuery}
       params={params}
       initialData={data}
-      as={ProjectPreview}
+      as={ArtistPreview}
     >
-      <ProjectPage data={data} />
+      <ArtistPage data={data} />
     </LiveQuery>
   );
 }

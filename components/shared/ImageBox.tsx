@@ -3,6 +3,7 @@ import Image from "next/image";
 
 interface ImageBoxProps {
   image?: { asset?: any };
+  imagePlaceholder?: string;
   alt?: string;
   width?: number;
   height?: number;
@@ -12,6 +13,7 @@ interface ImageBoxProps {
 
 export default function ImageBox({
   image,
+  imagePlaceholder,
   alt = "Cover image",
   width = 3500,
   height = 2000,
@@ -33,6 +35,10 @@ export default function ImageBox({
           height={height}
           sizes={size}
           src={imageUrl}
+          {...(imagePlaceholder && {
+            blurDataURL: imagePlaceholder,
+            placeholder: "blur",
+          })}
         />
       )}
     </div>

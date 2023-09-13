@@ -6,6 +6,10 @@ export interface MenuItem {
   title?: string;
 }
 
+export interface ImageWithPlaceholder extends Image {
+  lqip: string;
+}
+
 // Page payloads
 
 export interface HomePagePayload {
@@ -44,7 +48,7 @@ export interface LinkPayload {
 
 export interface ArtistPayload {
   about?: PortableTextBlock[];
-  coverImage?: Image;
+  coverImage?: ImageWithPlaceholder;
   links?: LinkPayload[];
   name?: string;
   overview?: PortableTextBlock[];

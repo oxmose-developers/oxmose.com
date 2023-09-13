@@ -8,6 +8,9 @@
     "start": "next start",
     "type-check": "tsc --noEmit"
   },
+  "prettier": {
+    "trailingComma": "all"
+  },
   "dependencies": {
     "@portabletext/react": "3.0.7",
     "@sanity/client": "6.4.11",

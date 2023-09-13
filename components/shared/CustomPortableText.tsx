@@ -1,7 +1,6 @@
 import { PortableText, PortableTextComponents } from "@portabletext/react";
-import type { PortableTextBlock } from "@portabletext/types";
 import ImageBox from "components/shared/ImageBox";
-import { Image } from "sanity";
+import { Image, type PortableTextBlock } from "sanity";
 
 export function CustomPortableText({
   paragraphClasses,

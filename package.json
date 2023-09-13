@@ -3,9 +3,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next",
-    "format": "npx prettier --write . --ignore-path .gitignore",
+    "format": "prettier --write . --ignore-path .gitignore",
     "lint": "next lint -- --ignore-path .gitignore",
-    "lint:fix": "npm run format && npm run lint -- --fix",
+    "lint:fix": "pnpm run format && pnpm run lint -- --fix",
     "start": "next start",
     "type-check": "tsc --noEmit"
   },

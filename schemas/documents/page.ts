@@ -1,33 +1,33 @@
-import { DocumentIcon, ImageIcon } from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { DocumentIcon, ImageIcon } from "@sanity/icons";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
-  type: 'document',
-  name: 'page',
-  title: 'Page',
+  type: "document",
+  name: "page",
+  title: "Page",
   icon: DocumentIcon,
   fields: [
     defineField({
-      type: 'string',
-      name: 'title',
-      title: 'Title',
+      type: "string",
+      name: "title",
+      title: "Title",
       validation: (rule) => rule.required(),
     }),
     defineField({
-      type: 'slug',
-      name: 'slug',
-      title: 'Slug',
+      type: "slug",
+      name: "slug",
+      title: "Slug",
       options: {
-        source: 'title',
+        source: "title",
       },
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'overview',
+      name: "overview",
       description:
-        'Used both for the <meta> description tag for SEO, and the personal website subheader.',
-      title: 'Overview',
-      type: 'array',
+        "Used both for the <meta> description tag for SEO, and the personal website subheader.",
+      title: "Overview",
+      type: "array",
       of: [
         // Paragraphs
         defineArrayMember({
@@ -36,42 +36,42 @@ export default defineType({
             annotations: [],
             decorators: [
               {
-                title: 'Italic',
-                value: 'em',
+                title: "Italic",
+                value: "em",
               },
               {
-                title: 'Strong',
-                value: 'strong',
+                title: "Strong",
+                value: "strong",
               },
             ],
           },
           styles: [],
-          type: 'block',
+          type: "block",
         }),
       ],
       validation: (rule) => rule.max(155).required(),
     }),
     defineField({
-      type: 'array',
-      name: 'body',
-      title: 'Body',
+      type: "array",
+      name: "body",
+      title: "Body",
       description:
         "This is where you can write the page's content. Including custom blocks like timelines for more a more visual display of information.",
       of: [
         // Paragraphs
         defineArrayMember({
-          type: 'block',
+          type: "block",
           marks: {
             annotations: [
               {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
+                name: "link",
+                type: "object",
+                title: "Link",
                 fields: [
                   {
-                    name: 'href',
-                    type: 'url',
-                    title: 'Url',
+                    name: "href",
+                    type: "url",
+                    title: "Url",
                   },
                 ],
               },
@@ -81,35 +81,35 @@ export default defineType({
         }),
         // Custom blocks
         defineArrayMember({
-          name: 'timeline',
-          type: 'timeline',
+          name: "timeline",
+          type: "timeline",
         }),
         defineField({
-          type: 'image',
+          type: "image",
           icon: ImageIcon,
-          name: 'image',
-          title: 'Image',
+          name: "image",
+          title: "Image",
           options: {
             hotspot: true,
           },
           preview: {
             select: {
-              imageUrl: 'asset.url',
-              title: 'caption',
+              imageUrl: "asset.url",
+              title: "caption",
             },
           },
           fields: [
             defineField({
-              title: 'Caption',
-              name: 'caption',
-              type: 'string',
+              title: "Caption",
+              name: "caption",
+              type: "string",
             }),
             defineField({
-              name: 'alt',
-              type: 'string',
-              title: 'Alt text',
+              name: "alt",
+              type: "string",
+              title: "Alt text",
               description:
-                'Alternative text for screenreaders. Falls back on caption if not set',
+                "Alternative text for screenreaders. Falls back on caption if not set",
             }),
           ],
         }),
@@ -118,13 +118,13 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      title: "title",
     },
     prepare({ title }) {
       return {
-        subtitle: 'Page',
+        subtitle: "Page",
         title,
-      }
+      };
     },
   },
-})
+});

@@ -1,23 +1,23 @@
-import 'styles/index.css'
+import "styles/index.css";
 
-import { Footer } from 'components/global/Footer'
-import { Navbar } from 'components/global/Navbar'
-import { PreviewBanner } from 'components/preview/PreviewBanner'
-import { token } from 'lib/sanity.fetch'
-import dynamic from 'next/dynamic'
-import { draftMode } from 'next/headers'
-import { Suspense } from 'react'
+import { Footer } from "components/global/Footer";
+import { Navbar } from "components/global/Navbar";
+import { PreviewBanner } from "components/preview/PreviewBanner";
+import { token } from "lib/sanity.fetch";
+import dynamic from "next/dynamic";
+import { draftMode } from "next/headers";
+import { Suspense } from "react";
 
 const PreviewProvider = dynamic(
-  () => import('components/preview/PreviewProvider'),
-)
+  () => import("components/preview/PreviewProvider"),
+);
 
 export default async function IndexRoute({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const isDraftMode = draftMode().isEnabled
+  const isDraftMode = draftMode().isEnabled;
 
   const layout = (
     <div className="flex min-h-screen flex-col bg-white text-black">
@@ -32,11 +32,11 @@ export default async function IndexRoute({
         <Footer />
       </Suspense>
     </div>
-  )
+  );
 
   if (isDraftMode) {
-    return <PreviewProvider token={token!}>{layout}</PreviewProvider>
+    return <PreviewProvider token={token!}>{layout}</PreviewProvider>;
   }
 
-  return layout
+  return layout;
 }

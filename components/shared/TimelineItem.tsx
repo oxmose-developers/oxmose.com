@@ -1,30 +1,30 @@
-import ImageBox from 'components/shared/ImageBox'
-import type { MilestoneItem } from 'types'
+import ImageBox from "components/shared/ImageBox";
+import type { MilestoneItem } from "types";
 
 export function TimelineItem({
   isLast,
   milestone,
 }: {
-  isLast: boolean
-  milestone: MilestoneItem
+  isLast: boolean;
+  milestone: MilestoneItem;
 }) {
-  const { description, duration, image, tags, title } = milestone
+  const { description, duration, image, tags, title } = milestone;
   const startYear = duration?.start
     ? new Date(duration.start).getFullYear()
-    : undefined
-  const endYear = duration?.end ? new Date(duration.end).getFullYear() : 'Now'
+    : undefined;
+  const endYear = duration?.end ? new Date(duration.end).getFullYear() : "Now";
 
   return (
-    <div className={`flex min-h-[200px] font-sans ${!isLast && 'pb-2'}`}>
+    <div className={`flex min-h-[200px] font-sans ${!isLast && "pb-2"}`}>
       <div className="flex flex-col">
         {/* Thumbnail */}
         <div
           className="relative overflow-hidden rounded-md bg-black"
-          style={{ width: '65px', height: '65px' }}
+          style={{ width: "65px", height: "65px" }}
         >
           <ImageBox
             image={image}
-            alt={title || 'Timeline item icon'}
+            alt={title || "Timeline item icon"}
             size="10vw"
             width={65}
             height={65}
@@ -50,5 +50,5 @@ export function TimelineItem({
         <div className="pb-5 pt-3 font-serif text-gray-600">{description}</div>
       </div>
     </div>
-  )
+  );
 }

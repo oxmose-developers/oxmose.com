@@ -1,20 +1,20 @@
-import type { PortableTextBlock } from '@portabletext/types'
-import { CustomPortableText } from 'components/shared/CustomPortableText'
-import ImageBox from 'components/shared/ImageBox'
-import type { ShowcaseProject } from 'types'
+import type { PortableTextBlock } from "@portabletext/types";
+import { CustomPortableText } from "components/shared/CustomPortableText";
+import ImageBox from "components/shared/ImageBox";
+import type { ShowcaseProject } from "types";
 
 interface ProjectProps {
-  project: ShowcaseProject
-  odd: number
+  project: ShowcaseProject;
+  odd: number;
 }
 
 export function ProjectListItem(props: ProjectProps) {
-  const { project, odd } = props
+  const { project, odd } = props;
 
   return (
     <div
       className={`flex flex-col gap-x-5 p-2 transition hover:bg-gray-50/50 xl:flex-row ${
-        odd && 'border-b border-t xl:flex-row-reverse'
+        odd && "border-b border-t xl:flex-row-reverse"
       }`}
     >
       <div className="w-full xl:w-9/12">
@@ -28,7 +28,7 @@ export function ProjectListItem(props: ProjectProps) {
         <TextBox project={project} />
       </div>
     </div>
-  )
+  );
 }
 
 function TextBox({ project }: { project: ShowcaseProject }) {
@@ -53,5 +53,5 @@ function TextBox({ project }: { project: ShowcaseProject }) {
         ))}
       </div>
     </div>
-  )
+  );
 }

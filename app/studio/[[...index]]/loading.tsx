@@ -1,1 +1,1 @@
-export { NextStudioLoading as default } from 'next-sanity/studio/loading'
+export { NextStudioLoading as default } from "next-sanity/studio/loading";

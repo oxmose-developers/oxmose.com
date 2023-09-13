@@ -2,38 +2,38 @@
  * This plugin contains all the logic for setting up the singletons
  */
 
-import { type DocumentDefinition } from 'sanity'
-import { type StructureResolver } from 'sanity/desk'
-import { Iframe } from 'sanity-plugin-iframe-pane'
+import { type DocumentDefinition } from "sanity";
+import { type StructureResolver } from "sanity/desk";
+import { Iframe } from "sanity-plugin-iframe-pane";
 
-import { iframeOptions, PREVIEWABLE_DOCUMENT_TYPES } from '../sanity.config'
+import { iframeOptions, PREVIEWABLE_DOCUMENT_TYPES } from "../sanity.config";
 
 export const singletonPlugin = (types: string[]) => {
   return {
-    name: 'singletonPlugin',
+    name: "singletonPlugin",
     document: {
       // Hide 'Singletons (such as Home)' from new document options
       // https://user-images.githubusercontent.com/81981/195728798-e0c6cf7e-d442-4e58-af3a-8cd99d7fcc28.png
       newDocumentOptions: (prev, { creationContext }) => {
-        if (creationContext.type === 'global') {
+        if (creationContext.type === "global") {
           return prev.filter(
             (templateItem) => !types.includes(templateItem.templateId),
-          )
+          );
         }
 
-        return prev
+        return prev;
       },
       // Removes the "duplicate" action on the Singletons (such as Home)
       actions: (prev, { schemaType }) => {
         if (types.includes(schemaType)) {
-          return prev.filter(({ action }) => action !== 'duplicate')
+          return prev.filter(({ action }) => action !== "duplicate");
         }
 
-        return prev
+        return prev;
       },
     },
-  }
-}
+  };
+};
 
 // The StructureResolver is how we're changing the DeskTool structure to linking to document (named Singleton)
 // like how "Home" is handled.
@@ -61,21 +61,21 @@ export const pageStructure = (
                     S.view
                       .component(Iframe)
                       .options(iframeOptions)
-                      .title('Preview'),
+                      .title("Preview"),
                   ]
                 : []),
             ]),
-        )
-    })
+        );
+    });
 
     // The default root list items (except custom ones)
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) =>
         !typeDefArray.find((singleton) => singleton.name === listItem.getId()),
-    )
+    );
 
     return S.list()
-      .title('Content')
-      .items([...singletonItems, S.divider(), ...defaultListItems])
-  }
-}
+      .title("Content")
+      .items([...singletonItems, S.divider(), ...defaultListItems]);
+  };
+};

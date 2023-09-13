@@ -1,13 +1,13 @@
-import { getSettings } from 'lib/sanity.fetch'
-import { settingsQuery } from 'lib/sanity.queries'
-import { draftMode } from 'next/headers'
-import { LiveQuery } from 'next-sanity/preview/live-query'
+import { getSettings } from "lib/sanity.fetch";
+import { settingsQuery } from "lib/sanity.queries";
+import { draftMode } from "next/headers";
+import { LiveQuery } from "next-sanity/preview/live-query";
 
-import FooterLayout from './FooterLayout'
-import FooterPreview from './FooterPreview'
+import FooterLayout from "./FooterLayout";
+import FooterPreview from "./FooterPreview";
 
 export async function Footer() {
-  const data = await getSettings()
+  const data = await getSettings();
 
   return (
     <LiveQuery
@@ -18,5 +18,5 @@ export async function Footer() {
     >
       <FooterLayout data={data} />
     </LiveQuery>
-  )
+  );
 }

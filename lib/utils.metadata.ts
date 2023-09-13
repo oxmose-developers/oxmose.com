@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import type { Image } from "sanity";
 
 /**
- * All the shared stuff that goes into <head> on `(personal)` routes, can be be imported by `page.tsx` files and used by `generateMetadata` functions.
+ * All the shared stuff that goes into <head> on `(site)` routes, can be be imported by `page.tsx` files and used by `generateMetadata` functions.
  */
 export function defineMetadata({
   baseTitle,

@@ -27,7 +27,7 @@ import about from "schemas/singletons/about";
 import home from "schemas/singletons/home";
 import settings from "schemas/singletons/settings";
 
-const title = env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Oxmose";
+const title = env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Oxmose Studio";
 
 export const PREVIEWABLE_DOCUMENT_TYPES = [
   home.name,

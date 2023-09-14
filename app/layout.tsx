@@ -17,7 +17,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`antialiased overflow-x-hidden ${sans.variable}`}
+      className={`overflow-x-hidden antialiased ${sans.variable}`}
     >
       <body>{children}</body>
     </html>

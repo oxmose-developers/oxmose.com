@@ -3,12 +3,16 @@
   "scripts": {
     "build": "next build",
     "dev": "next",
-    "format": "prettier --write . --ignore-path .gitignore",
-    "lint": "next lint -- --ignore-path .gitignore",
+    "format": "prettier --write .",
+    "lint": "next lint --",
     "start": "next start",
     "type-check": "tsc --noEmit"
   },
   "prettier": {
+    "plugins": [
+      "prettier-plugin-tailwindcss",
+      "prettier-plugin-packagejson"
+    ],
     "trailingComma": "all"
   },
   "dependencies": {

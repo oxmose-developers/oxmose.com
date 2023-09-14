@@ -15,7 +15,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sans.variable}`}>
+    <html
+      lang="en"
+      className={`antialiased overflow-x-hidden ${sans.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

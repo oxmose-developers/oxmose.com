@@ -13,6 +13,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().min(1),
     NEXT_PUBLIC_SANITY_DATASET: z.string().min(1),
     NEXT_PUBLIC_SANITY_API_VERSION: z.string().min(1).optional(),
+    NEXT_PUBLIC_SANITY_PROJECT_TITLE: z.string().min(1).optional(),
   },
   runtimeEnv: {
     SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN,
@@ -21,5 +22,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
     SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET,
     NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
+    NEXT_PUBLIC_SANITY_PROJECT_TITLE:
+      process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE,
   },
 });

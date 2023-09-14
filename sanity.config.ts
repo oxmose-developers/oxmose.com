@@ -3,6 +3,7 @@
  */
 
 import { visionTool } from "@sanity/vision";
+import { env } from "env.mjs";
 import {
   apiVersion,
   dataset,
@@ -26,7 +27,7 @@ import about from "schemas/singletons/about";
 import home from "schemas/singletons/home";
 import settings from "schemas/singletons/settings";
 
-const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Oxmose";
+const title = env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Oxmose";
 
 export const PREVIEWABLE_DOCUMENT_TYPES = [
   home.name,

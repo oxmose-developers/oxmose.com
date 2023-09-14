@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { QueryParams } from "@sanity/client";
+import { env } from "env.mjs";
 import { client } from "lib/sanity.client";
 import {
   artistBySlugQuery,
@@ -21,7 +22,7 @@ import type {
 
 import { revalidateSecret } from "./sanity.api";
 
-export const token = process.env.SANITY_API_READ_TOKEN;
+export const token = env.SANITY_API_READ_TOKEN;
 
 const DEFAULT_PARAMS = {} as QueryParams;
 const DEFAULT_TAGS = [] as string[];
@@ -36,11 +37,6 @@ export async function sanityFetch<QueryResponse>({
   tags: string[];
 }): Promise<QueryResponse> {
   const isDraftMode = draftMode().isEnabled;
-  if (isDraftMode && !token) {
-    throw new Error(
-      "The `SANITY_API_READ_TOKEN` environment variable is required.",
-    );
-  }
 
   // @TODO this won't be necessary after https://github.com/sanity-io/client/pull/299 lands
   const sanityClient =

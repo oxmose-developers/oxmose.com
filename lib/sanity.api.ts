@@ -17,4 +17,4 @@ export const apiVersion = env.NEXT_PUBLIC_SANITY_API_VERSION || "2023-06-21";
 export const previewSecretId: `${string}.${string}` = "preview.secret";
 
 // See the app/api/revalidate/route.ts for how this is used
-export const revalidateSecret = env.SANITY_REVALIDATE_SECRET;
+// export const revalidateSecret = env.SANITY_REVALIDATE_SECRET;

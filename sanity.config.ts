@@ -21,6 +21,7 @@ import Iframe, {
 import { previewUrl } from "sanity-plugin-iframe-pane/preview-url";
 import artist from "schemas/documents/artist";
 import page from "schemas/documents/page";
+import release from "schemas/documents/release"
 import duration from "schemas/objects/duration";
 import link from "schemas/objects/link";
 import about from "schemas/singletons/about";
@@ -69,6 +70,7 @@ export default defineConfig({
       // Documents
       page,
       artist,
+      release,
       // Objects
       duration,
       link,

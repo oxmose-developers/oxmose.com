@@ -25,7 +25,9 @@ export default async function IndexRoute({
         <Navbar />
       </Suspense>
 
-      <div className="mt-20 flex-grow px-4 md:px-16 lg:px-32">
+    {/* Do we need flex-grow mt-20 here flex-grow*/}
+    {/* px-4 md:px-16 lg:px-32 */}
+      <div className="">
         <Suspense>{children}</Suspense>
       </div>
 

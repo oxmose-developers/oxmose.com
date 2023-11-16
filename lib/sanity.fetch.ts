@@ -1,26 +1,33 @@
 import "server-only";
 
 import type { QueryParams } from "@sanity/client";
+import { closestIndexTo } from "date-fns";
 import { env } from "env.mjs";
 import { client } from "lib/sanity.client";
 import {
   artistBySlugQuery,
+  artistListQuery,
   artistPaths,
   homePageQuery,
   homePageTitleQuery,
   pagePaths,
   pagesBySlugQuery,
+  realeaseBySlugQuery2,
+  releaseListQuery,
   settingsQuery,
 } from "lib/sanity.queries";
 import { draftMode } from "next/headers";
 import type {
+  ArtistListPayload,
   ArtistPayload,
   HomePagePayload,
   PagePayload,
+  ReleaseListPayload,
+  ReleasePayload,
   SettingsPayload,
 } from "types";
 
-import { revalidateSecret } from "./sanity.api";
+// import { revalidateSecret } from "./sanity.api";
 
 export const token = env.SANITY_API_READ_TOKEN;
 
@@ -45,7 +52,7 @@ export async function sanityFetch<QueryResponse>({
       : client;
   return sanityClient.fetch<QueryResponse>(query, params, {
     // We only cache if there's a revalidation webhook setup
-    cache: revalidateSecret ? "force-cache" : "no-store",
+    cache: "no-store",//revalidateSecret ? "force-cache" : "no-store",
     ...(isDraftMode && {
       cache: undefined,
       token: token,
@@ -109,4 +116,25 @@ export function getArtistPaths() {
     {},
     { token, perspective: "published" },
   );
+}
+
+export function getArtistList() {
+  return client.fetch<ArtistListPayload[] | null>(
+    artistListQuery,
+    { token, perspective: "published"}
+  )
+}
+
+export function getReleaseList() {
+  return client.fetch<ReleaseListPayload[] | null>(
+    releaseListQuery,
+    { token, perspective: "published"}
+  )
+}
+export function getReleaseBySlug(slug: string) {
+  return sanityFetch<ReleasePayload | null>({
+    query: realeaseBySlugQuery2,
+    params: { slug },
+    tags: [`realease:${slug}`],
+  });
 }

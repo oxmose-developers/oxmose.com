@@ -40,6 +40,14 @@ export const artistBySlugQuery = groq`
 export const artistPaths = groq`
   *[_type == "artist" && slug.current != null].slug.current
 `;
+export const artistListQuery = groq`
+  *[_type == "artist"]{
+    _id, 
+    name, 
+    _type, 
+    "slug": slug.current,
+  }
+`;
 
 export const pagePaths = groq`
   *[_type == "page" && slug.current != null].slug.current
@@ -55,4 +63,52 @@ export const settingsQuery = groq`
     },
     ogImage,
   }
+`;
+
+export const releaseListQuery = groq`
+*[_type == "release"]{
+  _id,
+  _type,
+  "slug": slug.current,
+  title,
+  artist-> {
+    name
+  },
+  coverImage {
+    ...,
+    "lqip": asset->metadata.lqip
+  },
+}
+`;
+
+export const realeaseBySlugQuery = groq`
+*[_type == "release" && slug.current == $slug][0] {
+  _id,
+  "slug": slug.current,
+  title,
+  artist,
+  coverImage {
+    ...,
+    "lqip": asset->metadata.lqip
+  },
+  description,
+  overview,
+  trackList,
+  releaseDate,
+  releaseReference
+  physicalFormat
+  digitalFormat
+  links,
+}
+`;
+
+export const realeaseBySlugQuery2 = groq`
+*[_type == "release" && slug.current == $slug][0] {
+  ...,
+  "slug": slug.current,
+  coverImage {
+    ...,
+    "lqip": asset->metadata.lqip
+  }
+}
 `;

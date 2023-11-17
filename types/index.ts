@@ -46,6 +46,7 @@ export interface ArtistListPayload {
   name?: string;
   slug: string;
   _type: string;
+  coverImage: ImageWithPlaceholder;
 }
 
 export interface SettingsPayload {

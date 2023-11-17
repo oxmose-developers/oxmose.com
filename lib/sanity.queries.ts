@@ -46,6 +46,10 @@ export const artistListQuery = groq`
     name, 
     _type, 
     "slug": slug.current,
+    coverImage {
+      ...,
+      "lqip": asset->metadata.lqip
+    },
   }
 `;
 

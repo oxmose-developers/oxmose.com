@@ -10,7 +10,7 @@ export default function Navbar(props: NavbarProps) {
   const { data } = props;
   const menuItems = data?.menuItems || ([] as MenuItem[]);
   return (
-    <div className="sticky top-0 z-10 flex flex-wrap items-center flex-end gap-x-5 border-b bg-white/80 px-4 py-4 pl-1 backdrop-blur md:px-16 md:pl-2 md:py-5 lg:px-32 lg:pl-4">
+    <div className="sticky top-0 z-10 flex flex-wrap items-center flex-end gap-x-5 border-b border-slate-400 bg-white/80 px-4 py-4 pl-1 backdrop-blur md:px-16 md:pl-2 md:py-5 lg:px-32 lg:pl-4">
       <Image 
         alt="oxmose logo" 
         src="/oxmose_logo.png"
@@ -27,7 +27,7 @@ export default function Navbar(props: NavbarProps) {
           return (
             <Link
               key={key}
-              className={`text-lg uppercase hover:text-black md:text-xl ${
+              className={`text-lg uppercase font-medium hover:text-black md:text-xl ${
                 menuItem?._type === "home"
                   ? "font-extrabold text-black"
                   : "text-gray-600"

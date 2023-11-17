@@ -11,6 +11,6 @@ export const client = createClient({
   dataset,
   apiVersion,
   // If webhook revalidation is setup we want the freshest content, if not then it's best to use the speedy CDN
-  useCdn:  true, //revalidateSecret ? false : true,
+  useCdn:  false, //revalidateSecret ? false : true,
   perspective: "published",
 });

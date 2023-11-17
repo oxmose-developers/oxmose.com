@@ -17,7 +17,7 @@ export default function ArtistListItem({ artist, href }: { artist: ArtistListPay
 
   return (
     <>
-      <div key={artist._id} className="border-b border-t px-5 py-3">
+      <div key={artist._id} className="border-b border-t border-black px-5 py-3">
         <Link 
           href={href} 
           className="block text-5xl font-medium tracking-tight"

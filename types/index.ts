@@ -59,13 +59,13 @@ export interface ReleasePayload {
   _id: string;
   slug: string;
   title: string;
-  artist: string;
+  artist: { name: string };
   coverImage: ImageWithPlaceholder;
   productImages?: ImageWithPlaceholder[];
   description: PortableTextBlock[];
   overview?: PortableTextBlock[];
   trackList: string[];
-  releaseDate?: Date;
+  releaseDate?: string;
   releaseReference?: string;
   physicalFormat?: boolean;
   physicalPrice?: number;

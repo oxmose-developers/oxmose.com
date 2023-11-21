@@ -85,34 +85,20 @@ export const releaseListQuery = groq`
 }
 `;
 
-export const realeaseBySlugQuery = groq`
-*[_type == "release" && slug.current == $slug][0] {
-  _id,
-  "slug": slug.current,
-  title,
-  artist,
-  coverImage {
-    ...,
-    "lqip": asset->metadata.lqip
-  },
-  description,
-  overview,
-  trackList,
-  releaseDate,
-  releaseReference
-  physicalFormat
-  digitalFormat
-  links,
-}
+export const releasePaths = groq`
+  *[_type == "release" && slug.current != null].slug.current
 `;
 
-export const realeaseBySlugQuery2 = groq`
+export const realeaseBySlugQuery = groq`
 *[_type == "release" && slug.current == $slug][0] {
   ...,
   "slug": slug.current,
   coverImage {
     ...,
     "lqip": asset->metadata.lqip
-  }
+  },
+  artist-> {
+    name
+  },
 }
 `;

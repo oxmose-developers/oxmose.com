@@ -12,8 +12,9 @@ import {
   homePageTitleQuery,
   pagePaths,
   pagesBySlugQuery,
-  realeaseBySlugQuery2,
+  realeaseBySlugQuery,
   releaseListQuery,
+  releasePaths,
   settingsQuery,
 } from "lib/sanity.queries";
 import { draftMode } from "next/headers";
@@ -133,8 +134,16 @@ export function getReleaseList() {
 }
 export function getReleaseBySlug(slug: string) {
   return sanityFetch<ReleasePayload | null>({
-    query: realeaseBySlugQuery2,
+    query: realeaseBySlugQuery,
     params: { slug },
     tags: [`realease:${slug}`],
   });
+}
+
+export function getReleasePaths() {
+  return client.fetch<string[]>(
+    releasePaths,
+    {},
+    { token, perspective: "published" },
+  );
 }

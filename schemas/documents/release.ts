@@ -129,6 +129,9 @@ export default defineType({
       description: "When the album or record is due for release",
       title: "Release Date",
       type: "date",
+      options: {
+        dateFormat: 'DD-MM-YY'
+      },
       validation: (rule) => rule.required(),
     }),
     defineField({

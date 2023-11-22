@@ -13,7 +13,6 @@ export interface ReleasePageProps {
 }
 
 export default function ReleasePage({data}: ReleasePageProps) {
-  
   return (
     <>
       <div className="border border-slate-600">
@@ -71,7 +70,7 @@ export default function ReleasePage({data}: ReleasePageProps) {
           <span className="uppercase font-semibold text-xl">{data?.releaseReference}</span>
           <span className="uppercase font-semibold text-xl">{data?.releaseDate}</span>
         </div>
-        <ExpandableText text={"hello"} maxLength={100} classesWrapper="leading-tight md:leading-normal" />
+        <ExpandableText value={data?.description} maxLength={100} classesWrapper="leading-tight md:leading-normal" />
       </div>
 
       {/* TRACKLIST */}

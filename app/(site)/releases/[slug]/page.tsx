@@ -35,7 +35,6 @@ export async function generateStaticParams() {
 
 export default async function ReleaseSlugRoute({params}: Props) {
   const data = await getReleaseBySlug(params.slug)
-  console.log(data)
   
   if (!data && !draftMode().isEnabled) {
     notFound();

@@ -25,6 +25,7 @@ export default function ReleaseCard({data}) {
           />
         </Link>
         
+        {/* TODO - get artist slug for link */}
         <h3 className="col-start-1 row-start-2 px-7 pb-5 text-2xl mt-auto tracking-tight md:font-semibold md:p-0 lg:text-3xl hover:text-slate-600">
           <Link href={release.artist.name}>
             {release.artist.name}
@@ -34,7 +35,7 @@ export default function ReleaseCard({data}) {
 
       </div>
       <div className="static bottom-0 w-full flex justify-between border-t border-slate-600 px-7 py-2 uppercase text-md font-semibold">
-        <a href="#" className="block">more</a>
+        <Link href={href} className="block">more</Link>
         <a href="#" className="block">listen</a>
       </div>
     </div>

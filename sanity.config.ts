@@ -24,9 +24,11 @@ import page from "schemas/documents/page";
 import release from "schemas/documents/release"
 import duration from "schemas/objects/duration";
 import link from "schemas/objects/link";
+import tracklist from "schemas/objects/tracklist";
 import about from "schemas/singletons/about";
 import home from "schemas/singletons/home";
 import settings from "schemas/singletons/settings";
+import time from "schemas/singletons/time";
 
 const title = env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Oxmose Studio";
 
@@ -67,6 +69,7 @@ export default defineConfig({
       home,
       about,
       settings,
+      time,
       // Documents
       page,
       artist,
@@ -74,6 +77,7 @@ export default defineConfig({
       // Objects
       duration,
       link,
+      tracklist
     ],
   },
   plugins: [

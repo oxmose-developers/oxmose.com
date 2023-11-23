@@ -64,7 +64,7 @@ export interface ReleasePayload {
   productImages?: ImageWithPlaceholder[];
   description: PortableTextBlock[];
   overview?: PortableTextBlock[];
-  trackList: string[];
+  trackList: Track[];
   releaseDate?: string;
   releaseReference?: string;
   physicalFormat?: boolean;
@@ -81,4 +81,13 @@ export interface ReleaseListPayload {
   artist: { name: string };
   coverImage: ImageWithPlaceholder;
   _type: string
+}
+
+export interface Track {
+  _id: string;
+  title: string;
+  time: {
+    minutes: string;
+    seconds: string;
+  }
 }

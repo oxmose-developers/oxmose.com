@@ -121,7 +121,7 @@ export default defineType({
       description: "The list of tracks in the album or record",
       title: "Track List",
       type: "array",
-      of: [{type: "string"}],
+      of: [{type: "tracklist"}],
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -130,7 +130,7 @@ export default defineType({
       title: "Release Date",
       type: "date",
       options: {
-        dateFormat: 'DD-MM-YY'
+        dateFormat: 'DD.MM.YY'
       },
       validation: (rule) => rule.required(),
     }),
@@ -174,43 +174,4 @@ export default defineType({
     }),
   ],
 });
-      // defineField({
-      //   name: "physicalFormat",
-      //   title: "Physical Format",
-      //   description: "The availability of product in physical format and the price.",
-      //   type: "object",
-      //   fields: [
-      //     {
-      //       name: "availableFormat",
-      //       type: "boolean",
-      //       title: "Available Format?",
-      //       description: "Is this product availabel in physical format?"
-      //     },
-      //     {
-      //       name: "physicalPrice",
-      //       title: "Physical Price",
-      //       type: "number",
-      //       hidden: ({parent, value}) => !value && parent.availableFormat
-      //     }
-      //   ]
-      // }),
-      // defineField({
-      //   name: "digitalFormat",
-      //   title: "Digital Format",
-      //   description: "The availability of product in digital format and the price.",
-      //   type: "object",
-      //   fields: [
-      //     {
-      //       name: "availableFormat",
-      //       type: "boolean",
-      //       title: "Available Format?",
-      //       description: "Is this product availabel in digital format?"
-      //     },
-      //     {
-      //       name: "digitalPrice",
-      //       title: "Digital Price",
-      //       type: "number",
-      //       hidden: ({parent, value}) => !value && parent.availableFormat
-      //     }
-      //   ]
-      // }),
+    

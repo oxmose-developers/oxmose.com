@@ -100,5 +100,12 @@ export const realeaseBySlugQuery = groq`
   artist-> {
     name
   },
+  trackList[] {
+    title,
+    "time": {
+      "minutes": duration.minutes,
+      "seconds": duration.seconds
+    }
+  }
 }
 `;

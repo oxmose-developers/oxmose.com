@@ -32,7 +32,7 @@ export default function ExpandableText({value="", maxLength=100, classesWrapper}
         }
       </div>
 
-      <button onClick={toggleExpand} className="text-lg">{expanded ? '-' : '+'}</button>
+      <button onClick={toggleExpand} className="text-lg py-2 pr-3">{expanded ? '-' : '+'}</button>
     </>
   )
 }

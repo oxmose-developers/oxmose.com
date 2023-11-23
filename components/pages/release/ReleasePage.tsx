@@ -13,20 +13,37 @@ export interface ReleasePageProps {
 }
 
 export default function ReleasePage({data}: ReleasePageProps) {
+  console.log(data?.trackList);
+  const { 
+    artist, 
+    coverImage, 
+    description, 
+    digitalFormat, 
+    digitalPrice, 
+    links, 
+    overview, 
+    physicalFormat, 
+    physicalPrice, 
+    productImages,
+    releaseDate, 
+    releaseReference, 
+    title, 
+    trackList, 
+    } = data ?? {};
   return (
     <>
       <div className="border border-slate-600">
         <ImageBox
-          image={data?.coverImage}
-          imagePlaceholder={data?.coverImage?.lqip}
-          alt={`Cover image for ${data?.title}`}
+          image={coverImage}
+          imagePlaceholder={coverImage?.lqip}
+          alt={`Cover image for ${title}`}
           height={300}
           width={300}
           classesWrapper="aspect-square object-cover"
         />
         <div className="px-7 py-5">
-          <h1 className="font-semibold text-2xl tracking-tight ">{data?.title}</h1>
-          <h2 className="text-xl">{data?.artist.name}</h2>
+          <h1 className="font-semibold text-2xl tracking-tight ">{title}</h1>
+          <h2 className="text-xl">{artist?.name}</h2>
 
         </div>
   
@@ -38,14 +55,14 @@ export default function ReleasePage({data}: ReleasePageProps) {
                 <p className="uppercase font-semibold text-xl">digital</p>
                 <span className="text-sm">WAV 24bit</span>
               </div>
-              <span className="font-semibold text-xl">{data?.digitalPrice}€</span>
+              <span className="font-semibold text-xl">{digitalPrice?.toFixed(2)}€</span>
             </li>
             <li className="list-[circle] flex justify-between">
               <div className="flex flex-col gap-0">
                 <span className="uppercase font-semibold text-xl">vinyl</span>
                 <span className="text-sm">{`12&" 180gr limited edition`}</span>
               </div>
-              <span className="font-semibold text-xl">{data?.physicalPrice?.toFixed(2)}€</span>
+              <span className="font-semibold text-xl">{physicalPrice?.toFixed(2)}€</span>
             </li>
           </ul>
           <div className="mt-5 flex justify-between">
@@ -75,46 +92,25 @@ export default function ReleasePage({data}: ReleasePageProps) {
 
       {/* TRACKLIST */}
       <div>
-        <h3 className="px-7 py-3 font-semibold text-xl uppercase">TRACKLIST</h3>
-      
+        <h3 className="mx-7 mb-3 font-semibold text-xl uppercase">TRACKLIST</h3>
+
         <table className="w-full font-semibold table-fixed text-left">
           <thead className="bg-black text-white uppercase text-lg">
             <tr>
               <th className="pl-7">#</th>
-              <th className="w-[50%]">TITLE</th>
+              <th className="w-[55%]">TITLE</th>
               <th className="pr-7 text-right">TIME</th>
             </tr>
           </thead>
-          <tbody>
-            {/* {tracks.map((track) => (
-              <tr key={track.id}>
-                <td>{track.number}</td>
+          <tbody className="mt-3 py-2 px-4 text-lg before:h-3 before:block">
+            {trackList?.map((track, index=1) => (
+              <tr key={track._id}>
+                <td className="pl-7">{index.toString().padStart(2, '0')}</td>
                 <td>{track.title}</td>
-                <td>{formatTrackLength(track.length)}</td>
+                <td className="pr-7 text-right tracking-tight">{`${track.time.minutes} : ${track.time.seconds.padStart(2, '0')}`}</td>
               </tr>
-            ))} */}
+            ))}
 
-            <tr>
-              <td className="pl-7">01</td>
-              <td >Hands</td>
-              <td className="pr-7 text-right">3:45</td>
-            </tr>
-            <tr>
-              <td className="pl-7">01</td>
-              <td >Hands</td>
-              <td className="pr-7 text-right">3:45</td>
-            </tr>
-            <tr>
-              <td className="pl-7">01</td>
-              <td >Hands</td>
-              <td className="pr-7 text-right">3:45</td>
-            </tr>
-            <tr>
-              <td className="pl-7">01</td>
-              <td >Hands</td>
-              <td className="pr-7 text-right">3:45</td>
-            </tr>
-            
           </tbody>
         </table>
       </div>

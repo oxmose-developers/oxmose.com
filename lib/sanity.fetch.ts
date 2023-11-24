@@ -12,7 +12,7 @@ import {
   homePageTitleQuery,
   pagePaths,
   pagesBySlugQuery,
-  realeaseBySlugQuery,
+  releaseBySlugQuery,
   releaseListQuery,
   releasePaths,
   settingsQuery,
@@ -134,7 +134,7 @@ export function getReleaseList() {
 }
 export function getReleaseBySlug(slug: string) {
   return sanityFetch<ReleasePayload | null>({
-    query: realeaseBySlugQuery,
+    query: releaseBySlugQuery,
     params: { slug },
     tags: [`realease:${slug}`],
   });

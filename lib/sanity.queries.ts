@@ -76,7 +76,9 @@ export const releaseListQuery = groq`
   "slug": slug.current,
   title,
   artist-> {
-    name
+    _type,
+    name,
+    "slug": slug.current
   },
   coverImage {
     ...,
@@ -89,7 +91,7 @@ export const releasePaths = groq`
   *[_type == "release" && slug.current != null].slug.current
 `;
 
-export const realeaseBySlugQuery = groq`
+export const releaseBySlugQuery = groq`
 *[_type == "release" && slug.current == $slug][0] {
   ...,
   "slug": slug.current,

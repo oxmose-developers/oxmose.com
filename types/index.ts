@@ -78,7 +78,11 @@ export interface ReleaseListPayload {
   _id: string;
   slug: string;
   title: string;
-  artist: { name: string };
+  artist: { 
+    name: string, 
+    slug: string, 
+    _type: string 
+  };
   coverImage: ImageWithPlaceholder;
   _type: string
 }

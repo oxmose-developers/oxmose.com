@@ -98,7 +98,9 @@ export const realeaseBySlugQuery = groq`
     "lqip": asset->metadata.lqip
   },
   artist-> {
-    name
+    _type,
+    name,
+    "slug": slug.current
   },
   trackList[] {
     title,

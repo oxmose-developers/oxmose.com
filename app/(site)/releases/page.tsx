@@ -5,23 +5,21 @@
  */
 
 import ReleaseCard from "components/pages/release/ReleaseCard";
-import ImageBox from "components/shared/ImageBox"
 import { getReleaseList } from "lib/sanity.fetch"
 import { resolveHref } from "lib/sanity.links";
-import Link from "next/link";
 
 export default async function CataloguePage() {
   const releases = await getReleaseList()
   return (
-    <div className="grid md:grid-cols-2">
+    <div className="grid md:grid-cols-2 mx-[-1px]">
       {
         releases && releases.map((release) => {
-          const href = resolveHref(release._type, release.slug);
-          if (!href) {
-            return null;
-          }
+          const hrefRelease = resolveHref(release._type, release.slug);
+          const hrefArtist = resolveHref(release.artist._type, release.artist.slug);
+          if (!hrefRelease) return null;
+          if (!hrefArtist) return null;
           return (
-            <ReleaseCard key={release._id} data={{release, href}}  />
+            <ReleaseCard key={release._id} data={{release, hrefRelease, hrefArtist}}  />
         )})
       }
     </div>

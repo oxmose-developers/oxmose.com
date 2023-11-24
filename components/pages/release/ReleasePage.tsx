@@ -3,7 +3,8 @@
  * - make a toggle button
  */
 
-import ExpandableText from "components/shared/ExpandableText";
+import { CustomPortableText } from "components/shared/CustomPortableText";
+import Expandable from "components/shared/ExpandableComponent";
 import ImageBox from "components/shared/ImageBox";
 import { getReleaseBySlug } from "lib/sanity.fetch";
 import { ReleasePayload } from "types";
@@ -13,7 +14,6 @@ export interface ReleasePageProps {
 }
 
 export default function ReleasePage({data}: ReleasePageProps) {
-  console.log(data?.trackList);
   const { 
     artist, 
     coverImage, 
@@ -21,7 +21,6 @@ export default function ReleasePage({data}: ReleasePageProps) {
     digitalFormat, 
     digitalPrice, 
     links, 
-    overview, 
     physicalFormat, 
     physicalPrice, 
     productImages,
@@ -32,7 +31,7 @@ export default function ReleasePage({data}: ReleasePageProps) {
     } = data ?? {};
   return (
     <>
-      <div className="border border-slate-600">
+      <div className="border border-slate-600 mx-[-1px]">
         <ImageBox
           image={coverImage}
           imagePlaceholder={coverImage?.lqip}
@@ -84,10 +83,12 @@ export default function ReleasePage({data}: ReleasePageProps) {
       {/* DETAILS Release date and label release reference */}
       <div className="px-7 py-5">
         <div className="flex justify-between pb-5">
-          <span className="uppercase font-semibold text-xl">{data?.releaseReference}</span>
-          <span className="uppercase font-semibold text-xl">{data?.releaseDate}</span>
+          <span className="uppercase font-semibold text-xl">{releaseReference}</span>
+          <span className="uppercase font-semibold text-xl">{releaseDate}</span>
         </div>
-        <ExpandableText value={data?.description} maxLength={100} classesWrapper="leading-tight md:leading-normal" />
+        <Expandable initialHeight="32rem">
+          {description && <CustomPortableText value={description} paragraphClasses="leading-tight md:leading-normal"/>}
+        </Expandable>
       </div>
 
       {/* TRACKLIST */}
@@ -110,7 +111,6 @@ export default function ReleasePage({data}: ReleasePageProps) {
                 <td className="pr-7 text-right tracking-tight">{`${track.time.minutes} : ${track.time.seconds.padStart(2, '0')}`}</td>
               </tr>
             ))}
-
           </tbody>
         </table>
       </div>

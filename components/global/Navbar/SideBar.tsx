@@ -10,9 +10,8 @@ interface SideBarProps {
 }
 
 export default function SideBar({isOpen, toggle, menuItems}: SideBarProps) {
-  console.log(menuItems)
   return (
-    <div className="fixed w-full h-full overflow-hidden pr-4 py-4 bg-white right-0 z-20 transition-all duration-300 peer-checked:translate-x-0"
+    <div className="fixed w-full h-full overflow-hidden pr-4 pt-24 bg-white right-0 z-20 transition-all duration-300 peer-checked:translate-x-0"
       style={{ opacity: `${isOpen ? "1" : "0"}`, right: ` ${isOpen ? "0" : "-100%"}`}}
     >
       <button className="absolute right-5 top-5" onClick={toggle}>
@@ -30,14 +29,7 @@ export default function SideBar({isOpen, toggle, menuItems}: SideBarProps) {
         </svg>
       </button>
 
-      <Image 
-        alt="oxmose logo" 
-        src="/oxmose_logo.png"
-        width={60}
-        height={60}
-        className="ml-1 mr-auto"
-      />
-      <ul className="mt-10">
+      <ul className="text-right">
 
         {menuItems &&
           menuItems.map((menuItem, key) => {

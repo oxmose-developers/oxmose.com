@@ -7,9 +7,9 @@ export interface RoleCardProps {
 export default function RoleCard({role, credits, classesWrapper = ""}: RoleCardProps) {
   return (
     <div className={classesWrapper}>
-      <p className="uppercase font-bold text-2xl">{role}</p>
+      <p className="uppercase font-bold text-xl md:text-2xl">{role}</p>
       {credits.map((credit, index) => (
-        <p key={index} className="text-2xl">{credit}</p>
+        <p key={index} className="text-xl md:text-2xl">{credit}</p>
       ))}
     </div>
   )

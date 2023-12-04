@@ -14,7 +14,7 @@ export default function trackList({ trackList, artist }: { trackList: Track[], a
             <th className="pr-7 text-right">TIME</th>
           </tr>
         </thead>
-        <tbody className="py-1 px-4 text-lg before:h-3 before:block">
+        <tbody className="py-1 px-4 text-base md:text-lg before:h-3 before:block after:h-3 after:block">
           {trackList?.map((track, index=1) => (
             <tr key={track._id}>
               <td className="pl-7">{(index +1).toString().padStart(2, '0')}</td>

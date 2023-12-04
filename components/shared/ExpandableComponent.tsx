@@ -8,26 +8,28 @@
 import { useState } from "react"
 
 interface ExpandableTextProps {
-  initialHeight?: string
-  children?: React.ReactNode
+  initialHeight?: string;
+  children?: React.ReactNode;
+  classesWrapper: string;
 }
 
-export default function Expandable({initialHeight="100px", children}: ExpandableTextProps) {
+export default function Expandable({initialHeight="100px", classesWrapper, children}: ExpandableTextProps) {
   const [expanded, setExpanded] = useState(false);
-  // const [height, setHeight] = useState(`h-[${initialHeight}]`);
+  // const customHeight = `h-[${initialHeight}]`;
+  const [height, setHeight] = useState(initialHeight);
 
   function toggleExpand() {
     setExpanded(!expanded);
-    // setHeight(expanded ? "h-[100px]" : "fit-content");
+    setHeight(expanded ? initialHeight : "fit-content");
   }
 
   return (
-    <>
-      <div className={`overflow-hidden ellipsis ${expanded ? "fit-content" : "h-[100px]"}`}>
+    <div className={classesWrapper}>
+      <div className="overflow-hidden ellipsis" style={{height: height}}>
         {children}
       </div>
 
-      <button onClick={toggleExpand} className="text-lg py-2 pr-3">{expanded ? '-' : '+'}</button>
-    </>
+      <button onClick={toggleExpand} className="text-lg py-2 pr-3 lg:text-3xl lg:font-bold">{expanded ? '-' : '+'}</button>
+    </div>
   )
 }

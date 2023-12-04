@@ -17,7 +17,7 @@ export default function ArtistListItem({ artist, href }: { artist: ArtistListPay
 
   return (
     <>
-      <div key={artist._id} className="border-b border-t border-black px-5 py-3">
+      <div key={artist._id} className="border-b divide-slate-400 px-5 py-3">
         <Link 
           href={href} 
           className="block text-5xl font-medium tracking-tight"
@@ -36,7 +36,7 @@ export default function ArtistListItem({ artist, href }: { artist: ArtistListPay
             alt={`Artist image for ${revealArtist.name}`}
             height={350}
             width={475}
-            classesWrapper="hidden w-[30%] h-auto absolute right-8 top-1/2 md:block"
+            classesWrapper="hidden w-[400px] h-auto absolute right-8 top-1/2 translate-y-1/3 md:block"
           />
         )
       }

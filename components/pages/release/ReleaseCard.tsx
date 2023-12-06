@@ -12,14 +12,14 @@ interface ReleaseCardProps {
 export default function ReleaseCard({ data }: { data: ReleaseCardProps }) {
   const {release, hrefRelease, hrefArtist} = data || {};
   return (
-    <div className=" text-slate-800 border border-slate-400 mt-[-1px] ml-[-1px] flex flex-col md:grid md:grid-rows-[2fr_5fr_auto] md:grid-cols-[2fr_5fr]">
-      <Link href={hrefRelease}>
-        <h2 className="px-7 pt-5 text-2xl font-semibold tracking-tight md:order-first md:col-span-2 md:text-4xl lg:text-5xl hover:text-slate-600 block">
+    <div className="text-slate-800 border border-slate-400 mt-[-1px] ml-[-1px] flex flex-col md:grid md:grid-rows-[2fr_5fr_auto] md:grid-cols-[2fr_5fr]">
+      <Link href={hrefRelease} className="md:mt-auto md:pb-5 md:row-start-2">
+        <h2 className="px-7 pt-5 text-2xl font-semibold tracking-tight lg:text-3xl hover:text-slate-600 block">
           {release?.title}
         </h2>
       </Link>
 
-      <Link href={hrefRelease} className="order-first  mt-auto md:px-7 md:pb-5 md:col-start-2 md:col-span-1 hover:opacity-90">
+      <Link href={hrefRelease} className="order-first md:row-start-2 md:col-start-2 mt-auto md:px-7 md:pb-5 hover:opacity-90">
           <ImageBox
           image={release?.coverImage}
           imagePlaceholder={release?.coverImage?.lqip}
@@ -31,8 +31,8 @@ export default function ReleaseCard({ data }: { data: ReleaseCardProps }) {
       </Link>
       
       {/* TODO - get artist slug for link */}
-      <Link href={hrefArtist}>
-        <h3 className="col-start-1 row-start-2 px-7 pb-5 text-2xl mt-auto tracking-tight md:font-semibold lg:text-3xl hover:text-slate-600">
+      <Link href={hrefArtist} className="md:order-first md:col-span-2">
+        <h3 className="col-start-1 px-7 pb-5 text-2xl mt-auto tracking-tight md:font-semibold md:text-4xl md:py-5 lg:text-5xl hover:text-slate-600">
             {release?.artist.name}
         </h3>
       </Link>

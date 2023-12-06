@@ -22,6 +22,14 @@ export const pagesBySlugQuery = groq`
   }
 `;
 
+export const aboutPageQuery = groq`
+  *[_type == "about"][0]{
+    _id,
+    overview,
+    title,
+  }
+`;
+
 export const artistBySlugQuery = groq`
   *[_type == "artist" && slug.current == $slug][0] {
     _id,
@@ -113,3 +121,9 @@ export const releaseBySlugQuery = groq`
   }
 }
 `;
+
+export const faqsQuery = groq`
+*[_type == "faq"]{
+  ...
+}
+`

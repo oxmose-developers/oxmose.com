@@ -5,9 +5,11 @@ import { closestIndexTo } from "date-fns";
 import { env } from "env.mjs";
 import { client } from "lib/sanity.client";
 import {
+  aboutPageQuery,
   artistBySlugQuery,
   artistListQuery,
   artistPaths,
+  faqsQuery,
   homePageQuery,
   homePageTitleQuery,
   pagePaths,
@@ -21,6 +23,7 @@ import { draftMode } from "next/headers";
 import type {
   ArtistListPayload,
   ArtistPayload,
+  FaqPayload,
   HomePagePayload,
   PagePayload,
   ReleaseListPayload,
@@ -96,6 +99,13 @@ export function getHomePage() {
   });
 }
 
+export function getAboutPage() {
+  return sanityFetch<PagePayload | null>({
+    query: aboutPageQuery,
+    tags: ["about"],
+  })
+}
+
 export function getHomePageTitle() {
   return sanityFetch<string | null>({
     query: homePageTitleQuery,
@@ -146,4 +156,11 @@ export function getReleasePaths() {
     {},
     { token, perspective: "published" },
   );
+}
+
+export function getFaqs() {
+  return sanityFetch<FaqPayload[]>({
+    query: faqsQuery,
+    tags: ['faq']
+  });
 }

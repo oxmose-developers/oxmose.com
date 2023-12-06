@@ -95,3 +95,9 @@ export interface Track {
     seconds: string;
   }
 }
+
+export interface FaqPayload {
+  _id: string;
+  question: string;
+  answer: PortableTextBlock[];
+}

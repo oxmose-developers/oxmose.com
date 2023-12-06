@@ -47,7 +47,7 @@ export default function ReleasePageDesktop({data}: ReleasePageProps) {
               alt={`Cover image for ${title}`}
               height={300}
               width={300}
-              classesWrapper="aspect-square object-cover md:max-h-[335px] md:max-w-[335px] lg:max-w-[500px] lg:max-h-[500px]"
+              classesWrapper="aspect-square object-fit md:max-h-[335px] md:max-w-[335px] lg:max-w-[500px] lg:max-h-[500px]"
             />
           </div>
 
@@ -87,10 +87,10 @@ export default function ReleasePageDesktop({data}: ReleasePageProps) {
           />
         </div>
         
-        <div className="flex flex-col  h-[435px] lg:h-[600px]">
+        <div className="flex flex-col h-[435px] lg:h-[600px]">
           {/* Title & Artist */}
           <div className="px-7 py-5">
-            <h1 className="font-semibold text-5xl tracking-tight ">{title}</h1>
+            <h1 className="font-semibold text-4xl lg:text-5xl tracking-tight ">{title}</h1>
             <h2 className="text-2xl font-medium text-right mt-4">{artist?.name}</h2>
           </div>
 

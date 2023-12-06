@@ -48,7 +48,11 @@ export default function ReleasePageMobile({data}: ReleasePageProps) {
   
         {/* RELEASE FORMATS */}
         {digitalPrice && physicalPrice &&
-          <Formats digitalPrice={digitalPrice} physicalPrice={physicalPrice}/>
+          <Formats 
+            digitalPrice={digitalPrice} 
+            physicalPrice={physicalPrice}
+            classesWrapper="px-7 mb-5"
+          />
         }
 
         {/* Buy Listen panel */}

@@ -1,16 +1,14 @@
 export interface RoleCardProps {
   role: string;
-  credits: string[];
+  members: string;
   classesWrapper?: string;
 }
 
-export default function RoleCard({role, credits, classesWrapper = ""}: RoleCardProps) {
+export default function RoleCard({role, members, classesWrapper = ""}: RoleCardProps) {
   return (
     <div className={classesWrapper}>
       <p className="uppercase font-bold text-xl md:text-2xl">{role}</p>
-      {credits.map((credit, index) => (
-        <p key={index} className="text-xl md:text-2xl">{credit}</p>
-      ))}
+      <p className="text-xl md:text-2xl">{members}</p>
     </div>
   )
 }

@@ -102,7 +102,11 @@ export interface FaqPayload {
   answer: PortableTextBlock[];
 }
 
-export interface TeamPayload {
+export interface TeamPayload extends PagePayload {
+  roles: Role[];
+}
+
+export interface Role {
   _id: string;
   position: string;
   members: string;

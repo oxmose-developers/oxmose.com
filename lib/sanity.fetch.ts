@@ -148,7 +148,7 @@ export function getReleaseBySlug(slug: string) {
   return sanityFetch<ReleasePayload | null>({
     query: releaseBySlugQuery,
     params: { slug },
-    tags: [`realease:${slug}`],
+    tags: [`release:${slug}`],
   });
 }
 
@@ -168,7 +168,7 @@ export function getFaqs() {
 }
 
 export function getTeams() {
-  return sanityFetch<TeamPayload[]>({
+  return sanityFetch<TeamPayload>({
     query: teamQuery,
     tags: ['team']
   });

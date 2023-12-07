@@ -30,6 +30,15 @@ export const aboutPageQuery = groq`
   }
 `;
 
+export const contactLinksQuery = groq`
+  *[_type == "about"][0]{
+    _id,
+    listenLinks,
+    socialLinks,
+    "pressKit": press.asset->url,
+  }
+`;
+
 export const artistBySlugQuery = groq`
   *[_type == "artist" && slug.current == $slug][0] {
     _id,

@@ -9,6 +9,7 @@ import {
   artistBySlugQuery,
   artistListQuery,
   artistPaths,
+  contactLinksQuery,
   faqsQuery,
   homePageQuery,
   homePageTitleQuery,
@@ -24,6 +25,7 @@ import { draftMode } from "next/headers";
 import type {
   ArtistListPayload,
   ArtistPayload,
+  ContactPagePayload,
   FaqPayload,
   HomePagePayload,
   PagePayload,
@@ -172,4 +174,11 @@ export function getTeams() {
     query: teamQuery,
     tags: ['team']
   });
+}
+
+export function getContactLinks() {
+  return sanityFetch<ContactPagePayload>({
+    query: contactLinksQuery,
+    tags:['about']
+  })
 }

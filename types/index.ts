@@ -106,6 +106,12 @@ export interface TeamPayload extends PagePayload {
   roles: Role[];
 }
 
+export interface ContactPagePayload {
+  socialLinks: LinkPayload[];
+  listenLinks: LinkPayload[];
+  pressKit: string;
+}
+
 export interface Role {
   _id: string;
   position: string;

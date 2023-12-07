@@ -1,6 +1,7 @@
 import ImageBox from "components/shared/ImageBox";
 import Link from "next/link";
 import { ReleaseListPayload } from "types";
+
 import ActionPanel from "./shared/ActionBar";
 
 interface ReleaseCardProps {

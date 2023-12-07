@@ -101,3 +101,9 @@ export interface FaqPayload {
   question: string;
   answer: PortableTextBlock[];
 }
+
+export interface TeamPayload {
+  _id: string;
+  position: string;
+  members: string;
+}

@@ -23,6 +23,7 @@ import artist from "schemas/documents/artist";
 import faqs from "schemas/documents/faqs";
 import page from "schemas/documents/page";
 import release from "schemas/documents/release"
+import team from "schemas/documents/team";
 import duration from "schemas/objects/duration";
 import link from "schemas/objects/link";
 import tracklist from "schemas/objects/tracklist";
@@ -67,15 +68,16 @@ export default defineConfig({
     // If you want more content types, you can add them to this array
     types: [
       // Singletons
-      home,
       about,
+      home,
       settings,
       time,
       // Documents
-      page,
       artist,
-      release,
+      page,
       faqs,
+      release,
+      team,
       // Objects
       duration,
       link,

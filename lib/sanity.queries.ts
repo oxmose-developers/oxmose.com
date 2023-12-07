@@ -127,3 +127,9 @@ export const faqsQuery = groq`
   ...
 }
 `
+
+export const teamQuery = groq`
+*[_type == "team"]{
+  ...
+}
+`

@@ -18,6 +18,7 @@ import {
   releaseListQuery,
   releasePaths,
   settingsQuery,
+  teamQuery,
 } from "lib/sanity.queries";
 import { draftMode } from "next/headers";
 import type {
@@ -29,6 +30,7 @@ import type {
   ReleaseListPayload,
   ReleasePayload,
   SettingsPayload,
+  TeamPayload,
 } from "types";
 
 // import { revalidateSecret } from "./sanity.api";
@@ -162,5 +164,12 @@ export function getFaqs() {
   return sanityFetch<FaqPayload[]>({
     query: faqsQuery,
     tags: ['faq']
+  });
+}
+
+export function getTeams() {
+  return sanityFetch<TeamPayload[]>({
+    query: teamQuery,
+    tags: ['team']
   });
 }

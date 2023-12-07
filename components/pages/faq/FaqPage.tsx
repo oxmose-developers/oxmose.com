@@ -19,13 +19,13 @@ export default function FaqPage ({ data }: { data: FaqPayload[]} ) {
       <div className="">
         {
           data && data.map((faq) => (
-            <ListItem key={faq._id} content={faq.question} handleClick={() => handleQuestionClick(faq._id)}/>
+            <ListItem key={faq._id} content={faq.question} handleClick={() => handleQuestionClick(faq._id)} classesWrapper="cursor-pointer"/>
           ))
         }
       </div>
 
       <div className="px-7 py-5">
-        <CustomPortableText value={currentQuestion.answer} paragraphClasses="max-w-3xl mb-6 text-lg lg:mb-9 lg:text-xl text-gray-900"/>
+        <CustomPortableText value={currentQuestion.answer} paragraphClasses="max-w-3xl mb-6 text-lg lg:mb-9 lg:text-xl text-slate-800"/>
       </div>
     </div>
   );

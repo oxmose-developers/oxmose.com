@@ -36,7 +36,7 @@ export default function ArtistListItem({ artist, href }: { artist: ArtistListPay
             alt={`Artist image for ${revealArtist.name}`}
             height={350}
             width={475}
-            classesWrapper="hidden md:max-w-[300px] lg:max-w-[400px] h-auto md:absolute md:block md:right-8 md:top-[calc(50%+80px)]"
+            classesWrapper="hidden md:max-w-[300px] lg:max-w-[400px] h-auto md:absolute md:block md:right-8 md:top-1/2"
           />
         )
       }

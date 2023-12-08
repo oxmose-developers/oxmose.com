@@ -40,7 +40,7 @@ export default function ReleasePageDesktop({data}: ReleasePageProps) {
           </div>
 
           {/* Cover Image */}
-          <div className="px-4 row-start-2 mt-auto">
+          <div className="pl-4 row-start-2 mt-auto">
             <ImageBox
               image={coverImage}
               imagePlaceholder={coverImage?.lqip}

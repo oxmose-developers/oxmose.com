@@ -32,6 +32,7 @@ export interface LinkPayload {
 }
 
 export interface ArtistPayload {
+  _id: string;
   about?: PortableTextBlock[];
   coverImage?: ImageWithPlaceholder;
   links?: LinkPayload[];
@@ -57,6 +58,7 @@ export interface SettingsPayload {
 
 export interface ReleasePayload {
   _id: string;
+  _type: string;
   slug: string;
   title: string;
   artist: { name: string };

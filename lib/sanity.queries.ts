@@ -131,6 +131,17 @@ export const releaseBySlugQuery = groq`
 }
 `;
 
+export const releaseByArtistQuery = groq`
+*[_type == "release" && artist._ref == $id] {
+  _id,
+  _type,
+  title,
+  "slug": slug.current,
+  releaseDate,
+  releaseReference
+}
+`;
+
 export const faqsQuery = groq`
 *[_type == "faq"]{
   ...

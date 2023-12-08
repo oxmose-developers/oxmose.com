@@ -15,6 +15,7 @@ import {
   homePageTitleQuery,
   pagePaths,
   pagesBySlugQuery,
+  releaseByArtistQuery,
   releaseBySlugQuery,
   releaseListQuery,
   releasePaths,
@@ -151,6 +152,14 @@ export function getReleaseBySlug(slug: string) {
     query: releaseBySlugQuery,
     params: { slug },
     tags: [`release:${slug}`],
+  });
+}
+
+export function getReleasesByArtist(id: string) {
+  return sanityFetch<ReleasePayload[] | null>({
+    query: releaseByArtistQuery,
+    params: { id },
+    tags: [`artist:${id}`],
   });
 }
 

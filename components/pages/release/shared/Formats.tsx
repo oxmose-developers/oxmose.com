@@ -7,22 +7,36 @@ interface FormatsProps {
 export default function Formats({digitalPrice, physicalPrice, classesWrapper}: FormatsProps) {
   return (
     <div className={classesWrapper}>
-      <ul>
-        <li className="list-disc flex justify-between">
-          <div>
-            <p className="uppercase font-semibold text-xl lg:text-2xl">digital</p>
-            <span className="text-sm lg:text-lg">WAV 24bit</span>
+        <div className="flex justify-between">
+          <div className="flex gap-2 before:content-[''] before:block before:h-4 before:w-4 before:rounded-full before:bg-black before:mt-2">
+            <div>
+              <p className="uppercase font-semibold text-xl lg:text-2xl">digital</p>
+              <span className="text-sm lg:text-lg">WAV 24bit</span>
+            </div>
           </div>
           <span className="font-semibold text-xl  lg:text-2xl">{digitalPrice.toFixed(2)}€</span>
-        </li>
-        <li className="list-[circle] flex justify-between">
+        </div>
+
+        <div className="mt-4 flex justify-between">
+          <div className="flex gap-2 before:content-[''] before:block before:h-4 before:w-4 before:rounded-full before:border before:border-black before:mt-2">
+            <div>
+              <p className="uppercase font-semibold text-xl lg:text-2xl">vinyl</p>
+              <span className="text-sm lg:text-lg">{`12&" 180gr divmited edition`}</span>
+            </div>
+          </div>
+          <span className="font-semibold text-xl  lg:text-2xl">{physicalPrice.toFixed(2)}€</span>
+        </div>
+
+
+        {/* <div className="flex gap-2 before:content-[''] before:block before:h-4 before:w-4 before:rounded-full before:bg-black before:mt-2">
+        <div className="flex justify-between">
           <div className="flex flex-col gap-0">
-            <span className="uppercase font-semibold text-xl lg:text-2xl">vinyl</span>
-            <span className="text-sm lg:text-lg">{`12&" 180gr limited edition`}</span>
+            <p className="uppercase font-semibold text-xl lg:text-2xl">vinyl</p>
+            <span className="text-sm lg:text-lg">{`12&" 180gr divmited edition`}</span>
           </div>
           <span className="font-semibold text-xl lg:text-2xl">{physicalPrice.toFixed(2)}€</span>
-        </li>
-      </ul>
+        </div>
+          </div> */}
       
     </div>
   )

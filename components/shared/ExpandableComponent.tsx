@@ -1,8 +1,3 @@
-/**
- * Find out why the tailwind classes aren't applied when interpolated
- */
-
-
 "use client"
 
 import { useState } from "react"
@@ -15,7 +10,6 @@ interface ExpandableTextProps {
 
 export default function Expandable({initialHeight="100px", classesWrapper, children}: ExpandableTextProps) {
   const [expanded, setExpanded] = useState(false);
-  // const customHeight = `h-[${initialHeight}]`;
   const [height, setHeight] = useState(initialHeight);
 
   function toggleExpand() {

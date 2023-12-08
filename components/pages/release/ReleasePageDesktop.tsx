@@ -89,9 +89,9 @@ export default function ReleasePageDesktop({data}: ReleasePageProps) {
         
         <div className="flex flex-col h-[435px] lg:h-[600px]">
           {/* Title & Artist */}
-          <div className="px-7 py-5">
-            <h1 className="font-semibold text-4xl lg:text-5xl tracking-tight ">{title}</h1>
-            <h2 className="text-2xl font-medium text-right mt-4">{artist?.name}</h2>
+          <div className="px-7 py-5 flex justify-between">
+            <h1 className="basis-1/3 font-semibold text-4xl lg:text-5xl tracking-tight ">{artist?.name}</h1>
+            <h2 className="self-end items-end text-2xl font-medium text-right mt-4">{title}</h2>
           </div>
 
           {/* RELEASE FORMATS */}

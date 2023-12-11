@@ -98,10 +98,10 @@ export interface Track {
   }
 }
 
-export interface FaqPayload {
+export interface CategoryArticlePayload {
   _id: string;
-  question: string;
-  answer: PortableTextBlock[];
+  category: string;
+  article: PortableTextBlock[];
 }
 
 export interface TeamPayload extends PagePayload {

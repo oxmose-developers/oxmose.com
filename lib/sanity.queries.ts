@@ -147,9 +147,20 @@ export const faqsQuery = groq`
   ...
 }
 `
+export const privacyArticlesQuery = groq`
+*[_type == "privacy"]{
+  ...
+}
+`
+export const termsQuery = groq`
+*[_type == "terms"]{
+  ...
+}
+`
 
 export const teamQuery = groq`
 *[_type == "team"][0]{
   ...
 }
 `
+

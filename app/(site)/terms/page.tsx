@@ -1,13 +1,13 @@
 
 import CategoryArticleComponent from "components/shared/CategoryArticleComponent";
-import { getFaqs } from "lib/sanity.fetch";
+import { getTerms } from "lib/sanity.fetch";
 
 export default async function Faq() {
-  const faqs = await getFaqs();
+  const termsArticles = await getTerms();
 
   return (
     <main>
-      {faqs && <CategoryArticleComponent data={faqs} />}
+      {termsArticles && <CategoryArticleComponent data={termsArticles} />}
     </main>
   )
 }

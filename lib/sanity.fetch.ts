@@ -15,19 +15,21 @@ import {
   homePageTitleQuery,
   pagePaths,
   pagesBySlugQuery,
+  privacyArticlesQuery,
   releaseByArtistQuery,
   releaseBySlugQuery,
   releaseListQuery,
   releasePaths,
   settingsQuery,
   teamQuery,
+  termsQuery,
 } from "lib/sanity.queries";
 import { draftMode } from "next/headers";
 import type {
   ArtistListPayload,
   ArtistPayload,
+  CategoryArticlePayload,
   ContactPagePayload,
-  FaqPayload,
   HomePagePayload,
   PagePayload,
   ReleaseListPayload,
@@ -172,9 +174,21 @@ export function getReleasePaths() {
 }
 
 export function getFaqs() {
-  return sanityFetch<FaqPayload[]>({
+  return sanityFetch<CategoryArticlePayload[]>({
     query: faqsQuery,
     tags: ['faq']
+  });
+}
+export function getPrivacyArticles() {
+  return sanityFetch<CategoryArticlePayload[]>({
+    query: privacyArticlesQuery,
+    tags: ['privacy']
+  });
+}
+export function getTerms() {
+  return sanityFetch<CategoryArticlePayload[]>({
+    query: termsQuery,
+    tags: ['terms']
   });
 }
 

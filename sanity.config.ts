@@ -32,6 +32,8 @@ import home from "schemas/singletons/home";
 import settings from "schemas/singletons/settings";
 import team from "schemas/singletons/team";
 import time from "schemas/singletons/time";
+import privacy from "schemas/documents/privacy";
+import terms from "schemas/documents/terms";
 
 const title = env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Oxmose Studio";
 
@@ -78,7 +80,9 @@ export default defineConfig({
       artist,
       page,
       faqs,
+      privacy,
       release,
+      terms,
       // Objects
       duration,
       link,

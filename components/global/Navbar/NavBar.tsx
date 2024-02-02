@@ -1,3 +1,4 @@
+import { Bars3Icon } from '@heroicons/react/24/outline'
 import { resolveHref } from "lib/sanity.links";
 import Image from "next/image";
 import Link from "next/link";
@@ -45,7 +46,7 @@ export default function Navbar({menuItems, toggle}: NavbarProps) {
         }
 
       <button className="mr-2 block md:hidden" aria-label="Open Menu" onClick={toggle}>
-        <Image src='/menu-burger-horizontal-svgrepo-com.svg' height={40} width={40} alt="hamburger menu"/>  
+        <Bars3Icon className="w-10 h-10"/>
       </button>
     </div>
   )

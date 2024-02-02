@@ -10,7 +10,6 @@ import { getAboutPage, getTeams } from "lib/sanity.fetch";
 export default async function About() {
   const { roles } = await getTeams();
   const about = await getAboutPage();
-  console.log(roles)
   
   const splitIndex = Math.ceil(roles.length / 2);
   const leftHalf = roles.slice(0, splitIndex);
@@ -24,7 +23,7 @@ export default async function About() {
         }
       </header>
       
-      <main>
+      <main className="mb-10">
         <section className="lg:mt-[180px] border-t divide-x border-slate-400 divide-slate-400 grid lg:grid-cols-2">
           <div className="space-y-4 px-7 py-5">
             {leftHalf && 

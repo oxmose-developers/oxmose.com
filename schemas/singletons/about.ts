@@ -36,7 +36,28 @@ export default defineType({
       ],
       validation: (rule) => rule.max(155).required(),
     }),
+    defineField({
+      name: "listenLinks",
+      title: "External Listening Links",
+      description: "Used in the contact page as a list of external listening links.",
+      type: "array",
+      of: [{ type: "link" }],
+    }),
+    defineField({
+      name: "socialLinks",
+      title: "Social Media Links",
+      description: "Used in the contact page as a list of external social media links.",
+      type: "array",
+      of: [{ type: "link" }],
+    }),
+    defineField({
+      name: "press",
+      title: "Press Kit",
+      description: "Here you can upload a Press Kit to be downloaded.",
+      type: "file",
+    }),
   ],
+  
   preview: {
     select: {
       title: "title",

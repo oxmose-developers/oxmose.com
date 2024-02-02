@@ -16,6 +16,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "@portabletext/react": "3.0.11",
     "@sanity/client": "6.7.0",
     "@sanity/demo": "1.0.2",
@@ -25,6 +26,7 @@
     "@sanity/vision": "3.18.1",
     "@t3-oss/env-nextjs": "^0.7.1",
     "@tailwindcss/typography": "0.5.10",
+    "@uidotdev/usehooks": "^2.4.1",
     "@vercel/og": "0.5.20",
     "classnames": "2.3.2",
     "date-fns": "2.30.0",

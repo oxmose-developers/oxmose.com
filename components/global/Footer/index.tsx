@@ -16,7 +16,7 @@ export async function Footer() {
       initialData={data}
       as={FooterPreview}
     >
-      <FooterLayout data={data} />
+      <FooterLayout />
     </LiveQuery>
   );
 }

@@ -1,23 +1,34 @@
-import { CustomPortableText } from "components/shared/CustomPortableText";
-import type { PortableTextBlock } from "sanity";
-import type { SettingsPayload } from "types";
+"use client"
 
-interface FooterProps {
-  data: SettingsPayload;
-}
-export default function Footer(props: FooterProps) {
-  const { data } = props;
+import { PlusIcon } from '@heroicons/react/24/outline';
+import Link from "next/link";
+import { useState } from "react";
 
-  const footer = data?.footer || ([] as PortableTextBlock[]);
+import FooterNavBar from './FooterMenuBar';
+import FooterPopupMenu from './FooterPopupMenu';
+
+const links = [
+  {href: '/publishing', label: 'Publishing'},
+  {href: '/follow', label: 'Follow'},
+  {href: '/newsletter', label: 'Newsletter'},
+  {href: '/terms', label: 'Terms'},
+  {href: '/privacy', label: 'Privacy'},
+  {href: '/faq', label: 'FAQ'},
+]
+export default function Footer() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  }
 
   return (
-    <footer className="bottom-0 w-full bg-white py-12 text-center md:py-20">
-      {footer && (
-        <CustomPortableText
-          paragraphClasses="text-md md:text-xl"
-          value={footer}
-        />
-      )}
-    </footer>
+    <>
+      <FooterPopupMenu links={links} toggle={toggle} isOpen={isOpen} />
+      <FooterNavBar links={links} toggle={toggle} isOpen={isOpen}/>
+
+    </>
+
+
   );
 }

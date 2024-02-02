@@ -1,26 +1,44 @@
 import "server-only";
 
 import type { QueryParams } from "@sanity/client";
+import { closestIndexTo } from "date-fns";
 import { env } from "env.mjs";
 import { client } from "lib/sanity.client";
 import {
+  aboutPageQuery,
   artistBySlugQuery,
+  artistListQuery,
   artistPaths,
+  contactLinksQuery,
+  faqsQuery,
   homePageQuery,
   homePageTitleQuery,
   pagePaths,
   pagesBySlugQuery,
+  privacyArticlesQuery,
+  releaseByArtistQuery,
+  releaseBySlugQuery,
+  releaseListQuery,
+  releasePaths,
   settingsQuery,
+  teamQuery,
+  termsQuery,
 } from "lib/sanity.queries";
 import { draftMode } from "next/headers";
 import type {
+  ArtistListPayload,
   ArtistPayload,
+  CategoryArticlePayload,
+  ContactPagePayload,
   HomePagePayload,
   PagePayload,
+  ReleaseListPayload,
+  ReleasePayload,
   SettingsPayload,
+  TeamPayload,
 } from "types";
 
-import { revalidateSecret } from "./sanity.api";
+// import { revalidateSecret } from "./sanity.api";
 
 export const token = env.SANITY_API_READ_TOKEN;
 
@@ -45,7 +63,7 @@ export async function sanityFetch<QueryResponse>({
       : client;
   return sanityClient.fetch<QueryResponse>(query, params, {
     // We only cache if there's a revalidation webhook setup
-    cache: revalidateSecret ? "force-cache" : "no-store",
+    cache: "no-store",//revalidateSecret ? "force-cache" : "no-store",
     ...(isDraftMode && {
       cache: undefined,
       token: token,
@@ -88,6 +106,13 @@ export function getHomePage() {
   });
 }
 
+export function getAboutPage() {
+  return sanityFetch<PagePayload | null>({
+    query: aboutPageQuery,
+    tags: ["about"],
+  })
+}
+
 export function getHomePageTitle() {
   return sanityFetch<string | null>({
     query: homePageTitleQuery,
@@ -109,4 +134,74 @@ export function getArtistPaths() {
     {},
     { token, perspective: "published" },
   );
+}
+
+export function getArtistList() {
+  return client.fetch<ArtistListPayload[] | null>(
+    artistListQuery,
+    { token, perspective: "published"}
+  )
+}
+
+export function getReleaseList() {
+  return client.fetch<ReleaseListPayload[] | null>(
+    releaseListQuery,
+    { token, perspective: "published"}
+  )
+}
+export function getReleaseBySlug(slug: string) {
+  return sanityFetch<ReleasePayload | null>({
+    query: releaseBySlugQuery,
+    params: { slug },
+    tags: [`release:${slug}`],
+  });
+}
+
+export function getReleasesByArtist(id: string) {
+  return sanityFetch<ReleasePayload[] | null>({
+    query: releaseByArtistQuery,
+    params: { id },
+    tags: [`artist:${id}`],
+  });
+}
+
+export function getReleasePaths() {
+  return client.fetch<string[]>(
+    releasePaths,
+    {},
+    { token, perspective: "published" },
+  );
+}
+
+export function getFaqs() {
+  return sanityFetch<CategoryArticlePayload[]>({
+    query: faqsQuery,
+    tags: ['faq']
+  });
+}
+export function getPrivacyArticles() {
+  return sanityFetch<CategoryArticlePayload[]>({
+    query: privacyArticlesQuery,
+    tags: ['privacy']
+  });
+}
+export function getTerms() {
+  return sanityFetch<CategoryArticlePayload[]>({
+    query: termsQuery,
+    tags: ['terms']
+  });
+}
+
+export function getTeams() {
+  return sanityFetch<TeamPayload>({
+    query: teamQuery,
+    tags: ['team']
+  });
+}
+
+export function getContactLinks() {
+  return sanityFetch<ContactPagePayload>({
+    query: contactLinksQuery,
+    tags:['about']
+  })
 }

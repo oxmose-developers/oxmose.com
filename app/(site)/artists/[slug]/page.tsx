@@ -5,6 +5,7 @@ import {
   getArtistBySlug,
   getArtistPaths,
   getHomePageTitle,
+  getReleasesByArtist,
 } from "lib/sanity.fetch";
 import { artistBySlugQuery } from "lib/sanity.queries";
 import { defineMetadata } from "lib/utils.metadata";
@@ -12,6 +13,7 @@ import { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import { LiveQuery } from "next-sanity/preview/live-query";
+import { ReleasePayload } from "types";
 
 export const runtime = "edge";
 
@@ -41,10 +43,14 @@ export async function generateStaticParams() {
 }
 
 export default async function ArtistSlugRoute({ params }: Props) {
-  const data = await getArtistBySlug(params.slug);
+  const artist = await getArtistBySlug(params.slug);
+  let releases: ReleasePayload[] | null = null;
+  
 
-  if (!data && !draftMode().isEnabled) {
+  if (!artist && !draftMode().isEnabled) {
     notFound();
+  } else if (artist && artist._id) {
+    releases = await getReleasesByArtist(artist._id);
   }
 
   return (
@@ -52,10 +58,10 @@ export default async function ArtistSlugRoute({ params }: Props) {
       enabled={draftMode().isEnabled}
       query={artistBySlugQuery}
       params={params}
-      initialData={data}
+      initialData={artist}
       as={ArtistPreview}
     >
-      <ArtistPage data={data} />
+      <ArtistPage artist={artist} releases={releases}/>
     </LiveQuery>
   );
 }

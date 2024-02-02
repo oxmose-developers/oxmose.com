@@ -19,7 +19,7 @@ export function Page({ data }: PageProps) {
         {/* Body */}
         {body && (
           <CustomPortableText
-            paragraphClasses="max-w-3xl text-gray-600 text-xl"
+            paragraphClasses="max-w-3xl text-slate-800 text-xl"
             value={body}
           />
         )}

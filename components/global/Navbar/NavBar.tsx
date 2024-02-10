@@ -1,4 +1,4 @@
-import { Bars3Icon } from '@heroicons/react/24/outline'
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import { resolveHref } from "lib/sanity.links";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,11 +9,11 @@ interface NavbarProps {
   toggle: () => void;
 }
 
-export default function Navbar({menuItems, toggle}: NavbarProps) {
+export default function Navbar({ menuItems, toggle }: NavbarProps) {
   return (
-    <div className="sticky top-0 z-10 flex flex-wrap items-center flex-end gap-x-5 border-b border-slate-400 bg-white/80 px-4 py-4 pl-1 backdrop-blur md:px-16 md:pl-2 md:py-5 lg:px-32 lg:pl-4">
-      <Image 
-        alt="oxmose logo" 
+    <div className="flex-end sticky top-0 z-10 flex flex-wrap items-center gap-x-5 border-b border-slate-400 bg-white/80 px-4 py-4 pl-1 backdrop-blur md:px-16 md:py-5 md:pl-2 lg:px-32 lg:pl-4">
+      <Image
+        alt="oxmose logo"
         src="/oxmose_logo.png"
         width={60}
         height={60}
@@ -27,27 +27,28 @@ export default function Navbar({menuItems, toggle}: NavbarProps) {
             return null;
           }
 
-          
           return (
             <Link
               key={key}
-              className={`text-lg uppercase font-medium hidden md:block hover:text-black md:text-xl ${
+              className={`hidden text-lg font-medium uppercase hover:text-black md:block md:text-xl ${
                 menuItem?._type === "home"
-                ? "font-extrabold text-black"
-                : "text-gray-600"
+                  ? "font-extrabold text-black"
+                  : "text-gray-600"
               }`}
               href={href}
             >
               {menuItem.title}
             </Link>
-            
-            );
-          })
-        }
+          );
+        })}
 
-      <button className="mr-2 block md:hidden" aria-label="Open Menu" onClick={toggle}>
-        <Bars3Icon className="w-10 h-10"/>
+      <button
+        className="mr-2 block md:hidden"
+        aria-label="Open Menu"
+        onClick={toggle}
+      >
+        <Bars3Icon className="h-10 w-10" />
       </button>
     </div>
-  )
+  );
 }

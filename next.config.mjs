@@ -1,4 +1,8 @@
-import "./env.mjs";
+import createJiti from "jiti";
+const jiti = createJiti(new URL(import.meta.url).pathname);
+
+// Import env here to validate during build. Using jiti we can import .ts files :)
+jiti("./app/env");
 
 /** @type {import('next').NextConfig} */
 const config = {
@@ -7,17 +11,6 @@ const config = {
       { hostname: "cdn.sanity.io" },
       { hostname: "source.unsplash.com" },
     ],
-  },
-  typescript: {
-    // Set this to false if you want production builds to abort if there's type errors
-    ignoreBuildErrors: process.env.VERCEL_ENV === "production",
-  },
-  eslint: {
-    /// Set this to false if you want production builds to abort if there's lint errors
-    ignoreDuringBuilds: process.env.VERCEL_ENV === "production",
-  },
-  experimental: {
-    logging: "verbose",
   },
 };
 

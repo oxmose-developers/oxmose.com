@@ -2,7 +2,7 @@ import "server-only";
 
 import type { QueryParams } from "@sanity/client";
 import { closestIndexTo } from "date-fns";
-import { env } from "env.mjs";
+import { env } from "env.js";
 import { client } from "lib/sanity.client";
 import {
   aboutPageQuery,
@@ -63,7 +63,7 @@ export async function sanityFetch<QueryResponse>({
       : client;
   return sanityClient.fetch<QueryResponse>(query, params, {
     // We only cache if there's a revalidation webhook setup
-    cache: "no-store",//revalidateSecret ? "force-cache" : "no-store",
+    cache: "no-store", //revalidateSecret ? "force-cache" : "no-store",
     ...(isDraftMode && {
       cache: undefined,
       token: token,
@@ -110,7 +110,7 @@ export function getAboutPage() {
   return sanityFetch<PagePayload | null>({
     query: aboutPageQuery,
     tags: ["about"],
-  })
+  });
 }
 
 export function getHomePageTitle() {
@@ -137,17 +137,17 @@ export function getArtistPaths() {
 }
 
 export function getArtistList() {
-  return client.fetch<ArtistListPayload[] | null>(
-    artistListQuery,
-    { token, perspective: "published"}
-  )
+  return client.fetch<ArtistListPayload[] | null>(artistListQuery, {
+    token,
+    perspective: "published",
+  });
 }
 
 export function getReleaseList() {
-  return client.fetch<ReleaseListPayload[] | null>(
-    releaseListQuery,
-    { token, perspective: "published"}
-  )
+  return client.fetch<ReleaseListPayload[] | null>(releaseListQuery, {
+    token,
+    perspective: "published",
+  });
 }
 export function getReleaseBySlug(slug: string) {
   return sanityFetch<ReleasePayload | null>({
@@ -176,32 +176,32 @@ export function getReleasePaths() {
 export function getFaqs() {
   return sanityFetch<CategoryArticlePayload[]>({
     query: faqsQuery,
-    tags: ['faq']
+    tags: ["faq"],
   });
 }
 export function getPrivacyArticles() {
   return sanityFetch<CategoryArticlePayload[]>({
     query: privacyArticlesQuery,
-    tags: ['privacy']
+    tags: ["privacy"],
   });
 }
 export function getTerms() {
   return sanityFetch<CategoryArticlePayload[]>({
     query: termsQuery,
-    tags: ['terms']
+    tags: ["terms"],
   });
 }
 
 export function getTeams() {
   return sanityFetch<TeamPayload>({
     query: teamQuery,
-    tags: ['team']
+    tags: ["team"],
   });
 }
 
 export function getContactLinks() {
   return sanityFetch<ContactPagePayload>({
     query: contactLinksQuery,
-    tags:['about']
-  })
+    tags: ["about"],
+  });
 }

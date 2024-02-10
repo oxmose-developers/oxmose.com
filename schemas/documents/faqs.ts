@@ -12,7 +12,7 @@ export default defineType({
       title: "Question",
       description: "This field is a frequently asked question.",
       type: "string",
-      validation: (rule) => rule.required()
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "answer",
@@ -40,7 +40,7 @@ export default defineType({
           type: "block",
         }),
       ],
-      validation: (rule) => rule.required()
+      validation: (rule) => rule.required(),
     }),
-  ]
-})
+  ],
+});

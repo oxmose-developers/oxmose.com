@@ -3,7 +3,7 @@
  * Importing other npm packages here could lead to needlessly increasing the client bundle size, or end up in a server-only function that don't need it.
  */
 
-import { env } from "env.mjs";
+import { env } from "../env.js";
 
 export const dataset = env.NEXT_PUBLIC_SANITY_DATASET;
 

@@ -47,6 +47,9 @@ dependencies:
   intl-segmenter-polyfill:
     specifier: 0.4.4
     version: 0.4.4
+  jiti:
+    specifier: ^1.21.0
+    version: 1.21.0
   next:
     specifier: 14.1.0
     version: 14.1.0(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)

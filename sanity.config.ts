@@ -3,37 +3,28 @@
  */
 
 import { visionTool } from "@sanity/vision";
-import { env } from "env.mjs";
-import {
-  apiVersion,
-  dataset,
-  previewSecretId,
-  projectId,
-} from "lib/sanity.api";
-import { pageStructure, singletonPlugin } from "plugins/settings";
 import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
+import { structureTool } from "sanity/structure";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
-import Iframe, {
-  defineUrlResolver,
-  IframeOptions,
-} from "sanity-plugin-iframe-pane";
-import { previewUrl } from "sanity-plugin-iframe-pane/preview-url";
-import artist from "schemas/documents/artist";
-import faqs from "schemas/documents/faqs";
-import page from "schemas/documents/page";
-import release from "schemas/documents/release"
-import duration from "schemas/objects/duration";
-import link from "schemas/objects/link";
-import role from "schemas/objects/role";
-import tracklist from "schemas/objects/tracklist";
-import about from "schemas/singletons/about";
-import home from "schemas/singletons/home";
-import settings from "schemas/singletons/settings";
-import team from "schemas/singletons/team";
-import time from "schemas/singletons/time";
-import privacy from "schemas/documents/privacy";
-import terms from "schemas/documents/terms";
+
+import { env } from "./env.js";
+import { apiVersion, dataset, projectId } from "./lib/sanity.api";
+import { singletonPlugin } from "./plugins/settings";
+import artist from "./schemas/documents/artist";
+import faqs from "./schemas/documents/faqs";
+import page from "./schemas/documents/page";
+import privacy from "./schemas/documents/privacy";
+import release from "./schemas/documents/release";
+import terms from "./schemas/documents/terms";
+import duration from "./schemas/objects/duration";
+import link from "./schemas/objects/link";
+import role from "./schemas/objects/role";
+import tracklist from "./schemas/objects/tracklist";
+import about from "./schemas/singletons/about";
+import home from "./schemas/singletons/home";
+import settings from "./schemas/singletons/settings";
+import team from "./schemas/singletons/team";
+import time from "./schemas/singletons/time";
 
 const title = env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Oxmose Studio";
 
@@ -51,16 +42,6 @@ export const PREVIEWABLE_DOCUMENT_TYPES_REQUIRING_SLUGS = [
 
 // Used to generate URLs for drafts and live previews
 export const PREVIEW_BASE_URL = "/api/draft";
-
-export const urlResolver = defineUrlResolver({
-  base: PREVIEW_BASE_URL,
-  requiresSlug: PREVIEWABLE_DOCUMENT_TYPES_REQUIRING_SLUGS,
-});
-
-export const iframeOptions = {
-  url: urlResolver,
-  urlSecretId: previewSecretId,
-} satisfies IframeOptions;
 
 export default defineConfig({
   basePath: "/studio",
@@ -87,39 +68,13 @@ export default defineConfig({
       duration,
       link,
       role,
-      tracklist
+      tracklist,
     ],
   },
   plugins: [
-    deskTool({
-      structure: pageStructure([home, about, settings, team]),
-      // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
-      // You can add any React component to `S.view.component` and it will be rendered in the pane
-      // and have access to content in the form in real-time.
-      // It's part of the Studio's “Structure Builder API” and is documented here:
-      // https://www.sanity.io/docs/structure-builder-reference
-      defaultDocumentNode: (S, { schemaType }) => {
-        if ((PREVIEWABLE_DOCUMENT_TYPES as string[]).includes(schemaType)) {
-          return S.document().views([
-            // Default form view
-            S.view.form(),
-            // Preview
-            S.view.component(Iframe).options(iframeOptions).title("Preview"),
-          ]);
-        }
-
-        return null;
-      },
-    }),
+    structureTool(),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     singletonPlugin([home.name, settings.name, about.name, team.name]),
-    // Add the "Open preview" action
-    previewUrl({
-      base: PREVIEW_BASE_URL,
-      requiresSlug: PREVIEWABLE_DOCUMENT_TYPES_REQUIRING_SLUGS,
-      urlSecretId: previewSecretId,
-      matchTypes: PREVIEWABLE_DOCUMENT_TYPES,
-    }),
     // Add an image asset source for Unsplash
     unsplashImageAsset(),
     // Vision lets you query your content with GROQ in the studio

@@ -1,84 +1,66 @@
-/**
- * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
- */
-
-import { visionTool } from "@sanity/vision";
+// sanity.config.ts
 import { defineConfig } from "sanity";
-import { structureTool } from "sanity/structure";
-import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
+import { structureTool, type StructureBuilder } from "sanity/structure";
+import { visionTool } from "@sanity/vision";
+import { SANITY_DATASET_NAME, SANITY_PROJECT_ID } from "../env.mjs/index.js";
+import { schemaTypes, singletonTypes } from "./schemas/index.js";
 
-import { env } from "./env.js";
-import { apiVersion, dataset, projectId } from "./lib/sanity.api";
-import { singletonPlugin } from "./plugins/settings";
-import artist from "./schemas/documents/artist";
-import faqs from "./schemas/documents/faqs";
-import page from "./schemas/documents/page";
-import privacy from "./schemas/documents/privacy";
-import release from "./schemas/documents/release";
-import terms from "./schemas/documents/terms";
-import duration from "./schemas/objects/duration";
-import link from "./schemas/objects/link";
-import role from "./schemas/objects/role";
-import tracklist from "./schemas/objects/tracklist";
-import about from "./schemas/singletons/about";
-import home from "./schemas/singletons/home";
-import settings from "./schemas/singletons/settings";
-import team from "./schemas/singletons/team";
-import time from "./schemas/singletons/time";
+/**
+ * Define the actions that should be available for singleton documents
+ */
+const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 
-const title = env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Oxmose Studio";
-
-export const PREVIEWABLE_DOCUMENT_TYPES = [
-  home.name,
-  page.name,
-  about.name,
-  artist.name,
-] satisfies string[];
-
-export const PREVIEWABLE_DOCUMENT_TYPES_REQUIRING_SLUGS = [
-  page.name,
-  artist.name,
-] satisfies typeof PREVIEWABLE_DOCUMENT_TYPES;
-
-// Used to generate URLs for drafts and live previews
-export const PREVIEW_BASE_URL = "/api/draft";
+const singletonListItem = (
+  S: StructureBuilder,
+  typeName: string,
+  title?: string,
+) =>
+  S.listItem()
+    .title(title || typeName)
+    .id(typeName)
+    .child(S.document().schemaType(typeName).documentId(typeName));
 
 export default defineConfig({
-  basePath: "/studio",
-  projectId,
-  dataset,
-  title,
-  schema: {
-    // If you want more content types, you can add them to this array
-    types: [
-      // Singletons
-      about,
-      home,
-      settings,
-      team,
-      time,
-      // Documents
-      artist,
-      page,
-      faqs,
-      privacy,
-      release,
-      terms,
-      // Objects
-      duration,
-      link,
-      role,
-      tracklist,
-    ],
-  },
+  name: "oxmose",
+  title: "Oxmose Admin",
+  projectId: SANITY_PROJECT_ID,
+  dataset: SANITY_DATASET_NAME,
   plugins: [
-    structureTool(),
-    // Configures the global "new document" button, and document actions, to suit the Settings document singleton
-    singletonPlugin([home.name, settings.name, about.name, team.name]),
-    // Add an image asset source for Unsplash
-    unsplashImageAsset(),
-    // Vision lets you query your content with GROQ in the studio
-    // https://www.sanity.io/docs/the-vision-plugin
-    visionTool({ defaultApiVersion: apiVersion }),
+    structureTool({
+      structure: (S) => {
+        const defaultItems = S.documentTypeListItems().filter(
+          (listItem) => !singletonTypes.has(listItem.getId() as string),
+        );
+
+        const singletonItems = schemaTypes
+          .filter((type) => singletonTypes.has(type.name))
+          .map((schemaType) =>
+            singletonListItem(S, schemaType.name, schemaType.title),
+          );
+
+        return S.list()
+          .title("Content")
+          .id("content")
+          .items([...singletonItems, S.divider(), ...defaultItems]);
+      },
+    }),
+    visionTool(),
   ],
+  schema: {
+    types: schemaTypes,
+    /**
+     * Filter out singleton types from the global “New document” menu options
+     */
+    templates: (templates) =>
+      templates.filter(({ schemaType }) => !singletonTypes.has(schemaType)),
+  },
+  document: {
+    /**
+     * For singleton types, filter out actions that are not explicitly included in the `singletonActions` list defined above
+     */
+    actions: (prev, { schemaType }) =>
+      singletonTypes.has(schemaType)
+        ? prev.filter(({ action }) => action && singletonActions.has(action))
+        : prev,
+  },
 });

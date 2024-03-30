@@ -1,0 +1,78 @@
+---
+import type { GetStaticPaths } from "astro";
+import { sanityClient } from "sanity:client";
+import RootLayout from "../../layouts/RootLayout.astro";
+import { FAQsQuery } from "../../groq";
+import { PortableText } from "astro-portabletext";
+
+export const getStaticPaths = (async () => {
+  const faqs = await sanityClient.fetch<FAQsQuery>(FAQsQuery);
+
+  const categories = faqs.map((faq) => ({
+    slug: faq.slug,
+    category: faq.category,
+  }));
+
+  return faqs.map((faq) => {
+    return {
+      params: { slug: faq.slug.current },
+      props: {
+        faq,
+        categories,
+      },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+
+const { faq, categories } = Astro.props;
+
+const title = `${faq.category} | FAQ | Oxmose`;
+---
+
+<RootLayout
+  title={title}
+  mainClassName="lg:flex lg:item-stretch lg:flex-row lg:divide-x lg:divide-black"
+>
+  <h1 hidden>{title}</h1>
+
+  <ul class="hidden flex-1 divide-y divide-black lg:block">
+    {
+      categories.map((el) => (
+        <li class="px-10 text-oxe-xxl/[96px] last:!border-b last:border-black">
+          <a href={`/faq/${el.slug.current}`}>{el.category}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div
+    class="flex-1 divide-y divide-y-reverse divide-black first:*:!border-b first:*:border-black"
+  >
+    {
+      categories.map((el) => (
+        <>
+          <a
+            class="block w-full px-9 text-left text-oxe-xxl-mobile/[60px] lg:hidden"
+            href={`/faq/${el.slug.current}`}
+          >
+            {el.category}
+          </a>
+
+          {el.slug.current === slug && (
+            <article class="space-y-9 p-9 text-oxe-sm lg:space-y-10 lg:p-10">
+              {faq.questions.map((qa) => (
+                <div class="space-y-4">
+                  <h4 class="-mb-4 font-medium">{qa.question}</h4>
+
+                  <PortableText value={qa.answer} />
+                </div>
+              ))}
+            </article>
+          )}
+        </>
+      ))
+    }
+  </div>
+</RootLayout>

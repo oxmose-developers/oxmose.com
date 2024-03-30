@@ -1,0 +1,58 @@
+---
+import { urlForImage } from "../sanity/urlForImage";
+import { type Release } from "../groq";
+
+export interface Props {
+  release: Release;
+}
+
+const { release } = Astro.props;
+
+const link = "/catalogue/" + release.slug.current;
+
+const url = urlForImage(release.coverImage).url();
+const webpUrl = urlForImage(release.coverImage).format("webp").url();
+---
+
+<article class="divide-y divide-black bg-white">
+  <div class="lg:p-9">
+    <header class="mb-24 hidden lg:block">
+      <h2 class="text-oxe-xxl font-medium">{release.title}</h2>
+    </header>
+
+    <div class="flex flex-col lg:flex-row-reverse lg:items-end lg:gap-9">
+      <div class="aspect-square w-full">
+        <picture>
+          <source srcset={webpUrl} type="image/webp" />
+          <img
+            class="aspect-square object-cover object-center"
+            alt={`${release.title} Album Cover`}
+            src={url}
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </div>
+
+      <div class="px-9 py-6 lg:p-0">
+        <h2 class="block text-oxe-sm font-medium lg:hidden">{release.title}</h2>
+
+        <p class="text-oxe-sm lg:-mb-2.5 lg:text-oxe-lg lg:font-medium">
+          {release.artist[0].name}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="border-t px-9 py-2">
+    <div class="flex justify-between">
+      <a class="text-oxe-xs font-medium uppercase lg:text-oxe-sm" href={link}>
+        More
+      </a>
+
+      <button class="text-oxe-xs font-medium uppercase lg:text-oxe-sm">
+        Listen
+      </button>
+    </div>
+  </footer>
+</article>

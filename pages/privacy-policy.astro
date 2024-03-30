@@ -1,0 +1,37 @@
+---
+import RootLayout from "../layouts/RootLayout.astro";
+import Prose from "../components/Prose.astro";
+
+import { Content as PrivacyPolicyEn } from "../content/privacy-policy/en.md";
+import { Content as PrivacyPolicyFr } from "../content/privacy-policy/fr.md";
+---
+
+<RootLayout title="Privacy policy | Astro">
+  <div class="grid grid-cols-2 divide-x divide-black">
+    <section lang="en" class="p-10">
+      <div class="mb-28 flex gap-8">
+        <h2 class="flex-1 text-oxe-xxl leading-none">Privacy policy</h2>
+
+        <p class="shrink-0 text-oxe-xxl leading-none">En</p>
+      </div>
+
+      <Prose>
+        <PrivacyPolicyEn />
+      </Prose>
+    </section>
+
+    <section lang="fr" class="p-10">
+      <div class="mb-28 flex gap-8">
+        <h2 class="flex-1 text-oxe-xxl leading-none">
+          Politique de confidentialité
+        </h2>
+
+        <p class="shrink-0 text-oxe-xxl leading-none">Fr</p>
+      </div>
+
+      <Prose>
+        <PrivacyPolicyFr />
+      </Prose>
+    </section>
+  </div>
+</RootLayout>

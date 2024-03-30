@@ -1,0 +1,34 @@
+---
+import { urlForImage } from "../sanity/urlForImage";
+import type { Artist } from "../groq";
+
+export interface Props {
+  artist: Artist;
+}
+
+const { artist } = Astro.props;
+
+const link = "/artists/" + artist.slug.current;
+
+const url = urlForImage(artist.coverImage).url();
+const webpUrl = urlForImage(artist.coverImage).format("webp").url();
+---
+
+<li class="group px-9 last:!border-b last:border-black lg:px-10">
+  <a class="text-oxe-xxl-mobile/[60px] lg:text-oxe-xxl/[96px]" href={link}>
+    {artist.name}
+  </a>
+
+  <picture
+    class="absolute right-10 top-1/2 hidden -translate-y-1/2 md:group-hover:block"
+  >
+    <source srcset={webpUrl} type="image/webp" />
+    <img
+      class="aspect-[16/10] w-full max-w-lg object-cover object-center"
+      alt={artist.name}
+      src={url}
+      loading="lazy"
+      decoding="async"
+    />
+  </picture>
+</li>

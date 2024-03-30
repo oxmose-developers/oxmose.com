@@ -1,0 +1,35 @@
+---
+import RootLayout from "../layouts/RootLayout.astro";
+import Prose from "../components/Prose.astro";
+
+import { Content as TermsEn } from "../content/terms-and-conditions/en.md";
+import { Content as TermsFr } from "../content/terms-and-conditions/fr.md";
+---
+
+<RootLayout title="Terms and conditions | Astro">
+  <div class="grid grid-cols-2 divide-x divide-black">
+    <section lang="en" class="p-10">
+      <div class="mb-28 flex gap-8">
+        <h2 class="flex-1 text-oxe-xxl leading-none">Terms and conditions</h2>
+
+        <p class="shrink-0 text-oxe-xxl leading-none">En</p>
+      </div>
+
+      <Prose>
+        <TermsEn />
+      </Prose>
+    </section>
+
+    <section lang="fr" class="p-10">
+      <div class="mb-28 flex gap-8">
+        <h2 class="flex-1 text-oxe-xxl leading-none">Conditions générales</h2>
+
+        <p class="shrink-0 text-oxe-xxl leading-none">Fr</p>
+      </div>
+
+      <Prose>
+        <TermsFr />
+      </Prose>
+    </section>
+  </div>
+</RootLayout>

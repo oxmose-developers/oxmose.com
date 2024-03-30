@@ -1,25 +1,18 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "link",
-  title: "Link",
+  name: "item",
+  title: "Item",
   type: "object",
   fields: [
     defineField({
       type: "string",
       name: "name",
-      title: "Name",
       validation: (Rule) => [Rule.required()],
     }),
     defineField({
       type: "url",
-      name: "href",
-      title: "URL",
-      validation: (UrlRule) => [
-        UrlRule.required().uri({
-          scheme: ["http", "https", "mailto", "tel"],
-        }),
-      ],
+      name: "link",
     }),
   ],
 });

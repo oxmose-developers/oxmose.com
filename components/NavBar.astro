@@ -1,0 +1,43 @@
+---
+import Logo from "../shared/Logo.astro";
+---
+
+<nav class="shrink-0 border-b border-black bg-white py-[18px] lg:py-6">
+  <div class="flex max-w-[100rem]">
+    <div class="px-9 lg:px-10">
+      <a href="/">
+        <span class="sr-only">Back to Catalogue</span>
+        <Logo class="size-12 lg:size-16" />
+      </a>
+    </div>
+
+    <div
+      class="ml-auto hidden items-center justify-center gap-10 px-10 lg:flex"
+    >
+      <a class="whitespace-nowrap text-oxe-sm font-medium uppercase" href="/">
+        Catalogue
+      </a>
+
+      <a
+        class="whitespace-nowrap text-oxe-sm font-medium uppercase"
+        href="/artists"
+      >
+        Artists
+      </a>
+
+      <a
+        class="whitespace-nowrap text-oxe-sm font-medium uppercase"
+        href="/about"
+      >
+        à propos
+      </a>
+
+      <a
+        class="whitespace-nowrap text-oxe-sm font-medium uppercase"
+        href="/contact"
+      >
+        Contact
+      </a>
+    </div>
+  </div>
+</nav>

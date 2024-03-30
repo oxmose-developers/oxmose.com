@@ -1,0 +1,22 @@
+---
+import type { Credits } from "../groq";
+
+const joinHtmlString = `<span class="hidden lg:inline">, </span><br class="lg:hidden" />`;
+
+const { credit } = Astro.props;
+
+interface Props {
+  credit: Credits;
+}
+---
+
+<article>
+  <h3 class="text-oxe-xs font-medium uppercase lg:text-oxe-md">
+    {credit.title}
+  </h3>
+
+  <p
+    class="text-oxe-xs lg:text-oxe-md"
+    set:html={credit.items.map((item) => item.name).join(joinHtmlString)}
+  />
+</article>

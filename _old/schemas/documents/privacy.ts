@@ -12,7 +12,7 @@ export default defineType({
       title: "Category",
       description: "This field is the title or category of the article.",
       type: "string",
-      validation: (rule) => rule.required()
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "article",
@@ -40,7 +40,7 @@ export default defineType({
           type: "block",
         }),
       ],
-      validation: (rule) => rule.required()
+      validation: (rule) => rule.required(),
     }),
-  ]
-})
+  ],
+});

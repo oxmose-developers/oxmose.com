@@ -8,5 +8,5 @@ export default async function Faq() {
     <main>
       {privacyArticles && <CategoryArticleComponent data={privacyArticles} />}
     </main>
-  )
+  );
 }

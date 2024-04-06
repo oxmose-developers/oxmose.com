@@ -31,7 +31,7 @@ export default defineType({
       name: "artist",
       title: "Artist",
       type: "reference",
-      to: {type: "artist"},
+      to: { type: "artist" },
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -67,8 +67,7 @@ export default defineType({
     defineField({
       name: "productImages",
       title: "Product Images",
-      description:
-        "This is a collection of product images.",
+      description: "This is a collection of product images.",
       type: "array",
       of: [
         {
@@ -82,11 +81,11 @@ export default defineType({
               name: "caption",
               type: "string",
               title: "Caption",
-              description: "This will be used as the caption for the image."
-            }
-          ]
-        }
-      ]
+              description: "This will be used as the caption for the image.",
+            },
+          ],
+        },
+      ],
     }),
     defineField({
       name: "description",
@@ -121,7 +120,7 @@ export default defineType({
       description: "The list of tracks in the album or record",
       title: "Track List",
       type: "array",
-      of: [{type: "tracklist"}],
+      of: [{ type: "tracklist" }],
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -130,7 +129,7 @@ export default defineType({
       title: "Release Date",
       type: "date",
       options: {
-        dateFormat: 'DD.MM.YY'
+        dateFormat: "DD.MM.YY",
       },
       validation: (rule) => rule.required(),
     }),
@@ -174,4 +173,3 @@ export default defineType({
     }),
   ],
 });
-    

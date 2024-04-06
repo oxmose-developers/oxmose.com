@@ -1,4 +1,4 @@
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { resolveHref } from "_old/lib/sanity.links";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,10 +10,14 @@ interface SideBarProps {
   menuItems: MenuItem[];
 }
 
-export default function SideBar({isOpen, toggle, menuItems}: SideBarProps) {
+export default function SideBar({ isOpen, toggle, menuItems }: SideBarProps) {
   return (
-    <div className="fixed w-full h-full overflow-hidden pr-4 pt-24 bg-white right-0 z-20 transition-all duration-300 peer-checked:translate-x-0"
-      style={{ opacity: `${isOpen ? "1" : "0"}`, right: ` ${isOpen ? "0" : "-100%"}`}}
+    <div
+      className="fixed right-0 z-20 h-full w-full overflow-hidden bg-white pr-4 pt-24 transition-all duration-300 peer-checked:translate-x-0"
+      style={{
+        opacity: `${isOpen ? "1" : "0"}`,
+        right: ` ${isOpen ? "0" : "-100%"}`,
+      }}
     >
       <button className="absolute right-5 top-5" onClick={toggle}>
         {/* Close icon */}
@@ -21,7 +25,6 @@ export default function SideBar({isOpen, toggle, menuItems}: SideBarProps) {
       </button>
 
       <ul className="text-right">
-
         {menuItems &&
           menuItems.map((menuItem, key) => {
             const href = resolveHref(menuItem?._type, menuItem?.slug);
@@ -32,10 +35,10 @@ export default function SideBar({isOpen, toggle, menuItems}: SideBarProps) {
             return (
               <li key={key} className="m-2">
                 <Link
-                  className={`text-3xl uppercase font-medium block hover:text-black md:text-xl ${
+                  className={`block text-3xl font-medium uppercase hover:text-black md:text-xl ${
                     menuItem?._type === "home"
-                    ? "font-extrabold text-black"
-                    : "text-gray-600"
+                      ? "font-extrabold text-black"
+                      : "text-gray-600"
                   }`}
                   href={href}
                   onClick={toggle}
@@ -44,9 +47,8 @@ export default function SideBar({isOpen, toggle, menuItems}: SideBarProps) {
                 </Link>
               </li>
             );
-          })
-        }
+          })}
       </ul>
     </div>
-  )
+  );
 }

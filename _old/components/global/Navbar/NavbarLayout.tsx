@@ -13,16 +13,16 @@ interface NavbarProps {
 export default function NavbarLayout(props: NavbarProps) {
   const { data } = props;
   const menuItems = data?.menuItems || ([] as MenuItem[]);
-  const [isOpen, setIsOpen] = useState(false); 
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
     setIsOpen(!isOpen);
-};
+  };
 
   return (
     <>
-      <SideBar isOpen={isOpen} toggle={toggle} menuItems={menuItems}/>
-      <Navbar toggle={toggle} menuItems={menuItems}/>
+      <SideBar isOpen={isOpen} toggle={toggle} menuItems={menuItems} />
+      <Navbar toggle={toggle} menuItems={menuItems} />
     </>
   );
 }

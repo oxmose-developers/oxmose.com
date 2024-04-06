@@ -5,23 +5,29 @@
  */
 
 import ReleaseCard from "_old/components/pages/release/ReleaseCard";
-import { getReleaseList } from "_old/lib/sanity.fetch"
+import { getReleaseList } from "_old/lib/sanity.fetch";
 import { resolveHref } from "_old/lib/sanity.links";
 
 export default async function CataloguePage() {
-  const releases = await getReleaseList()
+  const releases = await getReleaseList();
   return (
-    <div className="grid md:grid-cols-2 mx-[-1px]">
-      {
-        releases && releases.map((release) => {
+    <div className="mx-[-1px] grid md:grid-cols-2">
+      {releases &&
+        releases.map((release) => {
           const hrefRelease = resolveHref(release._type, release.slug);
-          const hrefArtist = resolveHref(release.artist._type, release.artist.slug);
+          const hrefArtist = resolveHref(
+            release.artist._type,
+            release.artist.slug,
+          );
           if (!hrefRelease) return null;
           if (!hrefArtist) return null;
           return (
-            <ReleaseCard key={release._id} data={{release, hrefRelease, hrefArtist}}  />
-        )})
-      }
+            <ReleaseCard
+              key={release._id}
+              data={{ release, hrefRelease, hrefArtist }}
+            />
+          );
+        })}
     </div>
-  )
+  );
 }

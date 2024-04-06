@@ -1,10 +1,10 @@
 import { UsersIcon } from "@sanity/icons";
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: 'team',
-  title: 'Team Members',
-  type: 'document',
+  name: "team",
+  title: "Team Members",
+  type: "document",
   icon: UsersIcon,
   fields: [
     defineField({
@@ -12,7 +12,7 @@ export default defineType({
       description: "The list of roles in the company",
       title: "Roles",
       type: "array",
-      of: [{type: "role"}],
+      of: [{ type: "role" }],
     }),
   ],
   preview: {
@@ -26,4 +26,4 @@ export default defineType({
       };
     },
   },
-})
+});

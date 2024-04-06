@@ -80,13 +80,13 @@ export interface ReleaseListPayload {
   _id: string;
   slug: string;
   title: string;
-  artist: { 
-    name: string, 
-    slug: string, 
-    _type: string 
+  artist: {
+    name: string;
+    slug: string;
+    _type: string;
   };
   coverImage: ImageWithPlaceholder;
-  _type: string
+  _type: string;
 }
 
 export interface Track {
@@ -95,7 +95,7 @@ export interface Track {
   time: {
     minutes: string;
     seconds: string;
-  }
+  };
 }
 
 export interface CategoryArticlePayload {

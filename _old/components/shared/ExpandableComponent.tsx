@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
 interface ExpandableTextProps {
   initialHeight?: string;
@@ -8,7 +8,11 @@ interface ExpandableTextProps {
   classesWrapper: string;
 }
 
-export default function Expandable({initialHeight="100px", classesWrapper, children}: ExpandableTextProps) {
+export default function Expandable({
+  initialHeight = "100px",
+  classesWrapper,
+  children,
+}: ExpandableTextProps) {
   const [expanded, setExpanded] = useState(false);
   const [height, setHeight] = useState(initialHeight);
 
@@ -19,11 +23,16 @@ export default function Expandable({initialHeight="100px", classesWrapper, child
 
   return (
     <div className={classesWrapper}>
-      <div className="overflow-hidden ellipsis" style={{height: height}}>
+      <div className="ellipsis overflow-hidden" style={{ height: height }}>
         {children}
       </div>
 
-      <button onClick={toggleExpand} className="text-lg py-2 pr-3 lg:text-3xl lg:font-bold">{expanded ? '-' : '+'}</button>
+      <button
+        onClick={toggleExpand}
+        className="py-2 pr-3 text-lg lg:text-3xl lg:font-bold"
+      >
+        {expanded ? "-" : "+"}
+      </button>
     </div>
-  )
+  );
 }

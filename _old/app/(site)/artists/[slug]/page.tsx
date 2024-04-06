@@ -45,7 +45,6 @@ export async function generateStaticParams() {
 export default async function ArtistSlugRoute({ params }: Props) {
   const artist = await getArtistBySlug(params.slug);
   let releases: ReleasePayload[] | null = null;
-  
 
   if (!artist && !draftMode().isEnabled) {
     notFound();
@@ -61,7 +60,7 @@ export default async function ArtistSlugRoute({ params }: Props) {
       initialData={artist}
       as={ArtistPreview}
     >
-      <ArtistPage artist={artist} releases={releases}/>
+      <ArtistPage artist={artist} releases={releases} />
     </LiveQuery>
   );
 }

@@ -1,9 +1,13 @@
 import { toPlainText } from "@portabletext/react";
-import { useMediaQuery,useWindowSize } from "@uidotdev/usehooks";
+import { useMediaQuery, useWindowSize } from "@uidotdev/usehooks";
 import ReleasePageDesktop from "_old/components/pages/release/ReleasePageDesktop";
 import ReleasePageMobile from "_old/components/pages/release/ReleasePageMobile";
 import WindowSizeLayout from "_old/components/pages/release/WindowSizeLayout";
-import { getHomePageTitle, getReleaseBySlug, getReleasePaths } from "_old/lib/sanity.fetch";
+import {
+  getHomePageTitle,
+  getReleaseBySlug,
+  getReleasePaths,
+} from "_old/lib/sanity.fetch";
 import { defineMetadata } from "_old/lib/utils.metadata";
 import { Metadata } from "next";
 import { draftMode } from "next/headers";
@@ -36,7 +40,7 @@ export async function generateStaticParams() {
 }
 
 export default async function ReleaseSlugRoute({ params }: Props) {
-  const data = await getReleaseBySlug(params.slug)
+  const data = await getReleaseBySlug(params.slug);
 
   if (!data && !draftMode().isEnabled) {
     notFound();
@@ -50,10 +54,10 @@ export default async function ReleaseSlugRoute({ params }: Props) {
     //   initialData={data}
     //   as={ArtistPreview}
     // >
-      <>
-        <WindowSizeLayout data={data}/>
-      </>
-      
+    <>
+      <WindowSizeLayout data={data} />
+    </>
+
     // </LiveQuery>
-  )
+  );
 }

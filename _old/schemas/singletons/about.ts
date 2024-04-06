@@ -39,14 +39,16 @@ export default defineType({
     defineField({
       name: "listenLinks",
       title: "External Listening Links",
-      description: "Used in the contact page as a list of external listening links.",
+      description:
+        "Used in the contact page as a list of external listening links.",
       type: "array",
       of: [{ type: "link" }],
     }),
     defineField({
       name: "socialLinks",
       title: "Social Media Links",
-      description: "Used in the contact page as a list of external social media links.",
+      description:
+        "Used in the contact page as a list of external social media links.",
       type: "array",
       of: [{ type: "link" }],
     }),
@@ -57,7 +59,7 @@ export default defineType({
       type: "file",
     }),
   ],
-  
+
   preview: {
     select: {
       title: "title",

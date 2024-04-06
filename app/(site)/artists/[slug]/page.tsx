@@ -111,7 +111,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
               <ul className="text-oxe-sm/[32px]">
                 {artist.links?.map((link) => (
-                  <li key={link._id}>
+                  <li key={link._key}>
                     <a href={link.href}>{link.name}</a>
                   </li>
                 ))}

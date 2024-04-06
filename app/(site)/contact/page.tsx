@@ -34,7 +34,7 @@ export default async function Page() {
           <ul className="lg:list-inside lg:list-disc lg:self-end">
             {page.listenLinks.map((link) => (
               <li
-                key={link._id}
+                key={link._key}
                 className="whitespace-nowrap text-oxe-sm lg:text-oxe-lg"
               >
                 <a href={link.href}>{link.name}</a>
@@ -49,7 +49,7 @@ export default async function Page() {
           <ul className="lg:list-inside lg:list-disc lg:self-end">
             {page.followLinks.map((link) => (
               <li
-                key={link._id}
+                key={link._key}
                 className="whitespace-nowrap text-oxe-sm lg:text-oxe-lg"
               >
                 <a href={link.href}>{link.name}</a>

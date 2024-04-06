@@ -1,13 +1,6 @@
----
-export interface Props {
-  class?: string;
-}
-
-const { class: className } = Astro.props;
----
-
-<svg
-  class={className}
+export default function Logo({className}: {className?:string}) {
+  return <svg
+  className={className}
   width={64}
   height={64}
   xmlns="http://www.w3.org/2000/svg"
@@ -24,8 +17,10 @@ const { class: className } = Astro.props;
     ></path>
   </g>
   <defs>
-    <clip-path id="a">
+    <clipPath id="a">
       <path fill="#fff" d="M0 0h64v64H0z"></path>
-    </clip-path>
+    </clipPath>
   </defs>
 </svg>
+}
+

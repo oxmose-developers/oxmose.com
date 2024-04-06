@@ -84,11 +84,13 @@ export const FAQsQuery = /* groq */ `
 *[_type == "faqs" && defined(questions)] | order(_createdAt asc)`;
 
 export type QuestionAnswer = {
+  _id: string;
   question: string;
   answer: any[];
 };
 
 export type FAQ = {
+  _id: string;
   category: string;
   slug: Slug;
   questions: QuestionAnswer[];

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Artist } from "../groq";
-import { urlForImage } from "../lib/sanity";
+import { Artist } from "../../../../groq";
+import { urlForImage } from "../../../../lib/sanity";
 
 export default function ArtistRow({ artist }: { artist: Artist }) {
   const link = "/artists/" + artist.slug.current;

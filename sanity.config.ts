@@ -2,8 +2,8 @@
 import { defineConfig } from "sanity";
 import { structureTool, type StructureBuilder } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
-import { SANITY_DATASET_NAME, SANITY_PROJECT_ID } from "../env.mjs/index.js";
 import { schemaTypes, singletonTypes } from "./schemas/index.js";
+import { SANITY_DATASET_NAME, SANITY_PROJECT_ID } from "./lib/sanity/config.js";
 
 /**
  * Define the actions that should be available for singleton documents

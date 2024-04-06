@@ -9,17 +9,10 @@ import { client } from "../../../../lib/sanity";
 export async function generateStaticParams() {
   const faqs = await client.fetch<FAQsQuery>(FAQsQuery);
 
-  const categories = faqs.map((faq) => ({
-    slug: faq.slug,
-    category: faq.category,
-  }));
-
   return faqs.map((faq) => {
     return {
-      params: { slug: faq.slug.current },
-      props: {
-        faq,
-        categories,
+      params: {
+        slug: faq.slug.current,
       },
     };
   });
@@ -50,10 +43,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
       <ul className="hidden flex-1 divide-y divide-black lg:block">
         {categories.map((el) => (
-          <li
-            key={el._id}
-            className="px-10 text-oxe-xxl/[96px] last:!border-b last:border-black"
-          >
+          <li key={el._id} className="px-10 text-oxe-xxl/[96px]">
             <Link href={`/faq/${el.slug.current}`}>{el.category}</Link>
           </li>
         ))}

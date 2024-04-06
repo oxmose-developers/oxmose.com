@@ -1,2 +1,3 @@
 export * from "./client";
-export * from "./urlForImage";
+export * from "./config";
+export * from "./image";

@@ -2,7 +2,11 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { type StructureBuilder, structureTool } from "sanity/structure";
 
-import { SANITY_DATASET_NAME, SANITY_PROJECT_ID } from "./lib/sanity/config";
+import {
+  SANITY_API_VERSION,
+  SANITY_DATASET_NAME,
+  SANITY_PROJECT_ID,
+} from "./lib/sanity";
 import { schemaTypes, singletonTypes } from "./schemas";
 
 /**
@@ -21,6 +25,7 @@ const singletonListItem = (
     .child(S.document().schemaType(typeName).documentId(typeName));
 
 export default defineConfig({
+  basePath: "/admin",
   name: "oxmose",
   title: "Oxmose Admin",
   projectId: SANITY_PROJECT_ID,
@@ -44,7 +49,7 @@ export default defineConfig({
           .items([...singletonItems, S.divider(), ...defaultItems]);
       },
     }),
-    visionTool(),
+    visionTool({ defaultApiVersion: SANITY_API_VERSION }),
   ],
   schema: {
     types: schemaTypes,

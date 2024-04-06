@@ -13,4 +13,5 @@ const client = createClient({
   dataset: SANITY_DATASET_NAME,
   apiVersion: SANITY_API_VERSION,
   useCdn: false,
+  perspective: "published",
 });

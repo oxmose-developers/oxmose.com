@@ -1,9 +1,9 @@
-// sanity.config.ts
-import { defineConfig } from "sanity";
-import { structureTool, type StructureBuilder } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
-import { schemaTypes, singletonTypes } from "./schemas/index.js";
-import { SANITY_DATASET_NAME, SANITY_PROJECT_ID } from "./lib/sanity/config.js";
+import { defineConfig } from "sanity";
+import { type StructureBuilder, structureTool } from "sanity/structure";
+
+import { SANITY_DATASET_NAME, SANITY_PROJECT_ID } from "./lib/sanity/config";
+import { schemaTypes, singletonTypes } from "./schemas";
 
 /**
  * Define the actions that should be available for singleton documents

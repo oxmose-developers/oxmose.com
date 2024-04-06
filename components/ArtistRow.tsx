@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Artist } from "../groq";
 import { urlForImage } from "../lib/sanity";
 
@@ -9,12 +11,12 @@ export default function ArtistRow({ artist }: { artist: Artist }) {
 
   return (
     <li className="group px-9 last:!border-b last:border-black lg:px-10">
-      <a
+      <Link
         className="text-oxe-xxl-mobile/[60px] lg:text-oxe-xxl/[96px]"
         href={link}
       >
         {artist.name}
-      </a>
+      </Link>
 
       <picture className="absolute right-10 top-1/2 hidden -translate-y-1/2 md:group-hover:block">
         <source srcSet={webpUrl} type="image/webp" />

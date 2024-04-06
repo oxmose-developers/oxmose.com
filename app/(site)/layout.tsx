@@ -1,8 +1,8 @@
 import "../../styles/global.css";
 
 // import Player from "../../components/Player";
-import Footer from "./components/footer";
-import NavBar from "./components/navBar";
+import Footer from "../shared/footer";
+import NavBar from "../shared/navBar";
 
 export default function RootLayout({
   children,

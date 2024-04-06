@@ -1,4 +1,4 @@
-import Prose from "../../../components/Prose";
+import Prose from "../../shared/Prose";
 
 export default function Page() {
   return (

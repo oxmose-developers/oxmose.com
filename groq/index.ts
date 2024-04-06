@@ -10,12 +10,14 @@ type TwoColumn<T> = {
 };
 
 type Item = {
+  _id: string;
   name: string;
   _type: "item";
   link?: string;
 };
 
 export type Credits = {
+  _id: string;
   title: string;
   _type: "credits";
   items: Item[];

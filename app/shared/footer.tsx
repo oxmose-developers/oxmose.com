@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import BackToTop from "./backToTop";
 
 export default function Footer() {
@@ -9,33 +11,33 @@ export default function Footer() {
         <BackToTop />
 
         <div className="hidden gap-10 lg:flex">
-          <a
+          <Link
             className="whitespace-nowrap text-oxe-xs uppercase lg:text-oxe-sm"
             href="/publishing"
           >
             Publishing
-          </a>
+          </Link>
 
-          <a
+          <Link
             className="whitespace-nowrap text-oxe-xs uppercase lg:text-oxe-sm"
             href="/terms-and-conditions"
           >
             Terms
-          </a>
+          </Link>
 
-          <a
+          <Link
             className="whitespace-nowrap text-oxe-xs uppercase lg:text-oxe-sm"
             href="/privacy-policy"
           >
             Privacy
-          </a>
+          </Link>
 
-          <a
+          <Link
             className="whitespace-nowrap text-oxe-xs uppercase lg:text-oxe-sm"
             href="/faq"
           >
             FAQ
-          </a>
+          </Link>
         </div>
 
         <span className="ml-auto whitespace-nowrap text-oxe-xs uppercase lg:text-oxe-sm">

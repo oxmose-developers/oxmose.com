@@ -1,5 +1,7 @@
-import { Release } from "../groq";
-import { urlForImage } from "../lib/sanity";
+import Link from "next/link";
+
+import { Release } from "../../../groq";
+import { urlForImage } from "../../../lib/sanity";
 
 export default function CatalogueCard({ release }: { release: Release }) {
   const link = "/catalogue/" + release.slug.current;
@@ -42,12 +44,12 @@ export default function CatalogueCard({ release }: { release: Release }) {
 
       <footer className="border-t px-9 py-2">
         <div className="flex justify-between">
-          <a
+          <Link
             className="text-oxe-xs font-medium uppercase lg:text-oxe-sm"
             href={link}
           >
             More
-          </a>
+          </Link>
 
           <button className="text-oxe-xs font-medium uppercase lg:text-oxe-sm">
             Listen

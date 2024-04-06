@@ -1,6 +1,6 @@
-import CatalogueCard from "../../components/CatalogueCard";
 import { ReleasesQuery } from "../../groq";
 import { client } from "../../lib/sanity";
+import CatalogueCard from "./components/CatalogueCard";
 
 export default async function Page() {
   const releases = await client.fetch<ReleasesQuery>(ReleasesQuery);

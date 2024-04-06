@@ -1,4 +1,6 @@
-import Logo from "../../shared/Logo";
+import Link from "next/link";
+
+import Logo from "./Logo";
 
 export default function NavBar() {
   return (
@@ -12,33 +14,33 @@ export default function NavBar() {
         </div>
 
         <div className="ml-auto hidden items-center justify-center gap-10 px-10 lg:flex">
-          <a
+          <Link
             className="whitespace-nowrap text-oxe-sm font-medium uppercase"
             href="/"
           >
             Catalogue
-          </a>
+          </Link>
 
-          <a
+          <Link
             className="whitespace-nowrap text-oxe-sm font-medium uppercase"
             href="/artists"
           >
             Artists
-          </a>
+          </Link>
 
-          <a
+          <Link
             className="whitespace-nowrap text-oxe-sm font-medium uppercase"
             href="/about"
           >
             à propos
-          </a>
+          </Link>
 
-          <a
+          <Link
             className="whitespace-nowrap text-oxe-sm font-medium uppercase"
             href="/contact"
           >
             Contact
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

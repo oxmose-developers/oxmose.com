@@ -34,6 +34,7 @@ export type AboutQuery = {
 };
 
 export type Link = {
+  _id: string;
   _type: "link";
   name: string;
   href: string;

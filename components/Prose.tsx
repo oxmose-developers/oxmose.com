@@ -1,7 +1,7 @@
-export default function Prose({children}: {children: React.ReactNode}) {
-  return <div
-  className="prose max-w-[unset] text-black prose-headings:text-oxe-sm prose-p:text-oxe-sm prose-strong:font-medium prose-ol:text-oxe-sm prose-ul:text-oxe-sm"
->
-  {children}
-</div>
+export default function Prose({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="prose max-w-[unset] text-black prose-headings:text-oxe-sm prose-p:text-oxe-sm prose-strong:font-medium prose-ol:text-oxe-sm prose-ul:text-oxe-sm">
+      {children}
+    </div>
+  );
 }

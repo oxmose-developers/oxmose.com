@@ -1,2 +1,2 @@
-export * from "./client"
-export * from "./urlForImage"
+export * from "./client";
+export * from "./urlForImage";

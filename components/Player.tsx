@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 
@@ -9,7 +9,7 @@ export default function Player() {
 
   if (isOpen) {
     return (
-      <div className="fixed inset-x-0 bottom-0 h-[3.75rem] w-full bg-black text-white flex items-center gap-10 px-10 py-3">
+      <div className="fixed inset-x-0 bottom-0 flex h-[3.75rem] w-full items-center gap-10 bg-black px-10 py-3 text-white">
         <div className="flex items-center gap-10">
           <button>
             <span className="sr-only">Previous</span>
@@ -37,7 +37,7 @@ export default function Player() {
           <p>Hands - Oliver Doerell</p>
         </div>
 
-        <div className="flex-1 h-1 bg-white rounded-full"></div>
+        <div className="h-1 flex-1 rounded-full bg-white"></div>
 
         <button onClick={() => isOpenSet(false)} className="">
           <span className="sr-only">Close Player</span>
@@ -52,7 +52,7 @@ export default function Player() {
   return (
     <button
       onClick={() => isOpenSet(true)}
-      className="fixed right-0 bottom-0 size-[3.75rem] bg-black text-white"
+      className="fixed bottom-0 right-0 size-[3.75rem] bg-black text-white"
     >
       <span className="sr-only">Open Player</span>
       <span role="img" aria-hidden="true">

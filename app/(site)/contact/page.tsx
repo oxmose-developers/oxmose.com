@@ -2,6 +2,7 @@ import { PortableText } from "@portabletext/react";
 
 import { ContactQuery } from "../../../groq";
 import { client } from "../../../lib/sanity";
+import DownloadLink from "../../shared/downloadLink";
 
 export default async function Page() {
   const page = await client.fetch<ContactQuery>(ContactQuery);
@@ -99,8 +100,7 @@ export default async function Page() {
           <h3 className="text-oxe-md lg:text-oxe-xxl">{page.pressKit.name}</h3>
 
           <p className="mt-auto text-right text-oxe-md lg:text-oxe-xxl">
-            {/* <!-- @todo Convert to download link --> */}
-            <a href={page.pressKit.href}>download</a>
+            <DownloadLink href={page.pressKit.href}>download</DownloadLink>
           </p>
         </div>
       </section>

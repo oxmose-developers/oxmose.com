@@ -1,5 +1,6 @@
 import artist from "./artist";
 import faqs from "./faqs";
+import legal from "./legal";
 import accessibleImage from "./objects/accessibleImage";
 import blockContent from "./objects/blockContent";
 import contentSection from "./objects/contentSection";
@@ -22,6 +23,7 @@ export const schemaTypes = [
   artist,
   release,
   faqs,
+  legal,
   // objects
   accessibleImage,
   link,

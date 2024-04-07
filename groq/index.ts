@@ -109,6 +109,8 @@ export type Release = {
   overview: string;
   coverImage: Image;
   description: any[];
+  releaseReference: string;
+  releaseDate: string;
   links: Link[];
 };
 

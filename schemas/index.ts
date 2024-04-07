@@ -6,7 +6,9 @@ import contentSection from "./objects/contentSection";
 import credits from "./objects/credits";
 import item from "./objects/item";
 import link from "./objects/link";
+import metaDescription from "./objects/metaDescription";
 import questionAnswer from "./objects/questionAnswer";
+import releaseDate from "./objects/releaseDate";
 import twoColumn from "./objects/twoColumn";
 import release from "./release";
 import about from "./singletons/about";
@@ -29,6 +31,8 @@ export const schemaTypes = [
   item,
   contentSection,
   questionAnswer,
+  metaDescription,
+  releaseDate,
 ];
 
 /**

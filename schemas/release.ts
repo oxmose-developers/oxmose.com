@@ -32,9 +32,7 @@ export default defineType({
     }),
     defineField({
       name: "overview",
-      type: "text",
-      description: "Used for the <meta> description tag for SEO",
-      validation: (Rule) => [Rule.required(), Rule.max(155)],
+      type: "metaDescription",
     }),
     defineField({
       name: "coverImage",
@@ -49,7 +47,19 @@ export default defineType({
       type: "blockContent",
     }),
     defineField({
+      name: "releaseDate",
+      type: "releaseDate",
+    }),
+    defineField({
+      name: "releaseReference",
+      description: "Label reference",
+      type: "string",
+      validation: (Rule) => [Rule.required()],
+      placeholder: "e.g. OXE #004",
+    }),
+    defineField({
       name: "links",
+      description: "Where to stream this release",
       type: "array",
       of: [
         defineArrayMember({

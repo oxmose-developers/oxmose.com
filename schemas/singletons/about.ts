@@ -12,9 +12,7 @@ export default defineType({
     }),
     defineField({
       name: "overview",
-      type: "text",
-      description: "Used for the <meta> description tag for SEO",
-      validation: (Rule) => [Rule.required(), Rule.max(155)],
+      type: "metaDescription",
     }),
     defineField({
       name: "part1",

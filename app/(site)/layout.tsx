@@ -1,8 +1,14 @@
 import "../../styles/global.css";
 
+import type { Viewport } from "next";
+
 // import Player from "../../components/Player";
 import Footer from "../global/footer";
 import NavBar from "../global/navBar";
+
+export const viewport: Viewport = {
+  themeColor: "#000000",
+};
 
 export default function RootLayout({
   children,

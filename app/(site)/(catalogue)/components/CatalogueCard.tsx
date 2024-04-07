@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Release } from "../../../groq";
-import { urlForImage } from "../../../lib/sanity";
+import { Release } from "../../../../groq";
+import { urlForImage } from "../../../../lib/sanity";
 
 export default function CatalogueCard({ release }: { release: Release }) {
   const link = "/catalogue/" + release.slug.current;

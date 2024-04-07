@@ -6,6 +6,7 @@ import blockContent from "./objects/blockContent";
 import contentSection from "./objects/contentSection";
 import credits from "./objects/credits";
 import item from "./objects/item";
+import legalBlock from "./objects/legalBlock";
 import link from "./objects/link";
 import metaDescription from "./objects/metaDescription";
 import questionAnswer from "./objects/questionAnswer";

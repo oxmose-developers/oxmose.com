@@ -17,7 +17,7 @@ type Item = {
 };
 
 export type Credits = {
-  _id: string;
+  _key: string;
   title: string;
   _type: "credits";
   items: Item[];
@@ -121,3 +121,22 @@ export const ReleasesQuery = /* groq */ `
 }`;
 
 export type ReleasesQuery = Release[];
+
+export const LegalQuery = /* groq */ `
+*[_type == "legal" && defined(slug)]`;
+
+export type Legal = {
+  _id: string;
+  _updatedAt: string;
+  _createdAt: string;
+  _type: "legal";
+  title: string;
+  slug: Slug;
+  overview: string;
+  englishTitle: string;
+  englishContent: any[];
+  frenchTitle: string;
+  frenchContent: any[];
+};
+
+export type LegalQuery = Legal[];

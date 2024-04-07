@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Release } from "../../../../groq";
+import type { Release } from "../../../../groq";
 import { urlForImage } from "../../../../lib/sanity";
 
 export default function CatalogueCard({ release }: { release: Release }) {

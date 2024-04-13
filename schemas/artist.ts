@@ -45,5 +45,16 @@ export default defineType({
       name: "body",
       type: "blockContent",
     }),
+    defineField({
+      name: "releases",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: { type: "release" },
+        }),
+      ],
+      validation: (ArrayRule) => [ArrayRule.required()],
+    }),
   ],
 });

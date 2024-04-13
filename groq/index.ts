@@ -63,7 +63,15 @@ export type ContactQuery = {
 };
 
 export const ArtistsQuery = /* groq */ `
-*[_type == "artist" && defined(slug)] | order(name asc)`;
+*[_type == "artist" && defined(slug)] | order(name asc) {
+  ...,
+  releases[]->{
+    title,
+    releaseReference,
+    releaseDate,
+    slug,
+  }
+}`;
 
 export type Artist = {
   name: string;
@@ -76,6 +84,10 @@ export type Artist = {
   links: Link[];
   _createdAt: string;
   _type: "artist";
+  releases: Pick<
+    Release,
+    "title" | "releaseDate" | "releaseReference" | "slug"
+  >[];
 };
 
 export type ArtistsQuery = Artist[];
@@ -109,8 +121,11 @@ export type Release = {
   overview: string;
   coverImage: Image;
   description: any[];
-  releaseReference: string;
+  productImages: Image[];
+  releaseReference: `OXE #${string}`;
   releaseDate: string;
+  shopifyProductDigital: string;
+  shopifyProductPhysical: string;
   links: Link[];
 };
 

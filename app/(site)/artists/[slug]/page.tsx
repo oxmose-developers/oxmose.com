@@ -1,8 +1,10 @@
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
+import { formatISO, getYear } from "date-fns";
 
 import { ArtistsQuery } from "../../../../groq";
 import { client, urlForImage } from "../../../../lib/sanity";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   const artists = await client.fetch<ArtistsQuery>(ArtistsQuery);
@@ -88,18 +90,25 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 Release
               </h3>
 
-              <a href="/">
-                <article className="text-oxe-sm/[32px]">
-                  <header>
-                    <h3>Quandary</h3>
-                    <p>#OXE 005</p>
-                  </header>
+              {artist.releases.map((release) => (
+                <Link
+                  key={`${artist.slug}-${release.slug.current}`}
+                  href={`/catalogue/${release.slug.current}`}
+                >
+                  <article className="text-oxe-sm/[32px]">
+                    <header>
+                      <h3>{release.title}</h3>
+                      <p>{release.releaseReference}</p>
+                    </header>
 
-                  <footer>
-                    <time dateTime="2020">2020</time>
-                  </footer>
-                </article>
-              </a>
+                    <footer>
+                      <time dateTime={formatISO(new Date(release.releaseDate))}>
+                        {getYear(new Date(release.releaseDate))}
+                      </time>
+                    </footer>
+                  </article>
+                </Link>
+              ))}
             </div>
           </div>
 

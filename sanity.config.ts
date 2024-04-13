@@ -32,9 +32,9 @@ export default defineConfig({
   dataset: SANITY_DATASET_NAME,
   plugins: [
     structureTool({
-      structure: (S) => {
+      structure: (S: StructureBuilder) => {
         const defaultItems = S.documentTypeListItems().filter(
-          (listItem) => !singletonTypes.has(listItem.getId() as string),
+          (listItem) => !singletonTypes.has(listItem.getId()!),
         );
 
         const singletonItems = schemaTypes

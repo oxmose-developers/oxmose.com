@@ -1,0 +1,28 @@
+import { defineField, defineType } from "sanity";
+
+export default defineType({
+  name: "track",
+  type: "object",
+  fields: [
+    defineField({
+      name: "name",
+      type: "string",
+      validation: (Rule) => [Rule.required()],
+    }),
+    defineField({
+      name: "number",
+      type: "number",
+      validation: (Rule) => [Rule.required()],
+    }),
+    defineField({
+      name: "length",
+      type: "string",
+      placeholder: "e.g. 03:45",
+      validation: (Rule) => [Rule.required()],
+    }),
+    defineField({
+      name: "file",
+      type: "file",
+    }),
+  ],
+});

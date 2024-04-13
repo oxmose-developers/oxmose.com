@@ -52,7 +52,10 @@ export default function CatalogueCard({ release }: { release: Release }) {
           </Link>
 
           {/* @todo hook up into player */}
-          <button className="text-oxe-xs font-medium uppercase lg:text-oxe-sm">
+          <button
+            type="button"
+            className="text-oxe-xs font-medium uppercase lg:text-oxe-sm"
+          >
             Listen
           </button>
         </div>

@@ -15,29 +15,10 @@ export default defineType({
       of: [
         {
           type: "image",
-          name: "Image",
-          options: {
-            hotspot: true,
-          },
-          fields: [
-            {
-              name: "caption",
-              type: "string",
-              title: "Caption",
-              description: "This will be used as the caption for the image.",
-            },
-          ],
+          name: "image",
+          options: { hotspot: true },
         },
       ],
-    }),
-
-    defineField({
-      name: "trackList",
-      description: "The list of tracks in the album or record",
-      title: "Track List",
-      type: "array",
-      of: [{ type: "tracklist" }],
-      validation: (rule) => rule.required(),
     }),
 
     defineField({
@@ -47,6 +28,7 @@ export default defineType({
       type: "boolean",
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: "physicalPrice",
       description: "The price of the product in physical format.",
@@ -61,6 +43,7 @@ export default defineType({
       type: "boolean",
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: "digitalPrice",
       description: "The price of the product in digital format.",

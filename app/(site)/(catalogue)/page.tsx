@@ -10,7 +10,7 @@ export default async function Page() {
       <h1 hidden>Oxmose</h1>
 
       <div className="divide-y divide-black bg-black md:grid md:grid-cols-2 md:gap-px md:divide-y-0">
-        {[...releases, ...releases, ...releases, ...releases].map((release) => (
+        {releases.map((release) => (
           <CatalogueCard key={release._id} release={release} />
         ))}
       </div>

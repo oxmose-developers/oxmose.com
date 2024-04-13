@@ -10,6 +10,8 @@ import link from "./objects/link";
 import metaDescription from "./objects/metaDescription";
 import questionAnswer from "./objects/questionAnswer";
 import releaseDate from "./objects/releaseDate";
+import track from "./objects/track";
+import trackList from "./objects/trackList";
 import twoColumn from "./objects/twoColumn";
 import release from "./release";
 import about from "./singletons/about";
@@ -35,6 +37,8 @@ export const schemaTypes = [
   questionAnswer,
   metaDescription,
   releaseDate,
+  trackList,
+  track,
 ];
 
 /**

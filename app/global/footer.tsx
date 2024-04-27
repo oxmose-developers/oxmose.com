@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="shrink-0 bg-black py-2 text-white lg:py-[13px]">
-      <nav className="flex pl-9 pr-20 lg:pl-10">
+      <nav className="flex px-9 lg:pl-10 lg:pr-20">
         <BackToTop />
 
         <div className="hidden gap-10 lg:flex">

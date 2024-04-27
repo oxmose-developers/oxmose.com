@@ -2,6 +2,7 @@ import { PortableText } from "@portabletext/react";
 
 import { AboutQuery } from "../../../groq";
 import { client } from "../../../lib/sanity";
+import Logo from "../../global/logo";
 import CreditArticle from "./components/CreditArticle";
 
 export default async function Page() {
@@ -57,7 +58,9 @@ export default async function Page() {
         </div>
       </section>
 
-      <section className="min-h-[56rem] p-9 lg:p-10"></section>
+      <section className="flex min-h-[56rem] items-center justify-center p-9 lg:p-10">
+        <Logo className="size-32 animate-pulse" />
+      </section>
     </>
   );
 }

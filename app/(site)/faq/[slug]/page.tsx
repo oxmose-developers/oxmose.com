@@ -7,7 +7,11 @@ import { FAQsQuery } from "../../../../groq";
 import { client } from "../../../../lib/sanity";
 
 export async function generateStaticParams() {
-  const faqs = await client.fetch<FAQsQuery>(FAQsQuery);
+  const faqs = await client.fetch<FAQsQuery>(
+    FAQsQuery,
+    {},
+    { next: { tags: ["faqs"] } },
+  );
 
   return faqs.map((faq) => {
     return {
@@ -21,7 +25,11 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  const faqs = await client.fetch<FAQsQuery>(FAQsQuery);
+  const faqs = await client.fetch<FAQsQuery>(
+    FAQsQuery,
+    {},
+    { next: { tags: ["faqs"] } },
+  );
 
   const categories = faqs.map((faq) => ({
     _id: faq._id,
@@ -62,7 +70,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             {el.slug.current === slug && (
               <article
                 key={`article-${el._id}`}
-                className="space-y-9 p-9 text-oxe-sm lg:space-y-10 lg:p-10"
+                className="space-y-9 p-9 text-oxe-xs/5 lg:space-y-10 lg:p-10 lg:text-oxe-sm"
               >
                 {faq.questions.map((qa) => (
                   <div key={qa._id} className="space-y-4">

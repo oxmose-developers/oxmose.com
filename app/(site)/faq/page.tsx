@@ -4,7 +4,11 @@ import { FAQsQuery } from "../../../groq";
 import { client } from "../../../lib/sanity";
 
 export default async function Page() {
-  const faqs = await client.fetch<FAQsQuery>(FAQsQuery);
+  const faqs = await client.fetch<FAQsQuery>(
+    FAQsQuery,
+    {},
+    { next: { tags: ["faq"] } },
+  );
 
   const firstFaq = faqs[0];
 

@@ -3,7 +3,11 @@ import { client } from "../../../lib/sanity";
 import ArtistRow from "./components/ArtistRow";
 
 export default async function Page() {
-  const artists = await client.fetch<ArtistsQuery>(ArtistsQuery);
+  const artists = await client.fetch<ArtistsQuery>(
+    ArtistsQuery,
+    {},
+    { next: { tags: ["artists"] } },
+  );
 
   return (
     <>

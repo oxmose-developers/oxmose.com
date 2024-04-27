@@ -64,14 +64,17 @@ export type ContactQuery = {
 
 export const ArtistsQuery = /* groq */ `
 *[_type == "artist" && defined(slug)] | order(name asc) {
-  ...,
-  releases[]->{
-    title,
-    releaseReference,
-    releaseDate,
-    slug,
-  }
+  _id,
+  slug,
+  name,
+  coverImage
 }`;
+
+export const ArtistsStaticParamsQuery = /* groq */ `*[_type == "artist" && defined(slug)] | order(name asc) {
+  slug
+}`;
+
+export type ArtistsStaticParamsQuery = { slug: Slug }[];
 
 export type Artist = {
   name: string;
@@ -90,7 +93,22 @@ export type Artist = {
   >[];
 };
 
-export type ArtistsQuery = Artist[];
+export type ArtistsQuery = Pick<
+  Artist,
+  "coverImage" | "name" | "slug" | "_id"
+>[];
+
+export const ArtistPageQuery = /* groq */ `*[_type == "artist" && slug.current == $slug][0] {
+  ...,
+  releases[]->{
+    title,
+    releaseReference,
+    releaseDate,
+    slug,
+  }
+}`;
+
+export type ArtistPageQuery = Artist | null;
 
 export const FAQsQuery = /* groq */ `
 *[_type == "faqs" && defined(questions)] | order(_createdAt asc)`;

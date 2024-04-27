@@ -13,7 +13,7 @@ export async function generateStaticParams() {
   const pages = await client.fetch<LegalStaticParamsQuery>(
     LegalStaticParamsQuery,
     {},
-    { next: { tags: ["legal"] } },
+    { next: { tags: ["legalStaticParams"] } },
   );
 
   return pages.map((page) => {

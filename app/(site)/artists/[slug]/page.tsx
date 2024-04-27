@@ -3,17 +3,20 @@ import { formatISO, getYear } from "date-fns";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ArtistsQuery } from "../../../../groq";
+import { ArtistPageQuery, ArtistsStaticParamsQuery } from "../../../../groq";
 import { client, urlForImage } from "../../../../lib/sanity";
+import Pagination from "./components/pagination";
 
 export async function generateStaticParams() {
-  const artists = await client.fetch<ArtistsQuery>(ArtistsQuery);
+  const artists = await client.fetch<ArtistsStaticParamsQuery>(
+    ArtistsStaticParamsQuery,
+    {},
+    { next: { tags: ["artistsStaticParams"] } },
+  );
 
   return artists.map((artist) => {
     return {
-      params: {
-        slug: artist.slug.current,
-      },
+      params: { slug: artist.slug.current },
     };
   });
 }
@@ -21,19 +24,15 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  const artists = await client.fetch<ArtistsQuery>(ArtistsQuery);
-
-  const artist = artists.find((el) => el.slug.current === slug);
+  const artist = await client.fetch<ArtistPageQuery>(
+    ArtistPageQuery,
+    { slug },
+    { next: { tags: [slug] } },
+  );
 
   if (!artist) {
     return notFound();
   }
-
-  const index = artists.findIndex((el) => el.slug.current === slug);
-
-  const prev = index === 0 ? artists[artists.length - 1] : artists[index - 1];
-
-  const next = artists.length === index + 1 ? artists[0] : artists[index + 1];
 
   const url = urlForImage(artist.coverImage).url();
 
@@ -65,24 +64,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </picture>
       </div>
 
-      <div
-        className="flex h-10 items-center justify-between border-y border-black px-9 lg:border-t-0 lg:px-10"
-        style={{ gridArea: "pagination" }}
-      >
-        <a
-          href={`/artists/${prev.slug.current}`}
-          className="text-oxe-sm font-medium uppercase"
-        >
-          Prev
-        </a>
-
-        <a
-          href={`/artists/${next.slug.current}`}
-          className="text-oxe-sm font-medium uppercase"
-        >
-          Next
-        </a>
-      </div>
+      <Pagination slug={slug} style={{ gridArea: "pagination" }} />
 
       <div className="px-9 py-7 lg:p-10" style={{ gridArea: "bio" }}>
         <picture className="mb-10 hidden lg:block">

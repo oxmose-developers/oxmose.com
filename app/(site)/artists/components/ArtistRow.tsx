@@ -3,7 +3,11 @@ import Link from "next/link";
 import type { Artist } from "../../../../groq";
 import { urlForImage } from "../../../../lib/sanity";
 
-export default function ArtistRow({ artist }: { artist: Artist }) {
+export default function ArtistRow({
+  artist,
+}: {
+  artist: Pick<Artist, "coverImage" | "name" | "slug" | "_id">;
+}) {
   const link = "/artists/" + artist.slug.current;
 
   const url = urlForImage(artist.coverImage).url();

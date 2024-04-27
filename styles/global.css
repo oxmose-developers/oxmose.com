@@ -36,3 +36,21 @@
 .about-page-section {
   @apply min-h-[50rem] lg:min-h-[60rem];
 }
+
+.artist-single-page-layout {
+  grid-template-areas:
+    "name"
+    "image"
+    "info"
+    "pagination"
+    "bio";
+}
+
+@screen lg {
+  .artist-single-page-layout {
+    grid-template-areas:
+      "name name"
+      "pagination pagination"
+      "bio info";
+  }
+}

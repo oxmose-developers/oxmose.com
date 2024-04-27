@@ -12,7 +12,7 @@ export default async function Page() {
       <h1 hidden>{`${page.title} | Oxmose`}</h1>
 
       <section className="flex min-h-96 flex-col border-b border-black p-9 lg:min-h-[30rem] lg:p-10">
-        <h2 className="mb-4 text-oxe-md lg:mb-10 lg:text-oxe-xxl">
+        <h2 className="mb-1.5 text-oxe-md lg:mb-10 lg:text-oxe-xxl">
           {page.generalSection.title}
         </h2>
 
@@ -60,7 +60,7 @@ export default async function Page() {
       </section>
 
       <section className="flex min-h-96 flex-col border-b border-black p-9 lg:min-h-[30rem] lg:p-10">
-        <h2 className="mb-4 text-oxe-md lg:mb-10 lg:text-oxe-xxl">
+        <h2 className="mb-1.5 text-oxe-md lg:mb-10 lg:text-oxe-xxl">
           {page.demoSection.title}
         </h2>
 
@@ -106,7 +106,7 @@ export default async function Page() {
       </section>
 
       <section className="flex min-h-96 flex-col p-9 lg:min-h-[30rem] lg:p-10">
-        <h2 className="mb-4 text-oxe-md lg:mb-10 lg:text-oxe-xxl">
+        <h2 className="mb-1.5 text-oxe-md lg:mb-10 lg:text-oxe-xxl">
           {page.syncSection.title}
         </h2>
 

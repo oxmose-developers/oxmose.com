@@ -1,12 +1,20 @@
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 
-import { LegalQuery } from "../../../../groq";
+import {
+  LegalPageQuery,
+  LegalQuery,
+  LegalStaticParamsQuery,
+} from "../../../../groq";
 import { client } from "../../../../lib/sanity";
 import Prose from "../../../shared/Prose";
 
 export async function generateStaticParams() {
-  const pages = await client.fetch<LegalQuery>(LegalQuery);
+  const pages = await client.fetch<LegalStaticParamsQuery>(
+    LegalStaticParamsQuery,
+    {},
+    { next: { tags: ["legal"] } },
+  );
 
   return pages.map((page) => {
     return {
@@ -20,23 +28,27 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  const pages = await client.fetch<LegalQuery>(LegalQuery);
-
-  const page = pages.find((page) => page.slug.current === slug);
+  const page = await client.fetch<LegalPageQuery>(
+    LegalPageQuery,
+    { slug },
+    { next: { tags: [slug] } },
+  );
 
   if (!page) {
     return notFound();
   }
 
   return (
-    <div className="grid grid-cols-2 divide-x divide-black">
-      <section lang="en" className="p-10">
-        <div className="mb-28 flex gap-8">
-          <h2 className="flex-1 text-oxe-xxl leading-none">
+    <div className="divide-y divide-black lg:grid lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+      <section lang="en" className="p-9 lg:p-10">
+        <div className="mb-10 flex gap-8 lg:mb-28">
+          <h2 className="text-oxe-md-plus flex-1 leading-none lg:text-oxe-xxl">
             {page.englishTitle}
           </h2>
 
-          <p className="shrink-0 text-oxe-xxl leading-none">En</p>
+          <p className="text-oxe-md-plus shrink-0 leading-none lg:text-oxe-xxl">
+            En
+          </p>
         </div>
 
         <Prose>
@@ -44,13 +56,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </Prose>
       </section>
 
-      <section lang="fr" className="p-10">
-        <div className="mb-28 flex gap-8">
-          <h2 className="flex-1 text-oxe-xxl leading-none">
+      <section lang="fr" className="p-9 lg:p-10">
+        <div className="mb-10 flex gap-8 lg:mb-28">
+          <h2 className="text-oxe-md-plus flex-1 leading-none lg:text-oxe-xxl">
             {page.frenchTitle}
           </h2>
 
-          <p className="shrink-0 text-oxe-xxl leading-none">Fr</p>
+          <p className="text-oxe-md-plus shrink-0 leading-none lg:text-oxe-xxl">
+            Fr
+          </p>
         </div>
 
         <Prose>

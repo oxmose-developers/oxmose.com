@@ -137,6 +137,12 @@ export const ReleasesQuery = /* groq */ `
 
 export type ReleasesQuery = Release[];
 
+export const LegalStaticParamsQuery = /* groq */ `*[_type == "legal" && defined(slug)] {
+  slug
+}`;
+
+export type LegalStaticParamsQuery = { slug: Slug }[];
+
 export const LegalQuery = /* groq */ `
 *[_type == "legal" && defined(slug)]`;
 
@@ -155,3 +161,7 @@ export type Legal = {
 };
 
 export type LegalQuery = Legal[];
+
+export const LegalPageQuery = /* groq */ `*[_type == "legal" && slug.current == $slug][0]`;
+
+export type LegalPageQuery = Legal | null;

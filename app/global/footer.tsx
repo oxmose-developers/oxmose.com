@@ -1,6 +1,12 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
+import { Suspense } from "react";
 
 import BackToTop from "./backToTop";
+
+const FollowPopover = dynamic(() => import("../../components/FollowPopover"), {
+  ssr: false,
+});
 
 export default function Footer() {
   const fullYear = new Date().getFullYear();
@@ -17,6 +23,10 @@ export default function Footer() {
           >
             Publishing
           </Link>
+
+          <Suspense>
+            <FollowPopover />
+          </Suspense>
 
           <Link
             className="whitespace-nowrap text-oxe-xs uppercase lg:text-oxe-sm"

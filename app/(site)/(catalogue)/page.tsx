@@ -7,7 +7,7 @@ export default async function Page() {
   const releases = await client.fetch<ReleasesQuery>(
     ReleasesQuery,
     {},
-    { next: { tags: ["releases"] }, cache: "no-cache" },
+    { next: { tags: ["releases"] } },
   );
 
   const hasOddReleases = (releases.length & 1) === 1;

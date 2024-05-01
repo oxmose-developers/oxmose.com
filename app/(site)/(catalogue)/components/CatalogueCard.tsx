@@ -44,14 +44,12 @@ export default function CatalogueCard({
 
         <div className="relative aspect-square w-full @xl:max-w-[655px]">
           <Image
-            src={webpUrl}
-            className="size-full"
-            fill
-            objectFit="cover"
-            objectPosition="center"
             loading="lazy"
-            unoptimized
+            src={webpUrl}
+            className="size-full object-cover object-center"
             alt={`${release.title} Album Cover`}
+            unoptimized
+            fill
           />
         </div>
       </div>

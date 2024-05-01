@@ -20,50 +20,46 @@ export default function CatalogueCard({
   return (
     <article
       className={cn(
-        "flex flex-col self-stretch justify-self-stretch",
+        "flex flex-col self-stretch justify-self-stretch @container",
         className,
       )}
     >
-      <div className="flex flex-1 flex-col lg:p-9">
-        <header className="mb-24 hidden shrink-0 lg:block">
+      <div className="flex flex-1 flex-col-reverse @xl:grid @xl:grid-cols-[minmax(11rem,1fr)_minmax(0,655px)] @xl:gap-x-8 @xl:gap-y-24 @xl:p-9">
+        <header className="col-span-full hidden shrink-0 @xl:block">
           <h2 className="text-oxe-xxl font-medium">{release.title}</h2>
         </header>
 
-        <div className="flex flex-1 flex-col lg:flex-row-reverse lg:items-end lg:gap-9">
-          <div className="relative aspect-square size-full shrink-0 lg:max-w-[655px]">
-            <Image
-              src={webpUrl}
-              className="inline-block aspect-square size-full shrink grow-0"
-              // width={672}
-              // height={672}
-              fill
-              objectFit="cover"
-              objectPosition="center"
-              loading="lazy"
-              unoptimized
-              alt={`${release.title} Album Cover`}
-            />
-          </div>
+        <div className="px-9 py-5 @xl:ml-auto @xl:self-end @xl:p-0">
+          <h2 className="block text-oxe-sm/7 font-medium @xl:hidden">
+            {release.title}
+          </h2>
 
-          <div className="px-9 py-5 lg:mr-auto lg:p-0">
-            <h2 className="block text-oxe-sm/7 font-medium lg:hidden">
-              {release.title}
-            </h2>
+          <p
+            className="break-words text-oxe-sm/7 @xl:-mb-2.5 @xl:text-oxe-lg @xl:font-medium"
+            style={{ wordBreak: "break-word" }}
+          >
+            {release.artist.map((el) => el.name).join(", ")}
+          </p>
+        </div>
 
-            <p
-              className="break-words text-oxe-sm/7 lg:-mb-2.5 lg:text-oxe-lg lg:font-medium"
-              style={{ wordBreak: "break-word" }}
-            >
-              {release.artist.map((el) => el.name).join(", ")}
-            </p>
-          </div>
+        <div className="relative aspect-square w-full @xl:max-w-[655px]">
+          <Image
+            src={webpUrl}
+            className="size-full"
+            fill
+            objectFit="cover"
+            objectPosition="center"
+            loading="lazy"
+            unoptimized
+            alt={`${release.title} Album Cover`}
+          />
         </div>
       </div>
 
       <footer className="shrink-0 border-t border-black px-9 py-2">
         <div className="flex justify-between">
           <Link
-            className="text-oxe-xs font-medium uppercase lg:text-oxe-sm"
+            className="text-oxe-xs font-medium uppercase @xl:text-oxe-sm"
             href={link}
           >
             More
@@ -72,7 +68,7 @@ export default function CatalogueCard({
           {/* @todo hook up into player */}
           <button
             type="button"
-            className="text-oxe-xs font-medium uppercase lg:text-oxe-sm"
+            className="text-oxe-xs font-medium uppercase @xl:text-oxe-sm"
           >
             Listen
           </button>

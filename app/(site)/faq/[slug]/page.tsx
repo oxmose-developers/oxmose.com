@@ -46,18 +46,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const title = `${faq.category} | FAQ | Oxmose`;
 
   return (
-    <div className="lg:item-stretch lg:flex lg:flex-row lg:divide-x lg:divide-black">
+    <div className="lg:item-stretch flex-1 lg:flex lg:flex-row lg:divide-x lg:divide-black">
       <h1 hidden>{title}</h1>
 
       <ul className="hidden flex-1 divide-y divide-black lg:block">
         {categories.map((el) => (
-          <li key={el._id} className="px-10 text-oxe-xxl/[96px]">
+          <li key={el._id} className="px-10 text-oxe-xxl/[96px] last:!border-b">
             <Link href={`/faq/${el.slug.current}`}>{el.category}</Link>
           </li>
         ))}
       </ul>
 
-      <div className="flex-1 divide-y divide-y-reverse divide-black first:*:!border-b first:*:border-black">
+      <div className="flex-1 divide-y divide-black lg:divide-y-reverse">
         {categories.map((el) => (
           <Fragment key={el._id}>
             <Link
@@ -68,10 +68,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </Link>
 
             {el.slug.current === slug && (
-              <article
-                key={`article-${el._id}`}
-                className="space-y-9 p-9 text-oxe-xs/5 lg:space-y-10 lg:p-10 lg:text-oxe-sm"
-              >
+              <article className="space-y-9 p-9 text-oxe-xs/5 lg:space-y-10 lg:border-none lg:p-10 lg:text-oxe-sm">
                 {faq.questions.map((qa) => (
                   <div key={qa._id} className="space-y-4">
                     <h4 className="-mb-4 font-medium">{qa.question}</h4>

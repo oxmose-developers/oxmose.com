@@ -1,18 +1,13 @@
-import dynamic from "next/dynamic";
 import Link from "next/link";
-import { Suspense } from "react";
 
+import FollowPopover from "../../components/FollowPopover";
 import BackToTop from "./backToTop";
-
-const FollowPopover = dynamic(() => import("../../components/FollowPopover"), {
-  ssr: false,
-});
 
 export default function Footer() {
   const fullYear = new Date().getFullYear();
 
   return (
-    <footer className="shrink-0 bg-black py-2 text-white lg:py-[13px]">
+    <footer className="relative shrink-0 bg-black py-2 text-white lg:py-[13px]">
       <nav className="flex px-9 lg:pl-10 lg:pr-20">
         <BackToTop />
 
@@ -24,9 +19,7 @@ export default function Footer() {
             Publishing
           </Link>
 
-          <Suspense>
-            <FollowPopover />
-          </Suspense>
+          <FollowPopover />
 
           <Link
             className="whitespace-nowrap text-oxe-xs uppercase lg:text-oxe-sm"

@@ -42,11 +42,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <div className="divide-y divide-black lg:grid lg:grid-cols-2 lg:divide-x lg:divide-y-0">
       <section lang="en" className="p-9 lg:p-10">
         <div className="mb-10 flex gap-8 lg:mb-28">
-          <h2 className="text-oxe-md-plus flex-1 leading-none lg:text-oxe-xxl">
+          <h2 className="max-w-2xl flex-1 text-balance text-oxe-md-plus leading-none lg:text-oxe-xxl">
             {page.englishTitle}
           </h2>
 
-          <p className="text-oxe-md-plus shrink-0 leading-none lg:text-oxe-xxl">
+          <p className="shrink-0 text-oxe-md-plus leading-none lg:text-oxe-xxl">
             En
           </p>
         </div>
@@ -58,11 +58,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
       <section lang="fr" className="p-9 lg:p-10">
         <div className="mb-10 flex gap-8 lg:mb-28">
-          <h2 className="text-oxe-md-plus flex-1 leading-none lg:text-oxe-xxl">
+          <h2 className="max-w-2xl flex-1 text-balance text-oxe-md-plus leading-none lg:text-oxe-xxl">
             {page.frenchTitle}
           </h2>
 
-          <p className="text-oxe-md-plus shrink-0 leading-none lg:text-oxe-xxl">
+          <p className="shrink-0 text-oxe-md-plus leading-none lg:text-oxe-xxl">
             Fr
           </p>
         </div>

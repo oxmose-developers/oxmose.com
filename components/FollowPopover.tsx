@@ -27,7 +27,7 @@ const links = [
     href: "https://soundcloud.com/oxmose",
     label: "SoundCloud",
   },
-];
+] as const;
 
 export default function FollowPopover() {
   return (

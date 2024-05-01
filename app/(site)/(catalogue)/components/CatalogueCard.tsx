@@ -30,7 +30,7 @@ export default function CatalogueCard({
         </header>
 
         <div className="flex flex-1 flex-col lg:flex-row-reverse lg:items-end lg:gap-9">
-          <div className="relative aspect-square size-full lg:max-w-2xl">
+          <div className="relative aspect-square size-full shrink-0 lg:max-w-[655px]">
             <Image
               src={webpUrl}
               className="inline-block aspect-square size-full shrink grow-0"
@@ -50,7 +50,10 @@ export default function CatalogueCard({
               {release.title}
             </h2>
 
-            <p className="text-oxe-sm lg:-mb-2.5 lg:text-oxe-lg lg:font-medium">
+            <p
+              className="break-words text-oxe-sm lg:-mb-2.5 lg:text-oxe-lg lg:font-medium"
+              style={{ wordBreak: "break-word" }}
+            >
               {release.artist.map((el) => el.name).join(", ")}
             </p>
           </div>

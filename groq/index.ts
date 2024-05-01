@@ -148,7 +148,7 @@ export type Release = {
 };
 
 export const ReleasesQuery = /* groq */ `
-*[_type == "release" && defined(slug)] | order(_createdAt asc) {
+*[_type == "release" && defined(slug)] | order(releaseDate desc) {
   ...,
   artist[]->{name}
 }`;

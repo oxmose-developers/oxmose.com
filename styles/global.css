@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply bg-white dark:bg-black;
+  }
+
   @font-face {
     font-family: "Monument Grotesk";
     font-weight: 400;

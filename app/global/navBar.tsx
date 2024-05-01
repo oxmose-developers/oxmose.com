@@ -4,7 +4,7 @@ import Logo from "./logo";
 
 export default function NavBar() {
   return (
-    <nav className="shrink-0 border-b border-black bg-white py-[18px] lg:py-6">
+    <nav className="shrink-0 border-b border-black bg-white py-[18px] lg:py-6 dark:border-white dark:bg-black">
       <div className="flex max-w-[100rem]">
         <div className="px-9 lg:px-10">
           <a href="/">

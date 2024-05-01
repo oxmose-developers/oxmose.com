@@ -2,6 +2,7 @@ import "../../styles/global.css";
 
 import type { Viewport } from "next";
 
+import { Providers } from "../../components/Providers";
 // import Player from "../../components/Player";
 import Footer from "../global/footer";
 import NavBar from "../global/navBar";
@@ -16,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="antialias">
+    <html lang="en" className="antialias" suppressHydrationWarning>
       <head>
         <link
           rel="preload"
@@ -35,13 +36,15 @@ export default function RootLayout({
       </head>
 
       <body className="flex min-h-svh flex-col">
-        <NavBar />
+        <Providers>
+          <NavBar />
 
-        <main className="flex flex-1 flex-col">{children}</main>
+          <main className="flex flex-1 flex-col">{children}</main>
 
-        <Footer />
+          <Footer />
 
-        {/* <Player /> */}
+          {/* <Player /> */}
+        </Providers>
       </body>
     </html>
   );

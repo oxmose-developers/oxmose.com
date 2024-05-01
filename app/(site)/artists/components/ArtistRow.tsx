@@ -15,23 +15,24 @@ export default function ArtistRow({
 
   return (
     <li className="group px-9 last:!border-b last:border-black lg:px-10">
-      <Link
-        className="text-oxe-xxl-mobile/[60px] lg:text-oxe-xxl/[96px]"
-        href={link}
-      >
-        {artist.name}
-      </Link>
-
-      <picture className="absolute right-10 top-1/2 hidden -translate-y-1/2 md:group-hover:block">
+      <picture className="absolute right-10 top-1/2 hidden -translate-y-1/2 xl:group-hover:block">
         <source srcSet={webpUrl} type="image/webp" />
         <img
-          className="aspect-[16/10] w-full max-w-lg object-cover object-center"
+          className="aspect-[16/10] w-full max-w-[36rem] select-none object-cover object-center"
           alt={artist.name}
           src={url}
           loading="lazy"
           decoding="async"
+          draggable={false}
         />
       </picture>
+
+      <Link
+        className="relative z-10 text-oxe-xxl-mobile/[60px] lg:text-oxe-xxl/[96px]"
+        href={link}
+      >
+        {artist.name}
+      </Link>
     </li>
   );
 }

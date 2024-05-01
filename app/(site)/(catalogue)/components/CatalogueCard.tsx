@@ -45,13 +45,13 @@ export default function CatalogueCard({
             />
           </div>
 
-          <div className="px-9 py-6 lg:mr-auto lg:p-0">
-            <h2 className="block text-oxe-sm font-medium lg:hidden">
+          <div className="px-9 py-5 lg:mr-auto lg:p-0">
+            <h2 className="block text-oxe-sm/7 font-medium lg:hidden">
               {release.title}
             </h2>
 
             <p
-              className="break-words text-oxe-sm lg:-mb-2.5 lg:text-oxe-lg lg:font-medium"
+              className="break-words text-oxe-sm/7 lg:-mb-2.5 lg:text-oxe-lg lg:font-medium"
               style={{ wordBreak: "break-word" }}
             >
               {release.artist.map((el) => el.name).join(", ")}

@@ -28,10 +28,10 @@ export default async function Page() {
       </section>
 
       <section className="flex min-h-96 flex-col gap-12 divide-black border-b border-black p-9 lg:grid lg:min-h-[32rem] lg:grid-cols-2 lg:gap-0 lg:divide-x lg:p-0">
-        <div className="grid grid-cols-2 lg:p-10">
-          <h3 className="text-oxe-md lg:text-oxe-xxl">Listen</h3>
+        <div className="flex lg:p-10">
+          <h3 className="flex-1 text-oxe-md lg:text-oxe-xxl">Listen</h3>
 
-          <ul className="lg:list-inside lg:list-disc lg:self-end">
+          <ul className="flex-1 lg:ml-auto lg:list-inside lg:list-disc lg:self-end">
             {page.listenLinks.map((link) => (
               <li
                 key={link._key}
@@ -43,10 +43,10 @@ export default async function Page() {
           </ul>
         </div>
 
-        <div className="grid grid-cols-2 lg:p-10">
-          <h3 className="text-oxe-md lg:text-oxe-xxl">Follow</h3>
+        <div className="flex lg:p-10">
+          <h3 className="flex-1 text-oxe-md lg:text-oxe-xxl">Follow</h3>
 
-          <ul className="lg:list-inside lg:list-disc lg:self-end">
+          <ul className="flex-1 lg:ml-auto lg:list-inside lg:list-disc lg:self-end">
             {page.followLinks.map((link) => (
               <li
                 key={link._key}

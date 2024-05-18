@@ -58,7 +58,7 @@ export default function RootLayout({
       <Script
         async
         src="https://cloud.umami.is/script.js"
-        data-website-id="69497101-089f-41fb-8757-7980667880b9"
+        data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
       />
     </html>
   );

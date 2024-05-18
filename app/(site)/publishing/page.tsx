@@ -2,6 +2,7 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { publishingLicenseRequestEmail } from "../../../constants/urls";
 import { PublishingQuery } from "../../../groq";
 import { client, urlForImage } from "../../../lib/sanity";
 
@@ -9,7 +10,10 @@ export default async function Page() {
   const page = await client.fetch<PublishingQuery>(
     PublishingQuery,
     {},
-    { next: { tags: ["publishing"] } },
+    {
+      next: { tags: ["publishing"] },
+      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
+    },
   );
 
   const webpUrl = urlForImage(page.artistsHeroImage).format("webp").url();
@@ -45,7 +49,7 @@ export default async function Page() {
       </section>
 
       <section className="relative bg-white lg:min-h-[60rem]">
-        {/* <Image
+        <Image
           alt=""
           fill
           loading="lazy"
@@ -53,7 +57,7 @@ export default async function Page() {
           src={webpUrl}
           unoptimized
           className="object-cover"
-        /> */}
+        />
       </section>
 
       <section className="border-b border-white bg-black text-white">
@@ -82,7 +86,7 @@ export default async function Page() {
 
           <li>
             <a
-              href="mailto:email@example.com"
+              href={`mailto:${publishingLicenseRequestEmail}`}
               className="block px-9 text-[170px]/[1.375] hover:bg-white hover:text-black"
             >
               License request +

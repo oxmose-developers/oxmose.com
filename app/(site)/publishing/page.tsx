@@ -1,35 +1,94 @@
-export default function Page() {
+import { PortableText } from "@portabletext/react";
+import Image from "next/image";
+import Link from "next/link";
+
+import { PublishingQuery } from "../../../groq";
+import { client, urlForImage } from "../../../lib/sanity";
+
+export default async function Page() {
+  const page = await client.fetch<PublishingQuery>(
+    PublishingQuery,
+    {},
+    { next: { tags: ["publishing"] } },
+  );
+
+  const webpUrl = urlForImage(page.artistsHeroImage).format("webp").url();
+
   return (
     <>
-      <section className="flex flex-col justify-center border-b border-white bg-black p-9 text-white lg:min-h-[60rem] lg:p-10 lg:py-16">
-        <h2 className="mb-52 text-[170px]/[85px]">Creative services</h2>
+      <h1 hidden>{`${page.title} | Oxmose`}</h1>
 
-        <p className="text-[60px]/[65px]">
-          We represent artists, producers and composers conceiving music for
-          films, art, theatre, video games, TV, advertising, and more, offering
-          endless possibilities on all media of expression. Whether you require
-          a unique, original score or want to license an existing piece from our
-          catalogue, we have the expertise and vision to be part of your project
-          journey.
-        </p>
+      <section className="flex flex-col justify-center border-b border-white bg-black p-9 text-white lg:min-h-[60rem] lg:p-10 lg:py-16">
+        <h2 className="mb-52 text-[170px]/[85px]">
+          {page.creativeServicesSection.title}
+        </h2>
+
+        <div className="text-[60px]/[65px]">
+          <PortableText value={page.creativeServicesSection.content} />
+        </div>
       </section>
 
       <section className="flex flex-col justify-center border-b border-white bg-black p-9 text-white lg:min-h-[60rem] lg:p-10 lg:py-16">
-        <h2 className="mb-52 text-[170px]/[85px]">Score</h2>
+        <h2 className="mb-52 text-[170px]/[85px]">{page.scoreSection.title}</h2>
 
-        <p className="text-[60px]/[65px]">
-          To collaborate with one of our artists to compose a unique original
-          score, please get in touch with us. {"sync(at)oxmose.com"}
-        </p>
+        <div className="text-[60px]/[65px]">
+          <PortableText value={page.scoreSection.content} />
+        </div>
       </section>
 
-      <section className="flex flex-col justify-center border-b border-white bg-black p-9 text-white lg:min-h-[60rem] lg:p-10 lg:py-16">
-        <h2 className="mb-52 text-[170px]/[85px]">Sync</h2>
+      <section className="flex flex-col justify-center bg-black p-9 text-white lg:min-h-[60rem] lg:p-10 lg:py-16">
+        <h2 className="mb-52 text-[170px]/[85px]">{page.syncSection.title}</h2>
 
-        <p className="text-[60px]/[65px]">
-          If you are interested to use one of our existing music from our label
-          catalogue work, please fill out the license form.
-        </p>
+        <div className="text-[60px]/[65px]">
+          <PortableText value={page.syncSection.content} />
+        </div>
+      </section>
+
+      <section className="relative bg-white lg:min-h-[60rem]">
+        {/* <Image
+          alt=""
+          fill
+          loading="lazy"
+          sizes="100vw"
+          src={webpUrl}
+          unoptimized
+          className="object-cover"
+        /> */}
+      </section>
+
+      <section className="border-b border-white bg-black text-white">
+        <div className="mb-28 px-9">
+          <h2 className="text-[170px]/[1.375]">Artists</h2>
+        </div>
+
+        <ul className="divide-y divide-white border-t">
+          <li>
+            <Link
+              href="#!"
+              className="block px-9 text-[80px]/[96px] hover:bg-white hover:text-black"
+            >
+              {"Nahal Kavand"}
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="#!"
+              className="block px-9 text-[80px]/[96px] hover:bg-white hover:text-black"
+            >
+              {"Nahal Kavand"}
+            </Link>
+          </li>
+
+          <li>
+            <a
+              href="mailto:email@example.com"
+              className="block px-9 text-[170px]/[1.375] hover:bg-white hover:text-black"
+            >
+              License request +
+            </a>
+          </li>
+        </ul>
       </section>
     </>
   );

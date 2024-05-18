@@ -16,11 +16,13 @@ import twoColumn from "./objects/twoColumn";
 import release from "./release";
 import about from "./singletons/about";
 import contact from "./singletons/contact";
+import publishing from "./singletons/publishing";
 
 export const schemaTypes = [
   // singleton document types
   about,
   contact,
+  publishing,
   // regular document types
   artist,
   release,
@@ -44,4 +46,8 @@ export const schemaTypes = [
 /**
  * Define the singleton document types
  */
-export const singletonTypes = new Set<string>([about.name, contact.name]);
+export const singletonTypes = new Set<string>([
+  about.name,
+  contact.name,
+  publishing.name,
+]);

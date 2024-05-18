@@ -183,3 +183,16 @@ export type LegalQuery = Legal[];
 export const LegalPageQuery = /* groq */ `*[_type == "legal" && slug.current == $slug][0]`;
 
 export type LegalPageQuery = Legal | null;
+
+export const PublishingQuery = /* groq */ `
+  *[_type == "publishing"][0]
+`;
+
+export type PublishingQuery = {
+  title: string;
+  overview: string;
+  creativeServicesSection: ContentSection;
+  scoreSection: ContentSection;
+  syncSection: ContentSection;
+  artistsHeroImage: Image;
+};

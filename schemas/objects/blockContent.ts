@@ -58,6 +58,11 @@ export default defineType({
                 title: "URL",
                 name: "href",
                 type: "url",
+                validation: (UrlRule) => [
+                  UrlRule.required().uri({
+                    scheme: ["http", "https", "mailto", "tel"],
+                  }),
+                ],
               },
             ],
           },

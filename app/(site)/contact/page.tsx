@@ -5,7 +5,11 @@ import { client } from "../../../lib/sanity";
 import DownloadLink from "../../shared/downloadLink";
 
 export default async function Page() {
-  const page = await client.fetch<ContactQuery>(ContactQuery);
+  const page = await client.fetch<ContactQuery>(
+    ContactQuery,
+    {},
+    { next: { tags: ["contact"] } },
+  );
 
   return (
     <>

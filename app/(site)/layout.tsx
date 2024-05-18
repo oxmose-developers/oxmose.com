@@ -1,6 +1,7 @@
 import "../../styles/global.css";
 
-import type { Viewport } from "next";
+import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 
 import { Providers } from "../../components/Providers";
 // import Player from "../../components/Player";
@@ -9,6 +10,13 @@ import NavBar from "../global/navBar";
 
 export const viewport: Viewport = {
   themeColor: "#000000",
+};
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Oxmose",
+    default: "Oxmose",
+  },
 };
 
 export default function RootLayout({
@@ -21,14 +29,14 @@ export default function RootLayout({
       <head>
         <link
           rel="preload"
-          href="/fonts/ABCMonumentGrotesk-Regular-Trial.woff2"
+          href="/fonts/ABCMonumentGrotesk-Regular.woff2"
           as="font"
           type="font/woff2"
           crossOrigin=""
         />
         <link
           rel="preload"
-          href="/fonts/ABCMonumentGrotesk-Medium-Trial.woff2"
+          href="/fonts/ABCMonumentGrotesk-Medium.woff2"
           as="font"
           type="font/woff2"
           crossOrigin=""
@@ -46,6 +54,12 @@ export default function RootLayout({
           {/* <Player /> */}
         </Providers>
       </body>
+
+      <Script
+        async
+        src="https://cloud.umami.is/script.js"
+        data-website-id="69497101-089f-41fb-8757-7980667880b9"
+      />
     </html>
   );
 }

@@ -11,28 +11,28 @@
     font-family: "Monument Grotesk";
     font-weight: 400;
     font-style: normal;
-    src: url(./fonts/ABCMonumentGrotesk-Regular.woff2);
+    src: url(../fonts/ABCMonumentGrotesk-Regular.woff2);
     font-display: swap;
   }
   @font-face {
     font-family: "Monument Grotesk";
     font-weight: 400;
     font-style: italic;
-    src: url(./fonts/ABCMonumentGrotesk-RegularItalic.woff2);
+    src: url(../fonts/ABCMonumentGrotesk-RegularItalic.woff2);
     font-display: swap;
   }
   @font-face {
     font-family: "Monument Grotesk";
     font-weight: 500;
     font-style: normal;
-    src: url(./fonts/ABCMonumentGrotesk-Medium.woff2);
+    src: url(../fonts/ABCMonumentGrotesk-Medium.woff2);
     font-display: swap;
   }
   @font-face {
     font-family: "Monument Grotesk";
     font-weight: 500;
     font-style: italic;
-    src: url(./fonts/ABCMonumentGrotesk-MediumItalic.woff2);
+    src: url(../fonts/ABCMonumentGrotesk-MediumItalic.woff2);
     font-display: swap;
   }
   @font-face {

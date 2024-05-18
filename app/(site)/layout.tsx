@@ -83,11 +83,13 @@ export default function RootLayout({
         </Providers>
       </body>
 
-      <Script
-        async
-        src="https://cloud.umami.is/script.js"
-        data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-      />
+      {process.env.NODE_ENV === "development" ? null : (
+        <Script
+          async
+          src="https://cloud.umami.is/script.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+        />
+      )}
     </html>
   );
 }

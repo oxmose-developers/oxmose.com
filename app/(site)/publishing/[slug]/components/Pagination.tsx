@@ -1,7 +1,6 @@
 import type { CSSProperties } from "react";
 
-import { ArtistsStaticParamsQuery } from "../../../../../groq";
-import { client } from "../../../../../lib/sanity";
+import { fetchPublishingArtistsStaticParams } from "../../loader";
 
 export default async function Pagination({
   slug,
@@ -10,11 +9,7 @@ export default async function Pagination({
   slug: string;
   style?: CSSProperties;
 }) {
-  const artists = await client.fetch<ArtistsStaticParamsQuery>(
-    ArtistsStaticParamsQuery,
-    {},
-    { next: { tags: ["artistsStaticParams"] } },
-  );
+  const artists = await fetchPublishingArtistsStaticParams();
 
   const index = artists.findIndex((el) => el.slug.current === slug);
 
@@ -24,18 +19,18 @@ export default async function Pagination({
 
   return (
     <div
-      className="flex h-10 items-center justify-between border-y border-black px-9 lg:border-t-0 lg:px-10"
+      className="flex h-10 items-center justify-between border-y border-black px-9 dark:border-white lg:border-t-0 lg:px-10"
       style={style}
     >
       <a
-        href={`/artists/${prev.slug.current}`}
+        href={`/publishing/${prev.slug.current}`}
         className="text-oxe-sm font-medium uppercase"
       >
         Prev
       </a>
 
       <a
-        href={`/artists/${next.slug.current}`}
+        href={`/publishing/${next.slug.current}`}
         className="text-oxe-sm font-medium uppercase"
       >
         Next

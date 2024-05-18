@@ -1,3 +1,4 @@
+import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 
 import { urlForImage } from "../../../../lib/sanity";
@@ -5,6 +6,7 @@ import {
   fetchPublishingArtistPage,
   fetchPublishingArtistsStaticParams,
 } from "../loader";
+import Pagination from "./components/Pagination";
 
 export async function generateStaticParams() {
   const publishingArtists = await fetchPublishingArtistsStaticParams();
@@ -30,10 +32,84 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const webpUrl = urlForImage(publishingArtist.coverImage).format("webp").url();
 
   return (
-    <div>
-      <p>{slug}</p>
+    <div className="artist-single-page-layout grid border-b border-black dark:border-white lg:grid-cols-2">
+      <div
+        className="px-9 lg:border-b lg:border-black lg:px-10 lg:dark:border-white"
+        style={{ gridArea: "name" }}
+      >
+        <h1 className="text-oxe-xxl-mobile/[60px] lg:text-oxe-xxl/[96px]">
+          {publishingArtist.name}
+        </h1>
+      </div>
 
-      <p>{publishingArtist.name}</p>
+      {/* Mobile-only Full Bleed Image */}
+      <div className="block lg:hidden" style={{ gridArea: "image" }}>
+        <picture className="block">
+          <source srcSet={webpUrl} type="image/webp" />
+
+          <img
+            className="aspect-[16/10] w-full object-cover object-center"
+            alt={publishingArtist.name}
+            src={url}
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </div>
+
+      <Pagination slug={slug} style={{ gridArea: "pagination" }} />
+
+      <div className="px-9 py-7 lg:p-10" style={{ gridArea: "bio" }}>
+        <picture className="mb-10 hidden lg:block">
+          <source srcSet={webpUrl} type="image/webp" />
+          <img
+            className="aspect-[16/10] w-full max-w-4xl object-cover object-center"
+            alt={publishingArtist.name}
+            src={url}
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+
+        <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium dark:text-white dark:prose-a:text-white lg:prose-p:text-oxe-md">
+          <PortableText value={publishingArtist.body} />
+        </div>
+      </div>
+
+      <div
+        className="flex min-h-[28rem] flex-col px-9 py-7 lg:grid lg:grid-rows-[minmax(max-content,50svh)] lg:border-l lg:border-black lg:p-10 lg:dark:border-white"
+        style={{ gridArea: "info" }}
+      >
+        <div className="flex flex-1 items-start lg:flex-col">
+          <div className="flex items-center gap-1.5 lg:gap-4">
+            <div className="-mt-[3px] size-4 rounded-full border border-black bg-white dark:border-white lg:size-5"></div>
+
+            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+              Projects
+            </h3>
+          </div>
+
+          <ul className="ml-auto space-y-4 lg:ml-0 lg:pl-9"></ul>
+        </div>
+
+        <div className="flex items-start lg:flex-col">
+          <div className="flex items-center gap-1.5 lg:gap-4">
+            <div className="-mt-[3px] size-4 rounded-full border border-black bg-black dark:border-white lg:size-5"></div>
+
+            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+              More
+            </h3>
+          </div>
+
+          <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
+            {publishingArtist.links?.map((link) => (
+              <li key={link._key}>
+                <a href={link.href}>{link.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

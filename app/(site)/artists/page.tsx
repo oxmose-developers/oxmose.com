@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
+
 import { ArtistsQuery } from "../../../groq";
 import { client } from "../../../lib/sanity";
 import ArtistRow from "./components/ArtistRow";
+
+export const metadata: Metadata = {
+  title: "Artists",
+};
 
 export default async function Page() {
   const artists = await client.fetch<ArtistsQuery>(

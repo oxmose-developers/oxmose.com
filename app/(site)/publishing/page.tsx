@@ -1,10 +1,11 @@
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
-import Link from "next/link";
+import { Suspense } from "react";
 
 import { publishingLicenseRequestEmail } from "../../../constants/urls";
 import { PublishingQuery } from "../../../groq";
 import { client, urlForImage } from "../../../lib/sanity";
+import PublishingArtistsList from "./components/PublishingArtistsList";
 
 export default async function Page() {
   const page = await client.fetch<PublishingQuery>(
@@ -78,15 +79,9 @@ export default async function Page() {
         </div>
 
         <ul className="divide-y divide-white border-t">
-          {/* TODO PIPE UP */}
-          <li>
-            <Link
-              href="#!"
-              className="block px-9 pt-px text-[30px]/[40px] hover:bg-white hover:text-black lg:py-0 lg:text-[80px]/[96px]"
-            >
-              {"Nahal Kavand"}
-            </Link>
-          </li>
+          <Suspense>
+            <PublishingArtistsList />
+          </Suspense>
 
           <li>
             <a

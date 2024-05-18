@@ -196,3 +196,38 @@ export type PublishingQuery = {
   syncSection: ContentSection;
   artistsHeroImage: Image;
 };
+
+export const PublishingArtistsQuery = /* groq */ `
+*[_type == "publishingArtist" && defined(slug)] | order(name asc) {
+  _id,
+  slug,
+  name,
+}`;
+
+export const PublishingArtistsStaticParamsQuery = /* groq */ `*[_type == "publishingArtist" && defined(slug)] | order(name asc) {
+  slug
+}`;
+
+export type PublishingArtistsStaticParamsQuery = { slug: Slug }[];
+
+export type PublishingArtist = {
+  name: string;
+  coverImage: Image;
+  _id: string;
+  _updatedAt: string;
+  body: any[];
+  slug: Slug;
+  overview: string;
+  links: Link[];
+  _createdAt: string;
+  _type: "publishingArtist";
+};
+
+export type PublishingArtistsQuery = Pick<
+  PublishingArtist,
+  "coverImage" | "name" | "slug" | "_id"
+>[];
+
+export const PublishingArtistPageQuery = /* groq */ `*[_type == "publishingArtist" && slug.current == $slug][0]`;
+
+export type PublishingArtistPageQuery = Artist | null;

@@ -1,6 +1,7 @@
 import "../../styles/global.css";
 
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import Script from "next/script";
 
 import { Providers } from "../../components/Providers";
@@ -19,29 +20,56 @@ export const metadata: Metadata = {
   },
 };
 
+const monumentGrotesk = localFont({
+  preload: true,
+  display: "swap",
+  src: [
+    {
+      path: "../fonts/ABCMonumentGrotesk-Regular.woff2",
+      style: "normal",
+      weight: "400",
+    },
+    {
+      path: "../fonts/ABCMonumentGrotesk-RegularItalic.woff2",
+      style: "italic",
+      weight: "400",
+    },
+    {
+      path: "../fonts/ABCMonumentGrotesk-Medium.woff2",
+      style: "normal",
+      weight: "500",
+    },
+    {
+      path: "../fonts/ABCMonumentGrotesk-MediumItalic.woff2",
+      style: "italic",
+      weight: "500",
+    },
+    // {
+    //   path: "../fonts/ABCMonumentGrotesk-Bold.woff2",
+    //   style: "normal",
+    //   weight: "600",
+    // },
+    // {
+    //   path: "../fonts/ABCMonumentGrotesk-BoldItalic.woff2",
+    //   style: "italic",
+    //   weight: "600",
+    // },
+  ],
+  variable: "--font-monument-grotesk",
+});
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="antialias" suppressHydrationWarning>
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/ABCMonumentGrotesk-Regular.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
-          href="/fonts/ABCMonumentGrotesk-Medium.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin=""
-        />
-      </head>
+    <html
+      lang="en"
+      className={`${monumentGrotesk.variable} antialias`}
+      suppressHydrationWarning
+    >
+      <head>{/* Head */}</head>
 
       <body className="flex min-h-svh flex-col">
         <Providers>

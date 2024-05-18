@@ -4,14 +4,14 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const config = {
   darkMode: "class",
   content: [
-    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
-    "./app/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Monument Grotesk"', ...defaultTheme.fontFamily.sans],
+        sans: ["var(--font-monument-grotesk)", ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         "oxe-xs": ["18px", { lineHeight: "25px" }],

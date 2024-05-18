@@ -3,19 +3,12 @@ import Image from "next/image";
 import { Suspense } from "react";
 
 import { publishingLicenseRequestEmail } from "../../../constants/urls";
-import { PublishingQuery } from "../../../groq";
-import { client, urlForImage } from "../../../lib/sanity";
+import { urlForImage } from "../../../lib/sanity";
 import PublishingArtistsList from "./components/PublishingArtistsList";
+import { fetchPublishingPage } from "./loader";
 
 export default async function Page() {
-  const page = await client.fetch<PublishingQuery>(
-    PublishingQuery,
-    {},
-    {
-      next: { tags: ["publishing"] },
-      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
-    },
-  );
+  const page = await fetchPublishingPage();
 
   const webpUrl = urlForImage(page.artistsHeroImage).format("webp").url();
 

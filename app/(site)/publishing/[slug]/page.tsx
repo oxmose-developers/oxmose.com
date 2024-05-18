@@ -1,18 +1,13 @@
 import { notFound } from "next/navigation";
 
+import { urlForImage } from "../../../../lib/sanity";
 import {
-  PublishingArtistPageQuery,
-  PublishingArtistsStaticParamsQuery,
-} from "../../../../groq";
-import { client, urlForImage } from "../../../../lib/sanity";
+  fetchPublishingArtistPage,
+  fetchPublishingArtistsStaticParams,
+} from "../loader";
 
 export async function generateStaticParams() {
-  const publishingArtists =
-    await client.fetch<PublishingArtistsStaticParamsQuery>(
-      PublishingArtistsStaticParamsQuery,
-      {},
-      { next: { tags: ["publishingArtistsStaticParams"] } },
-    );
+  const publishingArtists = await fetchPublishingArtistsStaticParams();
 
   return publishingArtists.map((artist) => {
     return {
@@ -24,11 +19,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  const publishingArtist = await client.fetch<PublishingArtistPageQuery>(
-    PublishingArtistPageQuery,
-    { slug },
-    { next: { tags: [slug] } },
-  );
+  const publishingArtist = await fetchPublishingArtistPage({ slug: slug });
 
   if (!publishingArtist) {
     return notFound();

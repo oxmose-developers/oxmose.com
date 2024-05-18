@@ -1,13 +1,8 @@
-import { PublishingArtistsQuery } from "../../../../groq";
-import { client } from "../../../../lib/sanity";
+import { fetchPublishingArtists } from "../loader";
 import PublishingArtistRow from "./PublishingArtistRow";
 
 export default async function PublishingArtistsList() {
-  const publishingArtists = await client.fetch<PublishingArtistsQuery>(
-    PublishingArtistsQuery,
-    {},
-    { next: { tags: ["publishingArtists"] } },
-  );
+  const publishingArtists = await fetchPublishingArtists();
 
   /**
    * Uses a fragment as there is a <ul> element where this Component is used

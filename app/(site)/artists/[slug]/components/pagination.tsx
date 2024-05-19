@@ -1,8 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
-import { ArtistsStaticParamsQuery } from "../../../../../groq";
-import { client } from "../../../../../lib/sanity";
+import { fetchArtistsStaticParams } from "../../loader";
 
 export default async function Pagination({
   slug,
@@ -11,11 +10,7 @@ export default async function Pagination({
   slug: string;
   style?: CSSProperties;
 }) {
-  const artists = await client.fetch<ArtistsStaticParamsQuery>(
-    ArtistsStaticParamsQuery,
-    {},
-    { next: { tags: ["artistsStaticParams"] } },
-  );
+  const artists = await fetchArtistsStaticParams();
 
   const index = artists.findIndex((el) => el.slug.current === slug);
 

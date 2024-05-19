@@ -3,16 +3,12 @@ import { formatISO, getYear } from "date-fns";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ArtistPageQuery, ArtistsStaticParamsQuery } from "../../../../groq";
-import { client, urlForImage } from "../../../../lib/sanity";
+import { urlForImage } from "../../../../lib/sanity";
+import { fetchArtistPage, fetchArtistsStaticParams } from "../loader";
 import Pagination from "./components/pagination";
 
 export async function generateStaticParams() {
-  const artists = await client.fetch<ArtistsStaticParamsQuery>(
-    ArtistsStaticParamsQuery,
-    {},
-    { next: { tags: ["artistsStaticParams"] } },
-  );
+  const artists = await fetchArtistsStaticParams();
 
   return artists.map((artist) => {
     return {
@@ -24,11 +20,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  const artist = await client.fetch<ArtistPageQuery>(
-    ArtistPageQuery,
-    { slug },
-    { next: { tags: [slug] } },
-  );
+  const artist = await fetchArtistPage({ slug });
 
   if (!artist) {
     return notFound();

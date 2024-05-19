@@ -62,6 +62,7 @@ export async function POST(req: NextRequest) {
       }
       case "release": {
         revalidateTag(NEXT_TAGS.RELEASES);
+        revalidateTag(NEXT_TAGS.RELEASES_STATIC_PARAMS);
 
         if (body.slug) {
           revalidateTag(body.slug);

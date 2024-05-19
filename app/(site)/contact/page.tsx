@@ -1,15 +1,10 @@
 import { PortableText } from "@portabletext/react";
 
-import { ContactQuery } from "../../../groq";
-import { client } from "../../../lib/sanity";
 import DownloadLink from "../../shared/downloadLink";
+import { fetchContactPage } from "./loader";
 
 export default async function Page() {
-  const page = await client.fetch<ContactQuery>(
-    ContactQuery,
-    {},
-    { next: { tags: ["contact"] } },
-  );
+  const page = await fetchContactPage();
 
   return (
     <>

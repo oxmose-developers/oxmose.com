@@ -3,15 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
-import { FAQsQuery } from "../../../../groq";
-import { client } from "../../../../lib/sanity";
+import { fetchFaqs } from "../loader";
 
 export async function generateStaticParams() {
-  const faqs = await client.fetch<FAQsQuery>(
-    FAQsQuery,
-    {},
-    { next: { tags: ["faqs"] } },
-  );
+  const faqs = await fetchFaqs();
 
   return faqs.map((faq) => {
     return {
@@ -25,11 +20,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  const faqs = await client.fetch<FAQsQuery>(
-    FAQsQuery,
-    {},
-    { next: { tags: ["faqs"] } },
-  );
+  const faqs = await fetchFaqs();
 
   const categories = faqs.map((faq) => ({
     _id: faq._id,

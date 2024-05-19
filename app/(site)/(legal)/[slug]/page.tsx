@@ -1,20 +1,11 @@
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 
-import {
-  LegalPageQuery,
-  LegalQuery,
-  LegalStaticParamsQuery,
-} from "../../../../groq";
-import { client } from "../../../../lib/sanity";
 import Prose from "../../../shared/Prose";
+import { fetchLegalPage, fetchLegalStaticParams } from "./loader";
 
 export async function generateStaticParams() {
-  const pages = await client.fetch<LegalStaticParamsQuery>(
-    LegalStaticParamsQuery,
-    {},
-    { next: { tags: ["legalStaticParams"] } },
-  );
+  const pages = await fetchLegalStaticParams();
 
   return pages.map((page) => {
     return {
@@ -28,11 +19,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  const page = await client.fetch<LegalPageQuery>(
-    LegalPageQuery,
-    { slug },
-    { next: { tags: [slug] } },
-  );
+  const page = await fetchLegalPage({ slug });
 
   if (!page) {
     return notFound();

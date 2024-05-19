@@ -1,14 +1,9 @@
 import { redirect } from "next/navigation";
 
-import { FAQsQuery } from "../../../groq";
-import { client } from "../../../lib/sanity";
+import { fetchFaqs } from "./loader";
 
 export default async function Page() {
-  const faqs = await client.fetch<FAQsQuery>(
-    FAQsQuery,
-    {},
-    { next: { tags: ["faq"] } },
-  );
+  const faqs = await fetchFaqs();
 
   const firstFaq = faqs[0];
 

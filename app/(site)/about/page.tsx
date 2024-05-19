@@ -1,12 +1,11 @@
 import { PortableText } from "@portabletext/react";
 
-import { AboutQuery } from "../../../groq";
-import { client } from "../../../lib/sanity";
 import Logo from "../../global/logo";
 import CreditArticle from "./components/CreditArticle";
+import { fetchAboutPage } from "./loader";
 
 export default async function Page() {
-  const page = await client.fetch<AboutQuery>(AboutQuery);
+  const page = await fetchAboutPage();
 
   return (
     <>

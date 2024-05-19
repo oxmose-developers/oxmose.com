@@ -1,14 +1,9 @@
-import { ReleasesQuery } from "../../../groq";
-import { client } from "../../../lib/sanity";
 import styles from "./catalogue.module.css";
 import CatalogueCard from "./components/CatalogueCard";
+import { fetchReleases } from "./loader";
 
 export default async function Page() {
-  const releases = await client.fetch<ReleasesQuery>(
-    ReleasesQuery,
-    {},
-    { next: { tags: ["releases"] } },
-  );
+  const releases = await fetchReleases();
 
   const hasOddReleases = (releases.length & 1) === 1;
 

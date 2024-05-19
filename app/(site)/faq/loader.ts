@@ -8,6 +8,7 @@ export const fetchFaqs = async () =>
     {},
     {
       next: { tags: [NEXT_TAGS.FAQ] },
-      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
+      cache:
+        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );

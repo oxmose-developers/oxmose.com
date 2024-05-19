@@ -8,6 +8,7 @@ export const fetchAboutPage = async () =>
     {},
     {
       next: { tags: [NEXT_TAGS.ABOUT] },
-      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
+      cache:
+        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );

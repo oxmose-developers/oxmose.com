@@ -8,7 +8,8 @@ export const fetchLegalStaticParams = async () =>
     {},
     {
       next: { tags: [NEXT_TAGS.LEGAL_STATIC_PARAMS] },
-      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
+      cache:
+        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );
 
@@ -18,6 +19,7 @@ export const fetchLegalPage = async ({ slug }: { slug: string }) =>
     { slug },
     {
       next: { tags: [slug] },
-      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
+      cache:
+        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );

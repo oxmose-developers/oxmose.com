@@ -13,7 +13,8 @@ export const fetchPublishingPage = async () => {
     {},
     {
       next: { tags: [NEXT_TAGS.PUBLISHING] },
-      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
+      cache:
+        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );
 };
@@ -24,7 +25,8 @@ export const fetchPublishingArtists = async () => {
     {},
     {
       next: { tags: [NEXT_TAGS.PUBLISHING_ARTISTS] },
-      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
+      cache:
+        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );
 };
@@ -35,7 +37,8 @@ export const fetchPublishingArtistsStaticParams = async () => {
     {},
     {
       next: { tags: [NEXT_TAGS.PUBLISHING_ARTISTS_STATIC_PARAMS] },
-      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
+      cache:
+        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );
 };
@@ -46,7 +49,8 @@ export const fetchPublishingArtistPage = async ({ slug }: { slug: string }) => {
     { slug },
     {
       next: { tags: [slug] },
-      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
+      cache:
+        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );
 };

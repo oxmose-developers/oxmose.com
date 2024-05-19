@@ -8,6 +8,7 @@ export const fetchReleases = async () =>
     {},
     {
       next: { tags: [NEXT_TAGS.RELEASES] },
-      cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
+      cache:
+        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );

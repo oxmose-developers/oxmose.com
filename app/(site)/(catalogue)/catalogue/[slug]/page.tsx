@@ -25,6 +25,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div>
+      <p>{release.title}</p>
+
+      <p>{release.artist.map((artist) => artist.name).join(", ")}</p>
+
       <div>
         <Suspense>
           <Product type={"Digital"} handle={release.shopifyProductDigital} />

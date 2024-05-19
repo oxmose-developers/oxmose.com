@@ -1,3 +1,4 @@
+import { NEXT_TAGS } from "../../../constants/tags";
 import { ContactQuery } from "../../../groq";
 import { client } from "../../../lib/sanity";
 
@@ -6,7 +7,7 @@ export const fetchContactPage = async () =>
     ContactQuery,
     {},
     {
-      next: { tags: ["contact"] },
+      next: { tags: [NEXT_TAGS.CONTACT] },
       cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
     },
   );

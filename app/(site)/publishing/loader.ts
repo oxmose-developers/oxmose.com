@@ -1,3 +1,4 @@
+import { NEXT_TAGS } from "../../../constants/tags";
 import {
   PublishingArtistPageQuery,
   PublishingArtistsQuery,
@@ -11,7 +12,7 @@ export const fetchPublishingPage = async () => {
     PublishingQuery,
     {},
     {
-      next: { tags: ["publishing"] },
+      next: { tags: [NEXT_TAGS.PUBLISHING] },
       cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
     },
   );
@@ -22,7 +23,7 @@ export const fetchPublishingArtists = async () => {
     PublishingArtistsQuery,
     {},
     {
-      next: { tags: ["publishingArtists"] },
+      next: { tags: [NEXT_TAGS.PUBLISHING_ARTISTS] },
       cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
     },
   );
@@ -33,7 +34,7 @@ export const fetchPublishingArtistsStaticParams = async () => {
     PublishingArtistsStaticParamsQuery,
     {},
     {
-      next: { tags: ["publishingArtistsStaticParams"] },
+      next: { tags: [NEXT_TAGS.PUBLISHING_ARTISTS_STATIC_PARAMS] },
       cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
     },
   );

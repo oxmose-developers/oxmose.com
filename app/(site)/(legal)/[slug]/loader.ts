@@ -1,3 +1,4 @@
+import { NEXT_TAGS } from "../../../../constants/tags";
 import { LegalPageQuery, LegalStaticParamsQuery } from "../../../../groq";
 import { client } from "../../../../lib/sanity";
 
@@ -6,7 +7,7 @@ export const fetchLegalStaticParams = async () =>
     LegalStaticParamsQuery,
     {},
     {
-      next: { tags: ["legalStaticParams"] },
+      next: { tags: [NEXT_TAGS.LEGAL_STATIC_PARAMS] },
       cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
     },
   );

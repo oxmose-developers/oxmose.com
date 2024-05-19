@@ -1,3 +1,4 @@
+import { NEXT_TAGS } from "../../../constants/tags";
 import {
   ArtistPageQuery,
   ArtistsQuery,
@@ -10,7 +11,7 @@ export const fetchArtists = async () =>
     ArtistsQuery,
     {},
     {
-      next: { tags: ["artists"] },
+      next: { tags: [NEXT_TAGS.ARTISTS] },
       cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
     },
   );
@@ -20,7 +21,7 @@ export const fetchArtistsStaticParams = async () =>
     ArtistsStaticParamsQuery,
     {},
     {
-      next: { tags: ["artistsStaticParams"] },
+      next: { tags: [NEXT_TAGS.ARTISTS_STATIC_PARAMS] },
       cache: process.env.NODE_ENV === "development" ? "no-store" : undefined,
     },
   );

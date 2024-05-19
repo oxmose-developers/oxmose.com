@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 import { fetchReleasePage, fetchReleasesStaticParams } from "../../loader";
-import { AddToCartDigital, AddToCartVinyl } from "./components/AddToCart";
+import Product from "./components/Product";
 
 export async function generateStaticParams() {
   const releases = await fetchReleasesStaticParams();
@@ -25,9 +26,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div>
       <div>
-        <AddToCartDigital />
+        <Suspense>
+          <Product type={"Digital"} handle={release.shopifyProductDigital} />
+        </Suspense>
 
-        <AddToCartVinyl />
+        <Suspense>
+          <Product type={"Vinyl"} handle={release.shopifyProductPhysical} />
+        </Suspense>
       </div>
     </div>
   );

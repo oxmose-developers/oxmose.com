@@ -1,17 +1,48 @@
 "use client";
 
-export function AddToCartDigital() {
+import { useFormState, useFormStatus } from "react-dom";
+
+import type { ProductVariant } from "../../../../../../lib/shopify/types";
+import { addItem } from "../../../../../shared/cart/actions";
+
+function SubmitButton({ children }: { children: React.ReactNode }) {
+  const { pending } = useFormStatus();
+
   return (
-    <button className="block" onClick={() => {}}>
-      Add Digital to Cart
+    <button
+      className="block"
+      aria-disabled={pending}
+      aria-label="Add to cart"
+      onClick={(e: React.FormEvent<HTMLButtonElement>) => {
+        if (pending) e.preventDefault();
+      }}
+    >
+      {children}
     </button>
   );
 }
 
-export function AddToCartVinyl() {
+export default function AddToCart({
+  variants,
+}: {
+  variants: ProductVariant[];
+  availableForSale: boolean;
+}) {
+  const [message, formAction] = useFormState(addItem, null);
+
+  const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
+
+  const selectedVariantId = defaultVariantId;
+
+  const actionWithVariant = formAction.bind(null, selectedVariantId);
+
   return (
-    <button className="block" onClick={() => {}}>
-      Add Vinyl to Cart
-    </button>
+    <form action={actionWithVariant}>
+      <SubmitButton>Add to Cart</SubmitButton>
+
+      <p aria-live="polite" className="" role="status">
+        {message}
+      </p>
+    </form>
   );
 }

@@ -83,13 +83,13 @@ export default defineType({
     defineField({
       name: "shopifyProductDigital",
       type: "string",
-      placeholder: "e.g. 8775887061330",
+      placeholder: "e.g. oxe-001-digital",
       validation: (Rule) => [Rule.required()],
     }),
     defineField({
       name: "shopifyProductPhysical",
       type: "string",
-      placeholder: "e.g. 8775887061330",
+      placeholder: "e.g. oxe-001-vinyl",
       validation: (Rule) => [Rule.required()],
     }),
   ],

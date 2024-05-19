@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { Suspense } from "react";
 
+import Cart from "../shared/cart/Cart";
 import Logo from "./logo";
 
 export default function NavBar() {
   return (
-    <nav className="shrink-0 border-b border-black bg-white py-[18px] lg:py-6 dark:border-white dark:bg-black">
+    <nav className="shrink-0 border-b border-black bg-white py-[18px] dark:border-white dark:bg-black lg:py-6">
       <div className="flex max-w-[100rem]">
         <div className="px-9 lg:px-10">
           <a href="/">
@@ -41,6 +43,10 @@ export default function NavBar() {
           >
             Contact
           </Link>
+
+          <Suspense fallback={null}>
+            <Cart />
+          </Suspense>
         </div>
       </div>
     </nav>

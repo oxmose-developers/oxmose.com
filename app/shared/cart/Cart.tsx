@@ -10,13 +10,13 @@ export default async function Cart() {
     cart = await getCart(cartId);
   }
 
-  return (
-    <div>
-      <h2>Cart</h2>
+  if (cart) {
+    return (
+      <div className="relative whitespace-nowrap text-oxe-sm font-medium uppercase">
+        <span>{`Cart ${cart?.totalQuantity && `(${cart.totalQuantity})`}`}</span>
+      </div>
+    );
+  }
 
-      <pre>
-        <code>{JSON.stringify({ ...cart }, null, 2)}</code>
-      </pre>
-    </div>
-  );
+  return null;
 }

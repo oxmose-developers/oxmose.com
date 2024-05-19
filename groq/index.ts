@@ -155,6 +155,21 @@ export const ReleasesQuery = /* groq */ `
 
 export type ReleasesQuery = Release[];
 
+export const ReleasesStaticParamsQuery = /* groq */ `
+*[_type == "release" && defined(slug)] | order(releaseDate desc) {
+  slug
+}`;
+
+export type ReleasesStaticParamsQuery = { slug: Slug }[];
+
+export const ReleasePageQuery = /* groq */ `
+*[_type == "release" && slug.current == $slug][0] {
+  ...,
+  artist[]->{name}
+}`;
+
+export type ReleasePageQuery = Release | null;
+
 export const LegalStaticParamsQuery = /* groq */ `*[_type == "legal" && defined(slug)] {
   slug
 }`;

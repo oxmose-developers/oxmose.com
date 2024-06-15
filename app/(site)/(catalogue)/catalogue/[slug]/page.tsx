@@ -84,7 +84,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           {/* Purchase & Stream */}
           <div className="flex flex-1 flex-col px-9 py-7">
-            <div className="flex-1">
+            <div className="flex flex-1 flex-col gap-5">
               <Suspense>
                 <Product
                   type={"Digital"}

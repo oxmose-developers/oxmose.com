@@ -12,8 +12,8 @@ export default async function Cart() {
 
   if (cart) {
     return (
-      <div className="fixed right-0 top-1/2 -translate-y-1/2 whitespace-nowrap text-oxe-sm font-medium uppercase">
-        <span>{`🛒 ${cart?.totalQuantity && `(${cart.totalQuantity})`}`}</span>
+      <div className="fixed right-0 top-1/2 -translate-y-1/2 whitespace-nowrap bg-black text-oxe-sm font-medium uppercase text-white">
+        <span>{`Cart ${cart?.totalQuantity && `(${cart.totalQuantity})`}`}</span>
       </div>
     );
   }

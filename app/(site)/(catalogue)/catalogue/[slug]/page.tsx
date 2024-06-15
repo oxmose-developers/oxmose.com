@@ -8,6 +8,8 @@ import { fetchReleasePage, fetchReleasesStaticParams } from "../../loader";
 import Pagination from "./components/Pagination";
 import Product from "./components/Product";
 
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
   const releases = await fetchReleasesStaticParams();
 
@@ -85,14 +87,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
           {/* Purchase & Stream */}
           <div className="flex flex-1 flex-col px-9 py-7">
             <div className="flex flex-1 flex-col gap-5">
-              <Suspense>
+              <Suspense fallback={null}>
                 <Product
                   type={"Digital"}
                   handle={release.shopifyProductDigital}
                 />
               </Suspense>
 
-              <Suspense>
+              <Suspense fallback={null}>
                 <Product
                   type={"Vinyl"}
                   handle={release.shopifyProductPhysical}

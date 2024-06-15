@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { Suspense } from "react";
 
-import Cart from "../shared/cart/Cart";
 import Logo from "./logo";
 
 export default function NavBar() {
@@ -43,10 +41,6 @@ export default function NavBar() {
           >
             Contact
           </Link>
-
-          <Suspense fallback={null}>
-            <Cart />
-          </Suspense>
         </div>
       </div>
     </nav>

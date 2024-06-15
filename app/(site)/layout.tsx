@@ -3,11 +3,13 @@ import "../../styles/global.css";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
+import { Suspense } from "react";
 
 import { Providers } from "../../components/Providers";
 // import Player from "../../components/Player";
 import Footer from "../global/footer";
 import NavBar from "../global/navBar";
+import Cart from "../shared/cart/Cart";
 
 export const viewport: Viewport = {
   themeColor: "#000000",
@@ -76,6 +78,10 @@ export default function RootLayout({
           <NavBar />
 
           <main className="flex flex-1 flex-col">{children}</main>
+
+          <Suspense fallback={null}>
+            <Cart />
+          </Suspense>
 
           <Footer />
 

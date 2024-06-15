@@ -60,6 +60,8 @@ const monumentGrotesk = localFont({
   variable: "--font-monument-grotesk",
 });
 
+export const dynamic = "force-static";
+
 export default function RootLayout({
   children,
 }: {

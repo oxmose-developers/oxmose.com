@@ -29,38 +29,3 @@
       "bio info";
   }
 }
-
-.publishing-single-page-layout {
-  grid-template-rows:
-    max-content
-    max-content
-    minmax(25svh, 1fr)
-    minmax(25svh, 1fr)
-    max-content
-    max-content;
-  grid-template-areas:
-    "name"
-    "image"
-    "projects"
-    "links"
-    "pagination"
-    "bio"
-    "works";
-}
-
-@screen lg {
-  .publishing-single-page-layout {
-    grid-template-rows:
-      max-content
-      max-content
-      max-content
-      max-content
-      max-content;
-    grid-template-areas:
-      "name name"
-      "pagination pagination"
-      "bio works"
-      "bio projects"
-      "bio links";
-  }
-}

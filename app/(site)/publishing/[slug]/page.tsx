@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const webpUrl = urlForImage(publishingArtist.coverImage).format("webp").url();
 
   return (
-    <div className="publishing-single-page-layout grid border-b border-black dark:border-white lg:grid-cols-2">
+    <div className="artist-single-page-layout grid border-b border-black dark:border-white lg:grid-cols-2">
       <div
         className="px-9 lg:border-b lg:border-black lg:px-10 lg:dark:border-white"
         style={{ gridArea: "name" }}
@@ -61,10 +61,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
       <Pagination slug={slug} style={{ gridArea: "pagination" }} />
 
-      <div
-        className="px-9 py-7 lg:border-r lg:border-black lg:p-10 lg:dark:border-white"
-        style={{ gridArea: "bio" }}
-      >
+      <div className="px-9 py-7 lg:p-10" style={{ gridArea: "bio" }}>
         <picture className="mb-10 hidden lg:block">
           <source srcSet={webpUrl} type="image/webp" />
           <img
@@ -79,67 +76,25 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium dark:text-white dark:prose-a:text-white lg:prose-p:text-oxe-md">
           <PortableText value={publishingArtist.body} />
         </div>
-      </div>
 
-      <div className="pb-7 lg:pb-0" style={{ gridArea: "works" }}>
-        <div className="mb-6 pl-9 lg:pt-10">
-          <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
-            Works
-          </h3>
-        </div>
-
-        <WorksTable />
-      </div>
-
-      {!isEmpty([...(publishingArtist?.projects ?? [])]) && (
-        <div
-          className="flex items-start px-9 py-7 lg:flex-col lg:px-10 lg:py-0"
-          style={{ gridArea: "projects" }}
-        >
-          <div className="flex items-center gap-1.5 lg:gap-4">
-            <div className="-mt-[3px] size-4 rounded-full border border-black bg-white dark:border-white lg:size-5"></div>
-
+        {/* Mobile Only Table */}
+        <div className="-mx-9 block pt-7 lg:hidden">
+          <div className="mb-3 pl-9">
             <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
-              Projects
+              Works
             </h3>
           </div>
 
-          <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
-            {publishingArtist.projects.map((link) => (
-              <li key={link._key}>
-                <a href={link.href}>{link.name}</a>
-              </li>
-            ))}
-          </ul>
+          <WorksTable />
         </div>
-      )}
-
-      <div
-        className="flex items-start px-9 py-7 lg:flex-col lg:px-10 lg:py-0"
-        style={{ gridArea: "links" }}
-      >
-        <div className="flex items-center gap-1.5 lg:gap-4">
-          <div className="-mt-[3px] size-4 rounded-full border border-black bg-black dark:border-white lg:size-5"></div>
-
-          <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
-            More
-          </h3>
-        </div>
-
-        <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
-          {[...(publishingArtist?.links ?? [])].map((link) => (
-            <li key={link._key}>
-              <a href={link.href}>{link.name}</a>
-            </li>
-          ))}
-        </ul>
       </div>
 
-      {/* <div
-        className="flex min-h-[28rem] flex-col px-9 py-7 lg:grid lg:gap-20 lg:border-l lg:border-black lg:p-10 lg:dark:border-white"
+      <div
+        className="flex min-h-[28rem] flex-col px-9 py-7 lg:grid lg:auto-rows-[minmax(max-content,calc(100svh/3))] lg:gap-20 lg:border-l lg:border-black lg:p-10 lg:dark:border-white"
         style={{ gridArea: "info" }}
       >
-        <div className="-mx-10 flex-1">
+        {/* Desktop Only Table */}
+        <div className="-mx-10 hidden lg:block">
           <div className="mb-6 pl-9">
             <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
               Works
@@ -186,7 +141,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             ))}
           </ul>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

@@ -76,7 +76,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       </div>
 
       <div
-        className="flex min-h-[28rem] flex-col px-9 py-7 lg:grid lg:grid-rows-[minmax(max-content,50svh)] lg:border-l lg:border-black lg:p-10"
+        className="flex min-h-[28rem] flex-col px-9 py-7 lg:grid lg:auto-rows-[minmax(max-content,50svh)] lg:border-l lg:border-black lg:p-10"
         style={{ gridArea: "info" }}
       >
         <div className="flex flex-1 items-start lg:flex-col">

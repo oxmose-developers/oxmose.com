@@ -120,7 +120,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
 
           <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
-            {artist.links?.map((link) => (
+            {[...(artist?.links ?? [])].map((link) => (
               <li key={link._key}>
                 <a href={link.href}>{link.name}</a>
               </li>

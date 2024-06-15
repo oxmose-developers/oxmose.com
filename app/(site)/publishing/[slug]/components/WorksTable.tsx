@@ -39,46 +39,6 @@ export default function WorksTable() {
           </td>
           <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">03:24</td>
         </tr>
-        <tr>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">02</td>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">
-            Nakimushi Na Tori 泣き虫な鳥
-          </td>
-          <td className="hidden px-0 py-0.5 pr-5 uppercase first:pl-10 last:pr-10 lg:table-cell">
-            Takahiro Kinnoshita
-          </td>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">03:24</td>
-        </tr>
-        <tr>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">02</td>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">
-            Nakimushi Na Tori 泣き虫な鳥
-          </td>
-          <td className="hidden px-0 py-0.5 pr-5 uppercase first:pl-10 last:pr-10 lg:table-cell">
-            Takahiro Kinnoshita
-          </td>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">03:24</td>
-        </tr>
-        <tr>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">02</td>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">
-            Nakimushi Na Tori 泣き虫な鳥
-          </td>
-          <td className="hidden px-0 py-0.5 pr-5 uppercase first:pl-10 last:pr-10 lg:table-cell">
-            Takahiro Kinnoshita
-          </td>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">03:24</td>
-        </tr>
-        <tr>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">02</td>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">
-            Nakimushi Na Tori 泣き虫な鳥
-          </td>
-          <td className="hidden px-0 py-0.5 pr-5 uppercase first:pl-10 last:pr-10 lg:table-cell">
-            Takahiro Kinnoshita
-          </td>
-          <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10">03:24</td>
-        </tr>
       </tbody>
     </table>
   );

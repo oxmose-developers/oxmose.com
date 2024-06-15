@@ -1,5 +1,5 @@
 import { PortableText } from "@portabletext/react";
-import Image from "next/image";
+// import Image from "next/image";
 import { Suspense } from "react";
 
 import { publishingLicenseRequestEmail } from "../../../constants/urls";
@@ -10,7 +10,7 @@ import { fetchPublishingPage } from "./loader";
 export default async function Page() {
   const page = await fetchPublishingPage();
 
-  const webpUrl = urlForImage(page.artistsHeroImage).format("webp").url();
+  // const webpUrl = urlForImage(page.artistsHeroImage).format("webp").url();
 
   return (
     <>
@@ -52,8 +52,17 @@ export default async function Page() {
         </div>
       </section>
 
-      <section className="relative min-h-[12rem] bg-white lg:min-h-[60rem]">
-        <Image
+      <section className="relative min-h-[12rem] overflow-hidden bg-white lg:min-h-[60rem]">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/publishing-video.mp4"
+          controls={false}
+          autoPlay
+          muted
+          loop
+        />
+
+        {/* <Image
           alt=""
           fill
           loading="lazy"
@@ -61,7 +70,7 @@ export default async function Page() {
           src={webpUrl}
           unoptimized
           className="object-cover"
-        />
+        /> */}
       </section>
 
       <section className="border-b border-t border-white bg-black text-white lg:border-t-0">

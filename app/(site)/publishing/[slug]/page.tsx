@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const webpUrl = urlForImage(publishingArtist.coverImage).format("webp").url();
 
   return (
-    <div className="artist-single-page-layout grid border-b border-black dark:border-white lg:grid-cols-2">
+    <div className="publishing-single-page-layout grid border-b border-black dark:border-white lg:grid-cols-2">
       <div
         className="px-9 lg:border-b lg:border-black lg:px-10 lg:dark:border-white"
         style={{ gridArea: "name" }}
@@ -61,7 +61,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
       <Pagination slug={slug} style={{ gridArea: "pagination" }} />
 
-      <div className="px-9 py-7 lg:p-10" style={{ gridArea: "bio" }}>
+      <div
+        className="px-9 py-7 lg:border-r lg:border-black lg:p-10 lg:dark:border-white"
+        style={{ gridArea: "bio" }}
+      >
         <picture className="mb-10 hidden lg:block">
           <source srcSet={webpUrl} type="image/webp" />
           <img
@@ -78,7 +81,61 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
+      <div className="pb-7 lg:pb-0" style={{ gridArea: "works" }}>
+        <div className="mb-6 pl-9 lg:pt-10">
+          <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+            Works
+          </h3>
+        </div>
+
+        <WorksTable />
+      </div>
+
+      {!isEmpty([...(publishingArtist?.projects ?? [])]) && (
+        <div
+          className="flex items-start px-9 py-7 lg:flex-col lg:px-10 lg:py-0"
+          style={{ gridArea: "projects" }}
+        >
+          <div className="flex items-center gap-1.5 lg:gap-4">
+            <div className="-mt-[3px] size-4 rounded-full border border-black bg-white dark:border-white lg:size-5"></div>
+
+            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+              Projects
+            </h3>
+          </div>
+
+          <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
+            {publishingArtist.projects.map((link) => (
+              <li key={link._key}>
+                <a href={link.href}>{link.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div
+        className="flex items-start px-9 py-7 lg:flex-col lg:px-10 lg:py-0"
+        style={{ gridArea: "links" }}
+      >
+        <div className="flex items-center gap-1.5 lg:gap-4">
+          <div className="-mt-[3px] size-4 rounded-full border border-black bg-black dark:border-white lg:size-5"></div>
+
+          <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+            More
+          </h3>
+        </div>
+
+        <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
+          {[...(publishingArtist?.links ?? [])].map((link) => (
+            <li key={link._key}>
+              <a href={link.href}>{link.name}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* <div
         className="flex min-h-[28rem] flex-col px-9 py-7 lg:grid lg:gap-20 lg:border-l lg:border-black lg:p-10 lg:dark:border-white"
         style={{ gridArea: "info" }}
       >
@@ -129,7 +186,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             ))}
           </ul>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

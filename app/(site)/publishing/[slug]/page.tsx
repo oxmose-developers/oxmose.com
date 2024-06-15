@@ -10,6 +10,8 @@ import {
 import Pagination from "./components/Pagination";
 import WorksTable from "./components/WorksTable";
 
+export const dynamic = "force-static";
+
 export async function generateStaticParams() {
   const publishingArtists = await fetchPublishingArtistsStaticParams();
 

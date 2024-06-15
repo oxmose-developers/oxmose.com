@@ -2,6 +2,8 @@ import styles from "./catalogue.module.css";
 import CatalogueCard from "./components/CatalogueCard";
 import { fetchReleases } from "./loader";
 
+export const dynamic = "force-static";
+
 export default async function Page() {
   const releases = await fetchReleases();
 

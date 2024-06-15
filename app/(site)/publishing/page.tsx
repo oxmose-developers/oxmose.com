@@ -7,6 +7,8 @@ import { urlForImage } from "../../../lib/sanity";
 import PublishingArtistsList from "./components/PublishingArtistsList";
 import { fetchPublishingPage } from "./loader";
 
+export const dynamic = "force-static";
+
 export default async function Page() {
   const page = await fetchPublishingPage();
 

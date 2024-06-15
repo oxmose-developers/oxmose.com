@@ -4,6 +4,8 @@ import Logo from "../../global/logo";
 import CreditArticle from "./components/CreditArticle";
 import { fetchAboutPage } from "./loader";
 
+export const dynamic = "force-static";
+
 export default async function Page() {
   const page = await fetchAboutPage();
 

@@ -3,6 +3,8 @@ import { PortableText } from "@portabletext/react";
 import DownloadLink from "../../shared/downloadLink";
 import { fetchContactPage } from "./loader";
 
+export const dynamic = "force-static";
+
 export default async function Page() {
   const page = await fetchContactPage();
 

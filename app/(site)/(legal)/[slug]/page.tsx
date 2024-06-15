@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import Prose from "../../../shared/Prose";
 import { fetchLegalPage, fetchLegalStaticParams } from "./loader";
 
+export const dynamic = "force-static";
+
 export async function generateStaticParams() {
   const pages = await fetchLegalStaticParams();
 

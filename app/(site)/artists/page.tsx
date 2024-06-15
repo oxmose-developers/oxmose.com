@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import ArtistRow from "./components/ArtistRow";
 import { fetchArtists } from "./loader";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Artists",
 };

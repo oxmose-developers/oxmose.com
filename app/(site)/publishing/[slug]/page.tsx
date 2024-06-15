@@ -8,6 +8,7 @@ import {
   fetchPublishingArtistsStaticParams,
 } from "../loader";
 import Pagination from "./components/Pagination";
+import WorksTable from "./components/WorksTable";
 
 export async function generateStaticParams() {
   const publishingArtists = await fetchPublishingArtistsStaticParams();
@@ -78,9 +79,19 @@ export default async function Page({ params }: { params: { slug: string } }) {
       </div>
 
       <div
-        className="flex min-h-[28rem] flex-col px-9 py-7 lg:grid lg:grid-rows-[minmax(max-content,50svh)] lg:border-l lg:border-black lg:p-10 lg:dark:border-white"
+        className="flex min-h-[28rem] flex-col px-9 py-7 lg:grid lg:gap-20 lg:border-l lg:border-black lg:p-10 lg:dark:border-white"
         style={{ gridArea: "info" }}
       >
+        <div className="-mx-10 flex-1">
+          <div className="mb-6 pl-9">
+            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+              Works
+            </h3>
+          </div>
+
+          <WorksTable />
+        </div>
+
         {!isEmpty([...(publishingArtist?.projects ?? [])]) && (
           <div className="flex flex-1 items-start lg:flex-col">
             <div className="flex items-center gap-1.5 lg:gap-4">
@@ -111,7 +122,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
 
           <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
-            {publishingArtist.links?.map((link) => (
+            {[...(publishingArtist?.links ?? [])].map((link) => (
               <li key={link._key}>
                 <a href={link.href}>{link.name}</a>
               </li>

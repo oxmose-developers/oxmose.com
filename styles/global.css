@@ -29,3 +29,12 @@
       "bio info";
   }
 }
+
+.publishing-single-page-layout {
+  grid-template-areas:
+    "name" "name"
+    "pagination" "pagination"
+    "bio" "works"
+    "bio" "projects"
+    "bio" "links";
+}

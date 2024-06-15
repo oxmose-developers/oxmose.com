@@ -135,7 +135,7 @@ export type Release = {
   _type: "release";
   title: string;
   slug: Slug;
-  artist: Pick<Artist, "name">[];
+  artist: Pick<Artist, "name" | "slug">[];
   overview: string;
   coverImage: Image;
   description: any[];
@@ -165,7 +165,7 @@ export type ReleasesStaticParamsQuery = { slug: Slug }[];
 export const ReleasePageQuery = /* groq */ `
 *[_type == "release" && slug.current == $slug][0] {
   ...,
-  artist[]->{name}
+  artist[]->{name, slug}
 }`;
 
 export type ReleasePageQuery = Release | null;

@@ -1,5 +1,6 @@
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
+import { isEmpty } from "ts-extras";
 
 import { urlForImage } from "../../../../lib/sanity";
 import {
@@ -80,17 +81,25 @@ export default async function Page({ params }: { params: { slug: string } }) {
         className="flex min-h-[28rem] flex-col px-9 py-7 lg:grid lg:grid-rows-[minmax(max-content,50svh)] lg:border-l lg:border-black lg:p-10 lg:dark:border-white"
         style={{ gridArea: "info" }}
       >
-        <div className="flex flex-1 items-start lg:flex-col">
-          <div className="flex items-center gap-1.5 lg:gap-4">
-            <div className="-mt-[3px] size-4 rounded-full border border-black bg-white dark:border-white lg:size-5"></div>
+        {!isEmpty([...(publishingArtist?.projects ?? [])]) && (
+          <div className="flex flex-1 items-start lg:flex-col">
+            <div className="flex items-center gap-1.5 lg:gap-4">
+              <div className="-mt-[3px] size-4 rounded-full border border-black bg-white dark:border-white lg:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
-              Projects
-            </h3>
+              <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+                Projects
+              </h3>
+            </div>
+
+            <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
+              {publishingArtist.projects.map((link) => (
+                <li key={link._key}>
+                  <a href={link.href}>{link.name}</a>
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <ul className="ml-auto space-y-4 lg:ml-0 lg:pl-9"></ul>
-        </div>
+        )}
 
         <div className="flex items-start lg:flex-col">
           <div className="flex items-center gap-1.5 lg:gap-4">

@@ -33,6 +33,15 @@ export default defineType({
       validation: (Rule) => [Rule.required()],
     }),
     defineField({
+      name: "projects",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "link",
+        }),
+      ],
+    }),
+    defineField({
       name: "links",
       type: "array",
       of: [

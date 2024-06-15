@@ -234,6 +234,7 @@ export type PublishingArtist = {
   slug: Slug;
   overview: string;
   links: Link[];
+  projects: Link[];
   _createdAt: string;
   _type: "publishingArtist";
 };
@@ -245,4 +246,4 @@ export type PublishingArtistsQuery = Pick<
 
 export const PublishingArtistPageQuery = /* groq */ `*[_type == "publishingArtist" && slug.current == $slug][0]`;
 
-export type PublishingArtistPageQuery = Artist | null;
+export type PublishingArtistPageQuery = PublishingArtist | null;

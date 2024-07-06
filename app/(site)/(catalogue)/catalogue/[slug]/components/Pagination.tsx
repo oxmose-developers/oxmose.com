@@ -20,7 +20,7 @@ export default async function Pagination({
 
   return (
     <div
-      className="flex h-10 items-center justify-between border-y border-black px-9 lg:px-10"
+      className="flex h-10 items-center justify-between border-b border-black px-9 lg:border-y lg:px-10"
       style={style}
     >
       <Link

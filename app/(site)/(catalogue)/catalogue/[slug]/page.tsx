@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment, Suspense } from "react";
 
+import { urlForImage } from "../../../../../lib/sanity";
 import { fetchReleasePage, fetchReleasesStaticParams } from "../../loader";
 import Pagination from "./components/Pagination";
 import Product from "./components/Product";
@@ -29,10 +30,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
+  const productImagesCarousel = release.productImages.map((image) => ({
+    _key: image._key as string,
+    src: urlForImage(image).url(),
+    webp: urlForImage(image).format("webp").url(),
+  }));
+
   return (
     <div>
       {/* Desktop Design */}
-      <div className="grid grid-cols-2">
+      <div className="hidden grid-cols-2 lg:grid">
         <div className="flex flex-col border-r border-black">
           {/* ID & Release Date */}
           <div className="border-b border-black px-9">
@@ -43,13 +50,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
               <p className="text-oxe-sm font-medium">
                 <time dateTime={formatISO(new Date(release.releaseDate))}>
-                  <span className="hidden lg:inline">
-                    {format(new Date(release.releaseDate), "MMMM d, yyyy")}
-                  </span>
-
-                  <span className="inline lg:hidden">
-                    {format(new Date(release.releaseDate), "dd.MM.yy")}
-                  </span>
+                  {format(new Date(release.releaseDate), "MMMM d, yyyy")}
                 </time>
               </p>
             </div>
@@ -125,8 +126,83 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
+      {/* Mobile Design */}
+      <div className="block lg:hidden">
+        {/* Pagination */}
+        <Pagination slug={slug} />
+
+        <div>
+          {/* Mobile Product Images */}
+          <div className="relative flex aspect-square w-full snap-x snap-mandatory overflow-x-auto">
+            {productImagesCarousel.map(({ webp, _key }) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                alt={""}
+                className="aspect-square shrink-0 snap-center object-cover object-center"
+                decoding="async"
+                key={_key}
+                loading="lazy"
+                src={webp}
+              />
+            ))}
+          </div>
+
+          <div className="px-9 py-7">
+            {/* Title & Artist */}
+            <div className="mb-5">
+              <p className="text-oxe-md font-medium">{release.title}</p>
+
+              <p className="text-oxe-sm/[32px]">
+                {release.artist.map((artist, idx, artists) => (
+                  <Fragment key={artist.slug.current}>
+                    <Link href={`/artists/${artist.slug.current}`}>
+                      {artist.name}
+                    </Link>
+
+                    {idx !== artists.length - 1 && <span>{", "}</span>}
+                  </Fragment>
+                ))}
+              </p>
+            </div>
+
+            {/* Stream Links */}
+            <div className="flex items-start">
+              <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+                Stream
+              </h3>
+
+              <ul className="ml-auto text-right text-oxe-xs lg:text-left lg:text-oxe-sm/[32px]">
+                {[...(release?.links ?? [])].map((link) => (
+                  <li key={link._key}>
+                    <a href={link.href}>{link.name}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Buy & Listen */}
+        <div className="flex h-10 items-center justify-between border-y border-black px-9 lg:px-10">
+          <div className="text-oxe-sm font-medium uppercase">Buy</div>
+
+          <div className="text-oxe-sm font-medium uppercase">Listen</div>
+        </div>
+      </div>
+
       {/* Description */}
       <div className="px-9 pt-7 lg:px-10 lg:pb-7">
+        {/* ID & Release Date */}
+        <div className="mb-5 flex justify-between lg:hidden">
+          <p className="text-oxe-sm font-medium">{release.releaseReference}</p>
+
+          <p className="text-oxe-sm font-medium">
+            <time dateTime={formatISO(new Date(release.releaseDate))}>
+              {format(new Date(release.releaseDate), "dd.MM.yy")}
+            </time>
+          </p>
+        </div>
+
         <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium lg:prose-p:text-oxe-lg lg:prose-p:font-medium">
           <PortableText value={release.description} />
         </div>

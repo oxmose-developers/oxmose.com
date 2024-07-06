@@ -2,12 +2,14 @@ import { PortableText } from "@portabletext/react";
 import { format, formatISO } from "date-fns";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Fragment, Suspense } from "react";
+import { Fragment } from "react";
 
 import { urlForImage } from "../../../../../lib/sanity";
+import { getProduct } from "../../../../../lib/shopify";
 import { fetchReleasePage, fetchReleasesStaticParams } from "../../loader";
+import BuyButton from "./components/BuyButton";
 import Pagination from "./components/Pagination";
-import Product from "./components/Product";
+import VariantSelector from "./components/VariantSelector";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +31,22 @@ export default async function Page({ params }: { params: { slug: string } }) {
   if (!release) {
     return notFound();
   }
+
+  const [digitalProductResult, physicalProductResult] =
+    await Promise.allSettled([
+      getProduct(release.shopifyProductDigital),
+      getProduct(release.shopifyProductPhysical),
+    ]);
+
+  const physicalProduct =
+    physicalProductResult.status === "fulfilled"
+      ? physicalProductResult.value
+      : undefined;
+
+  const digitalProduct =
+    digitalProductResult.status === "fulfilled"
+      ? digitalProductResult.value
+      : undefined;
 
   const productImagesCarousel = release.productImages.map((image) => ({
     _key: image._key as string,
@@ -115,23 +133,22 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           {/* Purchase & Stream */}
           <div className="flex flex-1 flex-col px-9 py-7">
-            <div className="flex flex-1 flex-col gap-5">
-              <Suspense fallback={null}>
-                <Product
-                  type={"Digital"}
-                  handle={release.shopifyProductDigital}
-                  productFormat={release.digitalProductFormat}
-                />
-              </Suspense>
-
-              <Suspense fallback={null}>
-                <Product
-                  type={"Vinyl"}
-                  handle={release.shopifyProductPhysical}
-                  productFormat={release.physicalProductFormat}
-                />
-              </Suspense>
-            </div>
+            {digitalProduct && physicalProduct && (
+              <VariantSelector
+                products={[
+                  {
+                    type: "Digital",
+                    product: digitalProduct,
+                    format: release.digitalProductFormat,
+                  },
+                  {
+                    type: "Vinyl",
+                    product: physicalProduct,
+                    format: release.physicalProductFormat,
+                  },
+                ]}
+              />
+            )}
 
             <div className="flex items-start">
               <h3 className="text-[35px]/[32px] font-medium uppercase">
@@ -149,7 +166,27 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
 
           <div className="flex h-10 items-center justify-between border-y border-black px-9 lg:px-10">
-            <div className="text-oxe-sm font-medium uppercase">Buy</div>
+            {digitalProduct && physicalProduct && (
+              <BuyButton
+                products={[
+                  {
+                    type: "Digital",
+                    product: digitalProduct,
+                    format: release.digitalProductFormat,
+                  },
+                  {
+                    type: "Vinyl",
+                    product: physicalProduct,
+                    format: release.physicalProductFormat,
+                  },
+                ]}
+                defaultProduct={{
+                  type: "Digital",
+                  product: digitalProduct,
+                  format: release.digitalProductFormat,
+                }}
+              />
+            )}
 
             <div className="text-oxe-sm font-medium uppercase">Listen</div>
           </div>
@@ -195,26 +232,25 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
 
           {/* Purchase  */}
-          <div className="mb-5 flex flex-1 flex-col gap-5">
-            <Suspense fallback={null}>
-              <Product
-                type={"Digital"}
-                handle={release.shopifyProductDigital}
-                productFormat={release.digitalProductFormat}
-              />
-            </Suspense>
-
-            <Suspense fallback={null}>
-              <Product
-                type={"Vinyl"}
-                handle={release.shopifyProductPhysical}
-                productFormat={release.physicalProductFormat}
-              />
-            </Suspense>
-          </div>
+          {digitalProduct && physicalProduct && (
+            <VariantSelector
+              products={[
+                {
+                  type: "Digital",
+                  product: digitalProduct,
+                  format: release.digitalProductFormat,
+                },
+                {
+                  type: "Vinyl",
+                  product: physicalProduct,
+                  format: release.physicalProductFormat,
+                },
+              ]}
+            />
+          )}
 
           {/* Stream Links */}
-          <div className="flex items-start">
+          <div className="mt-5 flex items-start">
             <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
               Stream
             </h3>
@@ -231,7 +267,27 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
         {/* Buy & Listen */}
         <div className="flex h-10 items-center justify-between border-y border-black px-9 lg:px-10">
-          <div className="text-oxe-sm font-medium uppercase">Buy</div>
+          {digitalProduct && physicalProduct && (
+            <BuyButton
+              products={[
+                {
+                  type: "Digital",
+                  product: digitalProduct,
+                  format: release.digitalProductFormat,
+                },
+                {
+                  type: "Vinyl",
+                  product: physicalProduct,
+                  format: release.physicalProductFormat,
+                },
+              ]}
+              defaultProduct={{
+                type: "Digital",
+                product: digitalProduct,
+                format: release.digitalProductFormat,
+              }}
+            />
+          )}
 
           <div className="text-oxe-sm font-medium uppercase">Listen</div>
         </div>

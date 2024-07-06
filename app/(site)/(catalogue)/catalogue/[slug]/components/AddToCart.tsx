@@ -5,12 +5,12 @@ import { useFormState, useFormStatus } from "react-dom";
 import type { ProductVariant } from "../../../../../../lib/shopify/types";
 import { addItem } from "../../../../../shared/cart/actions";
 
-function SubmitButton({ children }: { children: React.ReactNode }) {
+export function SubmitButton({ children }: { children: React.ReactNode }) {
   const { pending } = useFormStatus();
 
   return (
     <button
-      className="block"
+      className="block text-oxe-sm font-medium uppercase"
       aria-disabled={pending}
       aria-label="Add to cart"
       onClick={(e: React.FormEvent<HTMLButtonElement>) => {
@@ -38,9 +38,9 @@ export default function AddToCart({
 
   return (
     <form action={actionWithVariant}>
-      <SubmitButton>Add to Cart</SubmitButton>
+      <SubmitButton>Buy</SubmitButton>
 
-      <p aria-live="polite" className="" role="status">
+      <p aria-live="polite" role="status">
         {message}
       </p>
     </form>

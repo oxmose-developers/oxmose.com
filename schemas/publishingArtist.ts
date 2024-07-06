@@ -54,5 +54,9 @@ export default defineType({
       name: "body",
       type: "blockContent",
     }),
+    defineField({
+      name: "works",
+      type: "trackList",
+    }),
   ],
 });

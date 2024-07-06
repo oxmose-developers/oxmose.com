@@ -80,15 +80,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Mobile Only Table */}
-        <div className="-mx-9 block pt-7 lg:hidden">
-          <div className="mb-3 pl-9">
-            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
-              Works
-            </h3>
-          </div>
+        {!!publishingArtist.works &&
+          publishingArtist.works.tracks.length > 0 && (
+            <div className="-mx-9 block pt-7 lg:hidden">
+              <div className="mb-3 pl-9">
+                <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+                  Works
+                </h3>
+              </div>
 
-          <WorksTable />
-        </div>
+              <WorksTable
+                works={publishingArtist.works}
+                name={publishingArtist.name}
+              />
+            </div>
+          )}
       </div>
 
       <div
@@ -96,15 +102,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
         style={{ gridArea: "info" }}
       >
         {/* Desktop Only Table */}
-        <div className="-mx-10 hidden lg:block">
-          <div className="mb-6 pl-9">
-            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
-              Works
-            </h3>
-          </div>
+        {!!publishingArtist.works &&
+          publishingArtist.works.tracks.length > 0 && (
+            <div className="-mx-10 hidden lg:block">
+              <div className="mb-6 pl-9">
+                <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+                  Works
+                </h3>
+              </div>
 
-          <WorksTable />
-        </div>
+              <WorksTable
+                works={publishingArtist.works}
+                name={publishingArtist.name}
+              />
+            </div>
+          )}
 
         {!isEmpty([...(publishingArtist?.projects ?? [])]) && (
           <div className="flex flex-1 items-start lg:flex-col">

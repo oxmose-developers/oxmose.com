@@ -237,6 +237,20 @@ export type PublishingArtist = {
   projects: Link[];
   _createdAt: string;
   _type: "publishingArtist";
+  works: TrackList;
+};
+
+export type Track = {
+  _key: string;
+  _type: "track";
+  length: string;
+  name: string;
+  number: number;
+};
+
+export type TrackList = {
+  type: "trackList";
+  tracks: Track[];
 };
 
 export type PublishingArtistsQuery = Pick<

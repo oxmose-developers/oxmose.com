@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className="flex flex-col border-r border-black">
           {/* ID & Release Date */}
           <div className="shrink-0 border-b border-black px-9">
-            <div className="flex justify-between">
+            <div className="flex h-10 items-center justify-between">
               <p className="text-oxe-sm font-medium">
                 {release.releaseReference}
               </p>

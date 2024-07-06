@@ -5,7 +5,7 @@ const config = {
   },
   logging: {
     fetches: {
-      fullUrl: true,
+      fullUrl: false,
     },
   },
 };

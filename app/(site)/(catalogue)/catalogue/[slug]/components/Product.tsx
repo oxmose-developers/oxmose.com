@@ -7,9 +7,11 @@ import Price from "./Price";
 export default async function Product({
   handle,
   type,
+  productFormat,
 }: {
   handle: string;
   type: "Vinyl" | "Digital";
+  productFormat: string;
 }) {
   const product = await getProduct(handle);
 
@@ -27,7 +29,7 @@ export default async function Product({
             <p className="text-[35px]/[32px] font-medium uppercase">{type}</p>
           </div>
 
-          <p className="truncate pl-9 text-oxe-sm">{product.handle}</p>
+          <p className="truncate pl-9 text-oxe-sm">{productFormat}</p>
         </div>
 
         <Price

@@ -87,9 +87,19 @@ export default defineType({
       validation: (Rule) => [Rule.required()],
     }),
     defineField({
+      name: "digitalProductFormat",
+      type: "string",
+      validation: (Rule) => [Rule.required()],
+    }),
+    defineField({
       name: "shopifyProductPhysical",
       type: "string",
       placeholder: "e.g. oxe-001-vinyl",
+      validation: (Rule) => [Rule.required()],
+    }),
+    defineField({
+      name: "physicalProductFormat",
+      type: "string",
       validation: (Rule) => [Rule.required()],
     }),
   ],

@@ -143,7 +143,9 @@ export type Release = {
   releaseReference: `OXE #${string}`;
   releaseDate: string;
   shopifyProductDigital: string;
+  digitalProductFormat: string;
   shopifyProductPhysical: string;
+  physicalProductFormat: string;
   links: Link[];
 };
 

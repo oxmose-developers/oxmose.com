@@ -39,10 +39,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div>
       {/* Desktop Design */}
-      <div className="hidden grid-cols-2 lg:grid">
+      <div className="hidden min-h-[85svh] grid-cols-2 lg:grid">
         <div className="flex flex-col border-r border-black">
           {/* ID & Release Date */}
-          <div className="border-b border-black px-9">
+          <div className="shrink-0 border-b border-black px-9">
             <div className="flex justify-between">
               <p className="text-oxe-sm font-medium">
                 {release.releaseReference}
@@ -50,15 +50,43 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
               <p className="text-oxe-sm font-medium">
                 <time dateTime={formatISO(new Date(release.releaseDate))}>
-                  {format(new Date(release.releaseDate), "MMMM d, yyyy")}
+                  {format(new Date(release.releaseDate), "MMMM do, yyyy")}
                 </time>
               </p>
             </div>
           </div>
 
           {/* Carousel */}
-          <div className="flex-1 lg:p-10">
-            <div className="aspect-square"></div>
+          <div className="flex flex-1 gap-10 lg:p-10">
+            {/* Desktop Product Images */}
+            <div className="mt-auto flex max-w-[40rem] snap-x snap-mandatory overflow-x-auto">
+              {productImagesCarousel.slice(0, 1).map(({ webp, _key }) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  alt={""}
+                  className="aspect-square shrink-0 snap-center object-cover object-center"
+                  decoding="async"
+                  key={_key}
+                  loading="lazy"
+                  src={webp}
+                />
+              ))}
+            </div>
+
+            {/* Carousel Controls */}
+            <div className="flex shrink-0 gap-2 self-end justify-self-end">
+              {productImagesCarousel.slice(0, 3).map(({ webp, _key }) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  alt={""}
+                  className="aspect-square size-11 shrink-0"
+                  decoding="async"
+                  key={_key}
+                  loading="lazy"
+                  src={webp}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Pagination */}
@@ -92,6 +120,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 <Product
                   type={"Digital"}
                   handle={release.shopifyProductDigital}
+                  productFormat={release.digitalProductFormat}
                 />
               </Suspense>
 
@@ -99,6 +128,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 <Product
                   type={"Vinyl"}
                   handle={release.shopifyProductPhysical}
+                  productFormat={release.physicalProductFormat}
                 />
               </Suspense>
             </div>

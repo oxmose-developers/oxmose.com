@@ -26,14 +26,18 @@ export default async function Product({
           <div className="flex items-center gap-1.5 lg:gap-4">
             <div className="-mt-[3px] size-4 rounded-full border border-black bg-white group-hover:bg-black lg:size-5"></div>
 
-            <p className="text-[35px]/[32px] font-medium uppercase">{type}</p>
+            <p className="text-oxe-sm/5 font-medium uppercase lg:text-[35px]/[32px]">
+              {type}
+            </p>
           </div>
 
-          <p className="truncate pl-9 text-oxe-sm">{productFormat}</p>
+          <p className="truncate pl-6 text-oxe-xs lg:pl-9 lg:text-oxe-sm">
+            {productFormat}
+          </p>
         </div>
 
         <Price
-          className="ml-auto text-[35px]/[32px] font-medium uppercase"
+          className="ml-auto text-oxe-sm/5 font-medium uppercase lg:text-[35px]/[32px]"
           amount={product.priceRange.maxVariantPrice.amount}
           currencyCode={product.priceRange.maxVariantPrice.currencyCode}
           hideCurrencyCode

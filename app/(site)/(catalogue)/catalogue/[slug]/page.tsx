@@ -161,54 +161,71 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {/* Pagination */}
         <Pagination slug={slug} />
 
-        <div>
-          {/* Mobile Product Images */}
-          <div className="relative flex aspect-square w-full snap-x snap-mandatory overflow-x-auto">
-            {productImagesCarousel.map(({ webp, _key }) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                alt={""}
-                className="aspect-square shrink-0 snap-center object-cover object-center"
-                decoding="async"
-                key={_key}
-                loading="lazy"
-                src={webp}
-              />
-            ))}
+        {/* Mobile Product Images */}
+        <div className="relative flex aspect-square w-full snap-x snap-mandatory overflow-x-auto">
+          {productImagesCarousel.map(({ webp, _key }) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              alt={""}
+              className="aspect-square shrink-0 snap-center object-cover object-center"
+              decoding="async"
+              key={_key}
+              loading="lazy"
+              src={webp}
+            />
+          ))}
+        </div>
+
+        <div className="px-9 py-7">
+          {/* Title & Artist */}
+          <div className="mb-5">
+            <p className="text-oxe-md font-medium">{release.title}</p>
+
+            <p className="text-oxe-sm/[32px]">
+              {release.artist.map((artist, idx, artists) => (
+                <Fragment key={artist.slug.current}>
+                  <Link href={`/artists/${artist.slug.current}`}>
+                    {artist.name}
+                  </Link>
+
+                  {idx !== artists.length - 1 && <span>{", "}</span>}
+                </Fragment>
+              ))}
+            </p>
           </div>
 
-          <div className="px-9 py-7">
-            {/* Title & Artist */}
-            <div className="mb-5">
-              <p className="text-oxe-md font-medium">{release.title}</p>
+          {/* Purchase  */}
+          <div className="mb-5 flex flex-1 flex-col gap-5">
+            <Suspense fallback={null}>
+              <Product
+                type={"Digital"}
+                handle={release.shopifyProductDigital}
+                productFormat={release.digitalProductFormat}
+              />
+            </Suspense>
 
-              <p className="text-oxe-sm/[32px]">
-                {release.artist.map((artist, idx, artists) => (
-                  <Fragment key={artist.slug.current}>
-                    <Link href={`/artists/${artist.slug.current}`}>
-                      {artist.name}
-                    </Link>
+            <Suspense fallback={null}>
+              <Product
+                type={"Vinyl"}
+                handle={release.shopifyProductPhysical}
+                productFormat={release.physicalProductFormat}
+              />
+            </Suspense>
+          </div>
 
-                    {idx !== artists.length - 1 && <span>{", "}</span>}
-                  </Fragment>
-                ))}
-              </p>
-            </div>
+          {/* Stream Links */}
+          <div className="flex items-start">
+            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+              Stream
+            </h3>
 
-            {/* Stream Links */}
-            <div className="flex items-start">
-              <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
-                Stream
-              </h3>
-
-              <ul className="ml-auto text-right text-oxe-xs lg:text-left lg:text-oxe-sm/[32px]">
-                {[...(release?.links ?? [])].map((link) => (
-                  <li key={link._key}>
-                    <a href={link.href}>{link.name}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className="ml-auto text-right text-oxe-xs lg:text-left lg:text-oxe-sm/[32px]">
+              {[...(release?.links ?? [])].map((link) => (
+                <li key={link._key}>
+                  <a href={link.href}>{link.name}</a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 

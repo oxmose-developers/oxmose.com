@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import FollowPopover from "../../components/FollowPopover";
+import FollowPopover from "./FollowPopover";
+import NewsletterPopover from "./NewsletterPopover";
 
 export default function FooterMobile({ offset }: { offset: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="flex flex-col gap-1 text-oxe-xs uppercase lg:hidden">
+    <div className="flex flex-col gap-1 lg:hidden">
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
@@ -24,15 +25,25 @@ export default function FooterMobile({ offset }: { offset: number }) {
 
       {isExpanded && (
         <>
-          <Link href="/publishing">Publishing</Link>
+          <Link className="text-oxe-xs uppercase" href="/publishing">
+            Publishing
+          </Link>
 
           <FollowPopover offset={offset} />
 
-          <Link href="/terms-and-conditions">Terms</Link>
+          <NewsletterPopover offset={offset} />
 
-          <Link href="/privacy-policy">Privacy</Link>
+          <Link className="text-oxe-xs uppercase" href="/terms-and-conditions">
+            Terms
+          </Link>
 
-          <Link href="/faq">FAQ</Link>
+          <Link className="text-oxe-xs uppercase" href="/privacy-policy">
+            Privacy
+          </Link>
+
+          <Link className="text-oxe-xs uppercase" href="/faq">
+            FAQ
+          </Link>
         </>
       )}
     </div>

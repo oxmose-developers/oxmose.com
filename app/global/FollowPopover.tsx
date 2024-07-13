@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { links } from "../constants/urls";
+import { links } from "../../constants/urls";
 
 export default function FollowPopover({ offset }: { offset: number }) {
   const [isOpen, isOpenSet] = useState(false);
@@ -11,7 +11,7 @@ export default function FollowPopover({ offset }: { offset: number }) {
     <div>
       <button
         type="button"
-        className="uppercase"
+        className="text-oxe-xs uppercase lg:text-oxe-sm"
         onClick={() => isOpenSet(!isOpen)}
       >
         Follow
@@ -19,7 +19,7 @@ export default function FollowPopover({ offset }: { offset: number }) {
 
       {isOpen && (
         <div
-          className="absolute bottom-[var(--offset)] left-0 right-0 z-50 flex w-full items-center gap-4 border-t border-black bg-white px-9 py-3 text-black lg:min-h-[3.75rem] lg:py-[13px] lg:pl-10"
+          className="absolute bottom-[var(--offset)] left-0 right-0 z-50 flex w-full items-start gap-4 border-t border-black bg-white px-9 py-3 text-black lg:min-h-[3.75rem] lg:items-center lg:py-[13px] lg:pl-10"
           style={{ "--offset": `${offset}px` } as React.CSSProperties}
         >
           <div className="flex flex-wrap gap-4 lg:gap-10">
@@ -43,7 +43,7 @@ export default function FollowPopover({ offset }: { offset: number }) {
           >
             <span className="sr-only">Close</span>
             <svg
-              className="size-6 lg:size-7"
+              className="size-4 lg:size-7"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 32 32"

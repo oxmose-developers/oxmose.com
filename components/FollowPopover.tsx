@@ -4,22 +4,25 @@ import { useState } from "react";
 
 import { links } from "../constants/urls";
 
-export default function FollowPopover() {
+export default function FollowPopover({ offset }: { offset: number }) {
   const [isOpen, isOpenSet] = useState(false);
 
   return (
-    <div className="">
+    <div>
       <button
         type="button"
+        className="uppercase"
         onClick={() => isOpenSet(!isOpen)}
-        className="whitespace-nowrap text-oxe-xs uppercase lg:text-oxe-sm"
       >
         Follow
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-[3.75rem] left-0 right-0 z-50 flex min-h-[3.75rem] w-full items-center border-t border-black bg-white px-9 py-2 text-black lg:py-[13px] lg:pl-10">
-          <div className="flex flex-wrap gap-10">
+        <div
+          className="absolute bottom-[var(--offset)] left-0 right-0 z-50 flex w-full items-center gap-4 border-t border-black bg-white px-9 py-3 text-black lg:min-h-[3.75rem] lg:py-[13px] lg:pl-10"
+          style={{ "--offset": `${offset}px` } as React.CSSProperties}
+        >
+          <div className="flex flex-wrap gap-4 lg:gap-10">
             {links.map((link, idx) => (
               <a
                 href={link.href}
@@ -40,7 +43,7 @@ export default function FollowPopover() {
           >
             <span className="sr-only">Close</span>
             <svg
-              className="size-7"
+              className="size-6 lg:size-7"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 32 32"

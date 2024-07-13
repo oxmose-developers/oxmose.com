@@ -7,7 +7,7 @@ import { Suspense } from "react";
 
 import { Providers } from "../../components/Providers";
 // import Player from "../../components/Player";
-import Footer from "../global/footer";
+import Footer from "../global/Footer";
 import NavBar from "../global/navBar";
 import Cart from "../shared/cart/Cart";
 
@@ -65,6 +65,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const fullYear = new Date().getFullYear();
+
   return (
     <html
       lang="en"
@@ -83,7 +85,7 @@ export default function RootLayout({
             <Cart />
           </Suspense>
 
-          <Footer />
+          <Footer fullYear={fullYear} />
 
           {/* <Player /> */}
         </Providers>

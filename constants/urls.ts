@@ -11,7 +11,7 @@ const links = [
   },
   {
     href: "https://twitter.com/oxmose_records",
-    label: "X",
+    label: "Twitter",
   },
   {
     href: "https://spoti.fi/34oYpfp",

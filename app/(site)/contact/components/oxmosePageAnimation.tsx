@@ -7,10 +7,24 @@ import {
   type DotLottiePlayer,
   PlayMode,
 } from "@aarsteinmedia/dotlottie-player-light";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function OxmosePageAnimation() {
   const animation = useRef<DotLottiePlayer | null>(null);
+
+  useEffect(() => {
+    const ref = animation.current;
+
+    if (ref) {
+      ref.addEventListener("ready", () => ref.play());
+    }
+
+    return () => {
+      if (ref) {
+        ref.removeEventListener("ready", () => ref.play());
+      }
+    };
+  }, [animation]);
 
   return (
     <dotlottie-player

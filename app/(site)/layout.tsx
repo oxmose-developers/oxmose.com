@@ -94,7 +94,7 @@ export default function RootLayout({
       {process.env.NODE_ENV === "development" ? null : (
         <Script
           async
-          src="https://cloud.umami.is/script.js"
+          src="/stats/script.js"
           data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
         />
       )}

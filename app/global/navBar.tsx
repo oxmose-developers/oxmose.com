@@ -9,7 +9,7 @@ export default function NavBar() {
         <div className="px-9 lg:px-10">
           <a href="/">
             <span className="sr-only">Back to Catalogue</span>
-            <Logo className="size-12 lg:size-16" />
+            <Logo className="relative size-12 lg:size-16" />
           </a>
         </div>
 

@@ -1,6 +1,7 @@
 import { PortableText } from "@portabletext/react";
 
 import DownloadLink from "../../shared/downloadLink";
+import OxmosePageAnimation from "./components/oxmosePageAnimation";
 import { fetchContactPage } from "./loader";
 
 export const dynamic = "force-static";
@@ -106,7 +107,7 @@ export default async function Page() {
         </div>
       </section>
 
-      <section className="flex min-h-96 flex-col p-9 lg:min-h-[30rem] lg:p-10">
+      <section className="flex min-h-96 flex-col border-b border-black p-9 lg:min-h-[30rem] lg:p-10">
         <h2 className="mb-1.5 text-oxe-md lg:mb-10 lg:text-oxe-xxl">
           {page.syncSection.title}
         </h2>
@@ -118,6 +119,10 @@ export default async function Page() {
         <p className="mt-auto text-right text-oxe-md lg:text-oxe-xxl">
           <a href={page.syncSection.link.href}>{page.syncSection.link.name}</a>
         </p>
+      </section>
+
+      <section className="flex min-h-96 flex-col items-center justify-center p-9 lg:min-h-[45rem] lg:p-10">
+        <OxmosePageAnimation />
       </section>
     </>
   );

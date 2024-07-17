@@ -1,0 +1,30 @@
+"use client";
+
+// Unneeded as its imported in the Navbar
+// import "@aarsteinmedia/dotlottie-player-light";
+
+import {
+  type DotLottiePlayer,
+  PlayMode,
+} from "@aarsteinmedia/dotlottie-player-light";
+import { useRef } from "react";
+
+export default function OxmosePageAnimation() {
+  const animation = useRef<DotLottiePlayer | null>(null);
+
+  return (
+    <dotlottie-player
+      ref={animation}
+      src="/oxmose-site-header-logo-cropped.lottie"
+      autoplay=""
+      mode={PlayMode.Bounce}
+      subframe=""
+      loop=""
+      style={{
+        width: "12rem",
+        height: "12rem",
+        pointerEvents: "none",
+      }}
+    />
+  );
+}

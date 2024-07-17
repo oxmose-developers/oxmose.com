@@ -9,7 +9,9 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@aarsteinmedia/dotlottie-player-light": "^2.4.14",
     "@heroicons/react": "^2.1.4",
+    "@lottiefiles/dotlottie-react": "^0.7.2",
     "@portabletext/react": "^3.1.0",
     "@sanity/client": "6.20.1",
     "@sanity/icons": "^3.3.0",

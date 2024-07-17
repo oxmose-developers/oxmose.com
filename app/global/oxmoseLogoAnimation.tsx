@@ -12,6 +12,20 @@ export default function OxmoseLogoAnimation() {
   const pathname = usePathname();
 
   useEffect(() => {
+    const ref = animation.current;
+
+    if (ref) {
+      ref.addEventListener("ready", () => ref.play());
+    }
+
+    return () => {
+      if (ref) {
+        ref.removeEventListener("ready", () => ref.play());
+      }
+    };
+  }, [animation]);
+
+  useEffect(() => {
     if (animation.current) {
       animation.current.seek(0);
       animation.current.play();

@@ -31,8 +31,6 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
 
   const [state, formAction] = useFormState(subscribeToNewsletter, initialState);
 
-  console.log(state);
-
   useEffect(() => {
     if (state.success) {
       window.alert("Successfully subscribed!");

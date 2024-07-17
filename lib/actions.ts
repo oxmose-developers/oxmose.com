@@ -13,32 +13,38 @@ if (!apiKey) {
 }
 
 export async function subscribeToNewsletter(
-  prevState: { message: string; success: boolean },
+  prevState: any,
   formData: FormData,
 ) {
   "use server";
+
+  const email = formData.get("email");
+
+  if (!email) {
+    return {
+      message: "Email is required",
+      success: false,
+    };
+  }
 
   const response = await fetch(
     `https://emailoctopus.com/api/1.6/lists/${listId}/contacts`,
     {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         api_key: apiKey,
-        email_address: formData.get("email"),
-        /**
-         * @note Needed for double-opt in
-         */
+        email_address: email,
         status: "PENDING",
       }),
     },
   );
 
-  if (!response.ok) {
-    const body = await response.json();
+  const body = await response.json();
 
+  if (!response.ok) {
     return {
-      code: body.code,
-      message: body.message,
+      message: `Unable to subscribe to newsletter:\n${body.error.message}`,
       success: false,
     };
   }

@@ -11,7 +11,7 @@ export function SubmitButton() {
   return (
     <button
       type="submit"
-      className="text-oxe-sm/10 lg:text-oxe-lg"
+      className="text-oxe-sm/10 lg:text-oxe-lg/[62px]"
       aria-disabled={pending}
       onClick={(e) => {
         if (pending) {
@@ -24,21 +24,24 @@ export function SubmitButton() {
   );
 }
 
+const initialState = { message: "", success: false };
+
 export default function NewsletterPopover({ offset }: { offset: number }) {
   const [isOpen, isOpenSet] = useState(false);
 
-  const [state, formAction] = useFormState(subscribeToNewsletter, {
-    message: "",
-    success: false,
-  });
+  const [state, formAction] = useFormState(subscribeToNewsletter, initialState);
+
+  console.log(state);
 
   useEffect(() => {
     if (state.success) {
       window.alert("Successfully subscribed!");
 
       isOpenSet(false);
+    } else if (state.message.trim() !== "") {
+      window.alert(state.message);
     }
-  }, [state.success]);
+  }, [state]);
 
   return (
     <div>
@@ -94,7 +97,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
               autoComplete="email"
               autoCorrect="off"
               required
-              className="w-full text-oxe-sm/10 placeholder:text-[#7B7878] lg:text-oxe-lg"
+              className="w-full text-oxe-sm/10 placeholder:text-[#7B7878] lg:text-oxe-lg/[62px]"
               type="email"
               placeholder="Email"
               name="email"
@@ -107,7 +110,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
 
               <label
                 htmlFor="newsletter-privacy-policy"
-                className="text-oxe-sm/10 lg:whitespace-nowrap lg:text-oxe-lg"
+                className="text-oxe-sm/10 lg:whitespace-nowrap lg:text-oxe-lg/[62px]"
               >
                 I accept the{" "}
                 <a href="" className="underline">

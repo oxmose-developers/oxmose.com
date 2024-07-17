@@ -6,9 +6,9 @@ import Script from "next/script";
 import { Suspense } from "react";
 
 import { Providers } from "../../components/Providers";
-// import Player from "../../components/Player";
-import Footer from "../global/Footer";
 import NavBar from "../global/navBar";
+// import Player from "../../components/Player";
+import Footer from "../global/NavFooter";
 import Cart from "../shared/cart/Cart";
 
 export const viewport: Viewport = {

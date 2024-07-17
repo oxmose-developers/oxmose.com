@@ -1,8 +1,16 @@
 "use server";
 
-const listId = "";
+const listId = process.env.EMAIL_OCTOPUS_LIST_ID!;
 
-const apiKey = "";
+if (!listId) {
+  throw new Error("Missing env var: EMAIL_OCTOPUS_LIST_ID");
+}
+
+const apiKey = process.env.EMAIL_OCTOPUS_API_KEY!;
+
+if (!apiKey) {
+  throw new Error("Missing env var: EMAIL_OCTOPUS_API_KEY");
+}
 
 export async function subscribeToNewsletter(
   prevState: { message: string; success: boolean },

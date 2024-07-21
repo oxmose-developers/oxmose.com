@@ -8,6 +8,8 @@ import FollowPopover from "./FollowPopover";
 import NewsletterPopover from "./NewsletterPopover";
 
 export default function Footer({ fullYear }: { fullYear: number }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const [ref, { height }] = useMeasure();
 
   return (
@@ -16,7 +18,46 @@ export default function Footer({ fullYear }: { fullYear: number }) {
       className="relative shrink-0 bg-black py-2 text-white lg:py-[13px]"
     >
       <nav className="flex items-end px-9 lg:items-center lg:pl-10 lg:pr-20">
-        <FooterMobile offset={height} />
+        <div className="flex flex-col gap-1 lg:hidden">
+          <button
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="block self-start"
+          >
+            <span role="img" aria-hidden="true">
+              {isExpanded ? "↑" : "↓"}
+            </span>
+
+            <span className="sr-only">{isExpanded ? "Close" : "Expand"}</span>
+          </button>
+
+          {isExpanded && (
+            <>
+              <Link className="text-oxe-xs uppercase" href="/publishing">
+                Publishing
+              </Link>
+
+              <FollowPopover offset={height} />
+
+              <NewsletterPopover offset={height} />
+
+              <Link
+                className="text-oxe-xs uppercase"
+                href="/terms-and-conditions"
+              >
+                Terms
+              </Link>
+
+              <Link className="text-oxe-xs uppercase" href="/privacy-policy">
+                Privacy
+              </Link>
+
+              <Link className="text-oxe-xs uppercase" href="/faq">
+                FAQ
+              </Link>
+            </>
+          )}
+        </div>
 
         <div className="hidden gap-10 lg:flex">
           <Link className="text-oxe-sm uppercase" href="/publishing">
@@ -45,49 +86,5 @@ export default function Footer({ fullYear }: { fullYear: number }) {
         </span>
       </nav>
     </footer>
-  );
-}
-
-function FooterMobile({ offset }: { offset: number }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  return (
-    <div className="flex flex-col gap-1 lg:hidden">
-      <button
-        type="button"
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="block self-start"
-      >
-        <span role="img" aria-hidden="true">
-          {isExpanded ? "↑" : "↓"}
-        </span>
-
-        <span className="sr-only">{isExpanded ? "Close" : "Expand"}</span>
-      </button>
-
-      {isExpanded && (
-        <>
-          <Link className="text-oxe-xs uppercase" href="/publishing">
-            Publishing
-          </Link>
-
-          <FollowPopover offset={offset} />
-
-          <NewsletterPopover offset={offset} />
-
-          <Link className="text-oxe-xs uppercase" href="/terms-and-conditions">
-            Terms
-          </Link>
-
-          <Link className="text-oxe-xs uppercase" href="/privacy-policy">
-            Privacy
-          </Link>
-
-          <Link className="text-oxe-xs uppercase" href="/faq">
-            FAQ
-          </Link>
-        </>
-      )}
-    </div>
   );
 }

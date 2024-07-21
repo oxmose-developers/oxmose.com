@@ -1,7 +1,7 @@
-import { PortableText } from "@portabletext/react";
 import { formatISO, getYear } from "date-fns";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PortableText } from "next-sanity";
 
 import { urlForImage } from "../../../../lib/sanity";
 import { fetchArtistPage, fetchArtistsStaticParams } from "../loader";

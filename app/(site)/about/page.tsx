@@ -1,4 +1,4 @@
-import { PortableText } from "@portabletext/react";
+import { PortableText } from "next-sanity";
 
 import Logo from "../../global/logo";
 import CreditArticle from "./components/CreditArticle";

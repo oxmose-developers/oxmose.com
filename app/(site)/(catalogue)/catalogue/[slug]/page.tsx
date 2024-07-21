@@ -1,7 +1,7 @@
-import { PortableText } from "@portabletext/react";
 import { format, formatISO } from "date-fns";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
 import { urlForImage } from "../../../../../lib/sanity";

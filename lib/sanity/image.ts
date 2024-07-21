@@ -11,5 +11,28 @@ const imageBuilder = createImageUrlBuilder({
 });
 
 const urlForImage = (source: Image) => {
-  return imageBuilder?.image(source).fit("max");
+  return imageBuilder?.image(source).auto("format").fit("max");
 };
+
+export function resolveOpenGraphImage(
+  image: Image,
+  width = 1200,
+  height = 627,
+) {
+  if (!image) {
+    return;
+  }
+
+  const url = urlForImage(image)?.width(1200).height(627).fit("crop").url();
+
+  if (!url) {
+    return;
+  }
+
+  return {
+    url,
+    alt: image?.alt as string,
+    width,
+    height,
+  };
+}

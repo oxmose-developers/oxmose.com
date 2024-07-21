@@ -1,5 +1,5 @@
-import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
+import { PortableText } from "next-sanity";
 import { isEmpty } from "ts-extras";
 
 import { urlForImage } from "../../../../lib/sanity";

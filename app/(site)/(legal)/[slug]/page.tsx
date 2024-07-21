@@ -1,5 +1,5 @@
-import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
+import { PortableText } from "next-sanity";
 
 import Prose from "../../../shared/Prose";
 import { fetchLegalPage, fetchLegalStaticParams } from "./loader";

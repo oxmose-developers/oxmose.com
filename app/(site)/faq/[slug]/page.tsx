@@ -1,6 +1,6 @@
-import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
 import { fetchFaqs } from "../loader";

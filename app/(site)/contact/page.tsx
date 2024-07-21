@@ -1,5 +1,5 @@
-import { PortableText } from "@portabletext/react";
 import lazy from "next/dynamic";
+import { PortableText } from "next-sanity";
 import { Suspense } from "react";
 
 import DownloadLink from "../../shared/downloadLink";

@@ -27,7 +27,6 @@ export default function FollowPopover({ offset }: { offset: number }) {
               <a
                 href={link.href}
                 target="_blank"
-                rel="noopener nofollow"
                 key={`${link.label}-${idx}`}
                 className="text-oxe-xs font-medium uppercase lg:text-oxe-sm"
               >

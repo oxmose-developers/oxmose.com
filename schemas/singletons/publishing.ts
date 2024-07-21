@@ -26,13 +26,5 @@ export default defineType({
       name: "syncSection",
       type: "contentSection",
     }),
-    defineField({
-      name: "artistsHeroImage",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      validation: (Rule) => [Rule.required()],
-    }),
   ],
 });

@@ -1,46 +1,180 @@
-import Link from "next/link";
+"use client";
 
-import Logo from "./logo";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  useClose,
+} from "@headlessui/react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
+import Logo, { OxmoseLogo } from "./logo";
 
 export default function NavBar() {
+  const [open, openSet] = useState(false);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    openSet(false);
+  }, [pathname]);
+
   return (
-    <nav className="shrink-0 border-b border-black bg-white py-[18px] dark:border-white dark:bg-black lg:py-6">
-      <div className="flex max-w-[100rem]">
-        <div className="px-9 lg:px-10">
+    <nav className="shrink-0 border-b border-black bg-white pb-[17px] pt-[18px] dark:border-white dark:bg-black lg:py-6">
+      <div className="max-w-[100rem]">
+        <div className="flex items-center px-9 lg:px-10">
           <Link href="/">
             <span className="sr-only">Back to Catalogue</span>
             <Logo className="relative size-12 dark:invert lg:size-16" />
           </Link>
-        </div>
 
-        <div className="ml-auto hidden items-center justify-center gap-10 px-10 lg:flex">
-          <Link
-            className="whitespace-nowrap text-oxe-sm font-medium uppercase"
-            href="/"
-          >
-            Catalogue
-          </Link>
+          <div className="ml-auto hidden items-center justify-center gap-10 lg:flex">
+            <Link
+              className="whitespace-nowrap text-oxe-sm font-medium uppercase"
+              href="/"
+            >
+              Catalogue
+            </Link>
 
-          <Link
-            className="whitespace-nowrap text-oxe-sm font-medium uppercase"
-            href="/artists"
-          >
-            Artists
-          </Link>
+            <Link
+              className="whitespace-nowrap text-oxe-sm font-medium uppercase"
+              href="/artists"
+            >
+              Artists
+            </Link>
 
-          <Link
-            className="whitespace-nowrap text-oxe-sm font-medium uppercase"
-            href="/about"
-          >
-            à propos
-          </Link>
+            <Link
+              className="whitespace-nowrap text-oxe-sm font-medium uppercase"
+              href="/about"
+            >
+              À propos
+            </Link>
 
-          <Link
-            className="whitespace-nowrap text-oxe-sm font-medium uppercase"
-            href="/contact"
-          >
-            Contact
-          </Link>
+            <Link
+              className="whitespace-nowrap text-oxe-sm font-medium uppercase"
+              href="/contact"
+            >
+              Contact
+            </Link>
+          </div>
+
+          <div className="ml-auto dark:text-white lg:hidden">
+            <button
+              className="flex size-10 items-center justify-center"
+              onClick={() => openSet(true)}
+            >
+              <span className="sr-only">Open menu</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={40}
+                height={40}
+                fill="none"
+              >
+                <path
+                  fill="currentColor"
+                  fillRule="evenodd"
+                  d="M38 13.395H2V11.5h36v1.895ZM38 20.974H2v-1.895h36v1.895ZM20 28.553H2v-1.895h18v1.895Z"
+                  clipRule="evenodd"
+                />
+                <path
+                  fill="currentColor"
+                  d="M20 29.974a2.368 2.368 0 1 0 0-4.737 2.368 2.368 0 0 0 0 4.737Z"
+                />
+              </svg>
+            </button>
+
+            <Dialog
+              open={open}
+              onClose={() => openSet(false)}
+              className="relative z-50 lg:hidden"
+            >
+              <DialogBackdrop className="fixed inset-0 bg-black/15 dark:bg-black/80" />
+
+              {/* Full-screen container to center the panel */}
+              <div className="fixed inset-0">
+                {/* The actual dialog panel */}
+                <DialogPanel className="bg-white dark:bg-black">
+                  <div className="pb-[17px] pt-[18px]">
+                    <div className="flex items-center justify-between px-9">
+                      <Link href="/">
+                        <span className="sr-only">Back to Catalogue</span>
+                        <OxmoseLogo className="relative size-12 dark:invert" />
+                      </Link>
+
+                      <button
+                        type="button"
+                        onClick={() => openSet(false)}
+                        className="flex size-10 items-center justify-center"
+                      >
+                        <span className="sr-only">Close menu</span>
+                        <svg
+                          className="size-5"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 32 32"
+                        >
+                          <g clipPath="url(#a)">
+                            <path
+                              stroke="currentColor"
+                              strokeWidth={4}
+                              d="M30 2 2 30m28 0L2 2"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="a">
+                              <path fill="#fff" d="M0 0h32v32H0z" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="border-y border-black dark:border-white">
+                    <div className="grid divide-y divide-black dark:divide-white">
+                      <div className="px-4 py-2.5">
+                        <Link
+                          className="flex whitespace-nowrap px-5 py-2.5 text-oxe-md/10"
+                          href="/"
+                        >
+                          Catalogue
+                        </Link>
+                      </div>
+
+                      <div className="px-4 py-2.5">
+                        <Link
+                          className="flex whitespace-nowrap px-5 py-2.5 text-oxe-md/10"
+                          href="/artists"
+                        >
+                          Artists
+                        </Link>
+                      </div>
+
+                      <div className="px-4 py-2.5">
+                        <Link
+                          className="flex whitespace-nowrap px-5 py-2.5 text-oxe-md/10"
+                          href="/about"
+                        >
+                          À propos
+                        </Link>
+                      </div>
+
+                      <div className="px-4 py-2.5">
+                        <Link
+                          className="flex whitespace-nowrap px-5 py-2.5 text-oxe-md/10"
+                          href="/contact"
+                        >
+                          Contact
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </DialogPanel>
+              </div>
+            </Dialog>
+          </div>
         </div>
       </div>
     </nav>

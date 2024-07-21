@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 import { subscribeToNewsletter } from "../../lib/actions";
+import Link from "next/link";
 
 export function SubmitButton() {
   const { pending } = useFormStatus();
@@ -11,7 +12,7 @@ export function SubmitButton() {
   return (
     <button
       type="submit"
-      className="text-oxe-sm/10 lg:text-oxe-lg/[62px]"
+      className="text-oxe-sm/10 focus:outline-none lg:text-oxe-lg/[62px]"
       aria-disabled={pending}
       onClick={(e) => {
         if (pending) {
@@ -95,7 +96,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
               autoComplete="email"
               autoCorrect="off"
               required
-              className="w-full text-oxe-sm/10 placeholder:text-[#7B7878] lg:text-oxe-lg/[62px]"
+              className="form-input h-10 w-full border-0 text-oxe-sm/10 ring-0 placeholder:text-[#7B7878] focus:ring-0 focus:ring-offset-0 lg:h-[62px] lg:text-oxe-lg/[62px]"
               type="email"
               placeholder="Email"
               name="email"
@@ -104,16 +105,21 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
 
           <div className="px-9 py-1.5 lg:py-3">
             <div className="flex items-center gap-3 lg:gap-6">
-              <input id="newsletter-privacy-policy" required type="checkbox" />
+              <input
+                className="form-checkbox size-4 rounded-full border-black checked:bg-black checked:bg-none hover:bg-black hover:ring-0 hover:ring-offset-0 checked:hover:bg-black focus:shadow-none focus:ring-0 focus:ring-black focus:ring-offset-0 checked:focus:bg-black lg:size-5"
+                id="newsletter-privacy-policy"
+                required
+                type="checkbox"
+              />
 
               <label
                 htmlFor="newsletter-privacy-policy"
                 className="text-oxe-sm/10 lg:whitespace-nowrap lg:text-oxe-lg/[62px]"
               >
                 I accept the{" "}
-                <a href="" className="underline">
+                <Link href="/privacy-policy" className="underline">
                   privacy policy
-                </a>
+                </Link>
               </label>
             </div>
           </div>

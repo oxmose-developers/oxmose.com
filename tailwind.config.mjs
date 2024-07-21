@@ -27,6 +27,7 @@ const config = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
+    require("@tailwindcss/forms")({ strategy: "class" }),
   ],
 };
 

@@ -1,10 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 import { subscribeToNewsletter } from "../../lib/actions";
-import Link from "next/link";
 
 export function SubmitButton() {
   const { pending } = useFormStatus();

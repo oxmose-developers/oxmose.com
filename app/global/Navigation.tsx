@@ -1,20 +1,18 @@
 "use client";
 
-import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
+import {
+  CloseButton,
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+} from "@headlessui/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Logo, { OxmoseLogo } from "./logo";
 
-export default function NavBar() {
+export default function Navigation() {
   const [open, openSet] = useState(false);
-
-  const pathname = usePathname();
-
-  useEffect(() => {
-    openSet(false);
-  }, [pathname]);
 
   return (
     <nav className="shrink-0 border-b border-black bg-white pb-[17px] pt-[18px] dark:border-white dark:bg-black lg:py-6">
@@ -130,39 +128,43 @@ export default function NavBar() {
                   <div className="border-y border-black dark:border-white">
                     <div className="grid divide-y divide-black dark:divide-white">
                       <div className="px-4 py-2.5">
-                        <Link
+                        <CloseButton
+                          as={Link}
                           className="flex whitespace-nowrap px-5 py-2.5 text-oxe-md/10"
                           href="/"
                         >
                           Catalogue
-                        </Link>
+                        </CloseButton>
                       </div>
 
                       <div className="px-4 py-2.5">
-                        <Link
+                        <CloseButton
+                          as={Link}
                           className="flex whitespace-nowrap px-5 py-2.5 text-oxe-md/10"
                           href="/artists"
                         >
                           Artists
-                        </Link>
+                        </CloseButton>
                       </div>
 
                       <div className="px-4 py-2.5">
-                        <Link
+                        <CloseButton
+                          as={Link}
                           className="flex whitespace-nowrap px-5 py-2.5 text-oxe-md/10"
                           href="/about"
                         >
                           À propos
-                        </Link>
+                        </CloseButton>
                       </div>
 
                       <div className="px-4 py-2.5">
-                        <Link
+                        <CloseButton
+                          as={Link}
                           className="flex whitespace-nowrap px-5 py-2.5 text-oxe-md/10"
                           href="/contact"
                         >
                           Contact
-                        </Link>
+                        </CloseButton>
                       </div>
                     </div>
                   </div>

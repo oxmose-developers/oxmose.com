@@ -6,9 +6,9 @@ import Script from "next/script";
 import { Suspense } from "react";
 
 import { Providers } from "../../components/Providers";
-import NavBar from "../global/navBar";
 // import Player from "../../components/Player";
-import Footer from "../global/NavFooter";
+import Footer from "../global/Footer";
+import Navigation from "../global/Navigation";
 import Cart from "../shared/cart/Cart";
 
 export const viewport: Viewport = {
@@ -77,7 +77,7 @@ export default function RootLayout({
 
       <body className="flex min-h-svh flex-col">
         <Providers>
-          <NavBar />
+          <Navigation />
 
           <main className="flex flex-1 flex-col">{children}</main>
 

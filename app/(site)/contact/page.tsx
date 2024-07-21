@@ -1,10 +1,16 @@
 import { PortableText } from "@portabletext/react";
+import lazy from "next/dynamic";
+import { Suspense } from "react";
 
 import DownloadLink from "../../shared/downloadLink";
-import OxmosePageAnimation from "./components/oxmosePageAnimation";
 import { fetchContactPage } from "./loader";
 
 export const dynamic = "force-static";
+
+const OxmosePageAnimation = lazy(
+  () => import("./components/oxmosePageAnimation"),
+  { ssr: false },
+);
 
 export default async function Page() {
   const page = await fetchContactPage();
@@ -122,7 +128,11 @@ export default async function Page() {
       </section>
 
       <section className="flex min-h-96 flex-col items-center justify-center p-9 lg:min-h-[45rem] lg:p-10">
-        <OxmosePageAnimation />
+        <div className="relative size-32 lg:size-48">
+          <Suspense fallback={null}>
+            <OxmosePageAnimation />
+          </Suspense>
+        </div>
       </section>
     </>
   );

@@ -60,7 +60,7 @@ export default async function Page() {
       </section>
 
       <section className="about-page-section flex items-center justify-center p-9 lg:p-10">
-        <Logo className="size-32 animate-pulse" />
+        <Logo className="relative size-32 animate-pulse lg:size-48" />
       </section>
     </>
   );

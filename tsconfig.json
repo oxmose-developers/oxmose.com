@@ -15,7 +15,8 @@
     "plugins": [{ "name": "next" }],
     "strictNullChecks": true,
     "target": "ES2017",
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "_old"]

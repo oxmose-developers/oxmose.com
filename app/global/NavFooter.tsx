@@ -21,7 +21,14 @@ export default function Footer({ fullYear }: { fullYear: number }) {
         <div className="flex flex-col gap-1 lg:hidden">
           <button
             type="button"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => {
+              setIsExpanded(!isExpanded);
+
+              window.scrollTo({
+                top: document.documentElement.scrollHeight,
+                behavior: "smooth",
+              });
+            }}
             className="block self-start"
           >
             <span role="img" aria-hidden="true">

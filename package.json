@@ -10,16 +10,12 @@
   },
   "dependencies": {
     "@aarsteinmedia/dotlottie-player-light": "^2.4.14",
-    "@heroicons/react": "^2.1.4",
-    "@lottiefiles/dotlottie-react": "^0.7.2",
     "@portabletext/react": "^3.1.0",
     "@sanity/client": "6.20.1",
     "@sanity/icons": "^3.3.0",
     "@sanity/image-url": "1.0.2",
-    "@sanity/react-loader": "^1.10.4",
     "@sanity/ui": "^2.6.1",
     "@sanity/vision": "3.49.0",
-    "classnames": "2.5.1",
     "clsx": "^2.1.1",
     "date-fns": "3.6.0",
     "native-file-system-adapter": "^3.0.1",
@@ -32,8 +28,7 @@
     "sanity": "3.49.0",
     "server-only": "0.0.1",
     "styled-components": "^6.1.11",
-    "ts-extras": "^0.11.0",
-    "zod": "^3.23.8"
+    "ts-extras": "^0.11.0"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",

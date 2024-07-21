@@ -1,3 +1,5 @@
+import "server-only";
+
 import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";

@@ -1,5 +1,7 @@
 "use server";
 
+import "server-only";
+
 const listId = process.env.EMAIL_OCTOPUS_LIST_ID!;
 
 if (!listId) {

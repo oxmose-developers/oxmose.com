@@ -1,4 +1,4 @@
-import cn from "classnames";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +19,7 @@ export default function CatalogueCard({
 
   return (
     <article
-      className={cn(
+      className={clsx(
         "flex flex-col self-stretch justify-self-stretch @container",
         className,
       )}

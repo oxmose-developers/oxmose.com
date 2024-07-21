@@ -9,8 +9,6 @@ import { useEffect, useRef } from "react";
 export default function OxmoseLogoAnimation() {
   const animation = useRef<DotLottiePlayer | null>(null);
 
-  const pathname = usePathname();
-
   useEffect(() => {
     const ref = animation.current;
 
@@ -25,10 +23,14 @@ export default function OxmoseLogoAnimation() {
     };
   }, [animation]);
 
+  const pathname = usePathname();
+
   useEffect(() => {
     if (animation.current) {
-      animation.current.seek(0);
-      animation.current.play();
+      if (["/publishing"].includes(pathname)) {
+        animation.current.seek(0);
+        animation.current.play();
+      }
     }
   }, [pathname]);
 

@@ -52,7 +52,7 @@ export default async function Page() {
         </div>
       </section>
 
-      <section className="relative min-h-[12rem] overflow-hidden lg:min-h-[60rem]">
+      <section className="relative min-h-[12rem] overflow-hidden lg:min-h-[54rem]">
         <PublishingVideo />
       </section>
 

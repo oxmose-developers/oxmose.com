@@ -1,8 +1,9 @@
+import Image from "next/image";
 import { PortableText } from "next-sanity";
 
-import Logo from "../../global/logo";
 import CreditArticle from "./components/CreditArticle";
 import { fetchAboutPage } from "./loader";
+import teamPhoto from "./team-photo.webp";
 
 export const dynamic = "force-static";
 
@@ -59,8 +60,18 @@ export default async function Page() {
         </div>
       </section>
 
-      <section className="about-page-section flex items-center justify-center p-9 lg:p-10">
-        <Logo className="relative size-32 animate-pulse lg:size-48" />
+      <section className="relative min-h-[32rem] md:min-h-[40rem] lg:min-h-[60rem]">
+        <Image
+          alt="Team photo"
+          className="object-cover"
+          fill
+          loading="lazy"
+          placeholder="blur"
+          priority={false}
+          quality={100}
+          sizes="100vw"
+          src={teamPhoto}
+        />
       </section>
     </>
   );

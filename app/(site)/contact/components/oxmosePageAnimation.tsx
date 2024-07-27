@@ -26,9 +26,9 @@ export default function OxmosePageAnimation() {
   return (
     <dotlottie-player
       ref={animation}
-      src="/oxmose-site-header-logo-cropped.lottie"
-      // class="invert"
-      // src="/V04_contact_page_png_sequence.lottie"
+      // src="/oxmose-site-header-logo-cropped.lottie"
+      class="invert"
+      src="/V04_contact_page_png_sequence.lottie"
       autoplay=""
       subframe=""
       style={{

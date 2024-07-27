@@ -20,7 +20,7 @@ export default function Navigation() {
         <div className="flex items-center px-9 lg:px-10">
           <Link href="/">
             <span className="sr-only">Back to Catalogue</span>
-            <Logo className="relative size-12 dark:invert lg:size-16" />
+            <Logo className="relative size-12 invert dark:invert-0 lg:size-16" />
           </Link>
 
           <div className="ml-auto hidden items-center justify-center gap-10 lg:flex">

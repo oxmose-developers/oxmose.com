@@ -5,10 +5,10 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import { Suspense } from "react";
 
-import { Providers } from "../../components/Providers";
 // import Player from "../../components/Player";
 import Footer from "../global/Footer";
 import Navigation from "../global/Navigation";
+import { Providers } from "../global/Providers";
 import Cart from "../shared/cart/Cart";
 
 export const viewport: Viewport = {

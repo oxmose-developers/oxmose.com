@@ -8,6 +8,7 @@ import {
 } from "@headlessui/react";
 import Image from "next/image";
 import { useState } from "react";
+
 import type { Cart } from "../../../lib/shopify/types";
 
 export default function CartDrawer({

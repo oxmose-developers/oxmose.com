@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
-import { isEmpty } from "ts-extras";
+import { isEmpty } from "remeda";
 
 import { urlForImage } from "../../../../lib/sanity";
 import {

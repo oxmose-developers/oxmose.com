@@ -8,7 +8,6 @@ export default function PublishingVideo() {
       muted
       loop
     >
-      <source src={`/publishing-vid.webm`} type="video/webm" />
       <source src={`/publishing-vid.mp4`} type="video/mp4" />
     </video>
   );

@@ -60,7 +60,7 @@ export default async function Page() {
         </div>
       </section>
 
-      <section className="relative min-h-[32rem] md:min-h-[40rem] lg:min-h-[60rem]">
+      <section className="relative min-h-svh">
         <Image
           alt="Team photo"
           className="object-cover"

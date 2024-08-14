@@ -33,7 +33,7 @@ export default function CartDrawer({
         onClick={() => setOpen(!open)}
         className="fixed bottom-5 right-5 whitespace-nowrap bg-black p-2 px-3 text-oxe-sm font-medium uppercase text-white"
       >
-        <span>{`Cart (${cart.lines.length})`}</span>
+        <span>{`Cart (${cart.lines.map((line) => line.quantity).reduce((a, b) => a + b, 0)})`}</span>
       </button>
 
       <Dialog open={open} onClose={setOpen} className="relative z-10">

@@ -128,11 +128,9 @@ export default async function Page() {
       </section>
 
       <section className="flex min-h-96 flex-col items-center justify-center p-9 lg:min-h-[45rem] lg:p-10">
-        <div className="relative size-32 lg:size-48">
-          <Suspense fallback={null}>
-            <OxmosePageAnimation />
-          </Suspense>
-        </div>
+        <Suspense fallback={null}>
+          <OxmosePageAnimation />
+        </Suspense>
       </section>
     </>
   );

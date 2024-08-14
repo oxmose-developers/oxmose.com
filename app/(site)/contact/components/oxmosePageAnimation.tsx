@@ -5,38 +5,37 @@
 
 import { type DotLottiePlayer } from "@aarsteinmedia/dotlottie-player-light";
 import { useEffect, useRef } from "react";
+import { useIntersectionObserver } from "usehooks-ts";
 
 export default function OxmosePageAnimation() {
+  const { isIntersecting, ref } = useIntersectionObserver({
+    threshold: 0.8,
+  });
+
   const animation = useRef<DotLottiePlayer | null>(null);
 
   useEffect(() => {
-    const ref = animation.current;
-
-    if (ref) {
-      ref.addEventListener("ready", () => ref.play());
+    if (isIntersecting) {
+      animation?.current?.play?.();
     }
-
-    return () => {
-      if (ref) {
-        ref.removeEventListener("ready", () => ref.play());
-      }
-    };
-  }, [animation]);
+  }, [animation, isIntersecting]);
 
   return (
-    <dotlottie-player
-      ref={animation}
-      // src="/oxmose-site-header-logo-cropped.lottie"
-      class="invert"
-      src="/V04_contact_page_png_sequence.lottie"
-      autoplay=""
-      subframe=""
-      style={{
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        pointerEvents: "none",
-      }}
-    />
+    <div ref={ref} className="relative size-32 lg:size-48">
+      <dotlottie-player
+        ref={animation}
+        // src="/oxmose-site-header-logo-cropped.lottie"
+        class="invert"
+        // src="/V04_front_page_255px.lottie"
+        src="/V04_contact_page_png_sequence.lottie"
+        subframe=""
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          pointerEvents: "none",
+        }}
+      />
+    </div>
   );
 }

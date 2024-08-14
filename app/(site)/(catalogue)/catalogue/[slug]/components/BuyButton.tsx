@@ -20,7 +20,7 @@ export default function BuyButton({
    * Take product from url params if it exists, otherwise take the default digital product
    */
   const productVariant =
-    products.find((product) => format === product.format) ?? defaultProduct;
+    products.find((product) => format === product.type) || defaultProduct;
 
   return (
     <AddToCart

@@ -31,12 +31,6 @@ export default async function Cart() {
     };
 
     return <CartDrawer cart={cartDetails} />;
-
-    return (
-      <div className="fixed right-0 top-1/2 -translate-y-1/2 whitespace-nowrap bg-black text-oxe-sm font-medium uppercase text-white">
-        <span>{`Cart ${cart?.totalQuantity && `(${cart.totalQuantity})`}`}</span>
-      </div>
-    );
   }
 
   return null;

@@ -14,7 +14,9 @@ export default function BuyButton({
 }) {
   const searchParams = useSearchParams();
 
-  const format = searchParams.get("format");
+  let format = searchParams.get("format");
+
+  format ??= "Digital";
 
   /**
    * Take product from url params if it exists, otherwise take the default digital product
@@ -26,6 +28,7 @@ export default function BuyButton({
     <AddToCart
       variants={productVariant.product.variants}
       availableForSale={productVariant.product.availableForSale}
+      activeProductFormat={format as "Digital" | "Vinyl"}
     />
   );
 }

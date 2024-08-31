@@ -14,7 +14,13 @@ import {
 
 export async function addItem(
   prevState: any,
-  selectedVariantId: string | undefined,
+  {
+    selectedVariantId,
+    activeProductFormat,
+  }: {
+    selectedVariantId: string | undefined;
+    activeProductFormat: "Digital" | "Vinyl";
+  },
 ) {
   let cartId = cookies().get("cartId")?.value;
   let cart;
@@ -34,6 +40,16 @@ export async function addItem(
   }
 
   try {
+    if (
+      cart.lines.find(
+        (line) =>
+          line.merchandise.id === selectedVariantId &&
+          activeProductFormat === "Digital",
+      )
+    ) {
+      return "Item already in cart";
+    }
+
     await addToCart(cartId, [
       { merchandiseId: selectedVariantId, quantity: 1 },
     ]);

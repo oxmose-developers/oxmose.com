@@ -32,9 +32,11 @@ export function SubmitButton({
 export default function AddToCart({
   variants,
   availableForSale,
+  activeProductFormat,
 }: {
   variants: ProductVariant[];
   availableForSale: boolean;
+  activeProductFormat: "Digital" | "Vinyl";
 }) {
   const [message, formAction] = useFormState(addItem, null);
 
@@ -42,7 +44,10 @@ export default function AddToCart({
 
   const selectedVariantId = defaultVariantId;
 
-  const actionWithVariant = formAction.bind(null, selectedVariantId);
+  const actionWithVariant = formAction.bind(null, {
+    selectedVariantId,
+    activeProductFormat,
+  });
 
   return (
     <form action={actionWithVariant}>

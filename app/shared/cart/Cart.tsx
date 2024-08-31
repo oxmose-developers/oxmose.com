@@ -11,7 +11,7 @@ export default async function Cart() {
     cart = await getCart(cartId);
   }
 
-  if (cart) {
+  if (cart && cart.lines.length > 0) {
     const cartDetails = {
       checkoutUrl: cart.checkoutUrl,
       total: new Intl.NumberFormat("fr-FR", {

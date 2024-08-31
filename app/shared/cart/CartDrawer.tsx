@@ -109,6 +109,14 @@ export default function CartDrawer({
                     <p className="text-oxe-md">{cart.total}</p>
                   </div>
 
+                  <div className="flex flex-shrink-0 justify-between gap-4 px-9 py-7">
+                    <p className="text-oxe-xs">
+                      {
+                        "Shipping costs may apply for the physical product(s) and will be calculated upon checkout."
+                      }
+                    </p>
+                  </div>
+
                   <a
                     className="w-full flex-shrink-0 bg-black px-9 py-7 text-center text-oxe-sm font-medium uppercase text-white"
                     href={cart.checkoutUrl}

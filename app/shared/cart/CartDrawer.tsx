@@ -8,8 +8,9 @@ import {
 } from "@headlessui/react";
 import Image from "next/image";
 import { useState } from "react";
-import RemoveItem from "./RemoveItem";
+
 import type { CartData } from "./Cart";
+import RemoveItem from "./RemoveItem";
 
 export default function CartDrawer({ cart }: { cart: CartData }) {
   const [open, setOpen] = useState(false);

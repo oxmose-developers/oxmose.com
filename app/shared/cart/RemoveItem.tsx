@@ -1,7 +1,8 @@
 "use client";
 
-import { removeItem } from "./actions";
 import { useFormState } from "react-dom";
+
+import { removeItem } from "./actions";
 
 export default function RemoveItem({
   merchandiseId,

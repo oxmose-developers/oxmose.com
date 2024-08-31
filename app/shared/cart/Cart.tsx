@@ -3,6 +3,20 @@ import { cookies } from "next/headers";
 import { getCart } from "../../../lib/shopify";
 import CartDrawer from "./CartDrawer";
 
+export type CartData = {
+  checkoutUrl: string;
+  total: string;
+  lines: CartLineItem[];
+};
+
+export type CartLineItem = {
+  merchandiseId: string;
+  quantity: number;
+  cost: string;
+  title: string;
+  image: string;
+};
+
 export default async function Cart() {
   const cartId = cookies().get("cartId")?.value;
   let cart;

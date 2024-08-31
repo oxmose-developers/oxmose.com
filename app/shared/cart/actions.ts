@@ -44,7 +44,7 @@ export async function addItem(
   }
 }
 
-export async function removeItem(prevState: any, lineId: string) {
+export async function removeItem(prevState: any, merchandiseId: string) {
   const cartId = cookies().get("cartId")?.value;
 
   if (!cartId) {
@@ -52,9 +52,27 @@ export async function removeItem(prevState: any, lineId: string) {
   }
 
   try {
-    await removeFromCart(cartId, [lineId]);
-    revalidateTag(NEXT_TAGS.CART);
+    const cart = await getCart(cartId);
+
+    if (!cart) {
+      return "Error fetching cart";
+    }
+
+    const lineItem = cart.lines.find(
+      (line) => line.merchandise.id === merchandiseId,
+    );
+
+    if (lineItem && lineItem.id) {
+      await removeFromCart(cartId, [lineItem.id]);
+      revalidateTag(NEXT_TAGS.CART);
+    } else {
+      return "Item not found in cart";
+    }
+
+    return "Removed item";
   } catch (e) {
+    console.error(e);
+
     return "Error removing item from cart";
   }
 }

@@ -8,6 +8,7 @@ import {
 } from "@headlessui/react";
 import Image from "next/image";
 import { useState } from "react";
+import RemoveItem from "./RemoveItem";
 
 export default function CartDrawer({
   cart,
@@ -16,7 +17,7 @@ export default function CartDrawer({
     checkoutUrl: string;
     total: string;
     lines: {
-      id: string;
+      merchandiseId: string;
       quantity: number;
       cost: string;
       title: string;
@@ -78,7 +79,7 @@ export default function CartDrawer({
                     <div className="relative flex-1 divide-y divide-black px-9">
                       {cart.lines.map((line) => (
                         <div
-                          key={line.id}
+                          key={line.merchandiseId}
                           className="flex items-start gap-4 py-7"
                         >
                           <Image
@@ -97,6 +98,8 @@ export default function CartDrawer({
                             <p className="text-oxe-sm">{`Qty: ${line.quantity}`}</p>
 
                             <p className="text-oxe-sm">{`Price: ${line.cost}`}</p>
+
+                            <RemoveItem merchandiseId={line.merchandiseId} />
                           </div>
                         </div>
                       ))}

@@ -19,6 +19,7 @@ export default async function Cart() {
         currency: cart.cost.totalAmount.currencyCode,
       }).format(parseFloat(cart.cost.totalAmount.amount)),
       lines: cart.lines.map((line) => ({
+        merchandiseId: line.merchandise.id,
         id: line.merchandise.product.handle,
         quantity: line.quantity,
         cost: new Intl.NumberFormat("fr-FR", {

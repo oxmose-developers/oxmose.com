@@ -14,7 +14,7 @@ export default function RemoveItem({
 
   return (
     <form action={actionWithVariant}>
-      <button className="text-oxe-sm font-medium" type="submit">
+      <button className="text-oxe-xs font-medium lg:text-oxe-sm" type="submit">
         Remove
       </button>
 

@@ -45,27 +45,27 @@ export default function CartDrawer({
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full lg:pl-10">
               <DialogPanel
                 transition
                 className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
               >
                 <div className="flex h-full flex-col divide-y divide-black bg-white">
-                  <div className="flex min-h-0 flex-1 flex-col overflow-y-scroll py-7">
-                    <div className="border-b border-black px-9 pb-7">
+                  <div className="flex min-h-0 flex-1 flex-col overflow-y-scroll py-4 lg:py-7">
+                    <div className="border-b border-black px-6 pb-4 lg:px-9 lg:pb-7">
                       <div className="flex items-center justify-between">
                         <DialogTitle className="sr-only">Cart</DialogTitle>
 
                         <button
                           type="button"
                           onClick={() => setOpen(false)}
-                          className="relative size-10 focus:outline-none"
+                          className="relative size-8 focus:outline-none lg:size-10"
                         >
                           <span className="sr-only">Close panel</span>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
-                            className="size-10"
+                            className="size-8 lg:size-10"
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="#000000"
@@ -76,14 +76,14 @@ export default function CartDrawer({
                       </div>
                     </div>
 
-                    <div className="relative flex-1 divide-y divide-black px-9">
+                    <div className="relative flex-1 divide-y divide-black px-6 lg:px-9">
                       {cart.lines.map((line) => (
                         <div
                           key={line.merchandiseId}
-                          className="flex items-start gap-4 py-7"
+                          className="flex items-start gap-4 py-6 lg:py-7"
                         >
                           <Image
-                            className="size-24 object-contain"
+                            className="size-20 object-contain lg:size-24"
                             src={line.image}
                             alt={line.image}
                             width={96}
@@ -91,13 +91,13 @@ export default function CartDrawer({
                           />
 
                           <div>
-                            <p className="text-oxe-sm font-medium">
+                            <p className="text-oxe-xs font-medium lg:text-oxe-sm">
                               {line.title}
                             </p>
 
-                            <p className="text-oxe-sm">{`Qty: ${line.quantity}`}</p>
+                            <p className="text-oxe-xs lg:text-oxe-sm">{`Qty: ${line.quantity}`}</p>
 
-                            <p className="text-oxe-sm">{`Price: ${line.cost}`}</p>
+                            <p className="text-oxe-xs lg:text-oxe-sm">{`Price: ${line.cost}`}</p>
 
                             <RemoveItem merchandiseId={line.merchandiseId} />
                           </div>
@@ -106,13 +106,13 @@ export default function CartDrawer({
                     </div>
                   </div>
 
-                  <div className="flex flex-shrink-0 justify-between gap-4 px-9 py-7">
-                    <p className="text-oxe-md">Total:</p>
+                  <div className="flex flex-shrink-0 justify-between gap-4 px-6 py-4 lg:px-9 lg:py-7">
+                    <p className="text-oxe-sm lg:text-oxe-md">Total:</p>
 
-                    <p className="text-oxe-md">{cart.total}</p>
+                    <p className="text-oxe-sm lg:text-oxe-md">{cart.total}</p>
                   </div>
 
-                  <div className="flex flex-shrink-0 justify-between gap-4 px-9 py-7">
+                  <div className="flex flex-shrink-0 justify-between gap-4 px-6 py-4 lg:px-9 lg:py-7">
                     <p className="text-oxe-xs">
                       {
                         "Shipping costs may apply for the physical product(s) and will be calculated upon checkout."
@@ -121,7 +121,7 @@ export default function CartDrawer({
                   </div>
 
                   <a
-                    className="w-full flex-shrink-0 bg-black px-9 py-7 text-center text-oxe-sm font-medium uppercase text-white"
+                    className="w-full flex-shrink-0 bg-black px-6 py-4 text-center text-oxe-sm font-medium uppercase text-white lg:px-9 lg:py-7"
                     href={cart.checkoutUrl}
                   >
                     Checkout

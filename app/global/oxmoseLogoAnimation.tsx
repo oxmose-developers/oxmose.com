@@ -37,7 +37,7 @@ export default function OxmoseLogoAnimation() {
   return (
     <dotlottie-player
       ref={animation}
-      src="/V04_front_page_64px.lottie"
+      src="/V04_front_page_v01_192.lottie"
       autoplay=""
       subframe=""
       style={{

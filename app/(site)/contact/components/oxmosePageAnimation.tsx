@@ -24,10 +24,8 @@ export default function OxmosePageAnimation() {
     <div ref={ref} className="relative size-32 lg:size-48">
       <dotlottie-player
         ref={animation}
-        // src="/oxmose-site-header-logo-cropped.lottie"
         class="invert"
-        // src="/V04_front_page_255px.lottie"
-        src="/V04_contact_page_png_sequence.lottie"
+        src="/V04_contact_page.lottie"
         subframe=""
         style={{
           position: "absolute",

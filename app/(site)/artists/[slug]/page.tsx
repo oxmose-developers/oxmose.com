@@ -7,8 +7,6 @@ import { urlForImage } from "../../../../lib/sanity";
 import { fetchArtistPage, fetchArtistsStaticParams } from "../loader";
 import Pagination from "./components/pagination";
 
-export const dynamic = "force-static";
-
 export async function generateStaticParams() {
   const artists = await fetchArtistsStaticParams();
 

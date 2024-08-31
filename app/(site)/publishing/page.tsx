@@ -7,8 +7,6 @@ import PublishingArtistsList from "./components/PublishingArtistsList";
 import PublishingVideo from "./components/PublishingVideo";
 import { fetchPublishingPage } from "./loader";
 
-export const dynamic = "force-static";
-
 export default async function Page() {
   const page = await fetchPublishingPage();
 

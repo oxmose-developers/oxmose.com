@@ -5,8 +5,6 @@ import { Fragment } from "react";
 
 import { fetchFaqs } from "../loader";
 
-export const dynamic = "force-static";
-
 export async function generateStaticParams() {
   const faqs = await fetchFaqs();
 

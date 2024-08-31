@@ -5,8 +5,6 @@ import { Suspense } from "react";
 import DownloadLink from "../../shared/downloadLink";
 import { fetchContactPage } from "./loader";
 
-export const dynamic = "force-static";
-
 const OxmosePageAnimation = lazy(
   () => import("./components/oxmosePageAnimation"),
   { ssr: false },

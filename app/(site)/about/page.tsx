@@ -5,8 +5,6 @@ import CreditArticle from "./components/CreditArticle";
 import { fetchAboutPage } from "./loader";
 import teamPhoto from "./team-photo.webp";
 
-export const dynamic = "force-static";
-
 export default async function Page() {
   const page = await fetchAboutPage();
 

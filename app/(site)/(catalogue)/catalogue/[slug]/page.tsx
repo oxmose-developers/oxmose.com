@@ -4,11 +4,14 @@ import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
-import { urlForImage } from "../../../../../lib/sanity";
 import { getProduct } from "../../../../../lib/shopify";
-import { fetchReleasePage, fetchReleasesStaticParams } from "../../loader";
+import { fetchReleasePage } from "../../loader";
 import BuyButton from "./components/BuyButton";
 import Pagination from "./components/Pagination";
+import {
+  ProductCarousel,
+  ProductFullBleedScroller,
+} from "./components/ProductCarousel";
 import VariantSelector from "./components/VariantSelector";
 
 export const dynamic = "force-dynamic";
@@ -48,12 +51,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
       ? digitalProductResult.value
       : undefined;
 
-  const productImagesCarousel = release.productImages.map((image) => ({
-    _key: image._key as string,
-    src: urlForImage(image).url(),
-    webp: urlForImage(image).format("webp").url(),
-  }));
-
   return (
     <div>
       {/* Desktop Design */}
@@ -74,38 +71,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </div>
           </div>
 
-          {/* Carousel */}
-          <div className="flex flex-1 gap-10 lg:p-10">
-            {/* Desktop Product Images */}
-            <div className="mt-auto flex max-w-[40rem] snap-x snap-mandatory overflow-x-auto">
-              {productImagesCarousel.slice(0, 1).map(({ webp, _key }) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  alt={""}
-                  className="aspect-square shrink-0 snap-center object-cover object-center"
-                  decoding="async"
-                  key={_key}
-                  loading="lazy"
-                  src={webp}
-                />
-              ))}
-            </div>
-
-            {/* Carousel Controls */}
-            <div className="flex shrink-0 gap-2 self-end justify-self-end">
-              {productImagesCarousel.slice(0, 3).map(({ webp, _key }) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  alt={""}
-                  className="aspect-square size-11 shrink-0"
-                  decoding="async"
-                  key={_key}
-                  loading="lazy"
-                  src={webp}
-                />
-              ))}
-            </div>
-          </div>
+          <ProductCarousel productImages={release.productImages} />
 
           {/* Pagination */}
           <Pagination slug={slug} />
@@ -198,20 +164,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {/* Pagination */}
         <Pagination slug={slug} />
 
-        {/* Mobile Product Images */}
-        <div className="relative flex aspect-square w-full snap-x snap-mandatory overflow-x-auto">
-          {productImagesCarousel.map(({ webp, _key }) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              alt={""}
-              className="aspect-square shrink-0 snap-center object-cover object-center"
-              decoding="async"
-              key={_key}
-              loading="lazy"
-              src={webp}
-            />
-          ))}
-        </div>
+        <ProductFullBleedScroller productImages={release.productImages} />
 
         <div className="px-9 py-7">
           {/* Title & Artist */}

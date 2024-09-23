@@ -7,15 +7,15 @@ import { urlForImage } from "../../../../lib/sanity";
 import { fetchArtistPage, fetchArtistsStaticParams } from "../loader";
 import Pagination from "./components/pagination";
 
-export async function generateStaticParams() {
-  const artists = await fetchArtistsStaticParams();
+// export async function generateStaticParams() {
+//   const artists = await fetchArtistsStaticParams();
 
-  return artists.map((artist) => {
-    return {
-      params: { slug: artist.slug.current },
-    };
-  });
-}
+//   return artists.map((artist) => {
+//     return {
+//       params: { slug: artist.slug.current },
+//     };
+//   });
+// }
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;

@@ -10,15 +10,15 @@ import {
 import Pagination from "./components/Pagination";
 import WorksTable from "./components/WorksTable";
 
-export async function generateStaticParams() {
-  const publishingArtists = await fetchPublishingArtistsStaticParams();
+// export async function generateStaticParams() {
+//   const publishingArtists = await fetchPublishingArtistsStaticParams();
 
-  return publishingArtists.map((artist) => {
-    return {
-      params: { slug: artist.slug.current },
-    };
-  });
-}
+//   return publishingArtists.map((artist) => {
+//     return {
+//       params: { slug: artist.slug.current },
+//     };
+//   });
+// }
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;

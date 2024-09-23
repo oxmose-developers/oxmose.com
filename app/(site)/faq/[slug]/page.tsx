@@ -5,17 +5,17 @@ import { Fragment } from "react";
 
 import { fetchFaqs } from "../loader";
 
-export async function generateStaticParams() {
-  const faqs = await fetchFaqs();
+// export async function generateStaticParams() {
+//   const faqs = await fetchFaqs();
 
-  return faqs.map((faq) => {
-    return {
-      params: {
-        slug: faq.slug.current,
-      },
-    };
-  });
-}
+//   return faqs.map((faq) => {
+//     return {
+//       params: {
+//         slug: faq.slug.current,
+//       },
+//     };
+//   });
+// }
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;

@@ -13,15 +13,15 @@ import VariantSelector from "./components/VariantSelector";
 
 export const dynamic = "force-dynamic";
 
-export async function generateStaticParams() {
-  const releases = await fetchReleasesStaticParams();
+// export async function generateStaticParams() {
+//   const releases = await fetchReleasesStaticParams();
 
-  return releases.map((release) => {
-    return {
-      params: { slug: release.slug.current },
-    };
-  });
-}
+//   return releases.map((release) => {
+//     return {
+//       params: { slug: release.slug.current },
+//     };
+//   });
+// }
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;

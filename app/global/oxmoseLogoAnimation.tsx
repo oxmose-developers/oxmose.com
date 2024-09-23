@@ -2,7 +2,7 @@
 
 import "@aarsteinmedia/dotlottie-player-light";
 
-import type { DotLottiePlayer } from "@aarsteinmedia/dotlottie-player-light";
+import type DotLottiePlayer from "@aarsteinmedia/dotlottie-player-light";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 

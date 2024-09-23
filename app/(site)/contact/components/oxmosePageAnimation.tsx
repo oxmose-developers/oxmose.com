@@ -3,7 +3,7 @@
 // Unneeded as its imported in the Navbar
 // import "@aarsteinmedia/dotlottie-player-light";
 
-import { type DotLottiePlayer } from "@aarsteinmedia/dotlottie-player-light";
+import type DotLottiePlayer from "@aarsteinmedia/dotlottie-player-light";
 import { useEffect, useRef } from "react";
 import { useIntersectionObserver } from "usehooks-ts";
 

@@ -12,6 +12,7 @@ import {
   ProductCarousel,
   ProductFullBleedScroller,
 } from "./components/ProductCarousel";
+import Tracklist from "./components/Tracklist";
 import VariantSelector from "./components/VariantSelector";
 
 export const dynamic = "force-dynamic";
@@ -264,12 +265,20 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
-      {/* Tracklist */}
-      <section className="lg:border-t lg:border-black">
-        <div className="px-9 py-2 lg:px-10">
-          <h3 className="text-oxe-sm font-medium uppercase">Tracklist</h3>
-        </div>
-      </section>
+      {release?.trackList && (
+        <>
+          <section className="lg:border-t lg:border-black">
+            <div className="px-9 py-2 lg:px-10">
+              <h3 className="text-oxe-sm font-medium uppercase">Tracklist</h3>
+            </div>
+          </section>
+
+          <Tracklist
+            name={release.artist.map((artist) => artist.name).join(", ")}
+            tracks={release.trackList}
+          />
+        </>
+      )}
     </div>
   );
 }

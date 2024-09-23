@@ -147,6 +147,7 @@ export type Release = {
   shopifyProductPhysical: string;
   physicalProductFormat: string;
   links: Link[];
+  trackList: TrackList;
 };
 
 export const ReleasesQuery = /* groq */ `

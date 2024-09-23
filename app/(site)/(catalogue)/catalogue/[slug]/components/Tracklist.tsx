@@ -1,12 +1,6 @@
 import type { TrackList } from "../../../../../../groq";
 
-export default function Tracklist({
-  tracks,
-  name,
-}: {
-  tracks: TrackList;
-  name: string;
-}) {
+export default function Tracklist({ tracks }: { tracks: TrackList }) {
   return (
     <table className="w-full text-left text-oxe-xs font-medium lg:text-oxe-sm/[32px]">
       <thead>
@@ -33,7 +27,9 @@ export default function Tracklist({
         {tracks.tracks.map((track) => (
           <tr key={track._key} className="group">
             <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:w-12">
-              {`${track.number}`.padStart(2, "0")}
+              <span className="tabular-nums">
+                {`${track.number}`.padStart(2, "0")}
+              </span>
             </td>
 
             <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:w-1/2">
@@ -41,11 +37,13 @@ export default function Tracklist({
             </td>
 
             <td className="hidden px-0 py-0.5 pr-5 uppercase first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:table-cell lg:w-1/2">
-              {name}
+              {track.artists.map((artist) => artist.name).join(", ")}
             </td>
 
             <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:w-24">
-              <span className="whitespace-nowrap">{track.length}</span>
+              <span className="whitespace-nowrap tabular-nums">
+                {track.length}
+              </span>
             </td>
           </tr>
         ))}

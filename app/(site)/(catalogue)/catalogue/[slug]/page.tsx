@@ -273,10 +273,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </div>
           </section>
 
-          <Tracklist
-            name={release.artist.map((artist) => artist.name).join(", ")}
-            tracks={release.trackList}
-          />
+          <Tracklist tracks={release.trackList} />
         </>
       )}
     </div>

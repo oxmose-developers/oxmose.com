@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
   name: "track",
@@ -23,6 +23,16 @@ export default defineType({
     defineField({
       name: "file",
       type: "file",
+    }),
+    defineField({
+      name: "artists",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: { type: "artist" },
+        }),
+      ],
     }),
   ],
 });

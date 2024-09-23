@@ -168,7 +168,14 @@ export type ReleasesStaticParamsQuery = { slug: Slug }[];
 export const ReleasePageQuery = /* groq */ `
 *[_type == "release" && slug.current == $slug][0] {
   ...,
-  artist[]->{name, slug}
+  artist[]->{name, slug},
+  trackList {
+    ...,
+    tracks[] {
+      ...,
+      artists[]->{name, slug}
+    }
+  }
 }`;
 
 export type ReleasePageQuery = Release | null;
@@ -249,6 +256,7 @@ export type Track = {
   length: string;
   name: string;
   number: number;
+  artists: Pick<Artist, "name" | "slug">[];
 };
 
 export type TrackList = {

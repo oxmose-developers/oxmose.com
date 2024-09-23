@@ -4,17 +4,19 @@ import { PortableText } from "next-sanity";
 import Prose from "../../../shared/Prose";
 import { fetchLegalPage, fetchLegalStaticParams } from "./loader";
 
-// export async function generateStaticParams() {
-//   const pages = await fetchLegalStaticParams();
+export const dynamic = "force-static";
 
-//   return pages.map((page) => {
-//     return {
-//       params: {
-//         slug: page.slug.current,
-//       },
-//     };
-//   });
-// }
+export async function generateStaticParams() {
+  const pages = await fetchLegalStaticParams();
+
+  return pages.map((page) => {
+    return {
+      params: {
+        slug: page.slug.current,
+      },
+    };
+  });
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;

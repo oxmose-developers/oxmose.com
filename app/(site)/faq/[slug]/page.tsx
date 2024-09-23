@@ -49,8 +49,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
       </ul>
 
       <div className="flex-1 divide-y divide-black lg:divide-y-reverse">
-        {categories.map((el) => (
-          <Fragment key={el._id}>
+        {categories.map((el, idx) => (
+          <Fragment key={`${el._id}-${idx}-category`}>
             <Link
               className="block w-full px-9 text-left text-oxe-xxl-mobile/[60px] lg:hidden"
               href={`/faq/${el.slug.current}`}
@@ -60,8 +60,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
             {el.slug.current === slug && (
               <article className="space-y-9 p-9 text-oxe-xs/5 lg:space-y-10 lg:border-none lg:p-10 lg:text-oxe-sm">
-                {faq.questions.map((qa) => (
-                  <div key={qa._id} className="space-y-4">
+                {faq.questions.map((qa, idx) => (
+                  <div key={`${qa._id}-${idx}-question`} className="space-y-4">
                     <h4 className="-mb-4 font-medium">{qa.question}</h4>
 
                     <PortableText value={qa.answer} />

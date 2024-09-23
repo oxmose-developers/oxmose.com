@@ -81,7 +81,9 @@ export default function RootLayout({
 
           <main className="flex flex-1 flex-col">{children}</main>
 
-          <Cart />
+          <Suspense>
+            <Cart />
+          </Suspense>
 
           <Footer fullYear={fullYear} />
 

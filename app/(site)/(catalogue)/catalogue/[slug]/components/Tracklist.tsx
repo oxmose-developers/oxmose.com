@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Fragment } from "react";
 
@@ -53,7 +55,7 @@ export default function Tracklist({
 
         <tbody>
           {tracks.tracks.map((track) => (
-            <tr key={track._key} className="group">
+            <tr key={track._key} className="group relative">
               <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:w-12">
                 <span className="tabular-nums">
                   {`${track.number}`.padStart(2, "0")}
@@ -61,13 +63,23 @@ export default function Tracklist({
               </td>
 
               <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:w-1/2">
-                <a href={urlForFile(track.file)}>{track.name}</a>
+                <span>{track.name}</span>
+
+                <button
+                  className="absolute inset-0 z-[1] block"
+                  onClick={() => {
+                    console.log(urlForFile(track.file));
+                  }}
+                />
               </td>
 
               <td className="hidden px-0 py-0.5 pr-5 uppercase first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:table-cell lg:w-1/2">
                 {track.artists.map((artist, idx, artists) => (
                   <Fragment key={artist.slug.current}>
-                    <Link href={`/artists/${artist.slug.current}`}>
+                    <Link
+                      className="relative z-[2]"
+                      href={`/artists/${artist.slug.current}`}
+                    >
                       {artist.name}
                     </Link>
 

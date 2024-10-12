@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import { ThemeProvider } from "next-themes";
 
+import { PlayerProvider } from "../context/player-context";
+
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
 
@@ -16,7 +18,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
       forcedTheme={forcedThemeFromPathname}
       attribute="class"
     >
-      {children}
+      <PlayerProvider>{children}</PlayerProvider>
     </ThemeProvider>
   );
 };

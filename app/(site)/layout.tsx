@@ -5,11 +5,12 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import { Suspense } from "react";
 
-// import Player from "../../components/Player";
 import Footer from "../global/Footer";
 import Navigation from "../global/Navigation";
+import Player from "../global/Player";
 import { Providers } from "../global/Providers";
 import Cart from "../shared/cart/Cart";
+import ClientOnly from "../shared/client-only";
 
 export const viewport: Viewport = {
   themeColor: "#000000",
@@ -87,7 +88,9 @@ export default function RootLayout({
 
           <Footer fullYear={fullYear} />
 
-          {/* <Player /> */}
+          <ClientOnly>
+            <Player />
+          </ClientOnly>
         </Providers>
       </body>
 

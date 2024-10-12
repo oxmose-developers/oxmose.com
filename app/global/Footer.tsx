@@ -15,7 +15,7 @@ export default function Footer({ fullYear }: { fullYear: number }) {
   return (
     <footer
       ref={ref}
-      className="relative shrink-0 bg-black py-2 text-white lg:py-[13px]"
+      className="relative shrink-0 bg-black pb-[calc(0.5rem+60px)] pt-2 text-white lg:pb-[calc(13px+60px)] lg:pt-[13px]"
     >
       <nav className="flex items-end px-9 lg:items-center lg:pl-10 lg:pr-20">
         <div className="flex flex-col gap-1 lg:hidden">

@@ -10,6 +10,13 @@ const config = {
   ],
   theme: {
     extend: {
+      borderWidth: { hairline: "0.5px" },
+      colors: {
+        oxe: {
+          grey: "#7B7878",
+          purple: "#BEB9FD",
+        },
+      },
       fontFamily: {
         sans: ["var(--font-monument-grotesk)", ...defaultTheme.fontFamily.sans],
       },

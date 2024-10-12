@@ -58,7 +58,7 @@ function PlayerNowPlaying() {
     <div className="relative flex flex-1 items-center justify-between px-5">
       <p className="whitespace-nowrap">{nowPlaying}</p>
 
-      <p className="text-oxe-grey whitespace-nowrap tabular-nums">
+      <p className="whitespace-nowrap tabular-nums text-oxe-grey">
         {formatDuration(state.duration)}
       </p>
 
@@ -72,7 +72,7 @@ function PlayerNowPlaying() {
         value={state.progress * 100}
       >
         <Progress.Indicator
-          className="bg-oxe-purple size-full transition-transform ease-linear"
+          className="size-full bg-oxe-purple transition-transform ease-linear"
           style={{ transform: `translateX(-${100 - state.progress * 100}%)` }}
         />
       </Progress.Root>
@@ -83,12 +83,12 @@ function PlayerNowPlaying() {
 export default function Player() {
   const { state } = usePlayer();
 
-  const [isOpen, isOpenSet] = useState(false);
+  const [isOpen, isOpenSet] = useState(true);
 
   if (hasAtLeast(state.playlist, 1)) {
     if (isOpen) {
       return (
-        <div className="divide-x-hairline border-t-hairline fixed inset-x-0 bottom-0 z-50 flex h-[3.75rem] items-stretch divide-white/40 border-white/40 bg-black text-[22px] uppercase text-white">
+        <div className="fixed inset-x-0 bottom-0 z-50 flex h-[3.75rem] items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-[22px] uppercase text-white">
           <PlayerControls />
 
           <PlayerNowPlaying />

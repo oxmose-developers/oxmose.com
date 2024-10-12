@@ -44,14 +44,14 @@ export default function Tracklist({
 
       <tbody>
         {trackList.tracks.map((track, idx) => (
-          <tr key={track._key} className="group relative">
+          <tr key={track._key} className="group">
             <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:w-12">
               <span className="tabular-nums">
                 {`${track.number}`.padStart(2, "0")}
               </span>
             </td>
 
-            <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:w-1/2">
+            <td className="relative px-0 py-0.5 pr-5 first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:w-1/2">
               <span>{track.name}</span>
 
               {track?.file && (

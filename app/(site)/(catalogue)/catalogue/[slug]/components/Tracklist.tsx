@@ -1,6 +1,8 @@
-import { Fragment } from "react";
-import type { TrackList } from "../../../../../../groq";
 import Link from "next/link";
+import { Fragment } from "react";
+
+import type { TrackList } from "../../../../../../groq";
+import { urlForFile } from "../../../../../../lib/sanity/file";
 
 export default function Tracklist({ tracks }: { tracks: TrackList }) {
   return (
@@ -35,7 +37,7 @@ export default function Tracklist({ tracks }: { tracks: TrackList }) {
             </td>
 
             <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:w-1/2">
-              {track.name}
+              <a href={urlForFile(track.file)}>{track.name}</a>
             </td>
 
             <td className="hidden px-0 py-0.5 pr-5 uppercase first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:table-cell lg:w-1/2">

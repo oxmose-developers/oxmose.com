@@ -1,4 +1,4 @@
-import type { Image, Slug } from "sanity";
+import type { File, Image, Slug } from "sanity";
 
 export const AboutQuery = /* groq */ `
   *[_type == "about"][0]
@@ -257,6 +257,7 @@ export type Track = {
   name: string;
   number: number;
   artists: Pick<Artist, "name" | "slug">[];
+  file: File;
 };
 
 export type TrackList = {

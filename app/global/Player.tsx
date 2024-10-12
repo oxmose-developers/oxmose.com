@@ -1,36 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Player() {
+import type { Track } from "../../groq";
+
+export default function Player({
+  tracks,
+  album,
+  artwork,
+}: {
+  tracks: (Track & { url: string | undefined })[];
+  album: string;
+  artwork: string;
+}) {
   const [isOpen, isOpenSet] = useState(false);
-
   const [playing, playingSet] = useState(false);
+
+  const onPlayPauseClick = () => {
+    if (playing) {
+      playingSet(false);
+      return;
+    }
+
+    playingSet(true);
+  };
+
+  useEffect(() => {
+    if ("mediaSession" in navigator && playing) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        album: album,
+        title: tracks[0].name,
+        artist: tracks[0].artists.map((el) => el.name).join(", "),
+        artwork: [{ src: artwork, sizes: "512x512", type: "image/jpeg" }],
+      });
+      navigator.mediaSession.playbackState = "playing";
+    }
+  }, [tracks, playing, album, artwork]);
 
   if (isOpen) {
     return (
       <div className="fixed inset-x-0 bottom-0 flex h-[3.75rem] w-full items-center gap-10 bg-black px-10 py-3 text-white">
         <div className="flex items-center gap-10">
-          <button>
-            <span className="sr-only">Previous</span>
-            <span role="img" aria-label="Previous">
-              ⏪
-            </span>
+          <button>Previous</button>
+
+          <button onClick={onPlayPauseClick}>
+            {playing ? <span>Pause</span> : <span>Play</span>}
           </button>
 
-          <button onClick={() => playingSet((prev) => !prev)}>
-            <span className="sr-only">Play / Pause</span>
-            <span role="img" aria-label="Play / Pause">
-              ⏯️
-            </span>
-          </button>
-
-          <button>
-            <span className="sr-only">Next</span>
-            <span role="img" aria-label="Next">
-              ⏩
-            </span>
-          </button>
+          <button>Next</button>
         </div>
 
         <div>

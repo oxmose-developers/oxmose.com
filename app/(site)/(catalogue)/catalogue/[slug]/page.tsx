@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
+import { urlForImage } from "../../../../../lib/sanity";
 import { getProduct } from "../../../../../lib/shopify";
 import { fetchReleasePage } from "../../loader";
 import BuyButton from "./components/BuyButton";
@@ -273,7 +274,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </div>
           </section>
 
-          <Tracklist tracks={release.trackList} />
+          <Tracklist
+            tracks={release.trackList}
+            album={release.title}
+            artwork={urlForImage(release.productImages[0])
+              .width(512)
+              .height(512)
+              .format("jpg")
+              .url()}
+          />
         </>
       )}
     </div>

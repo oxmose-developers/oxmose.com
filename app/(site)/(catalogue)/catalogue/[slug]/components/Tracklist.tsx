@@ -5,8 +5,6 @@ import { Fragment } from "react";
 
 import type { Track, TrackList } from "../../../../../../groq";
 import { urlForFile } from "../../../../../../lib/sanity/file";
-import Player from "../../../../../global/Player";
-import ClientOnly from "../../../../../shared/client-only";
 
 export default function Tracklist({
   tracks,
@@ -19,19 +17,6 @@ export default function Tracklist({
 }) {
   return (
     <>
-      <ClientOnly>
-        <Player
-          album={album}
-          artwork={artwork}
-          tracks={tracks.tracks.map(
-            (el) =>
-              ({ ...el, url: urlForFile(el.file) }) satisfies Track & {
-                url: string | undefined;
-              },
-          )}
-        />
-      </ClientOnly>
-
       <table className="w-full text-left text-oxe-xs font-medium lg:text-oxe-sm/[32px]">
         <thead>
           <tr>
@@ -65,12 +50,15 @@ export default function Tracklist({
               <td className="px-0 py-0.5 pr-5 first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:w-1/2">
                 <span>{track.name}</span>
 
-                <button
-                  className="absolute inset-0 z-[1] block"
-                  onClick={() => {
-                    console.log(urlForFile(track.file));
-                  }}
-                />
+                {track?.file && (
+                  <button
+                    className="absolute inset-0 z-[1] block"
+                    onClick={() => {
+                      // @todo: push track to the global player and interrupt the playlist
+                      console.log(track);
+                    }}
+                  />
+                )}
               </td>
 
               <td className="hidden px-0 py-0.5 pr-5 uppercase first:pl-10 last:pr-10 group-hover:bg-black group-hover:text-white lg:table-cell lg:w-1/2">

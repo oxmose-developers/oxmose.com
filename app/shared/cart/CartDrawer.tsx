@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import type { CartData } from "./Cart";
+import QuantitySelectorItem from "./QuantitySelectorItem";
 import RemoveItem from "./RemoveItem";
 
 export default function CartDrawer({ cart }: { cart: CartData }) {
@@ -83,7 +84,7 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
                               {line.title}
                             </p>
 
-                            <p className="text-oxe-xs lg:text-oxe-sm">{`Qty: ${line.quantity}`}</p>
+                            <QuantitySelectorItem line={line} />
 
                             <p className="text-oxe-xs lg:text-oxe-sm">{`Price: ${line.cost}`}</p>
 

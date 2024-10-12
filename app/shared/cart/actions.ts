@@ -96,8 +96,7 @@ export async function removeItem(prevState: any, merchandiseId: string) {
 export async function updateItemQuantity(
   prevState: any,
   payload: {
-    lineId: string;
-    variantId: string;
+    merchandiseId: string;
     quantity: number;
   },
 ) {
@@ -107,23 +106,40 @@ export async function updateItemQuantity(
     return "Missing cart ID";
   }
 
-  const { lineId, variantId, quantity } = payload;
-
   try {
-    if (quantity === 0) {
-      await removeFromCart(cartId, [lineId]);
+    const cart = await getCart(cartId);
+
+    if (!cart) {
+      return "Error fetching cart";
+    }
+
+    const lineItem = cart.lines.find(
+      (line) => line.merchandise.id === payload.merchandiseId,
+    );
+
+    if (!(lineItem && lineItem.id)) {
+      return "Item not found in cart";
+    }
+
+    if (payload.quantity === 0) {
+      await removeFromCart(cartId, [lineItem.id]);
+
       revalidateTag(NEXT_TAGS.CART);
-      return;
+
+      return "Removed item";
     }
 
     await updateCart(cartId, [
       {
-        id: lineId,
-        merchandiseId: variantId,
-        quantity,
+        id: lineItem.id,
+        merchandiseId: payload.merchandiseId,
+        quantity: payload.quantity,
       },
     ]);
+
     revalidateTag(NEXT_TAGS.CART);
+
+    return "Updated item quantity";
   } catch (e) {
     return "Error updating item quantity";
   }

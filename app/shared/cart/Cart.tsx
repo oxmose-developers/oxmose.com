@@ -30,8 +30,8 @@ export default async function Cart() {
       checkoutUrl: cart.checkoutUrl,
       total: new Intl.NumberFormat("fr-FR", {
         style: "currency",
-        currency: cart.cost.totalAmount.currencyCode,
-      }).format(parseFloat(cart.cost.totalAmount.amount)),
+        currency: cart.cost.subtotalAmount.currencyCode,
+      }).format(parseFloat(cart.cost.subtotalAmount.amount)),
       lines: cart.lines.map((line) => ({
         merchandiseId: line.merchandise.id,
         id: line.merchandise.product.handle,

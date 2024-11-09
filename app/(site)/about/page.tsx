@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
@@ -6,17 +6,24 @@ import CreditArticle from "./components/CreditArticle";
 import { fetchAboutPage } from "./loader";
 import teamPhoto from "./team-photo.webp";
 
-export async function generateMetadata() {
+export async function generateMetadata(
+  props: { params: {} },
+  parent: ResolvingMetadata,
+) {
+  const existingMetadata = (await parent) as unknown as Metadata;
+
   const page = await fetchAboutPage();
 
   return {
     title: page.title,
     description: page.overview,
     openGraph: {
+      ...existingMetadata.openGraph,
       title: page.title,
       description: page.overview,
     },
     twitter: {
+      ...existingMetadata.twitter,
       title: page.title,
       description: page.overview,
     },

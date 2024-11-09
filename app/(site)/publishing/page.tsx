@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata, ResolvingMetadata, Viewport } from "next";
 import { PortableText } from "next-sanity";
 // import Image from "next/image";
 import { Suspense } from "react";
@@ -12,17 +12,24 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
-export async function generateMetadata() {
+export async function generateMetadata(
+  props: { params: {} },
+  parent: ResolvingMetadata,
+) {
+  const existingMetadata = (await parent) as unknown as Metadata;
+
   const page = await fetchPublishingPage();
 
   return {
     title: page.title,
     description: page.overview,
     openGraph: {
+      ...existingMetadata.openGraph,
       title: page.title,
       description: page.overview,
     },
     twitter: {
+      ...existingMetadata.twitter,
       title: page.title,
       description: page.overview,
     },

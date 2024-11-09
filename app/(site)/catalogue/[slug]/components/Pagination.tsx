@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
-import { fetchReleasesStaticParams } from "../../../loader";
+import { fetchReleasesStaticParams } from "../../../../../lib/sanity/queries";
 
 export default async function Pagination({
   slug,

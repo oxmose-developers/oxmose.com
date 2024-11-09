@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import lazy from "next/dynamic";
 import { PortableText } from "next-sanity";
 import { Suspense } from "react";
@@ -11,17 +11,24 @@ const OxmosePageAnimation = lazy(
   { ssr: false },
 );
 
-export async function generateMetadata() {
+export async function generateMetadata(
+  props: { params: {} },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const existingMetadata = (await parent) as unknown as Metadata;
+
   const page = await fetchContactPage();
 
   return {
     title: page.title,
     description: page.overview,
     openGraph: {
+      ...existingMetadata.openGraph,
       title: page.title,
       description: page.overview,
     },
     twitter: {
+      ...existingMetadata.twitter,
       title: page.title,
       description: page.overview,
     },

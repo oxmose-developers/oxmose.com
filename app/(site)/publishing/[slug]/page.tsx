@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata, ResolvingMetadata, Viewport } from "next";
 import { PortableText } from "next-sanity";
 import { isEmpty } from "remeda";
 
@@ -7,39 +7,32 @@ import { fetchPublishingArtistPage } from "../loader";
 import Pagination from "./components/Pagination";
 import WorksTable from "./components/WorksTable";
 
-// export async function generateStaticParams() {
-//   const publishingArtists = await fetchPublishingArtistsStaticParams();
-
-//   return publishingArtists.map((artist) => {
-//     return {
-//       params: { slug: artist.slug.current },
-//     };
-//   });
-// }
-
 export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata,
+) {
+  const existingMetadata = (await parent) as unknown as Metadata;
+
   const { slug } = params;
 
-  const publishingArtist = await fetchPublishingArtistPage({ slug: slug });
+  const artist = await fetchPublishingArtistPage({ slug: slug });
 
   return {
-    title: publishingArtist.name,
-    description: publishingArtist.overview,
+    title: artist.name,
+    description: artist.overview,
     openGraph: {
-      title: publishingArtist.name,
-      description: publishingArtist.overview,
+      ...existingMetadata.openGraph,
+      title: artist.name,
+      description: artist.overview,
     },
     twitter: {
-      title: publishingArtist.name,
-      description: publishingArtist.overview,
+      ...existingMetadata.openGraph,
+      title: artist.name,
+      description: artist.overview,
     },
   } satisfies Metadata;
 }
@@ -47,11 +40,11 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  const publishingArtist = await fetchPublishingArtistPage({ slug: slug });
+  const artist = await fetchPublishingArtistPage({ slug: slug });
 
-  const url = urlForImage(publishingArtist.coverImage).url();
+  const url = urlForImage(artist.coverImage).url();
 
-  const webpUrl = urlForImage(publishingArtist.coverImage).format("webp").url();
+  const webpUrl = urlForImage(artist.coverImage).format("webp").url();
 
   return (
     <div className="artist-single-page-layout grid border-b border-black dark:border-white lg:grid-cols-2">
@@ -60,7 +53,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         style={{ gridArea: "name" }}
       >
         <h1 className="text-oxe-xxl-mobile/[60px] lg:text-oxe-xxl/[96px]">
-          {publishingArtist.name}
+          {artist.name}
         </h1>
       </div>
 
@@ -71,7 +64,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           <img
             className="aspect-[16/10] w-full object-cover object-center"
-            alt={publishingArtist.name}
+            alt={artist.name}
             src={url}
             loading="lazy"
             decoding="async"
@@ -86,7 +79,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <source srcSet={webpUrl} type="image/webp" />
           <img
             className="aspect-[16/10] w-full max-w-4xl object-cover object-center"
-            alt={publishingArtist.name}
+            alt={artist.name}
             src={url}
             loading="lazy"
             decoding="async"
@@ -94,25 +87,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </picture>
 
         <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium dark:text-white dark:prose-a:text-white lg:prose-p:text-oxe-md">
-          <PortableText value={publishingArtist.body} />
+          <PortableText value={artist.body} />
         </div>
 
         {/* Mobile Only Table */}
-        {!!publishingArtist.works &&
-          publishingArtist.works.tracks.length > 0 && (
-            <div className="-mx-9 block pt-7 lg:hidden">
-              <div className="mb-3 pl-9">
-                <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
-                  Works
-                </h3>
-              </div>
-
-              <WorksTable
-                works={publishingArtist.works}
-                name={publishingArtist.name}
-              />
+        {!!artist.works && artist.works.tracks.length > 0 && (
+          <div className="-mx-9 block pt-7 lg:hidden">
+            <div className="mb-3 pl-9">
+              <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+                Works
+              </h3>
             </div>
-          )}
+
+            <WorksTable works={artist.works} name={artist.name} />
+          </div>
+        )}
       </div>
 
       <div
@@ -120,23 +109,19 @@ export default async function Page({ params }: { params: { slug: string } }) {
         style={{ gridArea: "info" }}
       >
         {/* Desktop Only Table */}
-        {!!publishingArtist.works &&
-          publishingArtist.works.tracks.length > 0 && (
-            <div className="-mx-10 hidden lg:block">
-              <div className="mb-6 pl-9">
-                <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
-                  Works
-                </h3>
-              </div>
-
-              <WorksTable
-                works={publishingArtist.works}
-                name={publishingArtist.name}
-              />
+        {!!artist.works && artist.works.tracks.length > 0 && (
+          <div className="-mx-10 hidden lg:block">
+            <div className="mb-6 pl-9">
+              <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+                Works
+              </h3>
             </div>
-          )}
 
-        {!isEmpty([...(publishingArtist?.projects ?? [])]) && (
+            <WorksTable works={artist.works} name={artist.name} />
+          </div>
+        )}
+
+        {!isEmpty([...(artist?.projects ?? [])]) && (
           <div className="flex flex-1 items-start lg:flex-col">
             <div className="flex items-center gap-1.5 lg:gap-4">
               <div className="-mt-[3px] size-4 rounded-full border border-black bg-white dark:border-white lg:size-5"></div>
@@ -147,7 +132,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </div>
 
             <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
-              {publishingArtist.projects.map((link) => (
+              {artist.projects.map((link) => (
                 <li key={link._key}>
                   <a href={link.href}>{link.name}</a>
                 </li>
@@ -166,7 +151,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
 
           <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
-            {[...(publishingArtist?.links ?? [])].map((link) => (
+            {[...(artist?.links ?? [])].map((link) => (
               <li key={link._key}>
                 <a href={link.href}>{link.name}</a>
               </li>

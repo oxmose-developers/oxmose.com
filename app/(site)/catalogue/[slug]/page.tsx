@@ -1,5 +1,5 @@
 import { format, formatISO } from "date-fns";
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
@@ -18,21 +18,12 @@ import VariantSelector from "./components/VariantSelector";
 
 export const dynamic = "force-dynamic";
 
-// export async function generateStaticParams() {
-//   const releases = await fetchReleasesStaticParams();
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const existingMetadata = (await parent) as unknown as Metadata;
 
-//   return releases.map((release) => {
-//     return {
-//       params: { slug: release.slug.current },
-//     };
-//   });
-// }
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
   const { slug } = params;
 
   const page = await fetchReleasePage({ slug });
@@ -41,14 +32,16 @@ export async function generateMetadata({
     title: page.title,
     description: page.overview,
     openGraph: {
+      ...existingMetadata.openGraph,
       title: page.title,
       description: page.overview,
     },
     twitter: {
+      ...existingMetadata.twitter,
       title: page.title,
       description: page.overview,
     },
-  } satisfies Metadata;
+  };
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {

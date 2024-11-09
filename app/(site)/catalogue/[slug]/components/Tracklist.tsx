@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { Fragment } from "react";
 
-import type { TrackList } from "../../../../../../groq";
+import type { TrackList } from "../../../../../groq";
 import {
   tracksToPlaylist,
   usePlayerActions,
-} from "../../../../../context/player-context";
+} from "../../../../context/player-context";
 
 export default function Tracklist({
   tracks: trackList,

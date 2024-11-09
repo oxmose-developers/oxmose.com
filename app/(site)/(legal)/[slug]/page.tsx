@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { PortableText } from "next-sanity";
 
 import Prose from "../../../shared/Prose";
@@ -18,11 +18,12 @@ export async function generateStaticParams() {
   });
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata,
+) {
+  const existingMetadata = (await parent) as unknown as Metadata;
+
   const { slug } = params;
 
   const page = await fetchLegalPage({ slug });
@@ -30,9 +31,11 @@ export async function generateMetadata({
   return {
     title: page.title,
     openGraph: {
+      ...existingMetadata.openGraph,
       title: page.title,
     },
     twitter: {
+      ...existingMetadata.twitter,
       title: page.title,
     },
   } satisfies Metadata;

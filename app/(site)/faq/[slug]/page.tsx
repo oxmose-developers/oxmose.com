@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
@@ -6,31 +6,34 @@ import { Fragment } from "react";
 
 import { fetchFaq, fetchFaqs } from "../loader";
 
-// export async function generateStaticParams() {
-//   const faqs = await fetchFaqs();
+export async function generateStaticParams() {
+  const faqs = await fetchFaqs();
 
-//   return faqs.map((faq) => {
-//     return {
-//       params: {
-//         slug: faq.slug.current,
-//       },
-//     };
-//   });
-// }
+  return faqs.map((faq) => {
+    return { params: { slug: faq.slug.current } };
+  });
+}
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata,
+) {
+  const existingMetadata = (await parent) as unknown as Metadata;
+
   const { slug } = params;
 
   const faq = await fetchFaq({ slug });
 
   return {
     title: `${faq.category} — FAQ`,
-    openGraph: { title: `${faq.category} — FAQ` },
-    twitter: { title: `${faq.category} — FAQ` },
+    openGraph: {
+      ...existingMetadata.openGraph,
+      title: `${faq.category} — FAQ`,
+    },
+    twitter: {
+      ...existingMetadata.twitter,
+      title: `${faq.category} — FAQ`,
+    },
   } satisfies Metadata;
 }
 

@@ -1,5 +1,5 @@
 import { formatISO, getYear } from "date-fns";
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { PortableText } from "next-sanity";
 
@@ -7,21 +7,12 @@ import { urlForImage } from "../../../../lib/sanity";
 import { fetchArtistPage } from "../loader";
 import Pagination from "./components/pagination";
 
-// export async function generateStaticParams() {
-//   const artists = await fetchArtistsStaticParams();
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata,
+) {
+  const existingMetadata = (await parent) as unknown as Metadata;
 
-//   return artists.map((artist) => {
-//     return {
-//       params: { slug: artist.slug.current },
-//     };
-//   });
-// }
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
   const { slug } = params;
 
   const artist = await fetchArtistPage({ slug });
@@ -30,10 +21,12 @@ export async function generateMetadata({
     title: artist.name,
     description: artist.overview,
     openGraph: {
+      ...existingMetadata.openGraph,
       title: artist.name,
       description: artist.overview,
     },
     twitter: {
+      ...existingMetadata.openGraph,
       title: artist.name,
       description: artist.overview,
     },

@@ -1,13 +1,26 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 
 import ArtistRow from "./components/ArtistRow";
 import { fetchArtists } from "./loader";
 
-export const metadata: Metadata = {
-  title: "Artists",
-  openGraph: { title: "Artists" },
-  twitter: { title: "Artists" },
-};
+export async function generateMetadata(
+  props: { params: {} },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const existingMetadata = (await parent) as unknown as Metadata;
+
+  return {
+    title: "Artists",
+    openGraph: {
+      ...existingMetadata.openGraph,
+      title: "Artists",
+    },
+    twitter: {
+      ...existingMetadata.twitter,
+      title: "Artists",
+    },
+  };
+}
 
 export default async function Page() {
   const artists = await fetchArtists();

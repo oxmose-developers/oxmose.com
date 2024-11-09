@@ -1,12 +1,9 @@
-import { notFound } from "next/navigation";
+import type { Metadata, Viewport } from "next";
 import { PortableText } from "next-sanity";
 import { isEmpty } from "remeda";
 
 import { urlForImage } from "../../../../lib/sanity";
-import {
-  fetchPublishingArtistPage,
-  fetchPublishingArtistsStaticParams,
-} from "../loader";
+import { fetchPublishingArtistPage } from "../loader";
 import Pagination from "./components/Pagination";
 import WorksTable from "./components/WorksTable";
 
@@ -20,14 +17,37 @@ import WorksTable from "./components/WorksTable";
 //   });
 // }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
 
   const publishingArtist = await fetchPublishingArtistPage({ slug: slug });
 
-  if (!publishingArtist) {
-    return notFound();
-  }
+  return {
+    title: publishingArtist.name,
+    description: publishingArtist.overview,
+    openGraph: {
+      title: publishingArtist.name,
+      description: publishingArtist.overview,
+    },
+    twitter: {
+      title: publishingArtist.name,
+      description: publishingArtist.overview,
+    },
+  } satisfies Metadata;
+}
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+
+  const publishingArtist = await fetchPublishingArtistPage({ slug: slug });
 
   const url = urlForImage(publishingArtist.coverImage).url();
 

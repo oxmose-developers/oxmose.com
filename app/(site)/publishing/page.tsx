@@ -12,11 +12,22 @@ export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
 
-export const metadata: Metadata = {
-  title: "Publishing",
-  openGraph: { title: "Publishing" },
-  twitter: { title: "Publishing" },
-};
+export async function generateMetadata() {
+  const page = await fetchPublishingPage();
+
+  return {
+    title: page.title,
+    description: page.overview,
+    openGraph: {
+      title: page.title,
+      description: page.overview,
+    },
+    twitter: {
+      title: page.title,
+      description: page.overview,
+    },
+  } satisfies Metadata;
+}
 
 export default async function Page() {
   const page = await fetchPublishingPage();

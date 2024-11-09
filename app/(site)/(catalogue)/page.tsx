@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
+
 import styles from "./catalogue.module.css";
 import CatalogueCard from "./components/CatalogueCard";
 import { fetchReleases } from "./loader";
+
+export const metadata: Metadata = {
+  title: "Catalogue",
+  openGraph: { title: "Catalogue" },
+  twitter: { title: "Catalogue" },
+};
 
 export default async function Page() {
   const releases = await fetchReleases();
@@ -9,7 +17,7 @@ export default async function Page() {
 
   return (
     <>
-      <h1 hidden>Oxmose</h1>
+      <h1 hidden>Oxmose | Catalogue</h1>
 
       <div className={styles.releases}>
         {releases.map((release) => (

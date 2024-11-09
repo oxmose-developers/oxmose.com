@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
-import { fetchFaqs } from "../loader";
+import { fetchFaq, fetchFaqs } from "../loader";
 
 // export async function generateStaticParams() {
 //   const faqs = await fetchFaqs();
@@ -16,6 +17,22 @@ import { fetchFaqs } from "../loader";
 //     };
 //   });
 // }
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+
+  const faq = await fetchFaq({ slug });
+
+  return {
+    title: `${faq.category} — FAQ`,
+    openGraph: { title: `${faq.category} — FAQ` },
+    twitter: { title: `${faq.category} — FAQ` },
+  } satisfies Metadata;
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;

@@ -1,9 +1,27 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
 import CreditArticle from "./components/CreditArticle";
 import { fetchAboutPage } from "./loader";
 import teamPhoto from "./team-photo.webp";
+
+export async function generateMetadata() {
+  const page = await fetchAboutPage();
+
+  return {
+    title: page.title,
+    description: page.overview,
+    openGraph: {
+      title: page.title,
+      description: page.overview,
+    },
+    twitter: {
+      title: page.title,
+      description: page.overview,
+    },
+  } satisfies Metadata;
+}
 
 export default async function Page() {
   const page = await fetchAboutPage();

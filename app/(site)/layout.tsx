@@ -20,31 +20,41 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.oxmose.com"),
   title: {
-    template: "%s | Oxmose",
+    template: "Oxmose | %s",
     default: "Oxmose",
   },
   description: description,
   openGraph: {
     title: {
-      template: "%s | Oxmose",
+      template: "Oxmose | %s",
       default: "Oxmose",
     },
     description: description,
     type: "website",
     siteName: "Oxmose",
+    url: new URL("https://www.oxmose.com"),
   },
   twitter: {
     title: {
-      template: "%s | Oxmose",
+      template: "Oxmose | %s",
       default: "Oxmose",
     },
     description: description,
-    card: "summary_large_image",
     site: "@oxmose_records",
     creator: "@oxmose_records",
   },
   creator: "Oxmose Team",
   publisher: "Oxmose",
+  keywords: [
+    "oxmose",
+    "oxmose records",
+    "oxmose label",
+    "oxmose music",
+    "label",
+    "musique",
+    "music",
+    "independant",
+  ],
 };
 
 const monumentGrotesk = localFont({

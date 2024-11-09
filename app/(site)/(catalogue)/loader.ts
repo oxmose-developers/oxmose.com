@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import { NEXT_TAGS } from "../../../constants/tags";
 import {
   ReleasePageQuery,
@@ -17,8 +19,8 @@ export const fetchReleases = async () =>
     },
   );
 
-export const fetchReleasePage = async ({ slug }: { slug: string }) =>
-  client.fetch<ReleasePageQuery>(
+export const fetchReleasePage = async ({ slug }: { slug: string }) => {
+  const data = await client.fetch<ReleasePageQuery>(
     ReleasePageQuery,
     { slug },
     {
@@ -27,6 +29,13 @@ export const fetchReleasePage = async ({ slug }: { slug: string }) =>
         process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );
+
+  if (!data) {
+    return notFound();
+  }
+
+  return data;
+};
 
 export const fetchReleasesStaticParams = async () =>
   client.fetch<ReleasesStaticParamsQuery>(

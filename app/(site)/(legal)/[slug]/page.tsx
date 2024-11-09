@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { PortableText } from "next-sanity";
 
 import Prose from "../../../shared/Prose";
@@ -18,14 +18,30 @@ export async function generateStaticParams() {
   });
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
 
   const page = await fetchLegalPage({ slug });
 
-  if (!page) {
-    return notFound();
-  }
+  return {
+    title: page.title,
+    openGraph: {
+      title: page.title,
+    },
+    twitter: {
+      title: page.title,
+    },
+  } satisfies Metadata;
+}
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+
+  const page = await fetchLegalPage({ slug });
 
   return (
     <div className="divide-y divide-black lg:grid lg:grid-cols-2 lg:divide-x lg:divide-y-0">

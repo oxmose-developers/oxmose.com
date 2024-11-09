@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import { NEXT_TAGS } from "../../../constants/tags";
 import {
   PublishingArtistPageQuery,
@@ -44,7 +46,7 @@ export const fetchPublishingArtistsStaticParams = async () => {
 };
 
 export const fetchPublishingArtistPage = async ({ slug }: { slug: string }) => {
-  return client.fetch<PublishingArtistPageQuery>(
+  const data = await client.fetch<PublishingArtistPageQuery>(
     PublishingArtistPageQuery,
     { slug },
     {
@@ -53,4 +55,10 @@ export const fetchPublishingArtistPage = async ({ slug }: { slug: string }) => {
         process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );
+
+  if (!data) {
+    return notFound();
+  }
+
+  return data;
 };

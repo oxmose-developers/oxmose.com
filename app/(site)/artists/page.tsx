@@ -5,6 +5,8 @@ import { fetchArtists } from "./loader";
 
 export const metadata: Metadata = {
   title: "Artists",
+  openGraph: { title: "Artists" },
+  twitter: { title: "Artists" },
 };
 
 export default async function Page() {

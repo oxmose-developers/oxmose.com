@@ -1,6 +1,6 @@
 import { format, formatISO } from "date-fns";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
@@ -28,14 +28,33 @@ export const dynamic = "force-dynamic";
 //   });
 // }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+
+  const page = await fetchReleasePage({ slug });
+
+  return {
+    title: page.title,
+    description: page.overview,
+    openGraph: {
+      title: page.title,
+      description: page.overview,
+    },
+    twitter: {
+      title: page.title,
+      description: page.overview,
+    },
+  } satisfies Metadata;
+}
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
   const release = await fetchReleasePage({ slug });
-
-  if (!release) {
-    return notFound();
-  }
 
   const [digitalProductResult, physicalProductResult] =
     await Promise.allSettled([

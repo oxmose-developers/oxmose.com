@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import { NEXT_TAGS } from "../../../../constants/tags";
 import { LegalPageQuery, LegalStaticParamsQuery } from "../../../../groq";
 import { client } from "../../../../lib/sanity";
@@ -13,8 +15,8 @@ export const fetchLegalStaticParams = async () =>
     },
   );
 
-export const fetchLegalPage = async ({ slug }: { slug: string }) =>
-  client.fetch<LegalPageQuery>(
+export const fetchLegalPage = async ({ slug }: { slug: string }) => {
+  const data = await client.fetch<LegalPageQuery>(
     LegalPageQuery,
     { slug },
     {
@@ -23,3 +25,10 @@ export const fetchLegalPage = async ({ slug }: { slug: string }) =>
         process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     },
   );
+
+  if (!data) {
+    return notFound();
+  }
+
+  return data;
+};

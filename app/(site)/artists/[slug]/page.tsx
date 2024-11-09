@@ -1,10 +1,10 @@
 import { formatISO, getYear } from "date-fns";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 
 import { urlForImage } from "../../../../lib/sanity";
-import { fetchArtistPage, fetchArtistsStaticParams } from "../loader";
+import { fetchArtistPage } from "../loader";
 import Pagination from "./components/pagination";
 
 // export async function generateStaticParams() {
@@ -17,14 +17,33 @@ import Pagination from "./components/pagination";
 //   });
 // }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
 
   const artist = await fetchArtistPage({ slug });
 
-  if (!artist) {
-    return notFound();
-  }
+  return {
+    title: artist.name,
+    description: artist.overview,
+    openGraph: {
+      title: artist.name,
+      description: artist.overview,
+    },
+    twitter: {
+      title: artist.name,
+      description: artist.overview,
+    },
+  } satisfies Metadata;
+}
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+
+  const artist = await fetchArtistPage({ slug });
 
   const url = urlForImage(artist.coverImage).url();
 

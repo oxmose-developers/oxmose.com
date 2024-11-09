@@ -1,3 +1,4 @@
+import type { Metadata, Viewport } from "next";
 import { PortableText } from "next-sanity";
 // import Image from "next/image";
 import { Suspense } from "react";
@@ -6,6 +7,16 @@ import { publishingLicenseRequestEmail } from "../../../constants/urls";
 import PublishingArtistsList from "./components/PublishingArtistsList";
 import PublishingVideo from "./components/PublishingVideo";
 import { fetchPublishingPage } from "./loader";
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+};
+
+export const metadata: Metadata = {
+  title: "Publishing",
+  openGraph: { title: "Publishing" },
+  twitter: { title: "Publishing" },
+};
 
 export default async function Page() {
   const page = await fetchPublishingPage();

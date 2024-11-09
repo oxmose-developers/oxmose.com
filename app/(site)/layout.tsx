@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import { Suspense } from "react";
 
+import { description } from "../../constants/seo";
 import Footer from "../global/Footer";
 import Navigation from "../global/Navigation";
 import Player from "../global/Player";
@@ -17,10 +18,33 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.oxmose.com"),
   title: {
     template: "%s | Oxmose",
     default: "Oxmose",
   },
+  description: description,
+  openGraph: {
+    title: {
+      template: "%s | Oxmose",
+      default: "Oxmose",
+    },
+    description: description,
+    type: "website",
+    siteName: "Oxmose",
+  },
+  twitter: {
+    title: {
+      template: "%s | Oxmose",
+      default: "Oxmose",
+    },
+    description: description,
+    card: "summary_large_image",
+    site: "@oxmose_records",
+    creator: "@oxmose_records",
+  },
+  creator: "Oxmose Team",
+  publisher: "Oxmose",
 };
 
 const monumentGrotesk = localFont({

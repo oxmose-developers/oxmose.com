@@ -21,7 +21,7 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="fixed bottom-12 right-5 whitespace-nowrap bg-black p-2 px-3 text-oxe-sm font-medium uppercase text-white"
+        className="fixed bottom-12 right-5 whitespace-nowrap bg-black p-2 px-3 text-oxe-sm font-medium uppercase text-white dark:bg-white dark:text-black"
       >
         <span>{`Cart (${cart.lines.map((line) => line.quantity).reduce((a, b) => a + b, 0)})`}</span>
       </button>
@@ -29,7 +29,7 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
       <Dialog open={open} onClose={setOpen} className="relative z-10">
         <DialogBackdrop
           transition
-          className="fixed inset-0 bg-black bg-opacity-75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
+          className="fixed inset-0 bg-black/75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
         />
 
         <div className="fixed inset-0 overflow-hidden">
@@ -39,7 +39,7 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
                 transition
                 className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-[closed]:translate-x-full sm:duration-700"
               >
-                <div className="flex h-full flex-col divide-y divide-black bg-white">
+                <div className="flex h-full flex-col divide-y divide-black bg-white text-black">
                   <div className="flex min-h-0 flex-1 flex-col overflow-y-scroll py-4 lg:py-7">
                     <div className="border-b border-black px-6 pb-4 lg:px-9 lg:pb-7">
                       <div className="flex items-center justify-between">

@@ -18,7 +18,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.oxmose.com"),
+  metadataBase: new URL("https://0xm0s3.vercel.app"),
   title: {
     template: "Oxmose | %s",
     default: "Oxmose",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description: description,
     type: "website",
     siteName: "Oxmose",
-    url: new URL("https://www.oxmose.com"),
+    url: new URL("https://0xm0s3.vercel.app"),
   },
   twitter: {
     title: {
@@ -108,8 +108,6 @@ export default function RootLayout({
       className={`${monumentGrotesk.variable} antialias`}
       suppressHydrationWarning
     >
-      <head>{/* Head */}</head>
-
       <body className="flex min-h-svh flex-col">
         <Providers>
           <Navigation />

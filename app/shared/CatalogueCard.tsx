@@ -2,8 +2,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
-import type { Release } from "../../../../groq";
-import { urlForImage } from "../../../../lib/sanity";
+import type { Release } from "../../groq";
+import { urlForImage } from "../../lib/sanity";
 
 export default function CatalogueCard({
   release,

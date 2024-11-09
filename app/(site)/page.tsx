@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-import styles from "./catalogue.module.css";
-import CatalogueCard from "./components/CatalogueCard";
-import { fetchReleases } from "./loader";
+import { fetchReleases } from "../../lib/sanity/queries";
+import styles from "../shared/catalogue.module.css";
+import CatalogueCard from "../shared/CatalogueCard";
 
 export const metadata: Metadata = {
   title: "Catalogue",

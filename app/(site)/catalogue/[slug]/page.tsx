@@ -4,9 +4,9 @@ import Link from "next/link";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
-import { urlForImage } from "../../../../../lib/sanity";
-import { getProduct } from "../../../../../lib/shopify";
-import { fetchReleasePage } from "../../loader";
+import { urlForImage } from "../../../../lib/sanity";
+import { fetchReleasePage } from "../../../../lib/sanity/queries";
+import { getProduct } from "../../../../lib/shopify";
 import BuyButton from "./components/BuyButton";
 import Pagination from "./components/Pagination";
 import {

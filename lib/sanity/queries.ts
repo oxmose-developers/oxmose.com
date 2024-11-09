@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation";
 
-import { NEXT_TAGS } from "../../../constants/tags";
+import { NEXT_TAGS } from "../../constants/tags";
 import {
   ReleasePageQuery,
   ReleasesQuery,
   ReleasesStaticParamsQuery,
-} from "../../../groq";
-import { client } from "../../../lib/sanity";
+} from "../../groq";
+import { client } from "./client";
 
 export const fetchReleases = async () =>
   client.fetch<ReleasesQuery>(

@@ -1,9 +1,12 @@
+"use client";
+
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
 import type { Release } from "../../groq";
 import { urlForImage } from "../../lib/sanity";
+import { tracksToPlaylist, usePlayerActions } from "../context/player-context";
 
 export default function CatalogueCard({
   release,
@@ -12,6 +15,8 @@ export default function CatalogueCard({
   release: Release;
   className?: string;
 }) {
+  const playerActions = usePlayerActions();
+
   const link = "/catalogue/" + release.slug.current;
 
   const url = urlForImage(release.coverImage).url();
@@ -63,13 +68,31 @@ export default function CatalogueCard({
             More
           </Link>
 
-          {/* @todo hook up into player */}
-          <button
-            type="button"
-            className="text-oxe-xs font-medium uppercase @xl:text-oxe-sm"
-          >
-            Listen
-          </button>
+          {release?.trackList?.tracks?.every((el) => el.file) && (
+            <button
+              type="button"
+              className="text-oxe-xs font-medium uppercase @xl:text-oxe-sm"
+              onClick={() => {
+                console.log(release.trackList);
+
+                playerActions.loadPlaylist(
+                  tracksToPlaylist(
+                    release.trackList.tracks,
+                    urlForImage(release.productImages[0])
+                      .width(512)
+                      .height(512)
+                      .format("jpg")
+                      .url(),
+                    release.title,
+                  ),
+                );
+
+                playerActions.play(0);
+              }}
+            >
+              Listen
+            </button>
+          )}
         </div>
       </footer>
     </article>

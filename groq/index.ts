@@ -153,7 +153,14 @@ export type Release = {
 export const ReleasesQuery = /* groq */ `
 *[_type == "release" && defined(slug)] | order(releaseDate desc) {
   ...,
-  artist[]->{name}
+  artist[]->{name},
+  trackList {
+    ...,
+    tracks[] {
+      ...,
+      artists[]->{name, slug}
+    }
+  }
 }`;
 
 export type ReleasesQuery = Release[];
@@ -179,6 +186,24 @@ export const ReleasePageQuery = /* groq */ `
 }`;
 
 export type ReleasePageQuery = Release | null;
+
+export const ReleaseTracklistQuery = /* groq */ `
+*[_type == "release" && slug.current == $slug][0] {
+  productImages[0...1],
+  title,
+  trackList {
+    ...,
+    tracks[] {
+      ...,
+      artists[]->{name, slug}
+    }
+  }
+}`;
+
+export type ReleaseTracklistQuery = Pick<
+  Release,
+  "trackList" | "title" | "productImages"
+> | null;
 
 export const LegalStaticParamsQuery = /* groq */ `*[_type == "legal" && defined(slug)] {
   slug

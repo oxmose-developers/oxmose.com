@@ -8,6 +8,7 @@ import { urlForImage } from "../../../../lib/sanity";
 import { fetchReleasePage } from "../../../../lib/sanity/queries";
 import { getProduct } from "../../../../lib/shopify";
 import BuyButton from "./components/BuyButton";
+import ListenButton from "./components/ListenButton";
 import Pagination from "./components/Pagination";
 import {
   ProductCarousel,
@@ -15,7 +16,6 @@ import {
 } from "./components/ProductCarousel";
 import Tracklist from "./components/Tracklist";
 import VariantSelector from "./components/VariantSelector";
-import ListenButton from "./components/ListenButton";
 
 export const dynamic = "force-dynamic";
 
@@ -169,7 +169,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               />
             )}
 
-            {release?.trackList && (
+            {release?.trackList?.tracks?.every((el) => el.file) && (
               <ListenButton
                 tracks={release.trackList}
                 album={release.title}
@@ -267,7 +267,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             />
           )}
 
-          {release?.trackList && (
+          {release?.trackList?.tracks?.every((el) => el.file) && (
             <ListenButton
               tracks={release.trackList}
               album={release.title}

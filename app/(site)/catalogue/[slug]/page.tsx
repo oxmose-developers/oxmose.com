@@ -15,6 +15,7 @@ import {
 } from "./components/ProductCarousel";
 import Tracklist from "./components/Tracklist";
 import VariantSelector from "./components/VariantSelector";
+import ListenButton from "./components/ListenButton";
 
 export const dynamic = "force-dynamic";
 
@@ -168,7 +169,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
               />
             )}
 
-            <div className="text-oxe-sm font-medium uppercase">Listen</div>
+            {release?.trackList && (
+              <ListenButton
+                tracks={release.trackList}
+                album={release.title}
+                artwork={urlForImage(release.productImages[0])
+                  .width(512)
+                  .height(512)
+                  .format("jpg")
+                  .url()}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -256,7 +267,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
             />
           )}
 
-          <div className="text-oxe-sm font-medium uppercase">Listen</div>
+          {release?.trackList && (
+            <ListenButton
+              tracks={release.trackList}
+              album={release.title}
+              artwork={urlForImage(release.productImages[0])
+                .width(512)
+                .height(512)
+                .format("jpg")
+                .url()}
+            />
+          )}
         </div>
       </div>
 

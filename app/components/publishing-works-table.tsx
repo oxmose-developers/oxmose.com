@@ -1,4 +1,4 @@
-import type { TrackList } from "../../groq";
+import type { TrackList } from "../../lib/sanity/groq";
 
 export default function WorksTable({
   works,

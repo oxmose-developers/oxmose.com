@@ -9,8 +9,8 @@ import {
 import type { File as SanityFile } from "sanity";
 import { useInterval } from "usehooks-ts";
 
-import type { Track as SanityTrack } from "../../groq";
 import { urlForFile } from "../../lib/sanity/file";
+import type { Track as SanityTrack } from "../../lib/sanity/groq";
 import { useEvent } from "../hooks/use-event";
 
 export function tracksToPlaylist(

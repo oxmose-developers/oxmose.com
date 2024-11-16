@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { NEXT_TAGS } from "../../constants/tags";
+import { client } from ".";
 import {
   AboutQuery,
   ArtistPageQuery,
@@ -17,8 +18,7 @@ import {
   ReleasePageQuery,
   ReleasesQuery,
   ReleasesStaticParamsQuery,
-} from "../../groq";
-import { client } from ".";
+} from "./groq";
 
 export const fetchReleases = async () =>
   client.fetch<ReleasesQuery>(

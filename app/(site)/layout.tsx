@@ -6,7 +6,7 @@ import Script from "next/script";
 import { Suspense } from "react";
 
 import { description } from "../../constants/seo";
-import Cart from "../components/cart/Cart";
+import Cart from "../components/cart/cart-element";
 import ClientOnly from "../components/client-only";
 import Footer from "../components/footer-element";
 import { Providers } from "../components/layout-providers";

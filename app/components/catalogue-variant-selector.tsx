@@ -9,7 +9,7 @@ import {
 } from "next/navigation";
 
 import type { Product } from "../../lib/shopify/types";
-import Price from "./Price";
+import Price from "./catalogue-price";
 
 export type ProductVariant = {
   type: "Digital" | "Vinyl";

@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
 import { getCart } from "../../../lib/shopify";
-import CartDrawer from "./CartDrawer";
+import CartDrawer from "./cart-drawer";
 
 export type CartData = {
   checkoutUrl: string;

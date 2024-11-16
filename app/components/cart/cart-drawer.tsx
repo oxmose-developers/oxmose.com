@@ -9,9 +9,9 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 
-import type { CartData } from "./Cart";
-import QuantitySelectorItem from "./QuantitySelectorItem";
-import RemoveItem from "./RemoveItem";
+import type { CartData } from "./cart-element";
+import QuantitySelectorItem from "./cart-quantity-selector";
+import RemoveItem from "./cart-remove";
 
 export default function CartDrawer({ cart }: { cart: CartData }) {
   const [open, setOpen] = useState(false);

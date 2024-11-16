@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom";
 
 import { updateItemQuantity } from "./actions";
-import type { CartLineItem } from "./Cart";
+import type { CartLineItem } from "./cart-element";
 
 export default function QuantitySelectorItem({ line }: { line: CartLineItem }) {
   const [message, formAction] = useFormState(updateItemQuantity, null);

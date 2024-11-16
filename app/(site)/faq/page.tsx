@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { fetchFaqs } from "./loader";
+import { fetchFaqs } from "./faq.loader";
 
 export default async function Page() {
   const faqs = await fetchFaqs();

@@ -5,7 +5,7 @@ import { PortableText } from "next-sanity";
 
 import { urlForImage } from "../../../../lib/sanity";
 import Pagination from "../../../components/artist-pagination";
-import { fetchArtistPage } from "../loader";
+import { fetchArtistPage } from "../artists.loader";
 
 export async function generateMetadata(
   { params }: { params: { slug: string } },

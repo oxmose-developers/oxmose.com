@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
-import { fetchFaq, fetchFaqs } from "../loader";
+import { fetchFaq, fetchFaqs } from "../faq.loader";
 
 export async function generateStaticParams() {
   const faqs = await fetchFaqs();

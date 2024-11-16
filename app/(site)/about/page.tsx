@@ -3,7 +3,7 @@ import Image from "next/image";
 import { PortableText } from "next-sanity";
 
 import CreditArticle from "../../components/about-credit-article";
-import { fetchAboutPage } from "./loader";
+import { fetchAboutPage } from "./about.loader";
 import teamPhoto from "./team-photo.webp";
 
 export async function generateMetadata(

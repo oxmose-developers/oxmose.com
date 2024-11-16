@@ -4,7 +4,7 @@ import { PortableText } from "next-sanity";
 import { Suspense } from "react";
 
 import DownloadLink from "../../components/download-link";
-import { fetchContactPage } from "./loader";
+import { fetchContactPage } from "./contact.loader";
 
 const OxmosePageAnimation = lazy(
   () => import("../../components/oxmose-page-animation"),

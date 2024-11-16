@@ -2,7 +2,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { PortableText } from "next-sanity";
 
 import Prose from "../../../components/legal-prose";
-import { fetchLegalPage, fetchLegalStaticParams } from "./loader";
+import { fetchLegalPage, fetchLegalStaticParams } from "./legal.loader";
 
 export const dynamic = "force-static";
 

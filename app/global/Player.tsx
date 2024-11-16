@@ -1,9 +1,15 @@
 "use client";
 
 import * as Progress from "@radix-ui/react-progress";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { hasAtLeast } from "remeda";
 
+import closeIcon from "../../images/close@3x.png";
+import pauseIcon from "../../images/pause@3x.png";
+import playIcon from "../../images/play@3x.png";
+import playlistIcon from "../../images/playlist@3x.png";
+import skipIcon from "../../images/skip@3x.png";
 import { usePlayer, usePlayerActions } from "../context/player-context";
 
 function formatDuration(durationInSeconds: number): string {
@@ -27,19 +33,60 @@ function PlayerControls() {
 
   return (
     <>
-      <button className="px-5" onClick={() => controls.previousTrack()}>
-        Previous
+      <button
+        className="flex size-[4.5rem] items-center justify-center"
+        onClick={() => controls.previousTrack()}
+      >
+        <Image
+          alt="Previous"
+          height={40}
+          loading="eager"
+          priority
+          src={skipIcon}
+          width={40}
+        />
       </button>
 
       <button
-        className="px-5"
+        className="flex size-[4.5rem] items-center justify-center"
         onClick={() => (state.isPlaying ? controls.pause() : controls.play())}
       >
-        {state.isPlaying ? "Pause" : "Play"}
+        <Image
+          alt="Pause"
+          height={40}
+          loading="eager"
+          priority
+          src={pauseIcon}
+          width={40}
+          className="hidden data-[playing=true]:block"
+          data-playing={state.isPlaying}
+        />
+
+        <Image
+          alt="Play"
+          height={40}
+          loading="eager"
+          priority
+          src={playIcon}
+          width={40}
+          className="hidden data-[playing=false]:block"
+          data-playing={state.isPlaying}
+        />
       </button>
 
-      <button className="px-5" onClick={() => controls.nextTrack()}>
-        Next
+      <button
+        className="flex size-[4.5rem] items-center justify-center"
+        onClick={() => controls.nextTrack()}
+      >
+        <Image
+          alt="Next"
+          height={40}
+          loading="eager"
+          priority
+          src={skipIcon}
+          className="rotate-180"
+          width={40}
+        />
       </button>
     </>
   );
@@ -55,7 +102,7 @@ function PlayerNowPlaying() {
   }, [state.playlist, state.currentTrackIndex]);
 
   return (
-    <div className="relative flex flex-1 items-center justify-between overflow-x-hidden px-5">
+    <div className="relative flex flex-1 items-center justify-between overflow-x-hidden px-5 text-[1.375rem] uppercase">
       <p className="whitespace-nowrap">{nowPlaying}</p>
 
       <p className="whitespace-nowrap tabular-nums text-oxe-grey">
@@ -88,17 +135,37 @@ export default function Player() {
   if (hasAtLeast(state.playlist, 1)) {
     if (isOpen) {
       return (
-        <div className="fixed inset-x-0 bottom-0 z-50 flex h-[3.75rem] items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-[22px] uppercase text-white">
+        <div className="fixed inset-x-0 bottom-0 z-50 flex h-[4.5rem] items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white">
           <PlayerControls />
 
           <PlayerNowPlaying />
 
-          <button onClick={() => {}} className="px-5">
-            Show Playlist
+          <button
+            onClick={() => {}}
+            className="flex size-[4.5rem] items-center justify-center"
+          >
+            <Image
+              alt="Open Playlist"
+              height={40}
+              loading="eager"
+              priority
+              src={playlistIcon}
+              width={40}
+            />
           </button>
 
-          <button onClick={() => isOpenSet(false)} className="px-5">
-            Close
+          <button
+            onClick={() => isOpenSet(false)}
+            className="flex size-[4.5rem] items-center justify-center"
+          >
+            <Image
+              alt="Close Player"
+              height={40}
+              loading="eager"
+              priority
+              src={closeIcon}
+              width={40}
+            />
           </button>
         </div>
       );
@@ -107,9 +174,16 @@ export default function Player() {
     return (
       <button
         onClick={() => isOpenSet(true)}
-        className="fixed bottom-0 right-0 size-[3.75rem] bg-black text-white"
+        className="fixed bottom-0 right-0 flex size-[4.5rem] items-center justify-center border-hairline border-b-0 border-r-0 border-white/40 bg-black text-white"
       >
-        Open
+        <Image
+          alt="Play"
+          height={40}
+          loading="eager"
+          priority
+          src={playIcon}
+          width={40}
+        />
       </button>
     );
   }

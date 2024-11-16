@@ -1,6 +1,6 @@
 import type { Metadata, ResolvingMetadata } from "next";
 
-import ArtistRow from "./components/ArtistRow";
+import ArtistRow from "../../components/artist-row";
 import { fetchArtists } from "./loader";
 
 export async function generateMetadata(

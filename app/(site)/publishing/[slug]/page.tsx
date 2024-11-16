@@ -3,9 +3,9 @@ import { PortableText } from "next-sanity";
 import { isEmpty } from "remeda";
 
 import { urlForImage } from "../../../../lib/sanity";
+import Pagination from "../../../components/publishing-artist-pagination";
+import WorksTable from "../../../components/publishing-works-table";
 import { fetchPublishingArtistPage } from "../loader";
-import Pagination from "./components/Pagination";
-import WorksTable from "./components/WorksTable";
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",

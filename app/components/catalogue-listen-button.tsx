@@ -1,10 +1,7 @@
 "use client";
 
-import type { TrackList } from "../../../../../groq";
-import {
-  tracksToPlaylist,
-  usePlayerActions,
-} from "../../../../context/player-context";
+import type { TrackList } from "../../groq";
+import { tracksToPlaylist, usePlayerActions } from "../context/player-context";
 
 export default function ListenButton({
   tracks: trackList,

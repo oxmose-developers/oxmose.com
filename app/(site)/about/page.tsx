@@ -2,7 +2,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
-import CreditArticle from "./components/CreditArticle";
+import CreditArticle from "../../components/about-credit-article";
 import { fetchAboutPage } from "./loader";
 import teamPhoto from "./team-photo.webp";
 

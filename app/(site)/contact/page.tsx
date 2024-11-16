@@ -3,11 +3,11 @@ import lazy from "next/dynamic";
 import { PortableText } from "next-sanity";
 import { Suspense } from "react";
 
-import DownloadLink from "../../components/downloadLink";
+import DownloadLink from "../../components/download-link";
 import { fetchContactPage } from "./loader";
 
 const OxmosePageAnimation = lazy(
-  () => import("./components/oxmosePageAnimation"),
+  () => import("../../components/oxmose-page-animation"),
   { ssr: false },
 );
 

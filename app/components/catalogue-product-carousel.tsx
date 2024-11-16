@@ -4,7 +4,7 @@
 import { useState } from "react";
 import type { Image } from "sanity";
 
-import { urlForImage } from "../../../../../lib/sanity";
+import { urlForImage } from "../../lib/sanity";
 
 export function ProductCarousel({ productImages }: { productImages: Image[] }) {
   const [activeIndex, activeIndexSet] = useState(0);

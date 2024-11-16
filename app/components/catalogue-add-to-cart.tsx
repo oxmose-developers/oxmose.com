@@ -2,8 +2,8 @@
 
 import { useFormState, useFormStatus } from "react-dom";
 
-import type { ProductVariant } from "../../../../../lib/shopify/types";
-import { addItem } from "../../../../components/cart/actions";
+import type { ProductVariant } from "../../lib/shopify/types";
+import { addItem } from "./cart/actions";
 
 export function SubmitButton({
   children,

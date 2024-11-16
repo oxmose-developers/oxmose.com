@@ -4,8 +4,8 @@ import { PortableText } from "next-sanity";
 import { Suspense } from "react";
 
 import { publishingLicenseRequestEmail } from "../../../constants/urls";
-import PublishingArtistsList from "./components/PublishingArtistsList";
-import PublishingVideo from "./components/PublishingVideo";
+import PublishingArtistsList from "../../components/publishing-artist-list";
+import PublishingVideo from "../../components/publishing-video";
 import { fetchPublishingPage } from "./loader";
 
 export const viewport: Viewport = {

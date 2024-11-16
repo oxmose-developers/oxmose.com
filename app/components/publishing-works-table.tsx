@@ -1,4 +1,4 @@
-import type { TrackList } from "../../../../../groq";
+import type { TrackList } from "../../groq";
 
 export default function WorksTable({
   works,

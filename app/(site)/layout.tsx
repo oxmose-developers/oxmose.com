@@ -6,12 +6,12 @@ import Script from "next/script";
 import { Suspense } from "react";
 
 import { description } from "../../constants/seo";
-import Footer from "../global/Footer";
-import Navigation from "../global/Navigation";
-import Player from "../global/Player";
-import { Providers } from "../global/Providers";
 import Cart from "../components/cart/Cart";
 import ClientOnly from "../components/client-only";
+import Footer from "../global/footer-element";
+import { Providers } from "../global/layout-providers";
+import Navigation from "../global/navigation-element";
+import Player from "../global/player-element";
 
 export const viewport: Viewport = {
   themeColor: "#000000",

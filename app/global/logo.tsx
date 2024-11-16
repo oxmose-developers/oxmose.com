@@ -25,7 +25,7 @@ export const OxmoseLogo = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const OxmoseLogoAnimation = dynamic(() => import("./oxmoseLogoAnimation"), {
+const OxmoseLogoAnimation = dynamic(() => import("./logo-animation"), {
   ssr: false,
 });
 

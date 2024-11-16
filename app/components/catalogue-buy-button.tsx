@@ -2,8 +2,8 @@
 
 import { useSearchParams } from "next/navigation";
 
-import AddToCart from "./AddToCart";
-import type { ProductVariant } from "./VariantSelector";
+import AddToCart from "./catalogue-add-to-cart";
+import type { ProductVariant } from "./catalogue-variant-selector";
 
 export default function BuyButton({
   products,

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
-import { fetchArtistsStaticParams } from "../../loader";
+import { fetchArtistsStaticParams } from "../(site)/artists/loader";
 
 export default async function Pagination({
   slug,

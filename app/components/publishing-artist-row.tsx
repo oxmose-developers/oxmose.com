@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { PublishingArtist } from "../../../../groq";
+import type { PublishingArtist } from "../../groq";
 
 export default function PublishingArtistRow({
   publishingArtist,

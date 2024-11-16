@@ -8,7 +8,7 @@ import {
   useSearchParams,
 } from "next/navigation";
 
-import type { Product } from "../../../../../lib/shopify/types";
+import type { Product } from "../../lib/shopify/types";
 import Price from "./Price";
 
 export type ProductVariant = {

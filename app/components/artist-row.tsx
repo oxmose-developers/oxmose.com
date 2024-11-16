@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import type { Artist } from "../../../../groq";
-import { urlForImage } from "../../../../lib/sanity";
+import type { Artist } from "../../groq";
+import { urlForImage } from "../../lib/sanity";
 
 export default function ArtistRow({
   artist,

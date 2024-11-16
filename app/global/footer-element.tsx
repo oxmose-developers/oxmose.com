@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import useMeasure from "react-use-measure";
 
-import FollowPopover from "./FollowPopover";
-import NewsletterPopover from "./NewsletterPopover";
+import FollowPopover from "./footer-follow-popover";
+import NewsletterPopover from "./footer-newsletter-popover";
 
 export default function Footer({ fullYear }: { fullYear: number }) {
   const [isExpanded, setIsExpanded] = useState(false);

@@ -1,5 +1,5 @@
-import { fetchPublishingArtists } from "../loader";
-import PublishingArtistRow from "./PublishingArtistRow";
+import { fetchPublishingArtists } from "../(site)/publishing/loader";
+import PublishingArtistRow from "./publishing-artist-row";
 
 export default async function PublishingArtistsList() {
   const publishingArtists = await fetchPublishingArtists();

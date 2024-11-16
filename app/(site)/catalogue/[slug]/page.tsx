@@ -7,15 +7,15 @@ import { Fragment } from "react";
 import { urlForImage } from "../../../../lib/sanity";
 import { fetchReleasePage } from "../../../../lib/sanity/queries";
 import { getProduct } from "../../../../lib/shopify";
-import BuyButton from "./components/BuyButton";
-import ListenButton from "./components/ListenButton";
-import Pagination from "./components/Pagination";
+import BuyButton from "../../../components/catalogue-buy-button";
+import ListenButton from "../../../components/catalogue-listen-button";
+import Pagination from "../../../components/catalogue-pagination";
 import {
   ProductCarousel,
   ProductFullBleedScroller,
-} from "./components/ProductCarousel";
-import Tracklist from "./components/Tracklist";
-import VariantSelector from "./components/VariantSelector";
+} from "../../../components/catalogue-product-carousel";
+import Tracklist from "../../../components/catalogue-tracklist";
+import VariantSelector from "../../../components/catalogue-variant-selector";
 
 export const dynamic = "force-dynamic";
 

@@ -48,14 +48,16 @@ export default function CatalogueCard({
         </div>
 
         <div className="relative aspect-square w-full @xl:max-w-[655px]">
-          <Image
-            loading="lazy"
-            src={webpUrl}
-            className="size-full object-cover object-center"
-            alt={`${release.title} Album Cover`}
-            unoptimized
-            fill
-          />
+          <Link href={link}>
+            <Image
+              loading="lazy"
+              src={webpUrl}
+              className="size-full object-cover object-center"
+              alt={`${release.title} Album Cover`}
+              unoptimized
+              fill
+            />
+          </Link>
         </div>
       </div>
 

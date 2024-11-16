@@ -2,7 +2,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 
 import { fetchReleases } from "../../lib/sanity/queries";
 import styles from "../shared/catalogue.module.css";
-import CatalogueCard from "../shared/CatalogueCard";
+import CatalogueCard from "../components/CatalogueCard";
 
 export async function generateMetadata(
   props: { params: {} },

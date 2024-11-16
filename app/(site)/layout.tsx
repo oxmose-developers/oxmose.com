@@ -10,8 +10,8 @@ import Footer from "../global/Footer";
 import Navigation from "../global/Navigation";
 import Player from "../global/Player";
 import { Providers } from "../global/Providers";
-import Cart from "../shared/cart/Cart";
-import ClientOnly from "../shared/client-only";
+import Cart from "../components/cart/Cart";
+import ClientOnly from "../components/client-only";
 
 export const viewport: Viewport = {
   themeColor: "#000000",

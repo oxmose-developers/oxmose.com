@@ -55,7 +55,7 @@ function PlayerNowPlaying() {
   }, [state.playlist, state.currentTrackIndex]);
 
   return (
-    <div className="relative flex flex-1 items-center justify-between px-5">
+    <div className="relative flex flex-1 items-center justify-between overflow-x-hidden px-5">
       <p className="whitespace-nowrap">{nowPlaying}</p>
 
       <p className="whitespace-nowrap tabular-nums text-oxe-grey">
@@ -63,7 +63,7 @@ function PlayerNowPlaying() {
       </p>
 
       <Progress.Root
-        className="absolute bottom-0 left-0 right-0 h-1.5 w-full overflow-hidden bg-white"
+        className="absolute bottom-0 left-0 right-0 z-0 h-1.5 w-full overflow-hidden bg-white"
         style={{
           // Fix overflow clipping in Safari
           // https://gist.github.com/domske/b66047671c780a238b51c51ffde8d3a0

@@ -8,10 +8,10 @@ import { Suspense } from "react";
 import { description } from "../../constants/seo";
 import Cart from "../components/cart/Cart";
 import ClientOnly from "../components/client-only";
-import Footer from "../global/footer-element";
-import { Providers } from "../global/layout-providers";
-import Navigation from "../global/navigation-element";
-import Player from "../global/player-element";
+import Footer from "../components/footer-element";
+import { Providers } from "../components/layout-providers";
+import Navigation from "../components/navigation-element";
+import Player from "../components/player-element";
 
 export const viewport: Viewport = {
   themeColor: "#000000",

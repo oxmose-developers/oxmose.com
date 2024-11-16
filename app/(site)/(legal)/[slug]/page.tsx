@@ -4,7 +4,7 @@ import { PortableText } from "next-sanity";
 import {
   fetchLegalPage,
   fetchLegalStaticParams,
-} from "../../../../lib/sanity/legal.loader";
+} from "../../../../lib/sanity/queries";
 import Prose from "../../../components/legal-prose";
 
 export const dynamic = "force-static";

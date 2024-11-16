@@ -4,7 +4,7 @@ import Link from "next/link";
 import { PortableText } from "next-sanity";
 
 import { urlForImage } from "../../../../lib/sanity";
-import { fetchArtistPage } from "../../../../lib/sanity/artists.loader";
+import { fetchArtistPage } from "../../../../lib/sanity/queries";
 import Pagination from "../../../components/artist-pagination";
 
 export async function generateMetadata(

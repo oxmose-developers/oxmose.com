@@ -3,7 +3,7 @@ import { PortableText } from "next-sanity";
 import { isEmpty } from "remeda";
 
 import { urlForImage } from "../../../../lib/sanity";
-import { fetchPublishingArtistPage } from "../../../../lib/sanity/publishing.loader";
+import { fetchPublishingArtistPage } from "../../../../lib/sanity/queries";
 import Pagination from "../../../components/publishing-artist-pagination";
 import WorksTable from "../../../components/publishing-works-table";
 

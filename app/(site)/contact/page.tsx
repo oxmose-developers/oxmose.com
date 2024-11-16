@@ -3,7 +3,7 @@ import lazy from "next/dynamic";
 import { PortableText } from "next-sanity";
 import { Suspense } from "react";
 
-import { fetchContactPage } from "../../../lib/sanity/contact.loader";
+import { fetchContactPage } from "../../../lib/sanity/queries";
 import DownloadLink from "../../components/download-link";
 
 const OxmosePageAnimation = lazy(

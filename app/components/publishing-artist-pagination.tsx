@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
-import { fetchPublishingArtistsStaticParams } from "../../lib/sanity/publishing.loader";
+import { fetchPublishingArtistsStaticParams } from "../../lib/sanity/queries";
 
 export default async function Pagination({
   slug,

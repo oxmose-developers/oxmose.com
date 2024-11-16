@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { ThemeProvider } from "next-themes";
 
-import { PlayerProvider } from "../context/player-context";
+import { PlayerProvider } from "../../context/player-context";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();

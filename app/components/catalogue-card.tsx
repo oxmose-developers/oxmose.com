@@ -4,9 +4,12 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
+import {
+  tracksToPlaylist,
+  usePlayerActions,
+} from "../../context/player-context";
 import { urlForImage } from "../../lib/sanity";
 import type { Release } from "../../lib/sanity/groq";
-import { tracksToPlaylist, usePlayerActions } from "../context/player-context";
 
 export default function CatalogueCard({
   release,

@@ -3,8 +3,11 @@
 import Link from "next/link";
 import { Fragment } from "react";
 
+import {
+  tracksToPlaylist,
+  usePlayerActions,
+} from "../../context/player-context";
 import type { TrackList } from "../../lib/sanity/groq";
-import { tracksToPlaylist, usePlayerActions } from "../context/player-context";
 
 export default function Tracklist({
   tracks: trackList,

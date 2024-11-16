@@ -5,12 +5,12 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import { hasAtLeast } from "remeda";
 
+import { usePlayer, usePlayerActions } from "../../context/player-context";
 import closeIcon from "../../images/close@3x.png";
 import pauseIcon from "../../images/pause@3x.png";
 import playIcon from "../../images/play@3x.png";
 import playlistIcon from "../../images/playlist@3x.png";
 import skipIcon from "../../images/skip@3x.png";
-import { usePlayer, usePlayerActions } from "../context/player-context";
 
 function formatDuration(durationInSeconds: number): string {
   if (isNaN(durationInSeconds) || durationInSeconds === Infinity) return "0:00";

@@ -1,7 +1,10 @@
 "use client";
 
+import {
+  tracksToPlaylist,
+  usePlayerActions,
+} from "../../context/player-context";
 import type { TrackList } from "../../lib/sanity/groq";
-import { tracksToPlaylist, usePlayerActions } from "../context/player-context";
 
 export default function ListenButton({
   tracks: trackList,

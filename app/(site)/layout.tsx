@@ -62,32 +62,32 @@ const monumentGrotesk = localFont({
   display: "swap",
   src: [
     {
-      path: "../fonts/ABCMonumentGrotesk-Regular.woff2",
+      path: "../../fonts/ABCMonumentGrotesk-Regular.woff2",
       style: "normal",
       weight: "400",
     },
     {
-      path: "../fonts/ABCMonumentGrotesk-RegularItalic.woff2",
+      path: "../../fonts/ABCMonumentGrotesk-RegularItalic.woff2",
       style: "italic",
       weight: "400",
     },
     {
-      path: "../fonts/ABCMonumentGrotesk-Medium.woff2",
+      path: "../../fonts/ABCMonumentGrotesk-Medium.woff2",
       style: "normal",
       weight: "500",
     },
     {
-      path: "../fonts/ABCMonumentGrotesk-MediumItalic.woff2",
+      path: "../../fonts/ABCMonumentGrotesk-MediumItalic.woff2",
       style: "italic",
       weight: "500",
     },
     // {
-    //   path: "../fonts/ABCMonumentGrotesk-Bold.woff2",
+    //   path: "../../fonts/ABCMonumentGrotesk-Bold.woff2",
     //   style: "normal",
     //   weight: "600",
     // },
     // {
-    //   path: "../fonts/ABCMonumentGrotesk-BoldItalic.woff2",
+    //   path: "../../fonts/ABCMonumentGrotesk-BoldItalic.woff2",
     //   style: "italic",
     //   weight: "600",
     // },

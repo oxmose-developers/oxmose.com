@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 
-import { NEXT_TAGS } from "../../../constants/tags";
-import { FAQsQuery } from "../../../groq";
-import { client } from "../../../lib/sanity";
+import { NEXT_TAGS } from "../../constants/tags";
+import { FAQsQuery } from "../../groq";
+import { client } from ".";
 
 export const fetchFaqs = async () =>
   client.fetch<FAQsQuery>(

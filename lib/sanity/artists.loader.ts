@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation";
 
-import { NEXT_TAGS } from "../../../constants/tags";
+import { NEXT_TAGS } from "../../constants/tags";
 import {
   ArtistPageQuery,
   ArtistsQuery,
   ArtistsStaticParamsQuery,
-} from "../../../groq";
-import { client } from "../../../lib/sanity";
+} from "../../groq";
+import { client } from ".";
 
 export const fetchArtists = async () =>
   client.fetch<ArtistsQuery>(

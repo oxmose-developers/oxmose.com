@@ -4,8 +4,8 @@ import Link from "next/link";
 import { PortableText } from "next-sanity";
 
 import { urlForImage } from "../../../../lib/sanity";
+import { fetchArtistPage } from "../../../../lib/sanity/artists.loader";
 import Pagination from "../../../components/artist-pagination";
-import { fetchArtistPage } from "../artists.loader";
 
 export async function generateMetadata(
   { params }: { params: { slug: string } },

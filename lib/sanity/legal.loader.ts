@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 
-import { NEXT_TAGS } from "../../../../constants/tags";
-import { LegalPageQuery, LegalStaticParamsQuery } from "../../../../groq";
-import { client } from "../../../../lib/sanity";
+import { NEXT_TAGS } from "../../constants/tags";
+import { LegalPageQuery, LegalStaticParamsQuery } from "../../groq";
+import { client } from ".";
 
 export const fetchLegalStaticParams = async () =>
   client.fetch<LegalStaticParamsQuery>(

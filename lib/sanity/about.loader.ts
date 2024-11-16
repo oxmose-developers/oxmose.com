@@ -1,6 +1,6 @@
-import { NEXT_TAGS } from "../../../constants/tags";
-import { AboutQuery } from "../../../groq";
-import { client } from "../../../lib/sanity";
+import { NEXT_TAGS } from "../../constants/tags";
+import { AboutQuery } from "../../groq";
+import { client } from ".";
 
 export const fetchAboutPage = async () =>
   client.fetch<AboutQuery>(

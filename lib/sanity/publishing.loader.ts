@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 
-import { NEXT_TAGS } from "../../../constants/tags";
+import { NEXT_TAGS } from "../../constants/tags";
 import {
   PublishingArtistPageQuery,
   PublishingArtistsQuery,
   PublishingArtistsStaticParamsQuery,
   PublishingQuery,
-} from "../../../groq";
-import { client } from "../../../lib/sanity";
+} from "../../groq";
+import { client } from ".";
 
 export const fetchPublishingPage = async () => {
   return client.fetch<PublishingQuery>(

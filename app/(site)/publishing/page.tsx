@@ -4,9 +4,9 @@ import { PortableText } from "next-sanity";
 import { Suspense } from "react";
 
 import { publishingLicenseRequestEmail } from "../../../constants/urls";
+import { fetchPublishingPage } from "../../../lib/sanity/publishing.loader";
 import PublishingArtistsList from "../../components/publishing-artist-list";
 import PublishingVideo from "../../components/publishing-video";
-import { fetchPublishingPage } from "./publishing.loader";
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",

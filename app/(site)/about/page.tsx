@@ -2,8 +2,8 @@ import type { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
+import { fetchAboutPage } from "../../../lib/sanity/about.loader";
 import CreditArticle from "../../components/about-credit-article";
-import { fetchAboutPage } from "./about.loader";
 import teamPhoto from "./team-photo.webp";
 
 export async function generateMetadata(

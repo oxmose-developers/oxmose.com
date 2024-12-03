@@ -41,6 +41,10 @@ export async function generateMetadata(
       ...existingMetadata.twitter,
       title: page.title,
     },
+    robots: {
+      index: false,
+      follow: false,
+    },
   } satisfies Metadata;
 }
 

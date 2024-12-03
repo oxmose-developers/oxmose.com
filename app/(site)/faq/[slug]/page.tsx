@@ -6,14 +6,6 @@ import { Fragment } from "react";
 
 import { fetchFaq, fetchFaqs } from "../../../../lib/sanity/queries";
 
-export async function generateStaticParams() {
-  const faqs = await fetchFaqs();
-
-  return faqs.map((faq) => {
-    return { params: { slug: faq.slug.current } };
-  });
-}
-
 export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata,

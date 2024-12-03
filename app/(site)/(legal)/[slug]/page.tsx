@@ -7,20 +7,6 @@ import {
 } from "../../../../lib/sanity/queries";
 import Prose from "../../../components/legal-prose";
 
-export const dynamic = "force-static";
-
-export async function generateStaticParams() {
-  const pages = await fetchLegalStaticParams();
-
-  return pages.map((page) => {
-    return {
-      params: {
-        slug: page.slug.current,
-      },
-    };
-  });
-}
-
 export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata,

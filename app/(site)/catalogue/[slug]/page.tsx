@@ -17,8 +17,6 @@ import {
 import Tracklist from "../../../components/catalogue-tracklist";
 import VariantSelector from "../../../components/catalogue-variant-selector";
 
-export const dynamic = "force-dynamic";
-
 export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata,

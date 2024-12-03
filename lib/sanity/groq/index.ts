@@ -55,10 +55,26 @@ export type ContactQuery = {
   overview: string;
   title: string;
   generalSection: ContentSection;
+  locations: { name: string; type: string; phone?: string }[];
+  /**
+   * @deprecated
+   */
   listenLinks: Link[];
+  /**
+   * @deprecated
+   */
   followLinks: Link[];
+  /**
+   * @deprecated
+   */
   pressKit: Link;
+  /**
+   * @deprecated
+   */
   demoSection: ContentSection;
+  /**
+   * @deprecated
+   */
   syncSection: ContentSection;
 };
 

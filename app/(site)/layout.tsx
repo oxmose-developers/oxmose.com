@@ -108,7 +108,7 @@ export default function RootLayout({
       className={`${monumentGrotesk.variable} antialias`}
       suppressHydrationWarning
     >
-      <body className="flex min-h-svh flex-col">
+      <body className="flex min-h-[calc(100svh+4.5rem)] flex-col">
         <Providers>
           <Navigation />
 

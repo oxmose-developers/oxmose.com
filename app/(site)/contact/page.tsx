@@ -1,15 +1,7 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import lazy from "next/dynamic";
 import { PortableText } from "next-sanity";
-import { Suspense } from "react";
 
 import { fetchContactPage } from "../../../lib/sanity/queries";
-import DownloadLink from "../../components/download-link";
-
-const OxmosePageAnimation = lazy(
-  () => import("../../components/oxmose-page-animation"),
-  { ssr: false },
-);
 
 export async function generateMetadata(
   props: { params: {} },
@@ -40,120 +32,44 @@ export default async function Page() {
 
   return (
     <>
-      <h1 hidden>{`${page.title} | Oxmose`}</h1>
+      <section className="flex-1 divide-y divide-black border-black lg:grid lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+        <div className="p-9 lg:p-10">
+          <h1 className="mb-5 text-oxe-lg lg:text-oxe-xxl">
+            {page.generalSection.title}
+          </h1>
 
-      <section className="flex min-h-96 flex-col border-b border-black p-9 lg:min-h-[30rem] lg:p-10">
-        <h2 className="mb-1.5 text-oxe-md lg:mb-10 lg:text-oxe-xxl">
-          {page.generalSection.title}
-        </h2>
+          <p className="mb-8 text-oxe-md lg:mb-20 lg:text-oxe-lg">
+            <a href={page.generalSection.link.href}>
+              {page.generalSection.link.name}
+            </a>
+          </p>
 
-        <div className="text-oxe-sm lg:text-oxe-lg">
-          <PortableText value={page.generalSection.content} />
-        </div>
-
-        <p className="mt-auto text-right text-oxe-md lg:text-oxe-xxl">
-          <a href={page.generalSection.link.href}>
-            {page.generalSection.link.name}
-          </a>
-        </p>
-      </section>
-
-      <section className="flex min-h-96 flex-col gap-12 divide-black border-b border-black p-9 lg:grid lg:min-h-[32rem] lg:grid-cols-2 lg:gap-0 lg:divide-x lg:p-0">
-        <div className="flex lg:p-10">
-          <h3 className="flex-1 text-oxe-md lg:text-oxe-xxl">Listen</h3>
-
-          <ul className="flex-1 lg:ml-auto lg:list-inside lg:list-disc lg:self-end">
-            {page.listenLinks.map((link) => (
-              <li
-                key={link._key}
-                className="whitespace-nowrap text-oxe-sm lg:text-oxe-lg"
-              >
-                <a href={link.href}>{link.name}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex lg:p-10">
-          <h3 className="flex-1 text-oxe-md lg:text-oxe-xxl">Follow</h3>
-
-          <ul className="flex-1 lg:ml-auto lg:list-inside lg:list-disc lg:self-end">
-            {page.followLinks.map((link) => (
-              <li
-                key={link._key}
-                className="whitespace-nowrap text-oxe-sm lg:text-oxe-lg"
-              >
-                <a href={link.href}>{link.name}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="flex min-h-96 flex-col border-b border-black p-9 lg:min-h-[30rem] lg:p-10">
-        <h2 className="mb-1.5 text-oxe-md lg:mb-10 lg:text-oxe-xxl">
-          {page.demoSection.title}
-        </h2>
-
-        <div className="text-oxe-sm lg:text-oxe-lg">
-          <PortableText value={page.demoSection.content} />
-        </div>
-
-        <p className="mt-auto text-right text-oxe-md lg:text-oxe-xxl">
-          <a href={page.demoSection.link.href}>{page.demoSection.link.name}</a>
-        </p>
-      </section>
-
-      <section className="divide-y divide-black border-b border-black lg:grid lg:grid-cols-2 lg:divide-x lg:divide-y-0">
-        <div className="flex min-h-96 flex-row p-9 lg:min-h-[32rem] lg:flex-col lg:p-10">
-          <h3 className="flex-1 text-oxe-md lg:flex-auto lg:text-oxe-xxl">
-            Location
-          </h3>
-
-          <div className="flex flex-1 flex-col justify-between gap-10 lg:mt-auto lg:flex-initial lg:flex-row">
-            <dl>
-              <dt className="text-oxe-sm font-medium lg:text-oxe-lg">
-                Headquarters
-              </dt>
-              <dd className="text-oxe-sm lg:text-oxe-lg">Paris</dd>
-            </dl>
-
-            <dl>
-              <dt className="text-oxe-sm font-medium lg:text-oxe-lg">
-                Office/Studio
-              </dt>
-              <dd className="text-oxe-sm lg:text-oxe-lg">Bucharest</dd>
-            </dl>
+          <div className="text-oxe-xs lg:text-oxe-md">
+            <PortableText value={page.generalSection.content} />
           </div>
         </div>
 
-        <div className="flex min-h-96 flex-col p-9 lg:min-h-[32rem] lg:p-10">
-          <h3 className="text-oxe-md lg:text-oxe-xxl">{page.pressKit.name}</h3>
+        <div className="flex flex-col p-9 lg:p-10 xl:p-16">
+          <dl className="flex flex-1 flex-col justify-between gap-10 xl:mt-auto xl:flex-initial xl:flex-row xl:gap-5">
+            {page.locations.map((location, idx) => (
+              <div
+                className="text-oxe-sm lg:text-oxe-lg"
+                key={`${location.name}-${idx}`}
+              >
+                <dt className="font-medium">{location.type}</dt>
+                <dd>
+                  <p>{location.name}</p>
 
-          <p className="mt-auto text-right text-oxe-md lg:text-oxe-xxl">
-            <DownloadLink href={page.pressKit.href}>download</DownloadLink>
-          </p>
+                  <br />
+
+                  <p>
+                    <a href={`tel:${location.phone}`}>{location.phone}</a>
+                  </p>
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
-      </section>
-
-      <section className="flex min-h-96 flex-col border-b border-black p-9 lg:min-h-[30rem] lg:p-10">
-        <h2 className="mb-1.5 text-oxe-md lg:mb-10 lg:text-oxe-xxl">
-          {page.syncSection.title}
-        </h2>
-
-        <div className="text-oxe-sm lg:text-oxe-lg">
-          <PortableText value={page.syncSection.content} />
-        </div>
-
-        <p className="mt-auto text-right text-oxe-md lg:text-oxe-xxl">
-          <a href={page.syncSection.link.href}>{page.syncSection.link.name}</a>
-        </p>
-      </section>
-
-      <section className="flex min-h-96 flex-col items-center justify-center p-9 lg:min-h-[45rem] lg:p-10">
-        <Suspense fallback={null}>
-          <OxmosePageAnimation />
-        </Suspense>
       </section>
     </>
   );

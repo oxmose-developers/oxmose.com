@@ -19,6 +19,30 @@ export default defineType({
       type: "contentSection",
     }),
     defineField({
+      name: "locations",
+      type: "array",
+      validation: (Rule) => [Rule.required()],
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "location",
+          fields: [
+            defineField({
+              name: "type",
+              type: "string",
+              validation: (Rule) => [Rule.required()],
+            }),
+            defineField({
+              name: "name",
+              type: "string",
+              validation: (Rule) => [Rule.required()],
+            }),
+            defineField({ name: "phone", type: "string" }),
+          ],
+        }),
+      ],
+    }),
+    defineField({
       name: "listenLinks",
       type: "array",
       of: [
@@ -26,6 +50,7 @@ export default defineType({
           type: "link",
         }),
       ],
+      hidden: true,
     }),
     defineField({
       name: "followLinks",
@@ -35,18 +60,22 @@ export default defineType({
           type: "link",
         }),
       ],
+      hidden: true,
     }),
     defineField({
       name: "pressKit",
       type: "link",
+      hidden: true,
     }),
     defineField({
       name: "demoSection",
       type: "contentSection",
+      hidden: true,
     }),
     defineField({
       name: "syncSection",
       type: "contentSection",
+      hidden: true,
     }),
   ],
 });

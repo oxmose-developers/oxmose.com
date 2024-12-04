@@ -29,7 +29,7 @@ const OxmoseLogoAnimation = dynamic(() => import("./logo-animation"), {
   ssr: false,
 });
 
-export default function Logo({ className }: { className?: string }) {
+export function OxmoseAnimatedLogo({ className }: { className?: string }) {
   return (
     <div className={className}>
       <Suspense fallback={null}>

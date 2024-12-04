@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-import { OxmoseLogo } from "./logo";
+import { OxmoseAnimatedLogo, OxmoseLogo } from "./logo";
 
 export default function Navigation() {
   const [open, openSet] = useState(false);
@@ -20,7 +20,7 @@ export default function Navigation() {
         <div className="flex items-center px-9 lg:px-10">
           <Link href="/">
             <span className="sr-only">Back to Catalogue</span>
-            <OxmoseLogo className="relative size-12 dark:invert" />
+            <OxmoseAnimatedLogo className="relative -m-1 size-14 invert dark:invert-0" />
           </Link>
 
           <div className="ml-auto hidden items-center justify-center gap-10 lg:flex">

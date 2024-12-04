@@ -15,9 +15,9 @@ export default function Footer({ fullYear }: { fullYear: number }) {
   return (
     <footer
       ref={ref}
-      className="relative shrink-0 bg-black pb-[calc(0.5rem+4.5rem)] pt-2 text-white lg:pb-[calc(13px+4.5rem)] lg:pt-[13px]"
+      className="relative shrink-0 bg-black pb-[calc(0.5rem+4.5rem)] pt-2 text-white lg:py-[1.2rem]"
     >
-      <nav className="flex items-end px-9 lg:items-center lg:pl-10 lg:pr-20">
+      <nav className="flex items-end px-9 lg:items-center lg:pl-10 lg:pr-24">
         <div className="flex flex-col gap-1 lg:hidden">
           <button
             type="button"

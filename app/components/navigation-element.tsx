@@ -93,7 +93,7 @@ export default function Navigation() {
                     <div className="flex items-center justify-between px-9">
                       <Link href="/">
                         <span className="sr-only">Back to Catalogue</span>
-                        <OxmoseLogo className="relative size-12 dark:invert" />
+                        <OxmoseAnimatedLogo className="relative -m-1 size-14 invert dark:invert-0" />
                       </Link>
 
                       <button

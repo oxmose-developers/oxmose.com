@@ -4,7 +4,13 @@
 
 @layer base {
   body {
-    @apply bg-white dark:bg-black;
+    @apply min-h-screen bg-white dark:bg-black;
+  }
+
+  @supports (min-height: 100svh) {
+    body {
+      @apply min-h-svh;
+    }
   }
 
   strong {

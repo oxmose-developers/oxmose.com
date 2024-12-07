@@ -127,46 +127,90 @@ function PlayerNowPlaying() {
   );
 }
 
+function PlayerPlaylist() {
+  const { state } = usePlayer();
+
+  const playerActions = usePlayerActions();
+
+  return (
+    <div className="max-h-[calc(100svh/2)] overflow-y-scroll border-t-hairline border-white/40 bg-black text-white">
+      <div className="grid divide-y-hairline divide-white/40">
+        {state.playlist.map((track, index) => (
+          <div
+            key={track.title}
+            className="relative grid grid-cols-2 gap-x-5 px-5 py-1.5 text-[1.375rem] hover:bg-white hover:text-black lg:grid-cols-3"
+          >
+            <div className="hidden uppercase lg:block">
+              <p className="tabular-nums">{`${index + 1}`.padStart(2, "0")}</p>
+            </div>
+
+            <div className="">{track.title}</div>
+
+            <div className="place-self-end lg:place-self-start">
+              {track.artist}
+            </div>
+
+            <button
+              className="absolute inset-0 z-[1] block"
+              onClick={() => {
+                playerActions.play(index);
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Player() {
   const { state } = usePlayer();
 
   const [isOpen, isOpenSet] = useState(true);
 
+  const [isPlaylistOpen, isPlaylistOpenSet] = useState(false);
+
   if (hasAtLeast(state.playlist, 1)) {
     if (isOpen) {
       return (
-        <div className="fixed inset-x-0 bottom-0 z-50 flex h-[4.5rem] items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white">
-          <PlayerControls />
+        <div className="fixed inset-x-0 bottom-0 z-50">
+          {isPlaylistOpen && <PlayerPlaylist />}
 
-          <PlayerNowPlaying />
+          <div className="flex h-[4.5rem] items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white">
+            <PlayerControls />
 
-          <button
-            onClick={() => {}}
-            className="flex size-[4.5rem] items-center justify-center"
-          >
-            <Image
-              alt="Open Playlist"
-              height={40}
-              loading="eager"
-              priority
-              src={playlistIcon}
-              width={40}
-            />
-          </button>
+            <PlayerNowPlaying />
 
-          <button
-            onClick={() => isOpenSet(false)}
-            className="flex size-[4.5rem] items-center justify-center"
-          >
-            <Image
-              alt="Close Player"
-              height={40}
-              loading="eager"
-              priority
-              src={closeIcon}
-              width={40}
-            />
-          </button>
+            <button
+              onClick={() => isPlaylistOpenSet(!isPlaylistOpen)}
+              className="flex size-[4.5rem] items-center justify-center"
+            >
+              <Image
+                className="data-[playlist-open=true]:opacity-50"
+                alt="Open Playlist"
+                height={40}
+                loading="eager"
+                priority
+                src={playlistIcon}
+                data-playlist-open={isPlaylistOpen}
+                width={40}
+              />
+            </button>
+
+            <button
+              onClick={() => isOpenSet(false)}
+              className="flex size-[4.5rem] items-center justify-center"
+            >
+              <Image
+                alt="Close Player"
+                height={40}
+                loading="eager"
+                priority
+                src={closeIcon}
+                width={40}
+              />
+            </button>
+          </div>
         </div>
       );
     }

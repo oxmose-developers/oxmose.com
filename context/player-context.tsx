@@ -15,16 +15,21 @@ import type { Track as SanityTrack } from "../lib/sanity/groq";
 
 export function tracksToPlaylist(
   tracks: SanityTrack[],
-  artwork: string,
-  album: string,
+  artwork?: string,
+  album?: string,
+  artistName?: string,
 ): Track[] {
   return tracks
     .filter((track) => !!track.file)
     .map((track) => ({
       title: track.name,
-      artist: track.artists.map((el) => el.name).join(", "),
+      artist: artistName
+        ? artistName
+        : track.artists.map((el) => el.name).join(", "),
       album: album,
-      artwork: [{ src: artwork, sizes: "512x512", type: "image/jpeg" }],
+      artwork: artwork
+        ? [{ src: artwork, sizes: "512x512", type: "image/jpeg" }]
+        : undefined,
       src: urlForFile(track.file as SanityFile)!,
     }));
 }
@@ -32,8 +37,8 @@ export function tracksToPlaylist(
 interface Track {
   title: string;
   artist: string;
-  album: string;
-  artwork: { src: string; sizes: string; type: string }[];
+  album: string | undefined;
+  artwork: { src: string; sizes: string; type: string }[] | undefined;
   src: string;
 }
 

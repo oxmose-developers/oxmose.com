@@ -5,7 +5,7 @@ import { isEmpty } from "remeda";
 import { urlForImage } from "../../../../lib/sanity";
 import { fetchPublishingArtistPage } from "../../../../lib/sanity/queries";
 import Pagination from "../../../components/publishing-artist-pagination";
-import WorksTable from "../../../components/publishing-works-table";
+import Tracklist from "../../../components/tracklist";
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -41,9 +41,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
   const artist = await fetchPublishingArtistPage({ slug: slug });
+  artist.works.tracks.map((track) => ({
+    ...track,
+    artists: [artist.name],
+  }));
 
   const url = urlForImage(artist.coverImage).url();
-
   const webpUrl = urlForImage(artist.coverImage).format("webp").url();
 
   return (
@@ -99,7 +102,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               </h3>
             </div>
 
-            <WorksTable works={artist.works} name={artist.name} />
+            <Tracklist tracks={artist.works} artistName={artist.name} />
           </div>
         )}
       </div>
@@ -117,7 +120,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               </h3>
             </div>
 
-            <WorksTable works={artist.works} name={artist.name} />
+            <Tracklist tracks={artist.works} artistName={artist.name} />
           </div>
         )}
 

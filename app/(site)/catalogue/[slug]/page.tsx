@@ -14,8 +14,8 @@ import {
   ProductCarousel,
   ProductFullBleedScroller,
 } from "../../../components/catalogue-product-carousel";
-import Tracklist from "../../../components/catalogue-tracklist";
 import VariantSelector from "../../../components/catalogue-variant-selector";
+import Tracklist from "../../../components/tracklist";
 
 export async function generateMetadata(
   { params }: { params: { slug: string } },

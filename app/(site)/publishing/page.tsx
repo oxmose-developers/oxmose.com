@@ -13,7 +13,7 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(
-  props: { params: {} },
+  props: { params: Promise<{}> },
   parent: ResolvingMetadata,
 ) {
   const existingMetadata = (await parent) as unknown as Metadata;

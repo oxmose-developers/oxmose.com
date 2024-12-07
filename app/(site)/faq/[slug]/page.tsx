@@ -7,9 +7,10 @@ import { Fragment } from "react";
 import { fetchFaq, fetchFaqs } from "../../../../lib/sanity";
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
+  props: { params: Promise<{ slug: string }> },
   parent: ResolvingMetadata,
 ) {
+  const params = await props.params;
   const existingMetadata = (await parent) as unknown as Metadata;
 
   const { slug } = params;
@@ -29,7 +30,10 @@ export async function generateMetadata(
   } satisfies Metadata;
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const params = await props.params;
   const { slug } = params;
 
   const faqs = await fetchFaqs();

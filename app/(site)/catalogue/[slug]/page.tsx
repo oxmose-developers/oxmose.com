@@ -17,9 +17,10 @@ import VariantSelector from "../../../components/catalogue-variant-selector";
 import Tracklist from "../../../components/tracklist";
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
+  props: { params: Promise<{ slug: string }> },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
+  const params = await props.params;
   const existingMetadata = (await parent) as unknown as Metadata;
 
   const { slug } = params;
@@ -42,7 +43,10 @@ export async function generateMetadata(
   };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const params = await props.params;
   const { slug } = params;
 
   const release = await fetchReleasePage({ slug });

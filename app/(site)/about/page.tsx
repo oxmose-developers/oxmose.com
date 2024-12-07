@@ -7,7 +7,7 @@ import CreditArticle from "../../components/about-credit-article";
 import teamPhoto from "./team-photo.webp";
 
 export async function generateMetadata(
-  props: { params: {} },
+  props: { params: Promise<{}> },
   parent: ResolvingMetadata,
 ) {
   const existingMetadata = (await parent) as unknown as Metadata;

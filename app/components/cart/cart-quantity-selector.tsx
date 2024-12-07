@@ -1,5 +1,6 @@
+"use client";
+
 import { useActionState } from "react";
-("use client");
 
 import { updateItemQuantity } from "./actions";
 import type { CartLineItem } from "./cart-element";

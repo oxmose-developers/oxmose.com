@@ -1,6 +1,6 @@
-import { useActionState } from "react";
-("use client");
+"use client";
 
+import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
 import type { ProductVariant } from "../../lib/shopify/types";

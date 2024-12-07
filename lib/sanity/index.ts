@@ -3,3 +3,4 @@ export * from "./config";
 export * from "./groq";
 export * from "./image";
 export * from "./queries";
+export * from "./file";

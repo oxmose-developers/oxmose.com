@@ -4,7 +4,7 @@ import { fetchArtists } from "../../../lib/sanity";
 import ArtistRow from "../../components/artist-row";
 
 export async function generateMetadata(
-  props: { params: Promise<{}> },
+  props: { params: {} },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const existingMetadata = (await parent) as unknown as Metadata;

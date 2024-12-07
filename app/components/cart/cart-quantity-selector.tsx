@@ -1,11 +1,12 @@
-import { useActionState } from "react";
-("use client");
+"use client";
+
+import { useFormState } from "react-dom";
 
 import { updateItemQuantity } from "./actions";
 import type { CartLineItem } from "./cart-element";
 
 export default function QuantitySelectorItem({ line }: { line: CartLineItem }) {
-  const [message, formAction] = useActionState(updateItemQuantity, null);
+  const [message, formAction] = useFormState(updateItemQuantity, null);
 
   const increaseAction = formAction.bind(null, {
     merchandiseId: line.merchandiseId,

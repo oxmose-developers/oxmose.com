@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useEffect, useState } from "react";
-import { useFormStatus } from "react-dom";
+import { useEffect, useState } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 
 import { subscribeToNewsletter } from "../../lib/actions";
 
@@ -30,10 +30,7 @@ const initialState = { message: "", success: false };
 export default function NewsletterPopover({ offset }: { offset: number }) {
   const [isOpen, isOpenSet] = useState(false);
 
-  const [state, formAction] = useActionState(
-    subscribeToNewsletter,
-    initialState,
-  );
+  const [state, formAction] = useFormState(subscribeToNewsletter, initialState);
 
   useEffect(() => {
     if (state.success) {

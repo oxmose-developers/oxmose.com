@@ -11,10 +11,9 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(
-  props: { params: Promise<{ slug: string }> },
+  { params }: { params: { slug: string } },
   parent: ResolvingMetadata,
 ) {
-  const params = await props.params;
   const existingMetadata = (await parent) as unknown as Metadata;
 
   const { slug } = params;
@@ -37,10 +36,7 @@ export async function generateMetadata(
   } satisfies Metadata;
 }
 
-export default async function Page(props: {
-  params: Promise<{ slug: string }>;
-}) {
-  const params = await props.params;
+export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
   const artist = await fetchPublishingArtistPage({ slug: slug });

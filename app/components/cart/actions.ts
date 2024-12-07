@@ -22,7 +22,7 @@ export async function addItem(
     activeProductFormat: "Digital" | "Vinyl";
   },
 ) {
-  let cartId = (await cookies()).get("cartId")?.value;
+  let cartId = cookies().get("cartId")?.value;
   let cart;
 
   if (cartId) {
@@ -32,7 +32,7 @@ export async function addItem(
   if (!cartId || !cart) {
     cart = await createCart();
     cartId = cart.id;
-    (await cookies()).set("cartId", cartId as string);
+    cookies().set("cartId", cartId as string);
   }
 
   if (!selectedVariantId) {
@@ -61,7 +61,7 @@ export async function addItem(
 }
 
 export async function removeItem(prevState: any, merchandiseId: string) {
-  const cartId = (await cookies()).get("cartId")?.value;
+  const cartId = cookies().get("cartId")?.value;
 
   if (!cartId) {
     return "Missing cart ID";
@@ -100,7 +100,7 @@ export async function updateItemQuantity(
     quantity: number;
   },
 ) {
-  const cartId = (await cookies()).get("cartId")?.value;
+  const cartId = cookies().get("cartId")?.value;
 
   if (!cartId) {
     return "Missing cart ID";

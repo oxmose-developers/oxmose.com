@@ -1,5 +1,6 @@
-import { useActionState } from "react";
-("use client");
+"use client";
+
+import { useFormState } from "react-dom";
 
 import { removeItem } from "./actions";
 
@@ -8,7 +9,7 @@ export default function RemoveItem({
 }: {
   merchandiseId: string;
 }) {
-  const [message, formAction] = useActionState(removeItem, null);
+  const [message, formAction] = useFormState(removeItem, null);
 
   const actionWithVariant = formAction.bind(null, merchandiseId);
 

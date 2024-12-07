@@ -1,7 +1,6 @@
-import { useActionState } from "react";
-("use client");
+"use client";
 
-import { useFormStatus } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 
 import type { ProductVariant } from "../../lib/shopify/types";
 import { addItem } from "./cart/actions";
@@ -39,7 +38,7 @@ export default function AddToCart({
   availableForSale: boolean;
   activeProductFormat: "Digital" | "Vinyl";
 }) {
-  const [message, formAction] = useActionState(addItem, null);
+  const [message, formAction] = useFormState(addItem, null);
 
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
 

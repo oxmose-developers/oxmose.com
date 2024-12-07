@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    font-size: clamp(0.75rem, 0.4773rem + 0.4545vw, 1rem);
+  }
+
   body {
     @apply min-h-screen bg-white dark:bg-black;
   }

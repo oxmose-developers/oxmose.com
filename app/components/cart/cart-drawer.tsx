@@ -26,7 +26,7 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
         <span>{`Cart (${cart.lines.map((line) => line.quantity).reduce((a, b) => a + b, 0)})`}</span>
       </button>
 
-      <Dialog open={open} onClose={setOpen} className="relative z-10">
+      <Dialog open={open} onClose={setOpen} className="relative z-50">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-black/75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"

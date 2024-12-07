@@ -173,7 +173,7 @@ export default function Player() {
   if (hasAtLeast(state.playlist, 1)) {
     if (isOpen) {
       return (
-        <div className="fixed inset-x-0 bottom-0 z-50">
+        <div className="fixed inset-x-0 bottom-0 z-40">
           {isPlaylistOpen && <PlayerPlaylist />}
 
           <div className="flex h-[4.5rem] items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white">
@@ -218,7 +218,7 @@ export default function Player() {
     return (
       <button
         onClick={() => isOpenSet(true)}
-        className="fixed bottom-0 right-0 flex size-[4.5rem] items-center justify-center border-hairline border-b-0 border-r-0 border-white/40 bg-black text-white"
+        className="fixed bottom-0 right-0 z-40 flex size-[4.5rem] items-center justify-center border-hairline border-b-0 border-r-0 border-white/40 bg-black text-white"
       >
         <Image
           alt="Play"

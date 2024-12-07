@@ -114,11 +114,11 @@ export default function RootLayout({
 
           <main className="flex flex-1 flex-col">{children}</main>
 
+          <Footer fullYear={fullYear} />
+
           <Suspense>
             <Cart />
           </Suspense>
-
-          <Footer fullYear={fullYear} />
 
           <ClientOnly>
             <Player />

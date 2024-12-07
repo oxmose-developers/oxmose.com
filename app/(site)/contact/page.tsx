@@ -4,7 +4,7 @@ import { PortableText } from "next-sanity";
 import { fetchContactPage } from "../../../lib/sanity";
 
 export async function generateMetadata(
-  props: { params: {} },
+  props: { params: Promise<{}> },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const existingMetadata = (await parent) as unknown as Metadata;

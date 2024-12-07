@@ -18,7 +18,7 @@ export type CartLineItem = {
 };
 
 export default async function Cart() {
-  const cartId = cookies().get("cartId")?.value;
+  const cartId = (await cookies()).get("cartId")?.value;
   let cart;
 
   if (cartId) {

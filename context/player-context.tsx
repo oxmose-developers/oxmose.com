@@ -139,7 +139,7 @@ function playerReducer(state: PlayerState, action: PlayerAction): PlayerState {
 interface PlayerContextType {
   state: PlayerState;
   dispatch: React.Dispatch<PlayerAction>;
-  audioRef: React.RefObject<HTMLAudioElement>;
+  audioRef: React.RefObject<HTMLAudioElement | null>;
 }
 
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined);

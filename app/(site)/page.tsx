@@ -5,7 +5,7 @@ import styles from "../../styles/catalogue.module.css";
 import CatalogueCard from "../components/catalogue-card";
 
 export async function generateMetadata(
-  props: { params: {} },
+  props: { params: Promise<{}> },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const existingMetadata = (await parent) as unknown as Metadata;

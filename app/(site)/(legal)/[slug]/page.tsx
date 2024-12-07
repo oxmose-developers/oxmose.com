@@ -5,9 +5,10 @@ import { fetchLegalPage } from "../../../../lib/sanity";
 import Prose from "../../../components/legal-prose";
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
+  props: { params: Promise<{ slug: string }> },
   parent: ResolvingMetadata,
 ) {
+  const params = await props.params;
   const existingMetadata = (await parent) as unknown as Metadata;
 
   const { slug } = params;
@@ -31,7 +32,10 @@ export async function generateMetadata(
   } satisfies Metadata;
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const params = await props.params;
   const { slug } = params;
 
   const page = await fetchLegalPage({ slug });

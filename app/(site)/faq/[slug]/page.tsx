@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
-import { fetchFaq, fetchFaqs } from "../../../../lib/sanity/queries";
+import { fetchFaq, fetchFaqs } from "../../../../lib/sanity";
 
 export async function generateMetadata(
   { params }: { params: { slug: string } },

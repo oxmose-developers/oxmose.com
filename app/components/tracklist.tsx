@@ -7,7 +7,7 @@ import {
   tracksToPlaylist,
   usePlayerActions,
 } from "../../context/player-context";
-import type { TrackList } from "../../lib/sanity/groq";
+import type { TrackList } from "../../lib/sanity";
 
 export default function Tracklist({
   tracks,

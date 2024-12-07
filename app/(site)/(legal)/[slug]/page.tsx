@@ -1,10 +1,7 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import { PortableText } from "next-sanity";
 
-import {
-  fetchLegalPage,
-  fetchLegalStaticParams,
-} from "../../../../lib/sanity/queries";
+import { fetchLegalPage } from "../../../../lib/sanity";
 import Prose from "../../../components/legal-prose";
 
 export async function generateMetadata(

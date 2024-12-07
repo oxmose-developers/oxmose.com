@@ -1,4 +1,4 @@
-import type { Credits } from "../../lib/sanity/groq";
+import type { Credits } from "../../lib/sanity";
 
 export default function CreditArticle({ credit }: { credit: Credits }) {
   const joinHtmlString = `<span class="hidden lg:inline">, </span><br class="lg:hidden" />`;

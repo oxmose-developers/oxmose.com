@@ -2,7 +2,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
-import { fetchAboutPage } from "../../../lib/sanity/queries";
+import { fetchAboutPage } from "../../../lib/sanity";
 import CreditArticle from "../../components/about-credit-article";
 import teamPhoto from "./team-photo.webp";
 

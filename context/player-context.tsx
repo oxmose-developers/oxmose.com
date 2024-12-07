@@ -10,8 +10,8 @@ import type { File as SanityFile } from "sanity";
 import { useInterval } from "usehooks-ts";
 
 import { useEvent } from "../hooks/use-event";
-import { urlForFile } from "../lib/sanity/file";
-import type { Track as SanityTrack } from "../lib/sanity/groq";
+import { urlForFile } from "../lib/sanity";
+import type { Track as SanityTrack } from "../lib/sanity";
 
 export function tracksToPlaylist(
   tracks: SanityTrack[],

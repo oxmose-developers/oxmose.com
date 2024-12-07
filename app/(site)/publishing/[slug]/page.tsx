@@ -2,8 +2,7 @@ import type { Metadata, ResolvingMetadata, Viewport } from "next";
 import { PortableText } from "next-sanity";
 import { isEmpty } from "remeda";
 
-import { urlForImage } from "../../../../lib/sanity";
-import { fetchPublishingArtistPage } from "../../../../lib/sanity/queries";
+import { fetchPublishingArtistPage, urlForImage } from "../../../../lib/sanity";
 import Pagination from "../../../components/publishing-artist-pagination";
 import Tracklist from "../../../components/tracklist";
 

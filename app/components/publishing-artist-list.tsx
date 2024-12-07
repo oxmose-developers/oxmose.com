@@ -1,4 +1,4 @@
-import { fetchPublishingArtists } from "../../lib/sanity/queries";
+import { fetchPublishingArtists } from "../../lib/sanity";
 import PublishingArtistRow from "./publishing-artist-row";
 
 export default async function PublishingArtistsList() {

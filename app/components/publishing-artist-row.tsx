@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { PublishingArtist } from "../../lib/sanity/groq";
+import type { PublishingArtist } from "../../lib/sanity";
 
 export default function PublishingArtistRow({
   publishingArtist,

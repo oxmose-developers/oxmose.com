@@ -1,6 +1,6 @@
 import type { Metadata, ResolvingMetadata } from "next";
 
-import { fetchReleases } from "../../lib/sanity/queries";
+import { fetchReleases } from "../../lib/sanity";
 import styles from "../../styles/catalogue.module.css";
 import CatalogueCard from "../components/catalogue-card";
 

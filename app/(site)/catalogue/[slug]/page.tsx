@@ -4,8 +4,7 @@ import Link from "next/link";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
-import { urlForImage } from "../../../../lib/sanity";
-import { fetchReleasePage } from "../../../../lib/sanity/queries";
+import { fetchReleasePage, urlForImage } from "../../../../lib/sanity";
 import { getProduct } from "../../../../lib/shopify";
 import BuyButton from "../../../components/catalogue-buy-button";
 import ListenButton from "../../../components/catalogue-listen-button";

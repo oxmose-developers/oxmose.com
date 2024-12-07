@@ -8,8 +8,8 @@ import {
   tracksToPlaylist,
   usePlayerActions,
 } from "../../context/player-context";
+import type { Release } from "../../lib/sanity";
 import { urlForImage } from "../../lib/sanity";
-import type { Release } from "../../lib/sanity/groq";
 
 export default function CatalogueCard({
   release,

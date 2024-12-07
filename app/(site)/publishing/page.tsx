@@ -4,7 +4,7 @@ import { PortableText } from "next-sanity";
 import { Suspense } from "react";
 
 import { publishingLicenseRequestEmail } from "../../../constants/urls";
-import { fetchPublishingPage } from "../../../lib/sanity/queries";
+import { fetchPublishingPage } from "../../../lib/sanity";
 import PublishingArtistsList from "../../components/publishing-artist-list";
 import PublishingVideo from "../../components/publishing-video";
 

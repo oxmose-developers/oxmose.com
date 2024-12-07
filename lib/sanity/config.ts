@@ -1,7 +1,5 @@
-export { SANITY_API_VERSION, SANITY_DATASET_NAME, SANITY_PROJECT_ID };
+export const SANITY_PROJECT_ID = "5byknxyc";
 
-const SANITY_PROJECT_ID = "5byknxyc";
+export const SANITY_DATASET_NAME = "production";
 
-const SANITY_DATASET_NAME = "production";
-
-const SANITY_API_VERSION = "2023-05-03";
+export const SANITY_API_VERSION = "2023-05-03";

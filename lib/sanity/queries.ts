@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { NEXT_TAGS } from "../../constants/tags";
-import { client } from ".";
+import { sanityFetch } from "./client";
 import {
   AboutQuery,
   ArtistPageQuery,
@@ -20,27 +20,19 @@ import {
   ReleasesStaticParamsQuery,
 } from "./groq";
 
-export const fetchReleases = async () =>
-  client.fetch<ReleasesQuery>(
-    ReleasesQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.RELEASES] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+export const fetchReleases = async () => {
+  return sanityFetch<ReleasesQuery>({
+    query: ReleasesQuery,
+    tags: [NEXT_TAGS.RELEASES],
+  });
+};
 
 export const fetchReleasePage = async ({ slug }: { slug: string }) => {
-  const data = await client.fetch<ReleasePageQuery>(
-    ReleasePageQuery,
-    { slug },
-    {
-      next: { tags: [slug] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+  const data = await sanityFetch<ReleasePageQuery>({
+    query: ReleasePageQuery,
+    params: { slug },
+    tags: [slug],
+  });
 
   if (!data) {
     return notFound();
@@ -49,63 +41,40 @@ export const fetchReleasePage = async ({ slug }: { slug: string }) => {
   return data;
 };
 
-export const fetchReleasesStaticParams = async () =>
-  client.fetch<ReleasesStaticParamsQuery>(
-    ReleasesStaticParamsQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.RELEASES_STATIC_PARAMS] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+export const fetchReleasesStaticParams = async () => {
+  return sanityFetch<ReleasesStaticParamsQuery>({
+    query: ReleasesStaticParamsQuery,
+    tags: [NEXT_TAGS.RELEASES_STATIC_PARAMS],
+  });
+};
 
 export const fetchPublishingPage = async () => {
-  return client.fetch<PublishingQuery>(
-    PublishingQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.PUBLISHING] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+  return sanityFetch<PublishingQuery>({
+    query: PublishingQuery,
+    tags: [NEXT_TAGS.PUBLISHING],
+  });
 };
 
 export const fetchPublishingArtists = async () => {
-  return client.fetch<PublishingArtistsQuery>(
-    PublishingArtistsQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.PUBLISHING_ARTISTS] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+  return sanityFetch<PublishingArtistsQuery>({
+    query: PublishingArtistsQuery,
+    tags: [NEXT_TAGS.PUBLISHING_ARTISTS],
+  });
 };
 
 export const fetchPublishingArtistsStaticParams = async () => {
-  return client.fetch<PublishingArtistsStaticParamsQuery>(
-    PublishingArtistsStaticParamsQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.PUBLISHING_ARTISTS_STATIC_PARAMS] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+  return sanityFetch<PublishingArtistsStaticParamsQuery>({
+    query: PublishingArtistsStaticParamsQuery,
+    tags: [NEXT_TAGS.PUBLISHING_ARTISTS_STATIC_PARAMS],
+  });
 };
 
 export const fetchPublishingArtistPage = async ({ slug }: { slug: string }) => {
-  const data = await client.fetch<PublishingArtistPageQuery>(
-    PublishingArtistPageQuery,
-    { slug },
-    {
-      next: { tags: [slug] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+  const data = await sanityFetch<PublishingArtistPageQuery>({
+    query: PublishingArtistPageQuery,
+    params: { slug },
+    tags: [slug],
+  });
 
   if (!data) {
     return notFound();
@@ -114,27 +83,19 @@ export const fetchPublishingArtistPage = async ({ slug }: { slug: string }) => {
   return data;
 };
 
-export const fetchLegalStaticParams = async () =>
-  client.fetch<LegalStaticParamsQuery>(
-    LegalStaticParamsQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.LEGAL_STATIC_PARAMS] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+export const fetchLegalStaticParams = async () => {
+  return sanityFetch<LegalStaticParamsQuery>({
+    query: LegalStaticParamsQuery,
+    tags: [NEXT_TAGS.LEGAL_STATIC_PARAMS],
+  });
+};
 
 export const fetchLegalPage = async ({ slug }: { slug: string }) => {
-  const data = await client.fetch<LegalPageQuery>(
-    LegalPageQuery,
-    { slug },
-    {
-      next: { tags: [slug] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+  const data = await sanityFetch<LegalPageQuery>({
+    query: LegalPageQuery,
+    params: { slug },
+    tags: [slug],
+  });
 
   if (!data) {
     return notFound();
@@ -143,20 +104,15 @@ export const fetchLegalPage = async ({ slug }: { slug: string }) => {
   return data;
 };
 
-export const fetchFaqs = async () =>
-  client.fetch<FAQsQuery>(
-    FAQsQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.FAQ] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+export const fetchFaqs = async () => {
+  return sanityFetch<FAQsQuery>({
+    query: FAQsQuery,
+    tags: [NEXT_TAGS.FAQ],
+  });
+};
 
 export const fetchFaq = async ({ slug }: { slug: string }) => {
   const faqs = await fetchFaqs();
-
   const faq = faqs.find((el) => el.slug.current === slug);
 
   if (!faq) {
@@ -166,49 +122,33 @@ export const fetchFaq = async ({ slug }: { slug: string }) => {
   return faq;
 };
 
-export const fetchContactPage = async () =>
-  client.fetch<ContactQuery>(
-    ContactQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.CONTACT] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+export const fetchContactPage = async () => {
+  return sanityFetch<ContactQuery>({
+    query: ContactQuery,
+    tags: [NEXT_TAGS.CONTACT],
+  });
+};
 
-export const fetchArtists = async () =>
-  client.fetch<ArtistsQuery>(
-    ArtistsQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.ARTISTS] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+export const fetchArtists = async () => {
+  return sanityFetch<ArtistsQuery>({
+    query: ArtistsQuery,
+    tags: [NEXT_TAGS.ARTISTS],
+  });
+};
 
-export const fetchArtistsStaticParams = async () =>
-  client.fetch<ArtistsStaticParamsQuery>(
-    ArtistsStaticParamsQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.ARTISTS_STATIC_PARAMS] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+export const fetchArtistsStaticParams = async () => {
+  return sanityFetch<ArtistsStaticParamsQuery>({
+    query: ArtistsStaticParamsQuery,
+    tags: [NEXT_TAGS.ARTISTS_STATIC_PARAMS],
+  });
+};
 
 export const fetchArtistPage = async ({ slug }: { slug: string }) => {
-  const data = await client.fetch<ArtistPageQuery>(
-    ArtistPageQuery,
-    { slug },
-    {
-      next: { tags: [slug] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+  const data = await sanityFetch<ArtistPageQuery>({
+    query: ArtistPageQuery,
+    params: { slug },
+    tags: [slug],
+  });
 
   if (!data) {
     return notFound();
@@ -217,13 +157,9 @@ export const fetchArtistPage = async ({ slug }: { slug: string }) => {
   return data;
 };
 
-export const fetchAboutPage = async () =>
-  client.fetch<AboutQuery>(
-    AboutQuery,
-    {},
-    {
-      next: { tags: [NEXT_TAGS.ABOUT] },
-      cache:
-        process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
-    },
-  );
+export const fetchAboutPage = async () => {
+  return sanityFetch<AboutQuery>({
+    query: AboutQuery,
+    tags: [NEXT_TAGS.ABOUT],
+  });
+};

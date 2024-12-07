@@ -48,7 +48,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         className="px-9 lg:border-b lg:border-black lg:px-10"
         style={{ gridArea: "name" }}
       >
-        <h1 className="text-oxe-xxl-mobile/[60px] lg:text-oxe-xxl/[96px]">
+        <h1 className="text-oxe-xxl-mobile/[3.75rem] lg:text-oxe-xxl/[6rem]">
           {artist.name}
         </h1>
       </div>
@@ -93,9 +93,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
       >
         <div className="flex flex-1 items-start lg:flex-col">
           <div className="flex items-center gap-1.5 lg:gap-4">
-            <div className="-mt-[3px] size-4 rounded-full border border-black bg-black lg:size-5"></div>
+            <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-black lg:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+            <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
               Release
             </h3>
           </div>
@@ -104,7 +104,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             {[...(artist?.releases ?? [])].map((release) => (
               <li key={`${artist.slug}-${release.slug.current}`}>
                 <Link href={`/catalogue/${release.slug.current}`}>
-                  <article className="text-right text-oxe-xs lg:text-left lg:text-oxe-sm/[32px]">
+                  <article className="text-right text-oxe-xs lg:text-left lg:text-oxe-sm/[2rem]">
                     <header>
                       <h3>{release.title}</h3>
                       <p>{release.releaseReference}</p>
@@ -124,14 +124,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
         <div className="flex items-start lg:flex-col">
           <div className="flex items-center gap-1.5 lg:gap-4">
-            <div className="-mt-[3px] size-4 rounded-full border border-black bg-white lg:size-5"></div>
+            <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-white lg:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+            <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
               More
             </h3>
           </div>
 
-          <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
+          <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[2rem]">
             {[...(artist?.links ?? [])].map((link) => (
               <li key={link._key}>
                 <a href={link.href}>{link.name}</a>

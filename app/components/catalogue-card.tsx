@@ -32,7 +32,7 @@ export default function CatalogueCard({
         className,
       )}
     >
-      <div className="flex flex-1 flex-col-reverse @xl:grid @xl:grid-cols-[minmax(11rem,1fr)_minmax(0,655px)] @xl:gap-x-8 @xl:gap-y-24 @xl:p-9">
+      <div className="flex flex-1 flex-col-reverse @xl:grid @xl:grid-cols-[minmax(11rem,1fr)_minmax(0,40.9375rem)] @xl:gap-x-8 @xl:gap-y-24 @xl:p-9">
         <header className="col-span-full hidden shrink-0 @xl:block">
           <h2 className="text-oxe-xxl font-medium">{release.title}</h2>
         </header>
@@ -50,7 +50,7 @@ export default function CatalogueCard({
           </p>
         </div>
 
-        <div className="relative aspect-square w-full @xl:max-w-[655px]">
+        <div className="relative aspect-square w-full @xl:max-w-[40.9375rem]">
           <Link href={link}>
             <Image
               loading="lazy"

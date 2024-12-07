@@ -54,7 +54,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
       <ul className="hidden flex-1 divide-y divide-black lg:block">
         {categories.map((el) => (
-          <li key={el._id} className="px-10 text-oxe-xxl/[96px] last:!border-b">
+          <li key={el._id} className="px-10 text-oxe-xxl/[6rem] last:!border-b">
             <Link href={`/faq/${el.slug.current}`}>{el.category}</Link>
           </li>
         ))}
@@ -64,7 +64,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {categories.map((el, idx) => (
           <Fragment key={`${el._id}-${idx}-category`}>
             <Link
-              className="block w-full px-9 text-left text-oxe-xxl-mobile/[60px] lg:hidden"
+              className="block w-full px-9 text-left text-oxe-xxl-mobile/[3.75rem] lg:hidden"
               href={`/faq/${el.slug.current}`}
             >
               {el.category}

@@ -38,7 +38,7 @@ export default async function Page() {
       <h1 hidden>{`${page.title} | Oxmose`}</h1>
 
       <section className="about-page-section flex items-center border-b border-black p-9 lg:p-10">
-        <div className="text-oxe-md lg:text-oxe-xxl/[85px]">
+        <div className="text-oxe-md lg:text-oxe-xxl/[5.3125rem]">
           <PortableText value={page.part1} />
         </div>
       </section>
@@ -58,7 +58,7 @@ export default async function Page() {
       </section>
 
       <section className="about-page-section flex items-center border-b border-black p-9 lg:p-10">
-        <div className="text-oxe-md lg:text-oxe-xxl/[85px]">
+        <div className="text-oxe-md lg:text-oxe-xxl/[5.3125rem]">
           <PortableText value={page.part3} />
         </div>
       </section>
@@ -78,7 +78,7 @@ export default async function Page() {
       </section>
 
       <section className="about-page-section flex items-center border-b border-black p-9 lg:p-10">
-        <div className="text-oxe-md lg:text-oxe-xxl/[85px]">
+        <div className="text-oxe-md lg:text-oxe-xxl/[5.3125rem]">
           <PortableText value={page.part5} />
         </div>
       </section>

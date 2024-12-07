@@ -97,7 +97,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               {release.title}
             </p>
 
-            <p className="text-oxe-sm/[32px] lg:self-end lg:text-right lg:text-oxe-lg lg:font-medium">
+            <p className="text-oxe-sm/[2rem] lg:self-end lg:text-right lg:text-oxe-lg lg:font-medium">
               {release.artist.map((artist, idx, artists) => (
                 <Fragment key={artist.slug.current}>
                   <Link href={`/artists/${artist.slug.current}`}>
@@ -130,11 +130,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
             )}
 
             <div className="flex items-start">
-              <h3 className="text-[35px]/[32px] font-medium uppercase">
+              <h3 className="text-[2.1875rem]/[2rem] font-medium uppercase">
                 Stream
               </h3>
 
-              <ul className="ml-auto text-right text-oxe-md/[32px]">
+              <ul className="ml-auto text-right text-oxe-md/[2rem]">
                 {[...(release?.links ?? [])].map((link) => (
                   <li key={link._key}>
                     <a href={link.href}>{link.name}</a>
@@ -194,7 +194,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <div className="mb-5">
             <p className="text-oxe-md font-medium">{release.title}</p>
 
-            <p className="text-oxe-sm/[32px]">
+            <p className="text-oxe-sm/[2rem]">
               {release.artist.map((artist, idx, artists) => (
                 <Fragment key={artist.slug.current}>
                   <Link href={`/artists/${artist.slug.current}`}>
@@ -227,11 +227,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           {/* Stream Links */}
           <div className="mt-5 flex items-start">
-            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+            <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
               Stream
             </h3>
 
-            <ul className="ml-auto text-right text-oxe-xs lg:text-left lg:text-oxe-sm/[32px]">
+            <ul className="ml-auto text-right text-oxe-xs lg:text-left lg:text-oxe-sm/[2rem]">
               {[...(release?.links ?? [])].map((link) => (
                 <li key={link._key}>
                   <a href={link.href}>{link.name}</a>

@@ -19,7 +19,7 @@ export default function FollowPopover({ offset }: { offset: number }) {
 
       {isOpen && (
         <div
-          className="absolute bottom-[var(--offset)] left-0 right-0 z-50 flex w-full items-start gap-4 border-t border-black bg-white px-9 py-3 text-black lg:min-h-[3.75rem] lg:items-center lg:py-[13px] lg:pl-10"
+          className="absolute bottom-[var(--offset)] left-0 right-0 z-50 flex w-full items-start gap-4 border-t border-black bg-white px-9 py-3 text-black lg:min-h-[3.75rem] lg:items-center lg:py-[0.8125rem] lg:pl-10"
           style={{ "--offset": `${offset}px` } as React.CSSProperties}
         >
           <div className="flex flex-wrap gap-4 lg:gap-10">

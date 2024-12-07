@@ -52,7 +52,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         className="px-9 lg:border-b lg:border-black lg:px-10 lg:dark:border-white"
         style={{ gridArea: "name" }}
       >
-        <h1 className="text-oxe-xxl-mobile/[60px] lg:text-oxe-xxl/[96px]">
+        <h1 className="text-oxe-xxl-mobile/[3.75rem] lg:text-oxe-xxl/[6rem]">
           {artist.name}
         </h1>
       </div>
@@ -94,7 +94,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {!!artist.works && artist.works.tracks.length > 0 && (
           <div className="-mx-9 block pt-7 lg:hidden">
             <div className="mb-3 pl-9">
-              <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+              <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
                 Works
               </h3>
             </div>
@@ -112,7 +112,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {!!artist.works && artist.works.tracks.length > 0 && (
           <div className="-mx-10 hidden lg:block">
             <div className="mb-6 pl-9">
-              <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+              <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
                 Works
               </h3>
             </div>
@@ -124,14 +124,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {!isEmpty([...(artist?.projects ?? [])]) && (
           <div className="flex flex-1 items-start lg:flex-col">
             <div className="flex items-center gap-1.5 lg:gap-4">
-              <div className="-mt-[3px] size-4 rounded-full border border-black bg-white dark:border-white lg:size-5"></div>
+              <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-white dark:border-white lg:size-5"></div>
 
-              <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+              <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
                 Projects
               </h3>
             </div>
 
-            <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
+            <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[2rem]">
               {artist.projects.map((link) => (
                 <li key={link._key}>
                   <a href={link.href}>{link.name}</a>
@@ -143,14 +143,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
         <div className="flex items-start lg:flex-col">
           <div className="flex items-center gap-1.5 lg:gap-4">
-            <div className="-mt-[3px] size-4 rounded-full border border-black bg-black dark:border-white lg:size-5"></div>
+            <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-black dark:border-white lg:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase lg:text-[35px]/[32px]">
+            <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
               More
             </h3>
           </div>
 
-          <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[32px]">
+          <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[2rem]">
             {[...(artist?.links ?? [])].map((link) => (
               <li key={link._key}>
                 <a href={link.href}>{link.name}</a>

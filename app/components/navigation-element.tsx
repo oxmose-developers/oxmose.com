@@ -15,7 +15,7 @@ export default function Navigation() {
   const [open, openSet] = useState(false);
 
   return (
-    <nav className="shrink-0 border-b border-black bg-white pb-[17px] pt-[18px] dark:border-white dark:bg-black lg:py-6">
+    <nav className="shrink-0 border-b border-black bg-white pb-[1.0625rem] pt-[1.125rem] dark:border-white dark:bg-black lg:py-6">
       <div className="max-w-[100rem]">
         <div className="flex items-center px-9 lg:px-10">
           <Link href="/">
@@ -89,7 +89,7 @@ export default function Navigation() {
               <div className="fixed inset-0">
                 {/* The actual dialog panel */}
                 <DialogPanel className="bg-white dark:bg-black">
-                  <div className="pb-[17px] pt-[18px]">
+                  <div className="pb-[1.0625rem] pt-[1.125]">
                     <div className="flex items-center justify-between px-9">
                       <Link href="/">
                         <span className="sr-only">Back to Catalogue</span>

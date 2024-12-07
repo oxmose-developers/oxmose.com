@@ -12,7 +12,7 @@ export function SubmitButton() {
   return (
     <button
       type="submit"
-      className="text-oxe-sm/10 focus:outline-none lg:text-oxe-lg/[62px]"
+      className="text-oxe-sm/10 focus:outline-none lg:text-oxe-lg/[3.875rem]"
       aria-disabled={pending}
       onClick={(e) => {
         if (pending) {
@@ -96,7 +96,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
               autoComplete="email"
               autoCorrect="off"
               required
-              className="form-input h-10 w-full border-0 text-oxe-sm/10 ring-0 placeholder:text-[#7B7878] focus:ring-0 focus:ring-offset-0 lg:h-[62px] lg:text-oxe-lg/[62px]"
+              className="form-input h-10 w-full border-0 text-oxe-sm/10 ring-0 placeholder:text-[#7B7878] focus:ring-0 focus:ring-offset-0 lg:h-[3.875rem] lg:text-oxe-lg/[3.875rem]"
               type="email"
               placeholder="Email"
               name="email"
@@ -114,7 +114,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
 
               <label
                 htmlFor="newsletter-privacy-policy"
-                className="text-oxe-sm/10 lg:whitespace-nowrap lg:text-oxe-lg/[62px]"
+                className="text-oxe-sm/10 lg:whitespace-nowrap lg:text-oxe-lg/[3.875rem]"
               >
                 I accept the{" "}
                 <Link href="/privacy-policy" className="underline">

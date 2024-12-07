@@ -70,14 +70,14 @@ export default function VariantSelector({
                 <div className="flex items-center gap-1.5 lg:gap-4">
                   <div
                     className={clsx(
-                      "-mt-[3px] size-4 rounded-full border lg:size-5",
+                      "-mt-[0.1875rem] size-4 rounded-full border lg:size-5",
                       isActive
                         ? "border-black bg-black"
                         : "border-black bg-white group-hover:bg-black",
                     )}
                   ></div>
 
-                  <p className="text-oxe-sm/5 font-medium uppercase lg:text-[35px]/[32px]">
+                  <p className="text-oxe-sm/5 font-medium uppercase lg:text-[2.1875rem]/[2rem]">
                     {type}
                   </p>
                 </div>
@@ -88,7 +88,7 @@ export default function VariantSelector({
               </div>
 
               <Price
-                className="ml-auto text-oxe-sm/5 font-medium uppercase lg:text-[35px]/[32px]"
+                className="ml-auto text-oxe-sm/5 font-medium uppercase lg:text-[2.1875rem]/[2rem]"
                 amount={product.priceRange.maxVariantPrice.amount}
                 currencyCode={product.priceRange.maxVariantPrice.currencyCode}
                 hideCurrencyCode

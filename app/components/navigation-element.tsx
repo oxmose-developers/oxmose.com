@@ -89,7 +89,7 @@ export default function Navigation() {
               <div className="fixed inset-0">
                 {/* The actual dialog panel */}
                 <DialogPanel className="bg-white dark:bg-black">
-                  <div className="pb-[1.0625rem] pt-[1.125]">
+                  <div className="pb-[1.0625rem] pt-[1.125rem]">
                     <div className="flex items-center justify-between px-9">
                       <Link href="/">
                         <span className="sr-only">Back to Catalogue</span>

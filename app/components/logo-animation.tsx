@@ -6,6 +6,14 @@ import type DotLottiePlayer from "@aarsteinmedia/dotlottie-player-light";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "dotlottie-player": DotLottiePlayer;
+    }
+  }
+}
+
 export default function OxmoseLogoAnimation() {
   const animation = useRef<DotLottiePlayer | null>(null);
 

@@ -135,6 +135,14 @@ function PlayerPlaylist() {
   return (
     <div className="max-h-[calc(100svh/2)] overflow-y-scroll border-t-hairline border-white/40 bg-black text-white">
       <div className="grid divide-y-hairline divide-white/40">
+        <div className="relative grid grid-cols-2 gap-x-5 px-5 py-1.5 text-[1.375rem] lg:grid-cols-3">
+          <div className="hidden uppercase lg:block">Track</div>
+          <div className="uppercase">Title</div>
+          <div className="place-self-end uppercase lg:place-self-start">
+            Artist
+          </div>
+        </div>
+
         {state.playlist.map((track, index) => (
           <div
             key={track.title}
@@ -166,12 +174,11 @@ function PlayerPlaylist() {
 export default function Player() {
   const { state } = usePlayer();
 
-  const [isOpen, isOpenSet] = useState(true);
-
+  const [isPlayerOpen, isPlayerOpenSet] = useState(true);
   const [isPlaylistOpen, isPlaylistOpenSet] = useState(false);
 
   if (hasAtLeast(state.playlist, 1)) {
-    if (isOpen) {
+    if (isPlayerOpen) {
       return (
         <div className="fixed inset-x-0 bottom-0 z-40">
           {isPlaylistOpen && <PlayerPlaylist />}
@@ -198,7 +205,7 @@ export default function Player() {
             </button>
 
             <button
-              onClick={() => isOpenSet(false)}
+              onClick={() => isPlayerOpenSet(false)}
               className="flex size-[4.5rem] items-center justify-center"
             >
               <Image
@@ -217,7 +224,7 @@ export default function Player() {
 
     return (
       <button
-        onClick={() => isOpenSet(true)}
+        onClick={() => isPlayerOpenSet(true)}
         className="fixed bottom-0 right-0 z-40 flex size-[4.5rem] items-center justify-center border-hairline border-b-0 border-r-0 border-white/40 bg-black text-white"
       >
         <Image

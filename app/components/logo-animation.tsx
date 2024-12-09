@@ -6,14 +6,6 @@ import type DotLottiePlayer from "@aarsteinmedia/dotlottie-player-light";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "dotlottie-player": DotLottiePlayer;
-    }
-  }
-}
-
 export default function OxmoseLogoAnimation() {
   const animation = useRef<DotLottiePlayer | null>(null);
 
@@ -43,6 +35,7 @@ export default function OxmoseLogoAnimation() {
   }, [pathname]);
 
   return (
+    // @ts-expect-error something wrong with types pulled from the package
     <dotlottie-player
       ref={animation}
       src="/V04_front_page_v01_192.lottie"

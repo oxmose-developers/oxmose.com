@@ -13,7 +13,7 @@ import releaseDate from "./objects/releaseDate";
 import track from "./objects/track";
 import trackList from "./objects/trackList";
 import twoColumn from "./objects/twoColumn";
-import publishingArtist from "./publishingArtist";
+import publishingArtist from "./publishing-artist";
 import release from "./release";
 import about from "./singletons/about";
 import contact from "./singletons/contact";

@@ -285,7 +285,12 @@ export type PublishingArtist = {
   slug: Slug;
   overview: string;
   links: Link[];
-  projects: Link[];
+  projects: {
+    _key: string;
+    _type: "link";
+    name: string;
+    href?: string;
+  }[];
   _createdAt: string;
   _type: "publishingArtist";
   works: TrackList;

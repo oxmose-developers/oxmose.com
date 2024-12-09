@@ -37,7 +37,27 @@ export default defineType({
       type: "array",
       of: [
         defineArrayMember({
-          type: "link",
+          name: "link",
+          title: "Link",
+          type: "object",
+          fields: [
+            defineField({
+              type: "string",
+              name: "name",
+              title: "Name",
+              validation: (Rule) => [Rule.required()],
+            }),
+            defineField({
+              type: "url",
+              name: "href",
+              title: "URL",
+              validation: (Rule) => [
+                Rule.uri({
+                  scheme: ["http", "https", "mailto", "tel"],
+                }),
+              ],
+            }),
+          ],
         }),
       ],
     }),

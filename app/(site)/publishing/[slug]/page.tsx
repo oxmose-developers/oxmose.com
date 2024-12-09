@@ -1,6 +1,6 @@
 import type { Metadata, ResolvingMetadata, Viewport } from "next";
 import { PortableText } from "next-sanity";
-import { isEmpty } from "remeda";
+import { hasAtLeast } from "remeda";
 
 import { fetchPublishingArtistPage, urlForImage } from "../../../../lib/sanity";
 import Pagination from "../../../components/publishing-artist-pagination";
@@ -97,7 +97,7 @@ export default async function Page(props: {
         </div>
 
         {/* Mobile Only Table */}
-        {!!artist.works && artist.works.tracks.length > 0 && (
+        {!!artist?.works && hasAtLeast(artist.works.tracks, 1) && (
           <div className="-mx-9 block pt-7 lg:hidden">
             <div className="mb-3 pl-9">
               <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
@@ -115,7 +115,7 @@ export default async function Page(props: {
         style={{ gridArea: "info" }}
       >
         {/* Desktop Only Table */}
-        {!!artist.works && artist.works.tracks.length > 0 && (
+        {!!artist?.works && hasAtLeast(artist.works.tracks, 1) && (
           <div className="-mx-10 hidden lg:block">
             <div className="mb-6 pl-9">
               <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
@@ -127,7 +127,7 @@ export default async function Page(props: {
           </div>
         )}
 
-        {!isEmpty([...(artist?.projects ?? [])]) && (
+        {!!artist?.projects && hasAtLeast(artist.projects, 1) && (
           <div className="flex flex-1 items-start lg:flex-col">
             <div className="flex items-center gap-1.5 lg:gap-4">
               <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-white dark:border-white lg:size-5"></div>
@@ -140,7 +140,11 @@ export default async function Page(props: {
             <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[2rem]">
               {artist.projects.map((link) => (
                 <li key={link._key}>
-                  <a href={link.href}>{link.name}</a>
+                  {link.href ? (
+                    <a href={link.href}>{link.name}</a>
+                  ) : (
+                    <span>{link.name}</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -157,11 +161,13 @@ export default async function Page(props: {
           </div>
 
           <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[2rem]">
-            {[...(artist?.links ?? [])].map((link) => (
-              <li key={link._key}>
-                <a href={link.href}>{link.name}</a>
-              </li>
-            ))}
+            {!!artist?.links &&
+              hasAtLeast(artist.links, 1) &&
+              artist.links.map((link) => (
+                <li key={link._key}>
+                  <a href={link.href}>{link.name}</a>
+                </li>
+              ))}
           </ul>
         </div>
       </div>

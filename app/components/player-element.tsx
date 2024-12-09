@@ -136,7 +136,7 @@ function PlayerPlaylist() {
     <div className="max-h-[calc(100svh/2)] overflow-y-scroll border-t-hairline border-white/40 bg-black text-white">
       <div className="grid divide-y-hairline divide-white/40">
         <div className="relative grid grid-cols-2 gap-x-5 px-5 py-1.5 text-[1.375rem] lg:grid-cols-3">
-          <div className="hidden uppercase lg:block">Track</div>
+          <div className="hidden uppercase lg:block">#</div>
           <div className="uppercase">Title</div>
           <div className="place-self-end uppercase lg:place-self-start">
             Artist

@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-size: clamp(0.875rem, 0.4773rem + 0.4545vw, 1rem);
+  @screen lg {
+    html {
+      font-size: /* 10px, viewport: 1024px -> 16px, viewport: 1920px */ clamp(
+        0.625rem,
+        0.196rem + 0.67vw,
+        1rem
+      );
+    }
   }
 
   body {

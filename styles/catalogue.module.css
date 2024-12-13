@@ -2,7 +2,7 @@
   @apply divide-y divide-black;
 }
 
-@screen lg {
+@screen md {
   .releases {
     @apply divide-y-0;
 

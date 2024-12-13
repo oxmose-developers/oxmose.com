@@ -38,6 +38,7 @@ function PlayerControls() {
         onClick={() => controls.previousTrack()}
       >
         <Image
+          className="size-10"
           alt="Previous"
           height={40}
           loading="eager"
@@ -58,7 +59,7 @@ function PlayerControls() {
           priority
           src={pauseIcon}
           width={40}
-          className="hidden data-[playing=true]:block"
+          className="hidden size-10 data-[playing=true]:block"
           data-playing={state.isPlaying}
         />
 
@@ -69,7 +70,7 @@ function PlayerControls() {
           priority
           src={playIcon}
           width={40}
-          className="hidden data-[playing=false]:block"
+          className="hidden size-10 data-[playing=false]:block"
           data-playing={state.isPlaying}
         />
       </button>
@@ -84,7 +85,7 @@ function PlayerControls() {
           loading="eager"
           priority
           src={skipIcon}
-          className="rotate-180"
+          className="size-10 rotate-180"
           width={40}
         />
       </button>
@@ -193,7 +194,7 @@ export default function Player() {
               className="flex size-[4.5rem] items-center justify-center"
             >
               <Image
-                className="data-[playlist-open=true]:opacity-50"
+                className="size-10 data-[playlist-open=true]:opacity-50"
                 alt="Open Playlist"
                 height={40}
                 loading="eager"
@@ -209,6 +210,7 @@ export default function Player() {
               className="flex size-[4.5rem] items-center justify-center"
             >
               <Image
+                className="size-10"
                 alt="Close Player"
                 height={40}
                 loading="eager"

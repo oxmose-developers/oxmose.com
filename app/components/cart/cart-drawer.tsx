@@ -21,7 +21,7 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="fixed bottom-24 right-5 whitespace-nowrap bg-black p-2 px-3 text-oxe-sm font-medium uppercase text-white dark:bg-white dark:text-black"
+        className="fixed bottom-24 right-5 whitespace-nowrap bg-black p-1 px-2 text-oxe-xs font-medium uppercase text-white dark:bg-white dark:text-black md:p-2 md:px-3 md:text-oxe-sm"
       >
         <span>{`Cart (${cart.lines.map((line) => line.quantity).reduce((a, b) => a + b, 0)})`}</span>
       </button>

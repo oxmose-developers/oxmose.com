@@ -83,15 +83,15 @@ export default async function Page() {
         </div>
       </section>
 
-      <section className="relative min-h-svh">
+      <section>
         <Image
+          width={2560}
+          height={1440}
           alt="Team photo"
-          className="object-cover"
-          fill
+          className="aspect-video object-cover"
           loading="lazy"
           placeholder="blur"
           priority={false}
-          quality={100}
           sizes="100vw"
           src={teamPhoto}
         />

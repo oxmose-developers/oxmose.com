@@ -77,6 +77,7 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
                             alt={line.image}
                             width={96}
                             height={96}
+                            priority
                           />
 
                           <div>

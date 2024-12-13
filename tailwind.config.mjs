@@ -10,6 +10,7 @@ const config = {
   ],
   theme: {
     extend: {
+      screens: { xs: "420px" },
       borderWidth: { hairline: "0.5px" },
       colors: {
         oxe: {

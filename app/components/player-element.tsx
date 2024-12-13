@@ -2,10 +2,14 @@
 
 import * as Progress from "@radix-ui/react-progress";
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { hasAtLeast } from "remeda";
 
-import { usePlayer, usePlayerActions } from "../../context/player-context";
+import {
+  type Track,
+  usePlayer,
+  usePlayerActions,
+} from "../../context/player-context";
 import closeIcon from "../../images/close.svg";
 import pauseIcon from "../../images/pause.svg";
 import playIcon from "../../images/play.svg";
@@ -34,11 +38,11 @@ function PlayerControls() {
   return (
     <>
       <button
-        className="flex size-[4.5rem] items-center justify-center"
+        className="hidden size-14 items-center justify-center sm:flex md:size-[4.5rem]"
         onClick={() => controls.previousTrack()}
       >
         <Image
-          className="size-10"
+          className="size-8 md:size-10"
           alt="Previous"
           height={40}
           loading="eager"
@@ -49,7 +53,7 @@ function PlayerControls() {
       </button>
 
       <button
-        className="flex size-[4.5rem] items-center justify-center"
+        className="flex size-14 items-center justify-center md:size-[4.5rem]"
         onClick={() => (state.isPlaying ? controls.pause() : controls.play())}
       >
         <Image
@@ -59,7 +63,7 @@ function PlayerControls() {
           priority
           src={pauseIcon}
           width={40}
-          className="hidden size-10 data-[playing=true]:block"
+          className="hidden size-8 data-[playing=true]:block md:size-10"
           data-playing={state.isPlaying}
         />
 
@@ -70,13 +74,13 @@ function PlayerControls() {
           priority
           src={playIcon}
           width={40}
-          className="hidden size-10 data-[playing=false]:block"
+          className="hidden size-8 data-[playing=false]:block md:size-10"
           data-playing={state.isPlaying}
         />
       </button>
 
       <button
-        className="flex size-[4.5rem] items-center justify-center"
+        className="hidden size-14 items-center justify-center sm:flex md:size-[4.5rem]"
         onClick={() => controls.nextTrack()}
       >
         <Image
@@ -85,7 +89,7 @@ function PlayerControls() {
           loading="eager"
           priority
           src={skipIcon}
-          className="size-10 rotate-180"
+          className="size-8 rotate-180 md:size-10"
           width={40}
         />
       </button>
@@ -96,17 +100,21 @@ function PlayerControls() {
 function PlayerNowPlaying() {
   const { state } = usePlayer();
 
-  const nowPlaying = useMemo(() => {
-    const currentTrack = state.playlist?.[state.currentTrackIndex];
-    if (!currentTrack) return undefined;
-    return `${currentTrack.artist} • ${currentTrack.title}`;
-  }, [state.playlist, state.currentTrackIndex]);
+  const currentTrack: Track | undefined =
+    state.playlist?.[state.currentTrackIndex];
+
+  const nowPlaying = currentTrack
+    ? `${currentTrack.artist} • ${currentTrack.title}`
+    : undefined;
 
   return (
-    <div className="relative flex flex-1 items-center justify-between overflow-x-hidden px-5 text-[1.375rem] uppercase">
-      <p className="whitespace-nowrap">{nowPlaying}</p>
+    <div className="relative flex flex-1 items-center justify-between gap-4 overflow-x-hidden px-5 text-oxe-xs uppercase leading-[inherit] md:text-[1.375rem]">
+      <p className="truncate whitespace-nowrap">
+        <span className="inline sm:hidden">{currentTrack?.title}</span>
+        <span className="hidden sm:inline">{nowPlaying}</span>
+      </p>
 
-      <p className="whitespace-nowrap tabular-nums text-oxe-grey">
+      <p className="hidden whitespace-nowrap tabular-nums text-oxe-grey sm:block">
         {formatDuration(state.duration)}
       </p>
 
@@ -136,7 +144,7 @@ function PlayerPlaylist() {
   return (
     <div className="max-h-[calc(100svh/2)] overflow-y-scroll border-t-hairline border-white/40 bg-black text-white">
       <div className="grid divide-y-hairline divide-white/40">
-        <div className="relative grid grid-cols-2 gap-x-5 px-5 py-1.5 text-[1.375rem] md:grid-cols-3">
+        <div className="relative grid grid-cols-2 gap-x-5 px-5 py-1.5 text-oxe-xs leading-[inherit] md:grid-cols-3 md:text-[1.375rem]">
           <div className="hidden uppercase md:block">#</div>
           <div className="uppercase">Title</div>
           <div className="place-self-end uppercase md:place-self-start">
@@ -147,7 +155,8 @@ function PlayerPlaylist() {
         {state.playlist.map((track, index) => (
           <div
             key={track.title}
-            className="relative grid grid-cols-[1fr_auto] gap-x-5 px-5 py-1.5 text-[1.375rem] hover:bg-white hover:text-black md:grid-cols-3"
+            className="relative grid grid-cols-[1fr_auto] gap-x-5 px-5 py-1.5 text-oxe-xs leading-[inherit] hover:bg-white hover:text-black data-[current-track=true]:bg-oxe-purple data-[current-track=true]:text-black md:grid-cols-3 md:text-[1.375rem]"
+            data-current-track={state.currentTrackIndex === index}
           >
             <div className="hidden uppercase md:block">
               <p className="tabular-nums">{`${index + 1}`.padStart(2, "0")}</p>
@@ -184,17 +193,17 @@ export default function Player() {
         <div className="fixed inset-x-0 bottom-0 z-40">
           {isPlaylistOpen && <PlayerPlaylist />}
 
-          <div className="flex h-[4.5rem] items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white">
+          <div className="flex h-14 items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white md:h-[4.5rem]">
             <PlayerControls />
 
             <PlayerNowPlaying />
 
             <button
               onClick={() => isPlaylistOpenSet(!isPlaylistOpen)}
-              className="flex size-[4.5rem] items-center justify-center"
+              className="flex size-14 items-center justify-center md:size-[4.5rem]"
             >
               <Image
-                className="size-10 data-[playlist-open=true]:opacity-50"
+                className="size-8 data-[playlist-open=true]:opacity-50 md:size-10"
                 alt="Open Playlist"
                 height={40}
                 loading="eager"
@@ -207,10 +216,10 @@ export default function Player() {
 
             <button
               onClick={() => isPlayerOpenSet(false)}
-              className="flex size-[4.5rem] items-center justify-center"
+              className="flex size-14 items-center justify-center md:size-[4.5rem]"
             >
               <Image
-                className="size-10"
+                className="size-8 md:size-10"
                 alt="Close Player"
                 height={40}
                 loading="eager"
@@ -227,9 +236,10 @@ export default function Player() {
     return (
       <button
         onClick={() => isPlayerOpenSet(true)}
-        className="fixed bottom-0 right-0 z-40 flex size-[4.5rem] items-center justify-center border-hairline border-b-0 border-r-0 border-white/40 bg-black text-white"
+        className="fixed bottom-0 right-0 z-40 flex size-14 items-center justify-center border-hairline border-b-0 border-r-0 border-white/40 bg-black text-white md:size-[4.5rem]"
       >
         <Image
+          className="size-8 md:size-10"
           alt="Play"
           height={40}
           loading="eager"

@@ -7,9 +7,9 @@ import {
   useRef,
 } from "react";
 import type { File as SanityFile } from "sanity";
-import { useInterval } from "usehooks-ts";
 
 import { useEvent } from "../hooks/use-event";
+import { useInterval } from "../hooks/use-interval";
 import type { Track as SanityTrack } from "../lib/sanity";
 import { urlForFile } from "../lib/sanity";
 

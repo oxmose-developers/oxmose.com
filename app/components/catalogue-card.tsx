@@ -32,25 +32,25 @@ export default function CatalogueCard({
         className,
       )}
     >
-      <div className="flex flex-1 flex-col-reverse @xl:grid @xl:grid-cols-[minmax(11rem,1fr)_minmax(0,40.9375rem)] @xl:gap-x-8 @xl:gap-y-24 @xl:p-9">
-        <header className="col-span-full hidden shrink-0 @xl:block">
-          <h2 className="text-oxe-xxl font-medium">{release.title}</h2>
+      <div className="flex flex-1 flex-col-reverse @2xl:grid @2xl:grid-cols-[minmax(11rem,1fr)_minmax(0,40.9375rem)] @2xl:gap-x-8 @2xl:gap-y-24 @2xl:p-9">
+        <header className="col-span-full hidden shrink-0 @2xl:block">
+          <h2 className="text-oxe-x2xl font-medium">{release.title}</h2>
         </header>
 
-        <div className="px-9 py-5 @xl:ml-auto @xl:self-end @xl:p-0">
-          <h2 className="block text-oxe-sm/7 font-medium @xl:hidden">
+        <div className="px-9 py-5 @2xl:ml-auto @2xl:self-end @2xl:p-0">
+          <h2 className="block text-oxe-sm/7 font-medium @2xl:hidden">
             {release.title}
           </h2>
 
           <p
-            className="break-words text-oxe-sm/7 @xl:-mb-2.5 @xl:text-oxe-lg @xl:font-medium"
+            className="break-words text-oxe-sm/7 @2xl:-mb-2.5 @2xl:text-oxe-lg @2xl:font-medium"
             style={{ wordBreak: "break-word" }}
           >
             {release.artist.map((el) => el.name).join(", ")}
           </p>
         </div>
 
-        <div className="relative aspect-square w-full @xl:max-w-[40.9375rem]">
+        <div className="relative aspect-square w-full @2xl:max-w-[40.9375rem]">
           <Link href={link}>
             <Image
               loading="lazy"
@@ -67,7 +67,7 @@ export default function CatalogueCard({
       <footer className="shrink-0 border-t border-black px-9 py-2">
         <div className="flex justify-between">
           <Link
-            className="text-oxe-xs font-medium uppercase @xl:text-oxe-sm"
+            className="text-oxe-xs font-medium uppercase @2xl:text-oxe-sm"
             href={link}
           >
             More
@@ -76,7 +76,7 @@ export default function CatalogueCard({
           {release?.trackList?.tracks?.every((el) => el.file) && (
             <button
               type="button"
-              className="text-oxe-xs font-medium uppercase @xl:text-oxe-sm"
+              className="text-oxe-xs font-medium uppercase @2xl:text-oxe-sm"
               onClick={() => {
                 console.log(release.trackList);
 

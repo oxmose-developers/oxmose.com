@@ -14,7 +14,7 @@ export default function ArtistRow({
   const webpUrl = urlForImage(artist.coverImage).format("webp").url();
 
   return (
-    <li className="group px-9 last:!border-b last:border-black lg:px-10">
+    <li className="group px-9 last:!border-b last:border-black md:px-10">
       <picture className="absolute right-10 top-1/2 hidden -translate-y-1/2 xl:group-hover:block">
         <source srcSet={webpUrl} type="image/webp" />
         <img
@@ -28,7 +28,7 @@ export default function ArtistRow({
       </picture>
 
       <Link
-        className="relative z-10 text-oxe-xxl-mobile/[3.75rem] lg:text-oxe-xxl/[6rem]"
+        className="relative z-10 text-oxe-xxl-mobile/[3.75rem] md:text-oxe-xxl/[6rem]"
         href={link}
       >
         {artist.name}

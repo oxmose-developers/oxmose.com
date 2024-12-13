@@ -47,18 +47,18 @@ export default async function Page(props: {
   const webpUrl = urlForImage(artist.coverImage).format("webp").url();
 
   return (
-    <div className="artist-single-page-layout grid lg:grid-cols-2">
+    <div className="artist-single-page-layout grid md:grid-cols-2">
       <div
-        className="px-9 lg:border-b lg:border-black lg:px-10"
+        className="px-9 md:border-b md:border-black md:px-10"
         style={{ gridArea: "name" }}
       >
-        <h1 className="text-oxe-xxl-mobile/[3.75rem] lg:text-oxe-xxl/[6rem]">
+        <h1 className="text-oxe-xxl-mobile/[3.75rem] md:text-oxe-xxl/[6rem]">
           {artist.name}
         </h1>
       </div>
 
       {/* Mobile-only Full Bleed Image */}
-      <div className="block lg:hidden" style={{ gridArea: "image" }}>
+      <div className="block md:hidden" style={{ gridArea: "image" }}>
         <picture className="block">
           <source srcSet={webpUrl} type="image/webp" />
 
@@ -74,8 +74,8 @@ export default async function Page(props: {
 
       <Pagination slug={slug} style={{ gridArea: "pagination" }} />
 
-      <div className="px-9 py-7 lg:p-10" style={{ gridArea: "bio" }}>
-        <picture className="mb-10 hidden lg:block">
+      <div className="px-9 py-7 md:p-10" style={{ gridArea: "bio" }}>
+        <picture className="mb-10 hidden md:block">
           <source srcSet={webpUrl} type="image/webp" />
           <img
             className="aspect-[16/10] w-full max-w-4xl object-cover object-center"
@@ -86,29 +86,29 @@ export default async function Page(props: {
           />
         </picture>
 
-        <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium lg:prose-p:text-oxe-md">
+        <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-md">
           <PortableText value={artist.body} />
         </div>
       </div>
 
       <div
-        className="flex min-h-[28rem] flex-col px-9 py-7 lg:grid lg:auto-rows-[minmax(max-content,50svh)] lg:border-l lg:border-black lg:p-10"
+        className="flex min-h-[28rem] flex-col px-9 py-7 md:grid md:auto-rows-[minmax(max-content,50svh)] md:border-l md:border-black md:p-10"
         style={{ gridArea: "info" }}
       >
-        <div className="flex flex-1 items-start lg:flex-col">
-          <div className="flex items-center gap-1.5 lg:gap-4">
-            <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-black lg:size-5"></div>
+        <div className="flex flex-1 items-start md:flex-col">
+          <div className="flex items-center gap-1.5 md:gap-4">
+            <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-black md:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
+            <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/[2rem]">
               Release
             </h3>
           </div>
 
-          <ul className="ml-auto space-y-4 lg:ml-0 lg:pl-9">
+          <ul className="ml-auto space-y-4 md:ml-0 md:pl-9">
             {[...(artist?.releases ?? [])].map((release) => (
               <li key={`${artist.slug}-${release.slug.current}`}>
                 <Link href={`/catalogue/${release.slug.current}`}>
-                  <article className="text-right text-oxe-xs lg:text-left lg:text-oxe-sm/[2rem]">
+                  <article className="text-right text-oxe-xs md:text-left md:text-oxe-sm/[2rem]">
                     <header>
                       <h3>{release.title}</h3>
                       <p>{release.releaseReference}</p>
@@ -126,16 +126,16 @@ export default async function Page(props: {
           </ul>
         </div>
 
-        <div className="flex items-start lg:flex-col">
-          <div className="flex items-center gap-1.5 lg:gap-4">
-            <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-white lg:size-5"></div>
+        <div className="flex items-start md:flex-col">
+          <div className="flex items-center gap-1.5 md:gap-4">
+            <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-white md:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
+            <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/[2rem]">
               More
             </h3>
           </div>
 
-          <ul className="ml-auto text-right text-oxe-xs lg:ml-0 lg:pl-9 lg:text-left lg:text-oxe-sm/[2rem]">
+          <ul className="ml-auto text-right text-oxe-xs md:ml-0 md:pl-9 md:text-left md:text-oxe-sm/[2rem]">
             {[...(artist?.links ?? [])].map((link) => (
               <li key={link._key}>
                 <a href={link.href}>{link.name}</a>

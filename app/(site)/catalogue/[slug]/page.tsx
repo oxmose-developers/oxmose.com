@@ -70,7 +70,7 @@ export default async function Page(props: {
   return (
     <div>
       {/* Desktop Design */}
-      <div className="hidden min-h-[85svh] grid-cols-2 lg:grid">
+      <div className="hidden min-h-[85svh] grid-cols-2 md:grid">
         <div className="flex flex-col border-r border-black">
           {/* ID & Release Date */}
           <div className="shrink-0 border-b border-black px-9">
@@ -95,12 +95,12 @@ export default async function Page(props: {
 
         <div className="flex flex-col">
           {/* Title & Artist */}
-          <div className="flex flex-col px-9 pt-7 lg:gap-5">
-            <p className="text-oxe-md font-medium lg:text-oxe-xxl">
+          <div className="flex flex-col px-9 pt-7 md:gap-5">
+            <p className="text-oxe-md font-medium md:text-oxe-xxl">
               {release.title}
             </p>
 
-            <p className="text-oxe-sm/[2rem] lg:self-end lg:text-right lg:text-oxe-lg lg:font-medium">
+            <p className="text-oxe-sm/[2rem] md:self-end md:text-right md:text-oxe-lg md:font-medium">
               {release.artist.map((artist, idx, artists) => (
                 <Fragment key={artist.slug.current}>
                   <Link href={`/artists/${artist.slug.current}`}>
@@ -147,7 +147,7 @@ export default async function Page(props: {
             </div>
           </div>
 
-          <div className="flex h-10 items-center justify-between border-y border-black px-9 lg:px-10">
+          <div className="flex h-10 items-center justify-between border-y border-black px-9 md:px-10">
             {digitalProduct && physicalProduct && (
               <BuyButton
                 products={[
@@ -186,7 +186,7 @@ export default async function Page(props: {
       </div>
 
       {/* Mobile Design */}
-      <div className="block lg:hidden">
+      <div className="block md:hidden">
         {/* Pagination */}
         <Pagination slug={slug} />
 
@@ -230,11 +230,11 @@ export default async function Page(props: {
 
           {/* Stream Links */}
           <div className="mt-5 flex items-start">
-            <h3 className="text-oxe-sm font-medium uppercase lg:text-[2.1875rem]/[2rem]">
+            <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/[2rem]">
               Stream
             </h3>
 
-            <ul className="ml-auto text-right text-oxe-xs lg:text-left lg:text-oxe-sm/[2rem]">
+            <ul className="ml-auto text-right text-oxe-xs md:text-left md:text-oxe-sm/[2rem]">
               {[...(release?.links ?? [])].map((link) => (
                 <li key={link._key}>
                   <a href={link.href}>{link.name}</a>
@@ -245,7 +245,7 @@ export default async function Page(props: {
         </div>
 
         {/* Buy & Listen */}
-        <div className="flex h-10 items-center justify-between border-y border-black px-9 lg:px-10">
+        <div className="flex h-10 items-center justify-between border-y border-black px-9 md:px-10">
           {digitalProduct && physicalProduct && (
             <BuyButton
               products={[
@@ -283,9 +283,9 @@ export default async function Page(props: {
       </div>
 
       {/* Description */}
-      <div className="px-9 pt-7 lg:px-10 lg:pb-7">
+      <div className="px-9 pt-7 md:px-10 md:pb-7">
         {/* ID & Release Date */}
-        <div className="mb-5 flex justify-between lg:hidden">
+        <div className="mb-5 flex justify-between md:hidden">
           <p className="text-oxe-sm font-medium">{release.releaseReference}</p>
 
           <p className="text-oxe-sm font-medium">
@@ -295,15 +295,15 @@ export default async function Page(props: {
           </p>
         </div>
 
-        <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium lg:prose-p:text-oxe-lg lg:prose-p:font-medium">
+        <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-lg md:prose-p:font-medium">
           <PortableText value={release.description} />
         </div>
       </div>
 
       {release?.trackList && (
         <>
-          <section className="lg:border-t lg:border-black">
-            <div className="px-9 py-2 lg:px-10">
+          <section className="md:border-t md:border-black">
+            <div className="px-9 py-2 md:px-10">
               <h3 className="text-oxe-sm font-medium uppercase">Tracklist</h3>
             </div>
           </section>

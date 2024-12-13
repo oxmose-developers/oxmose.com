@@ -12,7 +12,7 @@ export function SubmitButton() {
   return (
     <button
       type="submit"
-      className="text-oxe-sm/10 focus:outline-none lg:text-oxe-lg/[3.875rem]"
+      className="text-oxe-sm/10 focus:outline-none md:text-oxe-lg/[3.875rem]"
       aria-disabled={pending}
       onClick={(e) => {
         if (pending) {
@@ -49,7 +49,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
     <div>
       <button
         type="button"
-        className="text-oxe-xs uppercase lg:text-oxe-sm"
+        className="text-oxe-xs uppercase md:text-oxe-sm"
         onClick={() => isOpenSet(!isOpen)}
       >
         Newsletter
@@ -58,11 +58,11 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
       {isOpen && (
         <form
           action={formAction}
-          className="absolute bottom-[var(--offset)] left-0 right-0 z-50 grid divide-y divide-black border-t border-black bg-white text-black lg:grid-cols-[1fr_min-content_min-content]"
+          className="absolute bottom-[var(--offset)] left-0 right-0 z-50 grid divide-y divide-black border-t border-black bg-white text-black md:grid-cols-[1fr_min-content_min-content]"
           style={{ "--offset": `${offset}px` } as React.CSSProperties}
         >
-          <div className="flex items-center px-9 py-1.5 lg:col-span-full lg:py-3">
-            <p className="text-oxe-md/10 lg:text-oxe-xxl">Stay in the loop</p>
+          <div className="flex items-center px-9 py-1.5 md:col-span-full md:py-3">
+            <p className="text-oxe-md/10 md:text-oxe-xxl">Stay in the loop</p>
 
             <button
               onClick={() => isOpenSet(!isOpen)}
@@ -71,7 +71,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
             >
               <span className="sr-only">Close</span>
               <svg
-                className="size-4 lg:size-7"
+                className="size-4 md:size-7"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 32 32"
@@ -88,7 +88,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
             </button>
           </div>
 
-          <div className="px-9 py-1.5 lg:py-3">
+          <div className="px-9 py-1.5 md:py-3">
             <label htmlFor="email" className="sr-only">
               Your email
             </label>
@@ -99,17 +99,17 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
               autoComplete="email"
               autoCorrect="off"
               required
-              className="form-input h-10 w-full border-0 text-oxe-sm/10 ring-0 placeholder:text-[#7B7878] focus:ring-0 focus:ring-offset-0 lg:h-[3.875rem] lg:text-oxe-lg/[3.875rem]"
+              className="form-input h-10 w-full border-0 text-oxe-sm/10 ring-0 placeholder:text-[#7B7878] focus:ring-0 focus:ring-offset-0 md:h-[3.875rem] md:text-oxe-lg/[3.875rem]"
               type="email"
               placeholder="Email"
               name="email"
             />
           </div>
 
-          <div className="px-9 py-1.5 lg:py-3">
-            <div className="flex items-center gap-3 lg:gap-6">
+          <div className="px-9 py-1.5 md:py-3">
+            <div className="flex items-center gap-3 md:gap-6">
               <input
-                className="form-checkbox size-4 rounded-full border-black checked:bg-black checked:bg-none hover:bg-black hover:ring-0 hover:ring-offset-0 checked:hover:bg-black focus:shadow-none focus:ring-0 focus:ring-black focus:ring-offset-0 checked:focus:bg-black lg:size-5"
+                className="form-checkbox size-4 rounded-full border-black checked:bg-black checked:bg-none hover:bg-black hover:ring-0 hover:ring-offset-0 checked:hover:bg-black focus:shadow-none focus:ring-0 focus:ring-black focus:ring-offset-0 checked:focus:bg-black md:size-5"
                 id="newsletter-privacy-policy"
                 required
                 type="checkbox"
@@ -117,7 +117,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
 
               <label
                 htmlFor="newsletter-privacy-policy"
-                className="text-oxe-sm/10 lg:whitespace-nowrap lg:text-oxe-lg/[3.875rem]"
+                className="text-oxe-sm/10 md:whitespace-nowrap md:text-oxe-lg/[3.875rem]"
               >
                 I accept the{" "}
                 <Link href="/privacy-policy" className="underline">
@@ -127,7 +127,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
             </div>
           </div>
 
-          <div className="border-black px-9 py-1.5 lg:border-l lg:py-3">
+          <div className="border-black px-9 py-1.5 md:border-l md:py-3">
             <SubmitButton />
           </div>
         </form>

@@ -15,15 +15,15 @@ export default function Navigation() {
   const [open, openSet] = useState(false);
 
   return (
-    <nav className="shrink-0 border-b border-black bg-white pb-[1.0625rem] pt-[1.125rem] dark:border-white dark:bg-black lg:py-6">
+    <nav className="shrink-0 border-b border-black bg-white pb-[1.0625rem] pt-[1.125rem] dark:border-white dark:bg-black md:py-6">
       <div className="max-w-[100rem]">
-        <div className="flex items-center px-9 lg:px-10">
+        <div className="flex items-center px-9 md:px-10">
           <Link href="/">
             <span className="sr-only">Back to Catalogue</span>
             <OxmoseAnimatedLogo className="relative -m-1 size-14 invert dark:invert-0" />
           </Link>
 
-          <div className="ml-auto hidden items-center justify-center gap-10 lg:flex">
+          <div className="ml-auto hidden items-center justify-center gap-10 md:flex">
             <Link
               className="whitespace-nowrap text-oxe-sm font-medium uppercase"
               href="/"
@@ -53,7 +53,7 @@ export default function Navigation() {
             </Link>
           </div>
 
-          <div className="ml-auto dark:text-white lg:hidden">
+          <div className="ml-auto dark:text-white md:hidden">
             <button
               className="flex size-10 items-center justify-center"
               onClick={() => openSet(true)}
@@ -81,7 +81,7 @@ export default function Navigation() {
             <Dialog
               open={open}
               onClose={() => openSet(false)}
-              className="relative z-50 lg:hidden"
+              className="relative z-50 md:hidden"
             >
               <DialogBackdrop className="fixed inset-0 bg-black/15 dark:bg-black/80" />
 

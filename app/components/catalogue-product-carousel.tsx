@@ -16,7 +16,7 @@ export function ProductCarousel({ productImages }: { productImages: Image[] }) {
   }));
 
   return (
-    <div className="flex flex-1 gap-10 lg:p-10">
+    <div className="flex flex-1 gap-10 md:p-10">
       {/* Desktop Product Images */}
       <div className="mt-auto flex max-w-[40rem] flex-1 snap-x snap-mandatory overflow-x-auto">
         <img

@@ -8,23 +8,23 @@ export default function WorksTable({
   name: string;
 }) {
   return (
-    <table className="w-full text-left text-oxe-xs font-medium lg:text-oxe-sm/[2rem]">
+    <table className="w-full text-left text-oxe-xs font-medium md:text-oxe-sm/[2rem]">
       <thead>
         <tr>
-          <td className="bg-white pb-1 pt-1.5 uppercase text-black first:pl-10 last:pr-10 lg:py-2">
-            <span className="hidden lg:inline">&nbsp;</span>
-            <span className="inline lg:hidden">#</span>
+          <td className="bg-white pb-1 pt-1.5 uppercase text-black first:pl-10 last:pr-10 md:py-2">
+            <span className="hidden md:inline">&nbsp;</span>
+            <span className="inline md:hidden">#</span>
           </td>
 
-          <td className="bg-white pb-1 pt-1.5 uppercase text-black first:pl-10 last:pr-10 lg:py-2">
+          <td className="bg-white pb-1 pt-1.5 uppercase text-black first:pl-10 last:pr-10 md:py-2">
             Title
           </td>
 
-          <td className="hidden bg-white pb-1 pt-1.5 uppercase text-black first:pl-10 last:pr-10 lg:table-cell lg:py-2">
+          <td className="hidden bg-white pb-1 pt-1.5 uppercase text-black first:pl-10 last:pr-10 md:table-cell md:py-2">
             Artist
           </td>
 
-          <td className="bg-white pb-1 pt-1.5 uppercase text-black first:pl-10 last:pr-10 lg:py-2">
+          <td className="bg-white pb-1 pt-1.5 uppercase text-black first:pl-10 last:pr-10 md:py-2">
             Time
           </td>
         </tr>
@@ -41,7 +41,7 @@ export default function WorksTable({
               {track.name}
             </td>
 
-            <td className="hidden px-0 py-0.5 pr-5 uppercase first:pl-10 last:pr-10 lg:table-cell">
+            <td className="hidden px-0 py-0.5 pr-5 uppercase first:pl-10 last:pr-10 md:table-cell">
               {name}
             </td>
 

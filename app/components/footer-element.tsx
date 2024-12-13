@@ -15,10 +15,10 @@ export default function Footer({ fullYear }: { fullYear: number }) {
   return (
     <footer
       ref={ref}
-      className="relative shrink-0 bg-black pb-[calc(0.5rem+4.5rem)] pt-2 text-white lg:py-[1.2rem]"
+      className="relative shrink-0 bg-black pb-[calc(0.5rem+4.5rem)] pt-2 text-white md:py-[1.2rem]"
     >
-      <nav className="flex items-end px-9 lg:items-center lg:pl-10 lg:pr-24">
-        <div className="flex flex-col gap-1 lg:hidden">
+      <nav className="flex items-end px-9 md:items-center md:pl-10 md:pr-24">
+        <div className="flex flex-col gap-1 md:hidden">
           <button
             type="button"
             onClick={() => {
@@ -66,7 +66,7 @@ export default function Footer({ fullYear }: { fullYear: number }) {
           )}
         </div>
 
-        <div className="hidden gap-10 lg:flex">
+        <div className="hidden gap-10 md:flex">
           <Link className="text-oxe-sm uppercase" href="/publishing">
             Publishing
           </Link>
@@ -88,7 +88,7 @@ export default function Footer({ fullYear }: { fullYear: number }) {
           </Link>
         </div>
 
-        <span className="ml-auto whitespace-nowrap text-oxe-xs uppercase lg:text-oxe-sm">
+        <span className="ml-auto whitespace-nowrap text-oxe-xs uppercase md:text-oxe-sm">
           {`© ${fullYear} Oxmose`}
         </span>
       </nav>

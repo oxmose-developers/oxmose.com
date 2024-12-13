@@ -19,7 +19,7 @@ export default function QuantitySelectorItem({ line }: { line: CartLineItem }) {
   });
 
   return (
-    <div className="flex items-center text-oxe-xs lg:text-oxe-sm">
+    <div className="flex items-center text-oxe-xs md:text-oxe-sm">
       <p className="mr-2">
         <span>Qty: </span>
       </p>
@@ -27,7 +27,7 @@ export default function QuantitySelectorItem({ line }: { line: CartLineItem }) {
       <form action={decreaseAction}>
         <button
           type="submit"
-          className="size-[1.5625rem] font-medium hover:bg-black hover:text-white lg:size-[2.125rem]"
+          className="size-[1.5625rem] font-medium hover:bg-black hover:text-white md:size-[2.125rem]"
         >
           <span className="sr-only">Decrease</span>
           <span>-</span>
@@ -38,14 +38,14 @@ export default function QuantitySelectorItem({ line }: { line: CartLineItem }) {
         </p>
       </form>
 
-      <p className="size-[1.5625rem] text-center lg:size-[2.125rem]">
+      <p className="size-[1.5625rem] text-center md:size-[2.125rem]">
         {`${line.quantity}`}
       </p>
 
       <form action={increaseAction}>
         <button
           type="submit"
-          className="size-[1.5625rem] font-medium hover:bg-black hover:text-white lg:size-[2.125rem]"
+          className="size-[1.5625rem] font-medium hover:bg-black hover:text-white md:size-[2.125rem]"
         >
           <span className="sr-only">Increase</span>
           <span>+</span>

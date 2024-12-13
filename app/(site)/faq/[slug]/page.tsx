@@ -53,10 +53,10 @@ export default async function Page(props: {
   const title = `${faq.category} | FAQ | Oxmose`;
 
   return (
-    <div className="lg:item-stretch flex-1 lg:flex lg:flex-row lg:divide-x lg:divide-black">
+    <div className="md:item-stretch flex-1 md:flex md:flex-row md:divide-x md:divide-black">
       <h1 hidden>{title}</h1>
 
-      <ul className="hidden flex-1 divide-y divide-black lg:block">
+      <ul className="hidden flex-1 divide-y divide-black md:block">
         {categories.map((el) => (
           <li key={el._id} className="px-10 text-oxe-xxl/[6rem] last:!border-b">
             <Link href={`/faq/${el.slug.current}`}>{el.category}</Link>
@@ -64,18 +64,18 @@ export default async function Page(props: {
         ))}
       </ul>
 
-      <div className="flex-1 divide-y divide-black lg:divide-y-reverse">
+      <div className="flex-1 divide-y divide-black md:divide-y-reverse">
         {categories.map((el, idx) => (
           <Fragment key={`${el._id}-${idx}-category`}>
             <Link
-              className="block w-full px-9 text-left text-oxe-xxl-mobile/[3.75rem] lg:hidden"
+              className="block w-full px-9 text-left text-oxe-xxl-mobile/[3.75rem] md:hidden"
               href={`/faq/${el.slug.current}`}
             >
               {el.category}
             </Link>
 
             {el.slug.current === slug && (
-              <article className="space-y-9 p-9 text-oxe-xs/5 lg:space-y-10 lg:border-none lg:p-10 lg:text-oxe-sm">
+              <article className="space-y-9 p-9 text-oxe-xs/5 md:space-y-10 md:border-none md:p-10 md:text-oxe-sm">
                 {faq.questions.map((qa, idx) => (
                   <div key={`${qa._id}-${idx}-question`} className="space-y-4">
                     <h4 className="-mb-4 font-medium">{qa.question}</h4>

@@ -32,28 +32,28 @@ export default async function Page() {
 
   return (
     <>
-      <section className="flex-1 divide-y divide-black border-black lg:grid lg:grid-cols-2 lg:divide-x lg:divide-y-0">
-        <div className="p-9 lg:p-10">
-          <h1 className="mb-5 text-oxe-lg lg:text-oxe-xxl">
+      <section className="flex-1 divide-y divide-black border-black md:grid md:grid-cols-2 md:divide-x md:divide-y-0">
+        <div className="p-9 md:p-10">
+          <h1 className="mb-5 text-oxe-lg md:text-oxe-xxl">
             {page.generalSection.title}
           </h1>
 
-          <p className="mb-8 text-oxe-md lg:mb-20 lg:text-oxe-lg">
+          <p className="mb-8 text-oxe-md md:mb-20 md:text-oxe-lg">
             <a href={page.generalSection.link.href}>
               {page.generalSection.link.name}
             </a>
           </p>
 
-          <div className="text-oxe-xs lg:text-oxe-md">
+          <div className="text-oxe-xs md:text-oxe-md">
             <PortableText value={page.generalSection.content} />
           </div>
         </div>
 
-        <div className="flex flex-col p-9 lg:p-10 xl:p-16">
+        <div className="flex flex-col p-9 md:p-10 xl:p-16">
           <dl className="flex flex-1 flex-col justify-between gap-10 xl:mt-auto xl:flex-initial xl:flex-row xl:gap-5">
             {page.locations.map((location, idx) => (
               <div
-                className="text-oxe-sm lg:text-oxe-lg"
+                className="text-oxe-sm md:text-oxe-lg"
                 key={`${location.name}-${idx}`}
               >
                 <dt className="font-medium">{location.type}</dt>

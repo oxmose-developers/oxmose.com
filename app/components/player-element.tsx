@@ -146,13 +146,13 @@ function PlayerPlaylist() {
         {state.playlist.map((track, index) => (
           <div
             key={track.title}
-            className="relative grid grid-cols-2 gap-x-5 px-5 py-1.5 text-[1.375rem] hover:bg-white hover:text-black md:grid-cols-3"
+            className="relative grid grid-cols-[1fr_auto] gap-x-5 px-5 py-1.5 text-[1.375rem] hover:bg-white hover:text-black md:grid-cols-3"
           >
             <div className="hidden uppercase md:block">
               <p className="tabular-nums">{`${index + 1}`.padStart(2, "0")}</p>
             </div>
 
-            <div className="">{track.title}</div>
+            <div className="truncate">{track.title}</div>
 
             <div className="place-self-end md:place-self-start">
               {track.artist}

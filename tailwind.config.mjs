@@ -12,6 +12,7 @@ const config = {
     extend: {
       spacing: {
         18: "4.5rem",
+        128: "32rem",
       },
       screens: { xs: "420px" },
       borderWidth: { hairline: "0.5px" },

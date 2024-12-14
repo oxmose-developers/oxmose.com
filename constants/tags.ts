@@ -15,8 +15,4 @@ export const NEXT_TAGS = {
 
   ARTISTS: "artists",
   ARTISTS_STATIC_PARAMS: "artistsStaticParams",
-
-  CART: "cart",
-  COLLECTIONS: "collections",
-  PRODUCTS: "products",
 } as const;

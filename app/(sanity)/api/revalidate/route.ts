@@ -3,6 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 
 import { NEXT_TAGS } from "../../../../constants/tags";
+import { TAGS } from "../../../../lib/constants";
 
 export async function POST(req: NextRequest) {
   try {
@@ -68,7 +69,7 @@ export async function POST(req: NextRequest) {
           /**
            * Make sure to revalidate products as well when a release is updated
            */
-          revalidateTag(NEXT_TAGS.PRODUCTS);
+          revalidateTag(TAGS.products);
 
           revalidateTag(body.slug);
         }

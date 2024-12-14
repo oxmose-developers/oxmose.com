@@ -2,11 +2,12 @@ import "../../styles/global.css";
 
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { cookies } from "next/headers";
 import Script from "next/script";
-import { Suspense } from "react";
 
 import { description } from "../../constants/seo";
-import Cart from "../components/cart/cart-element";
+import { getCart } from "../../lib/shopify";
+import CartDrawer from "../components/cart/cart-drawer";
 import ClientOnly from "../components/client-only";
 import Footer from "../components/footer-element";
 import { Providers } from "../components/layout-providers";
@@ -17,8 +18,12 @@ export const viewport: Viewport = {
   themeColor: "#000000",
 };
 
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://0xm0s3.vercel.app"),
+  metadataBase: new URL(baseUrl),
   title: {
     template: "Oxmose | %s",
     default: "Oxmose",
@@ -32,7 +37,7 @@ export const metadata: Metadata = {
     description: description,
     type: "website",
     siteName: "Oxmose",
-    url: new URL("https://0xm0s3.vercel.app"),
+    url: new URL(baseUrl),
   },
   twitter: {
     title: {
@@ -95,12 +100,17 @@ const monumentGrotesk = localFont({
   variable: "--font-monument-grotesk",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const fullYear = new Date().getFullYear();
+
+  const cartId = (await cookies()).get("cartId")?.value;
+
+  // Don't await the fetch, pass the Promise to the context provider
+  const cart = getCart(cartId);
 
   return (
     <html
@@ -108,21 +118,19 @@ export default function RootLayout({
       className={`${monumentGrotesk.variable} antialias`}
       suppressHydrationWarning
     >
-      <body className="flex flex-col">
-        <Providers>
+      <body className="flex flex-col selection:bg-oxe-purple selection:text-black">
+        <Providers cartPromise={cart}>
           <Navigation />
 
           <main className="flex flex-1 flex-col">{children}</main>
 
           <Footer fullYear={fullYear} />
 
-          <Suspense>
-            <Cart />
-          </Suspense>
-
           <ClientOnly>
             <Player />
           </ClientOnly>
+
+          <CartDrawer />
         </Providers>
       </body>
 

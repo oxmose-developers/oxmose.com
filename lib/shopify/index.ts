@@ -1,13 +1,14 @@
-import "server-only";
-
 import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import { NEXT_TAGS } from "../../constants/tags";
+import {
+  HIDDEN_PRODUCT_TAG,
+  SHOPIFY_GRAPHQL_API_ENDPOINT,
+  TAGS,
+} from "../constants";
 import { isShopifyError } from "../type-guards";
 import { ensureStartsWith } from "../utils";
-import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT } from "./config";
 import {
   addToCartMutation,
   createCartMutation,
@@ -120,7 +121,7 @@ export async function shopifyFetch<T>({
   }
 }
 
-const removeEdgesAndNodes = (array: Connection<any>) => {
+const removeEdgesAndNodes = <T>(array: Connection<T>): T[] => {
   return array.edges.map((edge) => edge?.node);
 };
 
@@ -128,7 +129,7 @@ const reshapeCart = (cart: ShopifyCart): Cart => {
   if (!cart.cost?.totalTaxAmount) {
     cart.cost.totalTaxAmount = {
       amount: "0.0",
-      currencyCode: "EUR",
+      currencyCode: cart.cost.totalAmount.currencyCode,
     };
   }
 
@@ -171,7 +172,7 @@ const reshapeImages = (images: Connection<Image>, productTitle: string) => {
   const flattened = removeEdgesAndNodes(images);
 
   return flattened.map((image) => {
-    const filename = image.url.match(/.*\/(.*)\..*/)[1];
+    const filename = image.url.match(/.*\/(.*)\..*/)?.[1];
     return {
       ...image,
       altText: image.altText || `${productTitle} - ${filename}`,
@@ -271,12 +272,17 @@ export async function updateCart(
   return reshapeCart(res.body.data.cartLinesUpdate.cart);
 }
 
-export async function getCart(cartId: string): Promise<Cart | undefined> {
+export async function getCart(
+  cartId: string | undefined,
+): Promise<Cart | undefined> {
+  if (!cartId) {
+    return undefined;
+  }
+
   const res = await shopifyFetch<ShopifyCartOperation>({
     query: getCartQuery,
     variables: { cartId },
-    tags: [NEXT_TAGS.CART],
-    cache: "no-store",
+    tags: [TAGS.cart],
   });
 
   // Old carts becomes `null` when you checkout.
@@ -292,7 +298,7 @@ export async function getCollection(
 ): Promise<Collection | undefined> {
   const res = await shopifyFetch<ShopifyCollectionOperation>({
     query: getCollectionQuery,
-    tags: [NEXT_TAGS.COLLECTIONS],
+    tags: [TAGS.collections],
     variables: {
       handle,
     },
@@ -312,7 +318,7 @@ export async function getCollectionProducts({
 }): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyCollectionProductsOperation>({
     query: getCollectionProductsQuery,
-    tags: [NEXT_TAGS.COLLECTIONS, NEXT_TAGS.PRODUCTS],
+    tags: [TAGS.collections, TAGS.products],
     variables: {
       handle: collection,
       reverse,
@@ -333,7 +339,7 @@ export async function getCollectionProducts({
 export async function getCollections(): Promise<Collection[]> {
   const res = await shopifyFetch<ShopifyCollectionsOperation>({
     query: getCollectionsQuery,
-    tags: [NEXT_TAGS.COLLECTIONS],
+    tags: [TAGS.collections],
   });
   const shopifyCollections = removeEdgesAndNodes(res.body?.data?.collections);
   const collections = [
@@ -361,7 +367,7 @@ export async function getCollections(): Promise<Collection[]> {
 export async function getMenu(handle: string): Promise<Menu[]> {
   const res = await shopifyFetch<ShopifyMenuOperation>({
     query: getMenuQuery,
-    tags: [NEXT_TAGS.COLLECTIONS],
+    tags: [TAGS.collections],
     variables: {
       handle,
     },
@@ -381,6 +387,7 @@ export async function getMenu(handle: string): Promise<Menu[]> {
 export async function getPage(handle: string): Promise<Page> {
   const res = await shopifyFetch<ShopifyPageOperation>({
     query: getPageQuery,
+    cache: "no-store",
     variables: { handle },
   });
 
@@ -390,6 +397,7 @@ export async function getPage(handle: string): Promise<Page> {
 export async function getPages(): Promise<Page[]> {
   const res = await shopifyFetch<ShopifyPagesOperation>({
     query: getPagesQuery,
+    cache: "no-store",
   });
 
   return removeEdgesAndNodes(res.body.data.pages);
@@ -398,7 +406,7 @@ export async function getPages(): Promise<Page[]> {
 export async function getProduct(handle: string): Promise<Product | undefined> {
   const res = await shopifyFetch<ShopifyProductOperation>({
     query: getProductQuery,
-    tags: [NEXT_TAGS.PRODUCTS],
+    tags: [TAGS.products],
     variables: {
       handle,
     },
@@ -412,7 +420,7 @@ export async function getProductRecommendations(
 ): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductRecommendationsOperation>({
     query: getProductRecommendationsQuery,
-    tags: [NEXT_TAGS.PRODUCTS],
+    tags: [TAGS.products],
     variables: {
       productId,
     },
@@ -432,7 +440,7 @@ export async function getProducts({
 }): Promise<Product[]> {
   const res = await shopifyFetch<ShopifyProductsOperation>({
     query: getProductsQuery,
-    tags: [NEXT_TAGS.PRODUCTS],
+    tags: [TAGS.products],
     variables: {
       query,
       reverse,
@@ -464,7 +472,7 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
 
   if (!secret || secret !== process.env.SHOPIFY_REVALIDATION_SECRET) {
     console.error("Invalid revalidation secret.");
-    return NextResponse.json({ status: 200 });
+    return NextResponse.json({ status: 401 });
   }
 
   if (!isCollectionUpdate && !isProductUpdate) {
@@ -473,11 +481,11 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   }
 
   if (isCollectionUpdate) {
-    revalidateTag(NEXT_TAGS.COLLECTIONS);
+    revalidateTag(TAGS.collections);
   }
 
   if (isProductUpdate) {
-    revalidateTag(NEXT_TAGS.PRODUCTS);
+    revalidateTag(TAGS.products);
   }
 
   return NextResponse.json({ status: 200, revalidated: true, now: Date.now() });

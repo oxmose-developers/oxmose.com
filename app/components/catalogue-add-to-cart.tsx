@@ -1,60 +1,80 @@
 "use client";
 
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
 
-import type { ProductVariant } from "../../lib/shopify/types";
+import { useCart } from "../../context/cart-context";
 import { addItem } from "./cart/actions";
+import type { DigitalOrVinylProductVariant } from "./catalogue-variant-selector";
 
 export function SubmitButton({
   children,
-  disabled,
+  availableForSale,
 }: {
   children: React.ReactNode;
-  disabled?: boolean;
+  availableForSale: boolean;
+  selectedVariantId: string | undefined;
 }) {
-  const { pending } = useFormStatus();
+  const buttonClasses =
+    "block text-oxe-sm font-medium uppercase disabled:opacity-50";
+
+  if (!availableForSale) {
+    return (
+      <button disabled className={buttonClasses}>
+        Out Of Stock
+      </button>
+    );
+  }
 
   return (
-    <button
-      className="block text-oxe-sm font-medium uppercase disabled:opacity-50"
-      disabled={disabled}
-      aria-disabled={pending}
-      aria-label="Add to cart"
-      onClick={(e: React.FormEvent<HTMLButtonElement>) => {
-        if (pending) e.preventDefault();
-      }}
-    >
+    <button className={buttonClasses} aria-label="Add to cart">
       {children}
     </button>
   );
 }
 
 export default function AddToCart({
-  variants,
-  availableForSale,
-  activeProductFormat,
+  digitalOrVinylProduct,
+  selectedProductFormat,
 }: {
-  variants: ProductVariant[];
-  availableForSale: boolean;
-  activeProductFormat: "Digital" | "Vinyl";
+  digitalOrVinylProduct: DigitalOrVinylProductVariant;
+  selectedProductFormat: "Digital" | "Vinyl";
 }) {
+  const { addCartItem } = useCart();
+
   const [message, formAction] = useActionState(addItem, null);
 
-  const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
-
+  const defaultVariantId =
+    digitalOrVinylProduct.product.variants.length === 1
+      ? digitalOrVinylProduct.product.variants[0]?.id
+      : undefined;
   const selectedVariantId = defaultVariantId;
-
   const actionWithVariant = formAction.bind(null, {
     selectedVariantId,
-    activeProductFormat,
+    selectedProductFormat,
   });
+  const finalVariant = digitalOrVinylProduct.product.variants.find(
+    (variant) => variant.id === selectedVariantId,
+  )!;
 
   return (
-    <form action={actionWithVariant}>
-      <SubmitButton disabled={!availableForSale}>Buy</SubmitButton>
+    <form
+      action={async () => {
+        addCartItem(
+          finalVariant,
+          digitalOrVinylProduct.product,
+          selectedProductFormat,
+        );
+        await actionWithVariant();
+      }}
+    >
+      <SubmitButton
+        availableForSale={digitalOrVinylProduct.product.availableForSale}
+        selectedVariantId={selectedVariantId}
+      >
+        Buy
+      </SubmitButton>
 
-      <p aria-live="polite" role="status">
+      <p aria-live="polite" className="sr-only" role="status">
         {message}
       </p>
     </form>

@@ -11,7 +11,7 @@ import {
 import type { Product } from "../../lib/shopify/types";
 import Price from "./catalogue-price";
 
-export type ProductVariant = {
+export type DigitalOrVinylProductVariant = {
   type: "Digital" | "Vinyl";
   product: Product;
   format: string;
@@ -30,7 +30,7 @@ export const createUrl = (
 export default function VariantSelector({
   products,
 }: {
-  products: ProductVariant[];
+  products: DigitalOrVinylProductVariant[];
 }) {
   const router = useRouter();
   const pathname = usePathname();

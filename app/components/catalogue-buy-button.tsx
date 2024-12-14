@@ -3,14 +3,14 @@
 import { useSearchParams } from "next/navigation";
 
 import AddToCart from "./catalogue-add-to-cart";
-import type { ProductVariant } from "./catalogue-variant-selector";
+import type { DigitalOrVinylProductVariant } from "./catalogue-variant-selector";
 
 export default function BuyButton({
   products,
   defaultProduct,
 }: {
-  products: ProductVariant[];
-  defaultProduct: ProductVariant;
+  products: DigitalOrVinylProductVariant[];
+  defaultProduct: DigitalOrVinylProductVariant;
 }) {
   const searchParams = useSearchParams();
 
@@ -21,14 +21,13 @@ export default function BuyButton({
   /**
    * Take product from url params if it exists, otherwise take the default digital product
    */
-  const productVariant =
+  const digitalOrVinylProduct =
     products.find((product) => format === product.type) || defaultProduct;
 
   return (
     <AddToCart
-      variants={productVariant.product.variants}
-      availableForSale={productVariant.product.availableForSale}
-      activeProductFormat={format as "Digital" | "Vinyl"}
+      digitalOrVinylProduct={digitalOrVinylProduct}
+      selectedProductFormat={format as "Digital" | "Vinyl"}
     />
   );
 }

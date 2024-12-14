@@ -7,26 +7,59 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useFormStatus } from "react-dom";
 
-import type { CartData } from "./cart-element";
-import QuantitySelectorItem from "./cart-quantity-selector";
-import RemoveItem from "./cart-remove";
+import { useCart } from "../../../context/cart-context";
+import { DEFAULT_OPTION } from "../../../lib/constants";
+import LoadingDots from "../loading-dots";
+import { DeleteItemButton } from "./delete-item-button";
+import { EditItemQuantityButton } from "./edit-item-quantity-button";
+import { createCartAndSetCookie, redirectToCheckout } from "./actions";
 
-export default function CartDrawer({ cart }: { cart: CartData }) {
-  const [open, setOpen] = useState(false);
+type MerchandiseSearchParams = {
+  [key: string]: string;
+};
+
+export default function CartDrawer() {
+  const { cart, updateCartItem } = useCart();
+  const [open, openSet] = useState(false);
+  const quantityRef = useRef(cart?.totalQuantity);
+
+  useEffect(() => {
+    if (!cart) {
+      createCartAndSetCookie();
+    }
+  }, [cart]);
+
+  useEffect(() => {
+    if (
+      cart?.totalQuantity &&
+      cart?.totalQuantity !== quantityRef.current &&
+      cart?.totalQuantity > 0
+    ) {
+      if (!open) {
+        openSet(true);
+      }
+      quantityRef.current = cart?.totalQuantity;
+    }
+  }, [open, cart?.totalQuantity, quantityRef]);
+
+  if (!cart || cart.lines.length === 0) {
+    return null;
+  }
 
   return (
     <>
       <button
         type="button"
-        onClick={() => setOpen(!open)}
+        onClick={() => openSet(!open)}
         className="fixed bottom-20 right-5 inline-flex h-10 items-center whitespace-nowrap bg-black px-3 text-oxe-xs font-medium uppercase text-white dark:bg-white dark:text-black md:bottom-24 md:h-14 md:px-4 md:text-oxe-sm"
       >
-        <span>{`Cart (${cart.lines.map((line) => line.quantity).reduce((a, b) => a + b, 0)})`}</span>
+        <span>{`Cart (${quantityRef.current})`}</span>
       </button>
 
-      <Dialog open={open} onClose={setOpen} className="relative z-50">
+      <Dialog open={open} onClose={openSet} className="relative z-50">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-black/75 transition-opacity duration-500 ease-in-out data-[closed]:opacity-0"
@@ -47,7 +80,7 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
 
                         <button
                           type="button"
-                          onClick={() => setOpen(false)}
+                          onClick={() => openSet(false)}
                           className="relative size-8 focus:outline-none md:size-10"
                         >
                           <span className="sr-only">Close panel</span>
@@ -66,40 +99,83 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
                     </div>
 
                     <div className="relative flex-1 divide-y divide-black px-6 md:px-9">
-                      {cart.lines.map((line) => (
-                        <div
-                          key={line.merchandiseId}
-                          className="flex items-start gap-4 py-6 md:py-7"
-                        >
-                          <Image
-                            className="size-20 object-contain md:size-24"
-                            src={line.image}
-                            alt={line.image}
-                            width={96}
-                            height={96}
-                            priority
-                          />
+                      {cart.lines
+                        .sort((a, b) =>
+                          a.merchandise.product.title.localeCompare(
+                            b.merchandise.product.title,
+                          ),
+                        )
+                        .map((item, i) => {
+                          const merchandiseSearchParams =
+                            {} as MerchandiseSearchParams;
 
-                          <div>
-                            <p className="text-oxe-xs font-medium md:text-oxe-sm">
-                              {line.title}
-                            </p>
+                          item.merchandise.selectedOptions.forEach(
+                            ({ name, value }) => {
+                              if (value !== DEFAULT_OPTION) {
+                                merchandiseSearchParams[name.toLowerCase()] =
+                                  value;
+                              }
+                            },
+                          );
 
-                            <QuantitySelectorItem line={line} />
+                          return (
+                            <div
+                              key={i}
+                              className="flex items-start gap-4 py-6 md:py-7"
+                            >
+                              <Image
+                                className="size-20 object-contain md:size-24"
+                                src={item.merchandise.product.featuredImage.url}
+                                alt={
+                                  item.merchandise.product.featuredImage
+                                    .altText || item.merchandise.product.title
+                                }
+                                width={96}
+                                height={96}
+                                priority
+                              />
 
-                            <p className="text-oxe-xs md:text-oxe-sm">{`Price: ${line.cost}`}</p>
+                              <div>
+                                <p className="text-oxe-xs font-medium md:text-oxe-sm">
+                                  {item.merchandise.product.title}
+                                </p>
 
-                            <RemoveItem merchandiseId={line.merchandiseId} />
-                          </div>
-                        </div>
-                      ))}
+                                <EditItemQuantityButton
+                                  item={item}
+                                  optimisticUpdate={updateCartItem}
+                                />
+
+                                <p className="text-oxe-xs md:text-oxe-sm">{`Price: ${new Intl.NumberFormat(
+                                  "fr-FR",
+                                  {
+                                    style: "currency",
+                                    currency:
+                                      item.cost.totalAmount.currencyCode,
+                                  },
+                                ).format(
+                                  parseFloat(item.cost.totalAmount.amount),
+                                )}`}</p>
+
+                                <DeleteItemButton
+                                  item={item}
+                                  optimisticUpdate={updateCartItem}
+                                />
+                              </div>
+                            </div>
+                          );
+                        })}
                     </div>
                   </div>
 
                   <div className="flex flex-shrink-0 justify-between gap-4 px-6 py-4 md:px-9 md:py-7">
                     <p className="text-oxe-sm md:text-oxe-md">Total:</p>
 
-                    <p className="text-oxe-sm md:text-oxe-md">{cart.total}</p>
+                    <p className="text-oxe-sm md:text-oxe-md">
+                      {new Intl.NumberFormat("fr-FR", {
+                        style: "currency",
+                        currency: cart.cost.totalAmount.currencyCode,
+                      }).format(parseFloat(cart.cost.totalAmount.amount))}
+                    </p>
                   </div>
 
                   <div className="flex flex-shrink-0 justify-between gap-4 px-6 py-4 md:px-9 md:py-7">
@@ -110,12 +186,9 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
                     </p>
                   </div>
 
-                  <a
-                    className="w-full flex-shrink-0 bg-black px-6 py-4 text-center text-oxe-sm font-medium uppercase text-white md:px-9 md:py-7"
-                    href={cart.checkoutUrl}
-                  >
-                    Checkout
-                  </a>
+                  <form action={redirectToCheckout}>
+                    <CheckoutButton />
+                  </form>
                 </div>
               </DialogPanel>
             </div>
@@ -123,5 +196,19 @@ export default function CartDrawer({ cart }: { cart: CartData }) {
         </div>
       </Dialog>
     </>
+  );
+}
+
+function CheckoutButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      className="w-full flex-shrink-0 bg-black px-6 py-4 text-center text-oxe-sm font-medium uppercase text-white md:px-9 md:py-7"
+      type="submit"
+      disabled={pending}
+    >
+      {pending ? <LoadingDots className="bg-white" /> : "Checkout"}
+    </button>
   );
 }

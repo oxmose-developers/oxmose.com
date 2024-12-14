@@ -2,20 +2,26 @@
 
 import { useActionState } from "react";
 
+import type { CartItem } from "../../../lib/shopify/types";
 import { updateItemQuantity } from "./actions";
-import type { CartLineItem } from "./cart-element";
 
-export default function QuantitySelectorItem({ line }: { line: CartLineItem }) {
+export function EditItemQuantityButton({
+  item,
+  optimisticUpdate,
+}: {
+  item: CartItem;
+  optimisticUpdate: any;
+}) {
   const [message, formAction] = useActionState(updateItemQuantity, null);
 
   const increaseAction = formAction.bind(null, {
-    merchandiseId: line.merchandiseId,
-    quantity: line.quantity + 1,
+    merchandiseId: item.merchandise.id,
+    quantity: item.quantity + 1,
   });
 
   const decreaseAction = formAction.bind(null, {
-    merchandiseId: line.merchandiseId,
-    quantity: line.quantity - 1,
+    merchandiseId: item.merchandise.id,
+    quantity: item.quantity - 1,
   });
 
   return (
@@ -24,7 +30,12 @@ export default function QuantitySelectorItem({ line }: { line: CartLineItem }) {
         <span>Qty: </span>
       </p>
 
-      <form action={decreaseAction}>
+      <form
+        action={async () => {
+          optimisticUpdate(item.merchandise.id, "minus");
+          await decreaseAction();
+        }}
+      >
         <button
           type="submit"
           className="size-[1.5625rem] font-medium hover:bg-black hover:text-white md:size-[2.125rem]"
@@ -39,10 +50,15 @@ export default function QuantitySelectorItem({ line }: { line: CartLineItem }) {
       </form>
 
       <p className="size-[1.5625rem] text-center md:size-[2.125rem]">
-        {`${line.quantity}`}
+        {`${item.quantity}`}
       </p>
 
-      <form action={increaseAction}>
+      <form
+        action={async () => {
+          optimisticUpdate(item.merchandise.id, "plus");
+          await increaseAction();
+        }}
+      >
         <button
           type="submit"
           className="size-[1.5625rem] font-medium hover:bg-black hover:text-white md:size-[2.125rem]"

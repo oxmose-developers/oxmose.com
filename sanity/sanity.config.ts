@@ -29,6 +29,8 @@ export default defineConfig({
   name: "oxmose",
   title: "Oxmose Admin",
 
+  studioHost: "oxmose",
+
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET_NAME,
 

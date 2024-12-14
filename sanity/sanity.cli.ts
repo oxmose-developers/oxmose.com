@@ -11,8 +11,6 @@ const SANITY_PROJECT_ID = "5byknxyc";
 
 const SANITY_DATASET_NAME = "production";
 
-const SANITY_API_VERSION = "2023-05-03";
-
 export default defineCliConfig({
   api: {
     projectId: SANITY_PROJECT_ID,
@@ -21,6 +19,6 @@ export default defineCliConfig({
   /**
    * Visit https://www.sanity.io/docs/environment-variables to leanr more about using environment variables for local & production.
    */
-  studioHost: process.env.SANITY_STUDIO_STUDIO_HOST || "",
+  studioHost: "oxmose",
   autoUpdates: true,
 });

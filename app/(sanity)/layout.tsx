@@ -1,4 +1,4 @@
-import "../../styles/global.css";
+import "./studio.css";
 
 import type { Metadata } from "next";
 

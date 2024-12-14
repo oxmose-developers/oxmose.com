@@ -4,11 +4,11 @@ import { type StructureBuilder, structureTool } from "sanity/structure";
 
 import { schemaTypes, singletonTypes } from "./src/schemas";
 
-export const SANITY_PROJECT_ID = "5byknxyc";
+const SANITY_PROJECT_ID = "5byknxyc";
 
-export const SANITY_DATASET_NAME = "production";
+const SANITY_DATASET_NAME = "production";
 
-export const SANITY_API_VERSION = "2023-05-03";
+const SANITY_API_VERSION = "2023-05-03";
 
 /**
  * Define the actions that should be available for singleton documents

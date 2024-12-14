@@ -2,12 +2,13 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { type StructureBuilder, structureTool } from "sanity/structure";
 
-import {
-  SANITY_API_VERSION,
-  SANITY_DATASET_NAME,
-  SANITY_PROJECT_ID,
-} from "./lib/sanity";
-import { schemaTypes, singletonTypes } from "./schemas";
+import { schemaTypes, singletonTypes } from "./src/schemas";
+
+export const SANITY_PROJECT_ID = "5byknxyc";
+
+export const SANITY_DATASET_NAME = "production";
+
+export const SANITY_API_VERSION = "2023-05-03";
 
 /**
  * Define the actions that should be available for singleton documents
@@ -17,7 +18,7 @@ const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 const singletonListItem = (
   S: StructureBuilder,
   typeName: string,
-  title?: string,
+  title?: string
 ) =>
   S.listItem()
     .title(title || typeName)
@@ -25,22 +26,23 @@ const singletonListItem = (
     .child(S.document().schemaType(typeName).documentId(typeName));
 
 export default defineConfig({
-  basePath: "/admin",
   name: "oxmose",
   title: "Oxmose Admin",
+
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET_NAME,
+
   plugins: [
     structureTool({
       structure: (S: StructureBuilder) => {
         const defaultItems = S.documentTypeListItems().filter(
-          (listItem) => !singletonTypes.has(listItem.getId()!),
+          (listItem) => !singletonTypes.has(listItem.getId()!)
         );
 
         const singletonItems = schemaTypes
           .filter((type) => singletonTypes.has(type.name))
           .map((schemaType) =>
-            singletonListItem(S, schemaType.name, schemaType.title),
+            singletonListItem(S, schemaType.name, schemaType.title)
           );
 
         return S.list()

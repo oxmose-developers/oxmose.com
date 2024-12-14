@@ -38,7 +38,7 @@ function PlayerControls() {
   return (
     <>
       <button
-        className="hidden size-14 items-center justify-center sm:flex md:size-[4.5rem]"
+        className="md:size-18 hidden size-14 items-center justify-center sm:flex"
         onClick={() => controls.previousTrack()}
       >
         <Image
@@ -53,7 +53,7 @@ function PlayerControls() {
       </button>
 
       <button
-        className="flex size-14 items-center justify-center md:size-[4.5rem]"
+        className="md:size-18 flex size-14 items-center justify-center"
         onClick={() => (state.isPlaying ? controls.pause() : controls.play())}
       >
         <Image
@@ -80,7 +80,7 @@ function PlayerControls() {
       </button>
 
       <button
-        className="hidden size-14 items-center justify-center sm:flex md:size-[4.5rem]"
+        className="md:size-18 hidden size-14 items-center justify-center sm:flex"
         onClick={() => controls.nextTrack()}
       >
         <Image
@@ -193,14 +193,14 @@ export default function Player() {
         <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 after:absolute after:inset-x-0 after:h-[env(safe-area-inset-bottom)] after:border-t-hairline after:border-white/40 after:bg-black">
           {isPlaylistOpen && <PlayerPlaylist />}
 
-          <div className="flex h-14 items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white md:h-[4.5rem]">
+          <div className="md:h-18 flex h-14 items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white">
             <PlayerControls />
 
             <PlayerNowPlaying />
 
             <button
               onClick={() => isPlaylistOpenSet(!isPlaylistOpen)}
-              className="flex size-14 items-center justify-center md:size-[4.5rem]"
+              className="md:size-18 flex size-14 items-center justify-center"
             >
               <Image
                 className="size-8 data-[playlist-open=true]:opacity-50 md:size-10"
@@ -216,7 +216,7 @@ export default function Player() {
 
             <button
               onClick={() => isPlayerOpenSet(false)}
-              className="flex size-14 items-center justify-center md:size-[4.5rem]"
+              className="md:size-18 flex size-14 items-center justify-center"
             >
               <Image
                 className="size-8 md:size-10"
@@ -236,7 +236,7 @@ export default function Player() {
     return (
       <button
         onClick={() => isPlayerOpenSet(true)}
-        className="fixed bottom-[env(safe-area-inset-bottom,0px)] right-0 z-40 flex size-14 items-center justify-center border-hairline border-b-0 border-r-0 border-white/40 bg-black text-white md:size-[4.5rem]"
+        className="md:size-18 fixed bottom-[env(safe-area-inset-bottom,0px)] right-0 z-40 flex size-14 items-center justify-center border-hairline border-b-0 border-r-0 border-white/40 bg-black text-white"
       >
         <Image
           className="size-8 md:size-10"

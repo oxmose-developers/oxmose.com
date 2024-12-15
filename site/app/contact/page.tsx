@@ -1,7 +1,7 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import { PortableText } from "next-sanity";
 
-import { fetchContactPage } from "../../../lib/sanity";
+import { fetchContactPage } from "../../lib/sanity";
 
 export async function generateMetadata(
   props: { params: Promise<{}> },

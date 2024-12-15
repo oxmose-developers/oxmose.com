@@ -1,8 +1,8 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import { PortableText } from "next-sanity";
 
-import { fetchLegalPage } from "../../../../lib/sanity";
-import Prose from "../../../components/legal-prose";
+import { fetchLegalPage } from "../../../lib/sanity";
+import Prose from "../../components/legal-prose";
 
 export async function generateMetadata(
   props: { params: Promise<{ slug: string }> },

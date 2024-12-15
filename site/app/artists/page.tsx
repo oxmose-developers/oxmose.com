@@ -1,7 +1,7 @@
 import type { Metadata, ResolvingMetadata } from "next";
 
-import { fetchArtists } from "../../../lib/sanity";
-import ArtistRow from "../../components/artist-row";
+import { fetchArtists } from "../../lib/sanity";
+import ArtistRow from "../components/artist-row";
 
 export async function generateMetadata(
   props: { params: Promise<{}> },

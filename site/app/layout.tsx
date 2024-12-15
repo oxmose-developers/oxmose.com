@@ -5,14 +5,14 @@ import localFont from "next/font/local";
 import { cookies } from "next/headers";
 import Script from "next/script";
 
-import { description } from "../../constants/seo";
-import { getCart } from "../../lib/shopify";
-import CartDrawer from "../components/cart/cart-drawer";
-import ClientOnly from "../components/client-only";
-import Footer from "../components/footer-element";
-import { Providers } from "../components/layout-providers";
-import Navigation from "../components/navigation-element";
-import Player from "../components/player-element";
+import { description } from "../constants/seo";
+import { getCart } from "../lib/shopify";
+import CartDrawer from "./components/cart/cart-drawer";
+import ClientOnly from "./components/client-only";
+import Footer from "./components/footer-element";
+import { Providers } from "./components/layout-providers";
+import Navigation from "./components/navigation-element";
+import Player from "./components/player-element";
 
 export const viewport: Viewport = {
   themeColor: "#000000",

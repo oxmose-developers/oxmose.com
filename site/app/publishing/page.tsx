@@ -3,10 +3,10 @@ import { PortableText } from "next-sanity";
 // import Image from "next/image";
 import { Suspense } from "react";
 
-import { publishingLicenseRequestEmail } from "../../../constants/urls";
-import { fetchPublishingPage } from "../../../lib/sanity";
-import PublishingArtistsList from "../../components/publishing-artist-list";
-import PublishingVideo from "../../components/publishing-video";
+import { publishingLicenseRequestEmail } from "../../constants/urls";
+import { fetchPublishingPage } from "../../lib/sanity";
+import PublishingArtistsList from "../components/publishing-artist-list";
+import PublishingVideo from "../components/publishing-video";
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",

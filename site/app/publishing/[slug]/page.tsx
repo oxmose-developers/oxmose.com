@@ -2,9 +2,9 @@ import type { Metadata, ResolvingMetadata, Viewport } from "next";
 import { PortableText } from "next-sanity";
 import { hasAtLeast } from "remeda";
 
-import { fetchPublishingArtistPage, urlForImage } from "../../../../lib/sanity";
-import Pagination from "../../../components/publishing-artist-pagination";
-import Tracklist from "../../../components/tracklist";
+import { fetchPublishingArtistPage, urlForImage } from "../../../lib/sanity";
+import Pagination from "../../components/publishing-artist-pagination";
+import Tracklist from "../../components/tracklist";
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",

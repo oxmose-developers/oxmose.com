@@ -2,8 +2,8 @@ import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 
-import { NEXT_TAGS } from "../../../../constants/tags";
-import { TAGS } from "../../../../lib/constants";
+import { NEXT_TAGS } from "../../../constants/tags";
+import { TAGS } from "../../../lib/constants";
 
 export async function POST(req: NextRequest) {
   try {

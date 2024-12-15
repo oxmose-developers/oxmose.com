@@ -3,9 +3,9 @@ import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { PortableText } from "next-sanity";
 
-import { urlForImage } from "../../../../lib/sanity";
-import { fetchArtistPage } from "../../../../lib/sanity";
-import Pagination from "../../../components/artist-pagination";
+import { urlForImage } from "../../../lib/sanity";
+import { fetchArtistPage } from "../../../lib/sanity";
+import Pagination from "../../components/artist-pagination";
 
 export async function generateMetadata(
   props: { params: Promise<{ slug: string }> },

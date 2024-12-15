@@ -4,18 +4,18 @@ import Link from "next/link";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
-import { ProductProvider } from "../../../../context/product-context";
-import { fetchReleasePage, urlForImage } from "../../../../lib/sanity";
-import { getProduct } from "../../../../lib/shopify";
-import BuyButton from "../../../components/catalogue-buy-button";
-import ListenButton from "../../../components/catalogue-listen-button";
-import Pagination from "../../../components/catalogue-pagination";
+import { ProductProvider } from "../../../context/product-context";
+import { fetchReleasePage, urlForImage } from "../../../lib/sanity";
+import { getProduct } from "../../../lib/shopify";
+import BuyButton from "../../components/catalogue-buy-button";
+import ListenButton from "../../components/catalogue-listen-button";
+import Pagination from "../../components/catalogue-pagination";
 import {
   ProductCarousel,
   ProductFullBleedScroller,
-} from "../../../components/catalogue-product-carousel";
-import VariantSelector from "../../../components/catalogue-variant-selector";
-import Tracklist from "../../../components/tracklist";
+} from "../../components/catalogue-product-carousel";
+import VariantSelector from "../../components/catalogue-variant-selector";
+import Tracklist from "../../components/tracklist";
 
 export async function generateMetadata(
   props: { params: Promise<{ slug: string }> },

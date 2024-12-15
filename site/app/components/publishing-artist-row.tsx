@@ -11,7 +11,7 @@ export default function PublishingArtistRow({
     <li>
       <Link
         href={`/publishing/${publishingArtist.slug.current}`}
-        className="block px-9 pt-px text-[1.875rem]/[2.5rem] hover:bg-white hover:text-black md:py-0 md:text-[5rem]/[6rem]"
+        className="h- md:text-oxe-xxl/24 block px-9 pt-px text-oxe-md/10 hover:bg-white hover:text-black md:py-0"
       >
         {publishingArtist.name}
       </Link>

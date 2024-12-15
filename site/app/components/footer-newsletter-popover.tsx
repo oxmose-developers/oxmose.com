@@ -99,7 +99,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
               autoComplete="email"
               autoCorrect="off"
               required
-              className="md:text-oxe-xl/[3.875rem] form-input h-10 w-full border-0 text-oxe-sm/10 ring-0 placeholder:text-[#7B7878] focus:ring-0 focus:ring-offset-0 md:h-[3.875rem]"
+              className="md:text-oxe-xl/[3.875rem] form-input h-10 w-full border-0 text-oxe-sm/10 ring-0 placeholder:text-oxe-grey focus:ring-0 focus:ring-offset-0 md:h-[3.875rem]"
               type="email"
               placeholder="Email"
               name="email"

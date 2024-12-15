@@ -11,7 +11,6 @@ export function ProductCarousel({
   productImages,
 }: {
   productImages: (SanityImage & {
-    _key: string;
     asset: SanityImageAsset;
   })[];
 }) {
@@ -45,7 +44,7 @@ export function ProductCarousel({
           // .filter((_, idx) => idx !== activeIndex)
           .map((image, idx) => (
             <button
-              key={image._key}
+              key={`carousel-${idx}`}
               type="button"
               onClick={() => activeIndexSet(idx)}
             >
@@ -71,20 +70,19 @@ export function ProductFullBleedScroller({
   productImages,
 }: {
   productImages: (SanityImage & {
-    _key: string;
     asset: SanityImageAsset;
   })[];
 }) {
   return (
     <div className="relative flex aspect-square w-full snap-x snap-mandatory overflow-x-auto">
-      {productImages.map((image) => (
+      {productImages.map((image, idx) => (
         <Image
           alt={""}
           blurDataURL={image.asset.metadata?.lqip}
           className="aspect-square shrink-0 snap-center object-cover object-center"
           draggable={false}
           height={768}
-          key={image._key}
+          key={`full-bleed-${idx}`}
           loading="lazy"
           placeholder="blur"
           sizes="100vw"

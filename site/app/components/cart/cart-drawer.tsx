@@ -38,9 +38,6 @@ export default function CartDrawer() {
       cart?.totalQuantity !== quantityRef.current &&
       cart?.totalQuantity > 0
     ) {
-      if (!open) {
-        openSet(true);
-      }
       quantityRef.current = cart?.totalQuantity;
     }
   }, [open, cart?.totalQuantity, quantityRef]);

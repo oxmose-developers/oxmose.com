@@ -43,7 +43,7 @@ export default function CatalogueCard({
           </h2>
 
           <p
-            className="break-words text-oxe-sm/7 @2xl:-mb-2.5 @2xl:text-oxe-lg @2xl:font-medium"
+            className="@2xl:text-oxe-xl break-words text-oxe-sm/7 @2xl:-mb-2.5 @2xl:font-medium"
             style={{ wordBreak: "break-word" }}
           >
             {release.artist.map((el) => el.name).join(", ")}

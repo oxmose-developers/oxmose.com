@@ -102,7 +102,7 @@ export default async function Page(props: {
                 {release.title}
               </p>
 
-              <p className="text-oxe-sm/8 md:self-end md:text-right md:text-oxe-lg md:font-medium">
+              <p className="md:text-oxe-xl text-oxe-sm/8 md:self-end md:text-right md:font-medium">
                 {release.artist.map((artist, idx, artists) => (
                   // @ts-expect-error - Fragment is a valid JSX element
                   <Fragment key={artist.slug.current}>
@@ -301,7 +301,7 @@ export default async function Page(props: {
             </p>
           </div>
 
-          <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-lg md:prose-p:font-medium">
+          <div className="md:prose-p:text-oxe-xl prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:font-medium">
             <PortableText value={release.description} />
           </div>
         </div>

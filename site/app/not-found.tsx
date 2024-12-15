@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="md:min-h-128 flex min-h-96 flex-col border-b border-black p-9 md:p-10">
+    <section className="flex min-h-96 flex-col border-b border-black p-9 md:min-h-128 md:p-10">
       <h2 className="mb-1.5 text-oxe-md md:mb-10 md:text-oxe-xxl">Not found</h2>
 
-      <p className="text-oxe-sm md:text-oxe-lg">
+      <p className="md:text-oxe-xl text-oxe-sm">
         Could not find requested resource
       </p>
 

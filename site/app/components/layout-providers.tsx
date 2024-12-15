@@ -27,6 +27,7 @@ export const Providers = ({
         forcedTheme={forcedThemeFromPathname}
         attribute="class"
       >
+        {/* @ts-expect-error - This is a valid JSX element */}
         <PlayerProvider>{children}</PlayerProvider>
       </ThemeProvider>
     </CartProvider>

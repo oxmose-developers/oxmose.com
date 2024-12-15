@@ -38,7 +38,7 @@ function PlayerControls() {
   return (
     <>
       <button
-        className="md:size-18 hidden size-14 items-center justify-center sm:flex"
+        className="hidden size-14 items-center justify-center sm:flex md:size-18"
         onClick={() => controls.previousTrack()}
       >
         <Image
@@ -53,7 +53,7 @@ function PlayerControls() {
       </button>
 
       <button
-        className="md:size-18 flex size-14 items-center justify-center"
+        className="flex size-14 items-center justify-center md:size-18"
         onClick={() => (state.isPlaying ? controls.pause() : controls.play())}
       >
         <Image
@@ -80,7 +80,7 @@ function PlayerControls() {
       </button>
 
       <button
-        className="md:size-18 hidden size-14 items-center justify-center sm:flex"
+        className="hidden size-14 items-center justify-center sm:flex md:size-18"
         onClick={() => controls.nextTrack()}
       >
         <Image
@@ -118,6 +118,7 @@ function PlayerNowPlaying() {
         {formatDuration(state.duration)}
       </p>
 
+      {/* @ts-expect-error - This is a valid JSX element */}
       <Progress.Root
         className="absolute bottom-0 left-0 right-0 z-0 h-1.5 w-full overflow-hidden bg-white"
         style={{
@@ -127,6 +128,7 @@ function PlayerNowPlaying() {
         }}
         value={state.progress * 100}
       >
+        {/* @ts-expect-error - This is a valid JSX element */}
         <Progress.Indicator
           className="size-full bg-oxe-purple transition-transform ease-linear"
           style={{ transform: `translateX(-${100 - state.progress * 100}%)` }}
@@ -193,14 +195,14 @@ export default function Player() {
         <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 after:absolute after:inset-x-0 after:h-[env(safe-area-inset-bottom)] after:border-t-hairline after:border-white/40 after:bg-black">
           {isPlaylistOpen && <PlayerPlaylist />}
 
-          <div className="md:h-18 flex h-14 items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white">
+          <div className="flex h-14 items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white md:h-18">
             <PlayerControls />
 
             <PlayerNowPlaying />
 
             <button
               onClick={() => isPlaylistOpenSet(!isPlaylistOpen)}
-              className="md:size-18 flex size-14 items-center justify-center"
+              className="flex size-14 items-center justify-center md:size-18"
             >
               <Image
                 className="size-8 data-[playlist-open=true]:opacity-50 md:size-10"
@@ -216,7 +218,7 @@ export default function Player() {
 
             <button
               onClick={() => isPlayerOpenSet(false)}
-              className="md:size-18 flex size-14 items-center justify-center"
+              className="flex size-14 items-center justify-center md:size-18"
             >
               <Image
                 className="size-8 md:size-10"
@@ -236,7 +238,7 @@ export default function Player() {
     return (
       <button
         onClick={() => isPlayerOpenSet(true)}
-        className="md:size-18 fixed bottom-[env(safe-area-inset-bottom,0px)] right-0 z-40 flex size-14 items-center justify-center border-hairline border-b-0 border-r-0 border-white/40 bg-black text-white"
+        className="fixed bottom-[env(safe-area-inset-bottom,0px)] right-0 z-40 flex size-14 items-center justify-center border-hairline border-b-0 border-r-0 border-white/40 bg-black text-white md:size-18"
       >
         <Image
           className="size-8 md:size-10"

@@ -35,7 +35,6 @@ export default function OxmoseLogoAnimation() {
   }, [pathname]);
 
   return (
-    // @ts-expect-error something wrong with types pulled from the package
     <dotlottie-player
       ref={animation}
       src="/V04_front_page_v01_192.lottie"

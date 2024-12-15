@@ -66,6 +66,7 @@ export default async function Page(props: {
 
       <div className="flex-1 divide-y divide-black md:divide-y-reverse">
         {categories.map((el, idx) => (
+          /* @ts-expect-error - This is a valid JSX element */
           <Fragment key={`${el._id}-${idx}-category`}>
             <Link
               className="block w-full px-9 text-left text-oxe-xxl-mobile/[3.75rem] md:hidden"

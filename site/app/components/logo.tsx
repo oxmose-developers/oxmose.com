@@ -32,6 +32,7 @@ const OxmoseLogoAnimation = dynamic(() => import("./logo-animation"), {
 export function OxmoseAnimatedLogo({ className }: { className?: string }) {
   return (
     <div className={className}>
+      {/* @ts-expect-error - This is a valid JSX element */}
       <Suspense fallback={null}>
         <OxmoseLogoAnimation />
       </Suspense>

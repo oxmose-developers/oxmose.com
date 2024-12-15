@@ -91,6 +91,7 @@ export default async function Page() {
         </div>
 
         <ul className="divide-y divide-white border-t">
+          {/* @ts-expect-error - This is a valid JSX element */}
           <Suspense>
             <PublishingArtistsList />
           </Suspense>

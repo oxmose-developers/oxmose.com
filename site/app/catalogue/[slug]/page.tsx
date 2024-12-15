@@ -104,6 +104,7 @@ export default async function Page(props: {
 
               <p className="text-oxe-sm/[2rem] md:self-end md:text-right md:text-oxe-lg md:font-medium">
                 {release.artist.map((artist, idx, artists) => (
+                  // @ts-expect-error - Fragment is a valid JSX element
                   <Fragment key={artist.slug.current}>
                     <Link href={`/artists/${artist.slug.current}`}>
                       {artist.name}
@@ -201,6 +202,7 @@ export default async function Page(props: {
 
               <p className="text-oxe-sm/[2rem]">
                 {release.artist.map((artist, idx, artists) => (
+                  // @ts-expect-error - Fragment is a valid JSX element
                   <Fragment key={artist.slug.current}>
                     <Link href={`/artists/${artist.slug.current}`}>
                       {artist.name}

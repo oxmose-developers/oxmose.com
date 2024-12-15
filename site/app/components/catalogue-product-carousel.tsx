@@ -1,49 +1,64 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-import type { Image } from "sanity";
+import type { Image as SanityImage } from "sanity";
 
 import { urlForImage } from "../../lib/sanity";
+import type { SanityImageAsset } from "../../sanity.types";
 
-export function ProductCarousel({ productImages }: { productImages: Image[] }) {
+export function ProductCarousel({
+  productImages,
+}: {
+  productImages: (SanityImage & {
+    _key: string;
+    asset: SanityImageAsset;
+  })[];
+}) {
   const [activeIndex, activeIndexSet] = useState(0);
-
-  const images = productImages.map((image) => ({
-    _key: image._key as string,
-    src: urlForImage(image).url(),
-    webp: urlForImage(image).format("webp").url(),
-  }));
 
   return (
     <div className="flex flex-1 gap-10 md:p-10">
       {/* Desktop Product Images */}
       <div className="mt-auto flex max-w-[40rem] flex-1 snap-x snap-mandatory overflow-x-auto">
-        <img
-          alt={""}
-          className="aspect-square shrink-0 snap-center object-cover object-center"
-          decoding="async"
+        <Image
+          key={activeIndex}
           loading="lazy"
-          src={images[activeIndex].webp}
+          className="aspect-square shrink-0 snap-center object-cover object-center"
+          src={urlForImage(productImages[activeIndex])
+            .width(640)
+            .height(640)
+            .dpr(3)
+            .url()}
+          width={640}
+          height={640}
+          alt={""}
+          draggable={false}
+          placeholder="blur"
+          blurDataURL={productImages[activeIndex].asset.metadata?.lqip}
         />
       </div>
 
       {/* Carousel Controls */}
       <div className="flex shrink-0 gap-2 self-end justify-self-end">
-        {images
-          .filter((_, idx) => idx !== activeIndex)
-          .map(({ webp, _key }, idx) => (
+        {productImages
+          // .filter((_, idx) => idx !== activeIndex)
+          .map((image, idx) => (
             <button
-              key={_key}
+              key={image._key}
               type="button"
               onClick={() => activeIndexSet(idx)}
             >
-              <img
-                alt={""}
-                className="aspect-square size-11 shrink-0"
-                decoding="async"
+              <Image
                 loading="lazy"
-                src={webp}
+                className="aspect-square size-11 shrink-0"
+                src={urlForImage(image).width(44).height(44).dpr(3).url()}
+                width={44}
+                height={44}
+                alt={""}
+                draggable={false}
+                placeholder="blur"
+                blurDataURL={image.asset.metadata?.lqip}
               />
             </button>
           ))}
@@ -55,25 +70,26 @@ export function ProductCarousel({ productImages }: { productImages: Image[] }) {
 export function ProductFullBleedScroller({
   productImages,
 }: {
-  productImages: Image[];
+  productImages: (SanityImage & {
+    _key: string;
+    asset: SanityImageAsset;
+  })[];
 }) {
-  const images = productImages.map((image) => ({
-    _key: image._key as string,
-    src: urlForImage(image).url(),
-    webp: urlForImage(image).format("webp").url(),
-  }));
-
   return (
     <div className="relative flex aspect-square w-full snap-x snap-mandatory overflow-x-auto">
-      {images.map(({ webp, _key }) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+      {productImages.map((image) => (
+        <Image
           alt={""}
+          blurDataURL={image.asset.metadata?.lqip}
           className="aspect-square shrink-0 snap-center object-cover object-center"
-          decoding="async"
-          key={_key}
+          draggable={false}
+          height={768}
+          key={image._key}
           loading="lazy"
-          src={webp}
+          placeholder="blur"
+          sizes="100vw"
+          src={urlForImage(image).width(768).height(768).dpr(3).url()}
+          width={768}
         />
       ))}
     </div>

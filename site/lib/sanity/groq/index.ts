@@ -173,7 +173,9 @@ export type Release = {
     asset: SanityImageAsset;
   };
   description: any[];
-  productImages: Image[];
+  productImages: (Image & {
+    asset: SanityImageAsset;
+  })[];
   releaseReference: `OXE #${string}`;
   releaseDate: string;
   shopifyProductDigital: string;
@@ -217,6 +219,13 @@ export const ReleasePageQuery = /* groq */ `
 *[_type == "release" && slug.current == $slug][0] {
   ...,
   artist[]->{name, slug},
+  productImages[] {
+    ...,
+    asset->{
+      ...,
+      metadata
+    }
+  },
   trackList {
     ...,
     tracks[] {

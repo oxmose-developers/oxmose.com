@@ -5,5 +5,12 @@
       "source": "/stats/:match*",
       "destination": "https://analytics.umami.is/:match*"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/admin",
+      "destination": "https://oxmose.sanity.studio",
+      "permanent": true
+    }
   ]
 }

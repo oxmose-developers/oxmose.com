@@ -34,7 +34,7 @@ const config = {
         24: "6rem",
       },
       fontSize: {
-        "oxe-xs": ["1.125rem", { lineHeight: "1.5625rem" }],
+        "oxe-xxs": ["1.125rem", { lineHeight: "1.5625rem" }],
 
         "oxe-sm": ["1.5625rem", { lineHeight: "2.125rem" }],
         "oxe-md": ["1.875rem", { lineHeight: "2.1875rem" }],

@@ -11,7 +11,7 @@ export default function FollowPopover({ offset }: { offset: number }) {
     <div>
       <button
         type="button"
-        className="text-oxe-xs uppercase md:text-oxe-sm"
+        className="text-oxe-xxs uppercase md:text-oxe-sm"
         onClick={() => isOpenSet(!isOpen)}
       >
         Follow
@@ -28,7 +28,7 @@ export default function FollowPopover({ offset }: { offset: number }) {
                 href={link.href}
                 target="_blank"
                 key={`${link.label}-${idx}`}
-                className="text-oxe-xs font-medium uppercase md:text-oxe-sm"
+                className="text-oxe-xxs font-medium uppercase md:text-oxe-sm"
               >
                 {link.label}
               </a>

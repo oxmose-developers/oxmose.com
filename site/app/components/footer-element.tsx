@@ -40,7 +40,7 @@ export default function Footer({ fullYear }: { fullYear: number }) {
 
           {isExpanded && (
             <>
-              <Link className="text-oxe-xs uppercase" href="/publishing">
+              <Link className="text-oxe-xxs uppercase" href="/publishing">
                 Publishing
               </Link>
 
@@ -49,17 +49,17 @@ export default function Footer({ fullYear }: { fullYear: number }) {
               <NewsletterPopover offset={height} />
 
               <Link
-                className="text-oxe-xs uppercase"
+                className="text-oxe-xxs uppercase"
                 href="/terms-and-conditions"
               >
                 Terms
               </Link>
 
-              <Link className="text-oxe-xs uppercase" href="/privacy-policy">
+              <Link className="text-oxe-xxs uppercase" href="/privacy-policy">
                 Privacy
               </Link>
 
-              <Link className="text-oxe-xs uppercase" href="/faq">
+              <Link className="text-oxe-xxs uppercase" href="/faq">
                 FAQ
               </Link>
             </>
@@ -88,7 +88,7 @@ export default function Footer({ fullYear }: { fullYear: number }) {
           </Link>
         </div>
 
-        <span className="ml-auto whitespace-nowrap text-oxe-xs uppercase md:text-oxe-sm">
+        <span className="text-oxe-xxs ml-auto whitespace-nowrap uppercase md:text-oxe-sm">
           {`© ${fullYear} Oxmose`}
         </span>
       </nav>

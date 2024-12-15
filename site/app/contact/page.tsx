@@ -44,7 +44,7 @@ export default async function Page() {
             </a>
           </p>
 
-          <div className="text-oxe-xs md:text-oxe-md">
+          <div className="text-oxe-xxs md:text-oxe-md">
             <PortableText value={page.generalSection.content} />
           </div>
         </div>

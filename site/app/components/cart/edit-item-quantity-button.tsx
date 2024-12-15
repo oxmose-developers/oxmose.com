@@ -25,7 +25,7 @@ export function EditItemQuantityButton({
   });
 
   return (
-    <div className="flex items-center text-oxe-xs md:text-oxe-sm">
+    <div className="text-oxe-xxs flex items-center md:text-oxe-sm">
       <p className="mr-2">
         <span>Qty: </span>
       </p>

@@ -24,7 +24,7 @@ export function DeleteItemButton({
       }}
     >
       <button
-        className="text-oxe-xs font-medium md:text-oxe-sm"
+        className="text-oxe-xxs font-medium md:text-oxe-sm"
         aria-label="Remove cart item"
         type="submit"
       >

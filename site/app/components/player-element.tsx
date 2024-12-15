@@ -108,7 +108,7 @@ function PlayerNowPlaying() {
     : undefined;
 
   return (
-    <div className="relative flex flex-1 items-center justify-between gap-4 overflow-x-hidden px-5 text-oxe-xs uppercase leading-[inherit] md:text-[1.375rem]">
+    <div className="text-oxe-xxs relative flex flex-1 items-center justify-between gap-4 overflow-x-hidden px-5 uppercase leading-[inherit] md:text-[1.375rem]">
       <p className="truncate whitespace-nowrap">
         <span className="inline sm:hidden">{currentTrack?.title}</span>
         <span className="hidden sm:inline">{nowPlaying}</span>
@@ -146,7 +146,7 @@ function PlayerPlaylist() {
   return (
     <div className="max-h-[calc(100svh/2)] overflow-y-scroll border-t-hairline border-white/40 bg-black text-white">
       <div className="grid divide-y-hairline divide-white/40">
-        <div className="relative grid grid-cols-2 gap-x-5 px-5 py-1.5 text-oxe-xs leading-[inherit] md:grid-cols-3 md:text-[1.375rem]">
+        <div className="text-oxe-xxs relative grid grid-cols-2 gap-x-5 px-5 py-1.5 leading-[inherit] md:grid-cols-3 md:text-[1.375rem]">
           <div className="hidden uppercase md:block">#</div>
           <div className="uppercase">Title</div>
           <div className="place-self-end uppercase md:place-self-start">
@@ -157,7 +157,7 @@ function PlayerPlaylist() {
         {state.playlist.map((track, index) => (
           <div
             key={track.title}
-            className="relative grid grid-cols-[1fr_auto] gap-x-5 px-5 py-1.5 text-oxe-xs leading-[inherit] hover:bg-white hover:text-black data-[current-track=true]:bg-oxe-purple data-[current-track=true]:text-black md:grid-cols-3 md:text-[1.375rem]"
+            className="text-oxe-xxs relative grid grid-cols-[1fr_auto] gap-x-5 px-5 py-1.5 leading-[inherit] hover:bg-white hover:text-black data-[current-track=true]:bg-oxe-purple data-[current-track=true]:text-black md:grid-cols-3 md:text-[1.375rem]"
             data-current-track={state.currentTrackIndex === index}
           >
             <div className="hidden uppercase md:block">

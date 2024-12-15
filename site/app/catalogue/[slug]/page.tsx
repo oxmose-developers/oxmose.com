@@ -236,7 +236,7 @@ export default async function Page(props: {
                 Stream
               </h3>
 
-              <ul className="ml-auto text-right text-oxe-xs md:text-left md:text-oxe-sm/8">
+              <ul className="text-oxe-xxs ml-auto text-right md:text-left md:text-oxe-sm/8">
                 {[...(release?.links ?? [])].map((link) => (
                   <li key={link._key}>
                     <a href={link.href}>{link.name}</a>
@@ -299,7 +299,7 @@ export default async function Page(props: {
             </p>
           </div>
 
-          <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-xxl md:prose-p:font-medium">
+          <div className="prose-p:text-oxe-xxs/5 prose max-w-[unset] text-black prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-xxl md:prose-p:font-medium">
             <PortableText value={release.description} />
           </div>
         </div>

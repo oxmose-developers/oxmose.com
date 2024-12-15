@@ -5,12 +5,12 @@ export default function CreditArticle({ credit }: { credit: Credits }) {
 
   return (
     <article>
-      <h3 className="text-oxe-xs font-medium uppercase md:text-oxe-md">
+      <h3 className="text-oxe-xxs font-medium uppercase md:text-oxe-md">
         {credit.title}
       </h3>
 
       <p
-        className="text-oxe-xs md:text-oxe-md"
+        className="text-oxe-xxs md:text-oxe-md"
         dangerouslySetInnerHTML={{
           __html: credit.items.map((item) => item.name).join(joinHtmlString),
         }}

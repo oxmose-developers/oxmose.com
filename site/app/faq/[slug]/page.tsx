@@ -76,7 +76,7 @@ export default async function Page(props: {
             </Link>
 
             {el.slug.current === slug && (
-              <article className="space-y-9 p-9 text-oxe-xs/5 md:space-y-10 md:border-none md:p-10 md:text-oxe-sm">
+              <article className="text-oxe-xxs/5 space-y-9 p-9 md:space-y-10 md:border-none md:p-10 md:text-oxe-sm">
                 {faq.questions.map((qa, idx) => (
                   <div key={`${qa._id}-${idx}-question`} className="space-y-4">
                     <h4 className="-mb-4 font-medium">{qa.question}</h4>

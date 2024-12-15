@@ -84,7 +84,7 @@ export default async function Page(props: {
           />
         </picture>
 
-        <div className="prose max-w-[unset] text-black prose-p:text-oxe-xs/5 prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-md">
+        <div className="prose-p:text-oxe-xxs/5 prose max-w-[unset] text-black prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-md">
           <PortableText value={artist.body} />
         </div>
       </div>
@@ -106,7 +106,7 @@ export default async function Page(props: {
             {[...(artist?.releases ?? [])].map((release) => (
               <li key={`${artist.slug}-${release.slug.current}`}>
                 <Link href={`/catalogue/${release.slug.current}`}>
-                  <article className="text-right text-oxe-xs md:text-left md:text-oxe-sm/8">
+                  <article className="text-oxe-xxs text-right md:text-left md:text-oxe-sm/8">
                     <header>
                       <h3>{release.title}</h3>
                       <p>{release.releaseReference}</p>
@@ -133,7 +133,7 @@ export default async function Page(props: {
             </h3>
           </div>
 
-          <ul className="ml-auto text-right text-oxe-xs md:ml-0 md:pl-9 md:text-left md:text-oxe-sm/8">
+          <ul className="text-oxe-xxs ml-auto text-right md:ml-0 md:pl-9 md:text-left md:text-oxe-sm/8">
             {[...(artist?.links ?? [])].map((link) => (
               <li key={link._key}>
                 <a href={link.href}>{link.name}</a>

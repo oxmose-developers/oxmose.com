@@ -82,7 +82,7 @@ export default function VariantSelector({
                   </p>
                 </div>
 
-                <p className="truncate pl-6 text-left text-oxe-xs md:pl-9 md:text-oxe-sm">
+                <p className="text-oxe-xxs truncate pl-6 text-left md:pl-9 md:text-oxe-sm">
                   {format}
                 </p>
               </div>

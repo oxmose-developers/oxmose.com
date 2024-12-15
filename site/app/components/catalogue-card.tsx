@@ -67,7 +67,7 @@ export default function CatalogueCard({
       <footer className="shrink-0 border-t border-black px-9 py-2">
         <div className="flex justify-between">
           <Link
-            className="text-oxe-xs font-medium uppercase @2xl:text-oxe-sm"
+            className="text-oxe-xxs font-medium uppercase @2xl:text-oxe-sm"
             href={link}
           >
             More
@@ -76,7 +76,7 @@ export default function CatalogueCard({
           {release?.trackList?.tracks?.every((el) => el.file) && (
             <button
               type="button"
-              className="text-oxe-xs font-medium uppercase @2xl:text-oxe-sm"
+              className="text-oxe-xxs font-medium uppercase @2xl:text-oxe-sm"
               onClick={() => {
                 console.log(release.trackList);
 

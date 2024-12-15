@@ -49,7 +49,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
     <div>
       <button
         type="button"
-        className="text-oxe-xs uppercase md:text-oxe-sm"
+        className="text-oxe-xxs uppercase md:text-oxe-sm"
         onClick={() => isOpenSet(!isOpen)}
       >
         Newsletter

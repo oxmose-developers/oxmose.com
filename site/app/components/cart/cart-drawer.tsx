@@ -54,7 +54,7 @@ export default function CartDrawer() {
       <button
         type="button"
         onClick={() => openSet(!open)}
-        className="fixed bottom-20 right-5 inline-flex h-10 items-center whitespace-nowrap bg-black px-3 text-oxe-xs font-medium uppercase text-white dark:bg-white dark:text-black md:bottom-24 md:h-14 md:px-4 md:text-oxe-sm"
+        className="text-oxe-xxs fixed bottom-20 right-5 inline-flex h-10 items-center whitespace-nowrap bg-black px-3 font-medium uppercase text-white dark:bg-white dark:text-black md:bottom-24 md:h-14 md:px-4 md:text-oxe-sm"
       >
         <span>
           {quantityRef.current ? `Cart (${quantityRef.current})` : "Cart"}
@@ -138,7 +138,7 @@ export default function CartDrawer() {
                               />
 
                               <div>
-                                <p className="text-oxe-xs font-medium md:text-oxe-sm">
+                                <p className="text-oxe-xxs font-medium md:text-oxe-sm">
                                   {item.merchandise.product.title}
                                 </p>
 
@@ -147,7 +147,7 @@ export default function CartDrawer() {
                                   optimisticUpdate={updateCartItem}
                                 />
 
-                                <p className="text-oxe-xs md:text-oxe-sm">{`Price: ${new Intl.NumberFormat(
+                                <p className="text-oxe-xxs md:text-oxe-sm">{`Price: ${new Intl.NumberFormat(
                                   "fr-FR",
                                   {
                                     style: "currency",
@@ -181,7 +181,7 @@ export default function CartDrawer() {
                   </div>
 
                   <div className="flex flex-shrink-0 justify-between gap-4 px-6 py-4 md:px-9 md:py-7">
-                    <p className="text-oxe-xs">
+                    <p className="text-oxe-xxs">
                       {
                         "Shipping costs may apply for the physical product(s) and will be calculated upon checkout."
                       }

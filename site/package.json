@@ -6,7 +6,8 @@
     "format": "prettier --write .",
     "lint": "next lint --",
     "start": "next start",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "typegen": "sanity typegen generate"
   },
   "dependencies": {
     "@aarsteinmedia/dotlottie-player-light": "^4.0.9",
@@ -17,6 +18,7 @@
     "@sanity/icons": "^3.5.2",
     "@sanity/image-url": "1.1.0",
     "@sanity/ui": "^2.10.9",
+    "@sanity/uuid": "^3.0.2",
     "@sanity/vision": "3.67.1",
     "clsx": "^2.1.1",
     "date-fns": "4.1.0",

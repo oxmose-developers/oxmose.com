@@ -99,7 +99,7 @@ export default async function Page(props: {
           <div className="flex items-center gap-1.5 md:gap-4">
             <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-black md:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/[2rem]">
+            <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/8">
               Release
             </h3>
           </div>
@@ -108,7 +108,7 @@ export default async function Page(props: {
             {[...(artist?.releases ?? [])].map((release) => (
               <li key={`${artist.slug}-${release.slug.current}`}>
                 <Link href={`/catalogue/${release.slug.current}`}>
-                  <article className="text-right text-oxe-xs md:text-left md:text-oxe-sm/[2rem]">
+                  <article className="text-right text-oxe-xs md:text-left md:text-oxe-sm/8">
                     <header>
                       <h3>{release.title}</h3>
                       <p>{release.releaseReference}</p>
@@ -130,12 +130,12 @@ export default async function Page(props: {
           <div className="flex items-center gap-1.5 md:gap-4">
             <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-white md:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/[2rem]">
+            <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/8">
               More
             </h3>
           </div>
 
-          <ul className="ml-auto text-right text-oxe-xs md:ml-0 md:pl-9 md:text-left md:text-oxe-sm/[2rem]">
+          <ul className="ml-auto text-right text-oxe-xs md:ml-0 md:pl-9 md:text-left md:text-oxe-sm/8">
             {[...(artist?.links ?? [])].map((link) => (
               <li key={link._key}>
                 <a href={link.href}>{link.name}</a>

@@ -77,7 +77,7 @@ export default function VariantSelector({
                     )}
                   ></div>
 
-                  <p className="text-oxe-sm/5 font-medium uppercase md:text-[2.1875rem]/[2rem]">
+                  <p className="text-oxe-sm/5 font-medium uppercase md:text-[2.1875rem]/8">
                     {type}
                   </p>
                 </div>
@@ -88,7 +88,7 @@ export default function VariantSelector({
               </div>
 
               <Price
-                className="ml-auto text-oxe-sm/5 font-medium uppercase md:text-[2.1875rem]/[2rem]"
+                className="ml-auto text-oxe-sm/5 font-medium uppercase md:text-[2.1875rem]/8"
                 amount={product.priceRange.maxVariantPrice.amount}
                 currencyCode={product.priceRange.maxVariantPrice.currencyCode}
                 hideCurrencyCode

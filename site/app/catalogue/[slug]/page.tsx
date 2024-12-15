@@ -102,7 +102,7 @@ export default async function Page(props: {
                 {release.title}
               </p>
 
-              <p className="text-oxe-sm/[2rem] md:self-end md:text-right md:text-oxe-lg md:font-medium">
+              <p className="text-oxe-sm/8 md:self-end md:text-right md:text-oxe-lg md:font-medium">
                 {release.artist.map((artist, idx, artists) => (
                   // @ts-expect-error - Fragment is a valid JSX element
                   <Fragment key={artist.slug.current}>
@@ -136,11 +136,11 @@ export default async function Page(props: {
               )}
 
               <div className="flex items-start">
-                <h3 className="text-[2.1875rem]/[2rem] font-medium uppercase">
+                <h3 className="text-[2.1875rem]/8 font-medium uppercase">
                   Stream
                 </h3>
 
-                <ul className="ml-auto text-right text-oxe-md/[2rem]">
+                <ul className="ml-auto text-right text-oxe-md/8">
                   {[...(release?.links ?? [])].map((link) => (
                     <li key={link._key}>
                       <a href={link.href}>{link.name}</a>
@@ -200,7 +200,7 @@ export default async function Page(props: {
             <div className="mb-5">
               <p className="text-oxe-md font-medium">{release.title}</p>
 
-              <p className="text-oxe-sm/[2rem]">
+              <p className="text-oxe-sm/8">
                 {release.artist.map((artist, idx, artists) => (
                   // @ts-expect-error - Fragment is a valid JSX element
                   <Fragment key={artist.slug.current}>
@@ -234,11 +234,11 @@ export default async function Page(props: {
 
             {/* Stream Links */}
             <div className="mt-5 flex items-start">
-              <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/[2rem]">
+              <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/8">
                 Stream
               </h3>
 
-              <ul className="ml-auto text-right text-oxe-xs md:text-left md:text-oxe-sm/[2rem]">
+              <ul className="ml-auto text-right text-oxe-xs md:text-left md:text-oxe-sm/8">
                 {[...(release?.links ?? [])].map((link) => (
                   <li key={link._key}>
                     <a href={link.href}>{link.name}</a>

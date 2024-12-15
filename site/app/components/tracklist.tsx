@@ -23,7 +23,7 @@ export default function Tracklist({
   const playerActions = usePlayerActions();
 
   return (
-    <table className="w-full text-left text-oxe-xs font-medium md:text-oxe-sm/[2rem]">
+    <table className="w-full text-left text-oxe-xs font-medium md:text-oxe-sm/8">
       <thead>
         <tr>
           <td className="bg-black pb-1 pt-1.5 uppercase text-white first:pl-10 last:pr-10 dark:bg-white dark:text-black md:py-2">

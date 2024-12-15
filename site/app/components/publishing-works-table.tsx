@@ -8,7 +8,7 @@ export default function WorksTable({
   name: string;
 }) {
   return (
-    <table className="w-full text-left text-oxe-xs font-medium md:text-oxe-sm/[2rem]">
+    <table className="w-full text-left text-oxe-xs font-medium md:text-oxe-sm/8">
       <thead>
         <tr>
           <td className="bg-white pb-1 pt-1.5 uppercase text-black first:pl-10 last:pr-10 md:py-2">

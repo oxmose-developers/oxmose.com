@@ -188,6 +188,13 @@ export const ReleasesQuery = /* groq */ `
 *[_type == "release" && defined(slug)] | order(releaseDate desc) {
   ...,
   artist[]->{name},
+  coverImage {
+    ...,
+    asset->{
+      ...,
+      metadata
+    }
+  },
   trackList {
     ...,
     tracks[] {

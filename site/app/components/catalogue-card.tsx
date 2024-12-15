@@ -22,9 +22,6 @@ export default function CatalogueCard({
 
   const link = "/catalogue/" + release.slug.current;
 
-  const url = urlForImage(release.coverImage).url();
-  const webpUrl = urlForImage(release.coverImage).format("webp").url();
-
   return (
     <article
       className={clsx(
@@ -53,12 +50,13 @@ export default function CatalogueCard({
         <div className="relative aspect-square w-full @2xl:max-w-[40.9375rem]">
           <Link href={link}>
             <Image
-              loading="lazy"
-              src={webpUrl}
+              src={urlForImage(release.coverImage).url()}
               className="size-full object-cover object-center"
               alt={`${release.title} Album Cover`}
-              unoptimized
-              fill
+              placeholder="blur"
+              blurDataURL={release.coverImage.asset.metadata?.lqip}
+              width={655}
+              height={655}
             />
           </Link>
         </div>

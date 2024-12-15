@@ -29,6 +29,7 @@ const config = {
         tighter: 1.2,
         12.5: "3.125rem",
         15: "3.75rem",
+        15.5: "3.875rem",
         16: "4rem",
         24: "6rem",
       },

@@ -8,8 +8,8 @@
   ],
   "redirects": [
     {
-      "source": "/admin",
-      "destination": "https://oxmose.sanity.studio",
+      "source": "/admin/(.*)",
+      "destination": "https://oxmose.sanity.studio/$1",
       "permanent": true
     }
   ]

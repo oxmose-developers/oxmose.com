@@ -69,7 +69,7 @@ export default async function Page(props: {
           /* @ts-expect-error - This is a valid JSX element */
           <Fragment key={`${el._id}-${idx}-category`}>
             <Link
-              className="text-oxe-lg/15 block w-full px-9 text-left md:hidden"
+              className="text-oxe-xl/15 block w-full px-9 text-left md:hidden"
               href={`/faq/${el.slug.current}`}
             >
               {el.category}

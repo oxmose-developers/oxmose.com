@@ -48,7 +48,7 @@ export default async function Page() {
           {page.creativeServicesSection.title}
         </h2>
 
-        <div className="md:text-[3.75rem]/16 text-oxe-xs/5">
+        <div className="md:text-oxe-xxxl/16 text-oxe-xs/5">
           <PortableText value={page.creativeServicesSection.content} />
         </div>
       </section>
@@ -58,11 +58,11 @@ export default async function Page() {
           {page.scoreSection.title}
         </h2>
 
-        <div className="md:text-[3.75rem]/16 text-oxe-xs/5">
+        <div className="md:text-oxe-xxxl/16 text-oxe-xs/5">
           <PortableText value={page.scoreSection.content} />
         </div>
 
-        <p className="md:text-[3.75rem]/16 mt-auto text-right text-oxe-md/snug md:mt-0 md:text-left">
+        <p className="md:text-oxe-xxxl/16 mt-auto text-right text-oxe-md/snug md:mt-0 md:text-left">
           <a href={page.scoreSection.link.href}>
             {page.scoreSection.link.name}
           </a>
@@ -74,7 +74,7 @@ export default async function Page() {
           {page.syncSection.title}
         </h2>
 
-        <div className="md:text-[3.75rem]/16 text-oxe-xs/5">
+        <div className="md:text-oxe-xxxl/16 text-oxe-xs/5">
           <PortableText value={page.syncSection.content} />
         </div>
       </section>

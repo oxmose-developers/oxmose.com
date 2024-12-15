@@ -62,7 +62,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
           style={{ "--offset": `${offset}px` } as React.CSSProperties}
         >
           <div className="flex items-center px-9 py-1.5 md:col-span-full md:py-3">
-            <p className="text-oxe-md/10 md:text-oxe-xxl">Stay in the loop</p>
+            <p className="md:text-oxe-xxxxl text-oxe-md/10">Stay in the loop</p>
 
             <button
               onClick={() => isOpenSet(!isOpen)}

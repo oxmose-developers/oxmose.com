@@ -98,7 +98,7 @@ export default async function Page(props: {
           <div className="flex flex-col">
             {/* Title & Artist */}
             <div className="flex flex-col px-9 pt-7 md:gap-5">
-              <p className="text-oxe-md font-medium md:text-oxe-xxl">
+              <p className="md:text-oxe-xxxxl text-oxe-md font-medium">
                 {release.title}
               </p>
 

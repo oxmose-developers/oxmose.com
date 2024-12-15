@@ -44,11 +44,11 @@ export default async function Page(props: {
     <div className="divide-y divide-black md:grid md:grid-cols-2 md:divide-x md:divide-y-0">
       <section lang="en" className="p-9 md:p-10">
         <div className="mb-10 flex gap-8 md:mb-28">
-          <h2 className="max-w-2xl flex-1 text-balance text-oxe-lg leading-none md:text-oxe-xxl">
+          <h2 className="md:text-oxe-xxxxl max-w-2xl flex-1 text-balance text-oxe-lg leading-none">
             {page.englishTitle}
           </h2>
 
-          <p className="shrink-0 text-oxe-lg leading-none md:text-oxe-xxl">
+          <p className="md:text-oxe-xxxxl shrink-0 text-oxe-lg leading-none">
             En
           </p>
         </div>
@@ -60,11 +60,11 @@ export default async function Page(props: {
 
       <section lang="fr" className="p-9 md:p-10">
         <div className="mb-10 flex gap-8 md:mb-28">
-          <h2 className="max-w-2xl flex-1 text-balance text-oxe-lg leading-none md:text-oxe-xxl">
+          <h2 className="md:text-oxe-xxxxl max-w-2xl flex-1 text-balance text-oxe-lg leading-none">
             {page.frenchTitle}
           </h2>
 
-          <p className="shrink-0 text-oxe-lg leading-none md:text-oxe-xxl">
+          <p className="md:text-oxe-xxxxl shrink-0 text-oxe-lg leading-none">
             Fr
           </p>
         </div>

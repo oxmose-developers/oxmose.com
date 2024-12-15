@@ -136,9 +136,7 @@ export default async function Page(props: {
               )}
 
               <div className="flex items-start">
-                <h3 className="text-[2.1875rem]/8 font-medium uppercase">
-                  Stream
-                </h3>
+                <h3 className="text-oxe-lg/8 font-medium uppercase">Stream</h3>
 
                 <ul className="ml-auto text-right text-oxe-md/8">
                   {[...(release?.links ?? [])].map((link) => (
@@ -234,7 +232,7 @@ export default async function Page(props: {
 
             {/* Stream Links */}
             <div className="mt-5 flex items-start">
-              <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/8">
+              <h3 className="text-oxe-sm font-medium uppercase md:text-oxe-lg/8">
                 Stream
               </h3>
 

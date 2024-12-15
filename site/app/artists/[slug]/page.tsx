@@ -97,7 +97,7 @@ export default async function Page(props: {
           <div className="flex items-center gap-1.5 md:gap-4">
             <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-black md:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/8">
+            <h3 className="text-oxe-sm font-medium uppercase md:text-oxe-lg/8">
               Release
             </h3>
           </div>
@@ -128,7 +128,7 @@ export default async function Page(props: {
           <div className="flex items-center gap-1.5 md:gap-4">
             <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-white md:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/8">
+            <h3 className="text-oxe-sm font-medium uppercase md:text-oxe-lg/8">
               More
             </h3>
           </div>

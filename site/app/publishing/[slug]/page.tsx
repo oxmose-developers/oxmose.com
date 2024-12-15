@@ -98,7 +98,7 @@ export default async function Page(props: {
         {!!artist?.works && hasAtLeast(artist.works.tracks, 1) && (
           <div className="-mx-9 block pt-7 md:hidden">
             <div className="mb-3 pl-9">
-              <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/8">
+              <h3 className="text-oxe-sm font-medium uppercase md:text-oxe-lg/8">
                 Works
               </h3>
             </div>
@@ -116,7 +116,7 @@ export default async function Page(props: {
         {!!artist?.works && hasAtLeast(artist.works.tracks, 1) && (
           <div className="-mx-10 hidden md:block">
             <div className="mb-6 pl-9">
-              <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/8">
+              <h3 className="text-oxe-sm font-medium uppercase md:text-oxe-lg/8">
                 Works
               </h3>
             </div>
@@ -130,7 +130,7 @@ export default async function Page(props: {
             <div className="flex items-center gap-1.5 md:gap-4">
               <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-white dark:border-white md:size-5"></div>
 
-              <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/8">
+              <h3 className="text-oxe-sm font-medium uppercase md:text-oxe-lg/8">
                 Projects
               </h3>
             </div>
@@ -153,7 +153,7 @@ export default async function Page(props: {
           <div className="flex items-center gap-1.5 md:gap-4">
             <div className="-mt-[0.1875rem] size-4 rounded-full border border-black bg-black dark:border-white md:size-5"></div>
 
-            <h3 className="text-oxe-sm font-medium uppercase md:text-[2.1875rem]/8">
+            <h3 className="text-oxe-sm font-medium uppercase md:text-oxe-lg/8">
               More
             </h3>
           </div>

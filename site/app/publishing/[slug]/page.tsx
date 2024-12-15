@@ -1,4 +1,5 @@
 import type { Metadata, ResolvingMetadata, Viewport } from "next";
+import Image from "next/image";
 import { PortableText } from "next-sanity";
 import { hasAtLeast } from "remeda";
 
@@ -49,9 +50,6 @@ export default async function Page(props: {
     artists: [artist.name],
   }));
 
-  const url = urlForImage(artist.coverImage).url();
-  const webpUrl = urlForImage(artist.coverImage).format("webp").url();
-
   return (
     <div className="artist-single-page-layout grid border-b border-black dark:border-white md:grid-cols-2">
       <div
@@ -62,33 +60,38 @@ export default async function Page(props: {
       </div>
 
       {/* Mobile-only Full Bleed Image */}
-      <div className="block md:hidden" style={{ gridArea: "image" }}>
-        <picture className="block">
-          <source srcSet={webpUrl} type="image/webp" />
-
-          <img
-            className="aspect-[16/10] w-full object-cover object-center"
-            alt={artist.name}
-            src={url}
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
+      <div
+        className="relative block aspect-[16/10] w-full md:hidden"
+        style={{ gridArea: "image" }}
+      >
+        <Image
+          className="object-cover object-center"
+          alt={artist.name}
+          src={urlForImage(artist.coverImage).url()}
+          placeholder="blur"
+          blurDataURL={artist.coverImage.asset.metadata?.lqip}
+          sizes="100vw"
+          fill
+        />
       </div>
 
       <Pagination slug={slug} style={{ gridArea: "pagination" }} />
 
       <div className="px-9 py-7 md:p-10" style={{ gridArea: "bio" }}>
-        <picture className="mb-10 hidden md:block">
-          <source srcSet={webpUrl} type="image/webp" />
-          <img
-            className="aspect-[16/10] w-full max-w-4xl object-cover object-center"
-            alt={artist.name}
-            src={url}
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
+        <Image
+          className="mb-10 hidden aspect-[16/10] w-full max-w-4xl select-none object-cover object-center md:block"
+          alt={artist.name}
+          src={urlForImage(artist.coverImage)
+            .width(896)
+            .height(586)
+            .dpr(3)
+            .url()}
+          width={896}
+          height={586}
+          draggable={false}
+          placeholder="blur"
+          blurDataURL={artist.coverImage.asset.metadata?.lqip}
+        />
 
         <div className="prose-p:text-oxe-xxs/5 prose max-w-[unset] text-black prose-a:text-black prose-a:underline prose-strong:font-medium dark:text-white dark:prose-a:text-white md:prose-p:text-oxe-md">
           <PortableText value={artist.body} />

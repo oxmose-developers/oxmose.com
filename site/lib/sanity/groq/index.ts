@@ -169,7 +169,9 @@ export type Release = {
   slug: Slug;
   artist: Pick<Artist, "name" | "slug">[];
   overview: string;
-  coverImage: Image;
+  coverImage: Image & {
+    asset: SanityImageAsset;
+  };
   description: any[];
   productImages: Image[];
   releaseReference: `OXE #${string}`;
@@ -284,6 +286,13 @@ export const PublishingArtistsQuery = /* groq */ `
   _id,
   slug,
   name,
+  coverImage {
+    ...,
+    asset->{
+      ...,
+      metadata
+    }
+  },
 }`;
 
 export const PublishingArtistsStaticParamsQuery = /* groq */ `*[_type == "publishingArtist" && defined(slug)] | order(name asc) {
@@ -294,7 +303,9 @@ export type PublishingArtistsStaticParamsQuery = { slug: Slug }[];
 
 export type PublishingArtist = {
   name: string;
-  coverImage: Image;
+  coverImage: Image & {
+    asset: SanityImageAsset;
+  };
   _id: string;
   _updatedAt: string;
   body: any[];
@@ -332,6 +343,15 @@ export type PublishingArtistsQuery = Pick<
   "coverImage" | "name" | "slug" | "_id"
 >[];
 
-export const PublishingArtistPageQuery = /* groq */ `*[_type == "publishingArtist" && slug.current == $slug][0]`;
+export const PublishingArtistPageQuery = /* groq */ `*[_type == "publishingArtist" && slug.current == $slug][0] {
+  ...,
+  coverImage {
+    ...,
+    asset->{
+      ...,
+      metadata
+    }
+  },
+}`;
 
 export type PublishingArtistPageQuery = PublishingArtist | null;

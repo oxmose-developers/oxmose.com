@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import type { Artist } from "../../lib/sanity";
@@ -10,22 +11,25 @@ export default function ArtistRow({
 }) {
   const link = "/artists/" + artist.slug.current;
 
-  const url = urlForImage(artist.coverImage).url();
-  const webpUrl = urlForImage(artist.coverImage).format("webp").url();
-
   return (
     <li className="group px-9 last:!border-b last:border-black md:px-10">
-      <picture className="absolute right-10 top-1/2 hidden -translate-y-1/2 xl:group-hover:block">
-        <source srcSet={webpUrl} type="image/webp" />
-        <img
-          className="aspect-[16/10] w-full max-w-[36rem] select-none object-cover object-center"
+      <div className="absolute right-10 top-1/2 hidden -translate-y-1/2 xl:group-hover:block">
+        <Image
+          className="w-full max-w-[36rem] select-none object-cover object-center"
           alt={artist.name}
-          src={url}
-          loading="lazy"
-          decoding="async"
+          src={urlForImage(artist.coverImage)
+            .width(576)
+            .height(380)
+            .dpr(3)
+            .url()}
+          width={576}
+          height={380}
           draggable={false}
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL={artist.coverImage.asset.metadata?.lqip}
         />
-      </picture>
+      </div>
 
       <Link
         className="md:text-oxe-xxxxl/24 text-oxe-xl/15 relative z-10"

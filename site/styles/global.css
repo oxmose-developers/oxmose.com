@@ -41,7 +41,7 @@
     "bio";
 }
 
-@screen lg {
+@screen md {
   .artist-single-page-layout {
     grid-template-areas:
       "name name"

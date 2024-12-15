@@ -1,4 +1,5 @@
 import type { File as SanityFile, Image, Slug } from "sanity";
+import type { SanityImageAsset } from "../../../sanity.types";
 
 export const AboutQuery = /* groq */ `
   *[_type == "about"][0]
@@ -83,7 +84,13 @@ export const ArtistsQuery = /* groq */ `
   _id,
   slug,
   name,
-  coverImage
+  coverImage {
+    ...,
+    asset->{
+      ...,
+      metadata
+    }
+  }
 }`;
 
 export const ArtistsStaticParamsQuery = /* groq */ `*[_type == "artist" && defined(slug)] | order(name asc) {
@@ -94,7 +101,9 @@ export type ArtistsStaticParamsQuery = { slug: Slug }[];
 
 export type Artist = {
   name: string;
-  coverImage: Image;
+  coverImage: Image & {
+    asset: SanityImageAsset;
+  };
   _id: string;
   _updatedAt: string;
   body: any[];
@@ -116,6 +125,13 @@ export type ArtistsQuery = Pick<
 
 export const ArtistPageQuery = /* groq */ `*[_type == "artist" && slug.current == $slug][0] {
   ...,
+  coverImage {
+    ...,
+    asset->{
+      ...,
+      metadata
+    }
+  },
   releases[]->{
     title,
     releaseReference,

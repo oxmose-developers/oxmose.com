@@ -58,7 +58,7 @@ export default async function Page(props: {
 
       <ul className="hidden flex-1 divide-y divide-black md:block">
         {categories.map((el) => (
-          <li key={el._id} className="px-10 text-oxe-xxl/[6rem] last:!border-b">
+          <li key={el._id} className="text-oxe-xxl/24 px-10 last:!border-b">
             <Link href={`/faq/${el.slug.current}`}>{el.category}</Link>
           </li>
         ))}
@@ -69,7 +69,7 @@ export default async function Page(props: {
           /* @ts-expect-error - This is a valid JSX element */
           <Fragment key={`${el._id}-${idx}-category`}>
             <Link
-              className="block w-full px-9 text-left text-oxe-xxl-mobile/[3.75rem] md:hidden"
+              className="text-oxe-lg/15 block w-full px-9 text-left md:hidden"
               href={`/faq/${el.slug.current}`}
             >
               {el.category}

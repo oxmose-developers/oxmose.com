@@ -58,9 +58,7 @@ export default async function Page(props: {
         className="px-9 md:border-b md:border-black md:px-10 md:dark:border-white"
         style={{ gridArea: "name" }}
       >
-        <h1 className="text-oxe-xxl-mobile/[3.75rem] md:text-oxe-xxl/[6rem]">
-          {artist.name}
-        </h1>
+        <h1 className="md:text-oxe-xxl/24 text-oxe-lg/15">{artist.name}</h1>
       </div>
 
       {/* Mobile-only Full Bleed Image */}

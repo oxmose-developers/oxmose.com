@@ -27,17 +27,18 @@ const config = {
       },
       lineHeight: {
         tighter: 1.2,
+        12.5: "3.125rem",
+        15: "3.75rem",
         16: "4rem",
         24: "6rem",
       },
       fontSize: {
         "oxe-xs": ["1.125rem", { lineHeight: "1.5625rem" }],
-        "oxe-xsm": ["1.375rem"],
+
         "oxe-sm": ["1.5625rem", { lineHeight: "2.125rem" }],
         "oxe-md": ["1.875rem", { lineHeight: "2.1875rem" }],
         "oxe-lg": ["2.5rem", { lineHeight: "2.8125rem" }],
         "oxe-xl": ["2.8125rem", { lineHeight: "3.125rem" }],
-        "oxe-xxl-mobile": ["2.5rem", { lineHeight: "3.125rem" }],
         "oxe-xxl": ["5rem", { lineHeight: "5.625rem" }],
         "oxe-xxxxxl": ["10.625rem"],
       },

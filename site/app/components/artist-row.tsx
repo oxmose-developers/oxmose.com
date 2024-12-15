@@ -28,7 +28,7 @@ export default function ArtistRow({
       </picture>
 
       <Link
-        className="relative z-10 text-oxe-xxl-mobile/[3.75rem] md:text-oxe-xxl/[6rem]"
+        className="md:text-oxe-xxl/24 text-oxe-lg/15 relative z-10"
         href={link}
       >
         {artist.name}

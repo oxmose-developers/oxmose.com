@@ -7,7 +7,7 @@ export default function NotFound() {
         Not found
       </h2>
 
-      <p className="md:text-oxe-xl text-oxe-sm">
+      <p className="text-oxe-sm md:text-oxe-xxl">
         Could not find requested resource
       </p>
 

@@ -34,11 +34,11 @@ export default async function Page() {
     <>
       <section className="flex-1 divide-y divide-black border-black md:grid md:grid-cols-2 md:divide-x md:divide-y-0">
         <div className="p-9 md:p-10">
-          <h1 className="text-oxe-xl md:text-oxe-xxxxl mb-5">
+          <h1 className="md:text-oxe-xxxxl mb-5 text-oxe-xxl">
             {page.generalSection.title}
           </h1>
 
-          <p className="md:text-oxe-xl mb-8 text-oxe-md md:mb-20">
+          <p className="mb-8 text-oxe-md md:mb-20 md:text-oxe-xxl">
             <a href={page.generalSection.link.href}>
               {page.generalSection.link.name}
             </a>
@@ -53,7 +53,7 @@ export default async function Page() {
           <dl className="flex flex-1 flex-col justify-between gap-10 xl:mt-auto xl:flex-initial xl:flex-row xl:gap-5">
             {page.locations.map((location, idx) => (
               <div
-                className="md:text-oxe-xl text-oxe-sm"
+                className="text-oxe-sm md:text-oxe-xxl"
                 key={`${location.name}-${idx}`}
               >
                 <dt className="font-medium">{location.type}</dt>

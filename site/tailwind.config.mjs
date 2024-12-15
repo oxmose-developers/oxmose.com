@@ -39,7 +39,7 @@ const config = {
         "oxe-sm": ["1.5625rem", { lineHeight: "2.125rem" }],
         "oxe-md": ["1.875rem", { lineHeight: "2.1875rem" }],
         "oxe-lg": ["2.5rem", { lineHeight: "2.8125rem" }],
-        "oxe-xl": ["2.8125rem", { lineHeight: "3.125rem" }],
+        "oxe-xxl": ["2.8125rem", { lineHeight: "3.125rem" }],
         "oxe-xxxl": ["3.75rem"],
         "oxe-xxxxl": ["5rem", { lineHeight: "5.625rem" }],
         "oxe-xxxxxl": ["10.625rem"],

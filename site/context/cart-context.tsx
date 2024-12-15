@@ -212,6 +212,7 @@ export function CartProvider({
 
   const updateCartItem = (merchandiseId: string, updateType: UpdateType) => {
     if (
+      updateType === "plus" &&
       optimisticCart?.lines.find(
         (item) =>
           item.merchandise.id === merchandiseId &&

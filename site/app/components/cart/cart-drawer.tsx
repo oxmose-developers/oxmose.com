@@ -13,9 +13,9 @@ import { useFormStatus } from "react-dom";
 import { useCart } from "../../../context/cart-context";
 import { DEFAULT_OPTION } from "../../../lib/constants";
 import LoadingDots from "../loading-dots";
+import { createCartAndSetCookie, redirectToCheckout } from "./actions";
 import { DeleteItemButton } from "./delete-item-button";
 import { EditItemQuantityButton } from "./edit-item-quantity-button";
-import { createCartAndSetCookie, redirectToCheckout } from "./actions";
 
 type MerchandiseSearchParams = {
   [key: string]: string;
@@ -56,7 +56,9 @@ export default function CartDrawer() {
         onClick={() => openSet(!open)}
         className="fixed bottom-20 right-5 inline-flex h-10 items-center whitespace-nowrap bg-black px-3 text-oxe-xs font-medium uppercase text-white dark:bg-white dark:text-black md:bottom-24 md:h-14 md:px-4 md:text-oxe-sm"
       >
-        <span>{`Cart (${quantityRef.current})`}</span>
+        <span>
+          {quantityRef.current ? `Cart (${quantityRef.current})` : "Cart"}
+        </span>
       </button>
 
       <Dialog open={open} onClose={openSet} className="relative z-50">

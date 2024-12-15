@@ -31,11 +31,12 @@ const config = {
         15: "3.75rem",
         15.5: "3.875rem",
         16: "4rem",
+        20.5: "5.3125rem",
         24: "6rem",
       },
       fontSize: {
         "oxe-xxs": ["1.125rem", { lineHeight: "1.5625rem" }],
-
+        "oxe-xs": ["1.375rem"],
         "oxe-sm": ["1.5625rem", { lineHeight: "2.125rem" }],
         "oxe-md": ["1.875rem", { lineHeight: "2.1875rem" }],
         "oxe-lg": ["2.1875rem"],

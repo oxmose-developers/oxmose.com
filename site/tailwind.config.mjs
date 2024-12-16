@@ -11,6 +11,7 @@ const config = {
   theme: {
     extend: {
       spacing: {
+        15.5: "3.875rem",
         18: "4.5rem",
         128: "32rem",
       },

@@ -12,7 +12,7 @@ export function SubmitButton() {
   return (
     <button
       type="submit"
-      className="md:text-oxe-xxl/15.5 text-oxe-sm/10 focus:outline-none"
+      className="text-oxe-sm/10 focus:outline-none md:text-oxe-xxl/15.5"
       aria-disabled={pending}
       onClick={(e) => {
         if (pending) {
@@ -62,7 +62,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
           style={{ "--offset": `${offset}px` } as React.CSSProperties}
         >
           <div className="flex items-center px-9 py-1.5 md:col-span-full md:py-3">
-            <p className="md:text-oxe-xxxxl text-oxe-md/10">Stay in the loop</p>
+            <p className="text-oxe-md/10 md:text-oxe-xxxxl">Stay in the loop</p>
 
             <button
               onClick={() => isOpenSet(!isOpen)}
@@ -96,10 +96,10 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
             <input
               id="email"
               autoCapitalize="off"
-              autoComplete="email"
+              autoComplete="off"
               autoCorrect="off"
               required
-              className="md:text-oxe-xxl/15.5 md:h-15.5 form-input h-10 w-full border-0 text-oxe-sm/10 ring-0 placeholder:text-oxe-grey focus:ring-0 focus:ring-offset-0"
+              className="md:h-15.5 form-input h-10 w-full border-0 text-oxe-sm/10 ring-0 placeholder:text-oxe-grey focus:ring-0 focus:ring-offset-0 md:text-oxe-xxl/15.5"
               type="email"
               placeholder="Email"
               name="email"
@@ -117,7 +117,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
 
               <label
                 htmlFor="newsletter-privacy-policy"
-                className="md:text-oxe-xxl/15.5 text-oxe-sm/10 md:whitespace-nowrap"
+                className="text-oxe-sm/10 md:whitespace-nowrap md:text-oxe-xxl/15.5"
               >
                 I accept the{" "}
                 <Link href="/privacy-policy" className="underline">

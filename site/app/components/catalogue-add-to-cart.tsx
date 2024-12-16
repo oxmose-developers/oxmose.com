@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 import { useCart } from "../../context/cart-context";
 import { addItem } from "./cart/actions";
@@ -42,6 +42,10 @@ export default function AddToCart({
   const { addCartItem } = useCart();
 
   const [message, formAction] = useActionState(addItem, null);
+
+  useEffect(() => {
+    if (message) window.alert(message);
+  }, [message]);
 
   const defaultVariantId =
     digitalOrVinylProduct.product.variants.length === 1

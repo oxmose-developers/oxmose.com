@@ -104,7 +104,6 @@ export default async function Page(props: {
 
               <p className="text-oxe-sm/8 md:self-end md:text-right md:text-oxe-xxl md:font-medium">
                 {release.artist.map((artist, idx, artists) => (
-                  // @ts-expect-error - Fragment is a valid JSX element
                   <Fragment key={artist.slug.current}>
                     <Link href={`/artists/${artist.slug.current}`}>
                       {artist.name}

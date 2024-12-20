@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import Script from "next/script";
 
 import { description } from "../constants/seo";
+import { CartProvider } from "../context/cart-context";
 import { getCart } from "../lib/shopify";
 import CartDrawer from "./components/cart/cart-drawer";
 import ClientOnly from "./components/client-only";
@@ -108,7 +109,6 @@ export default async function RootLayout({
   const fullYear = new Date().getFullYear();
 
   const cartId = (await cookies()).get("cartId")?.value;
-
   // Don't await the fetch, pass the Promise to the context provider
   const cart = getCart(cartId);
 
@@ -119,19 +119,21 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <body className="flex flex-col selection:bg-oxe-purple selection:text-black">
-        <Providers cartPromise={cart}>
-          <Navigation />
+        <CartProvider cartPromise={cart}>
+          <Providers>
+            <Navigation />
 
-          <main className="flex flex-1 flex-col">{children}</main>
+            <main className="flex flex-1 flex-col">{children}</main>
 
-          <Footer fullYear={fullYear} />
+            <Footer fullYear={fullYear} />
 
-          <ClientOnly>
-            <Player />
-          </ClientOnly>
+            <ClientOnly>
+              <Player />
+            </ClientOnly>
 
-          <CartDrawer />
-        </Providers>
+            <CartDrawer />
+          </Providers>
+        </CartProvider>
       </body>
 
       {process.env.NODE_ENV === "development" ? null : (

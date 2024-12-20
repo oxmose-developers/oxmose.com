@@ -1,9 +1,11 @@
+import { defineQuery } from "next-sanity";
 import type { File as SanityFile, Image, Slug } from "sanity";
+
 import type { SanityImageAsset } from "../../../sanity.types";
 
-export const AboutQuery = /* groq */ `
+export const AboutQuery = defineQuery(`
   *[_type == "about"][0]
-`;
+`);
 
 type TwoColumn<T> = {
   left: T;
@@ -41,9 +43,9 @@ export type Link = {
   href: string;
 };
 
-export const ContactQuery = /* groq */ `
+export const ContactQuery = defineQuery(`
   *[_type == "contact"][0]
-`;
+`);
 
 export type ContentSection = {
   _type: "contentSection";
@@ -79,7 +81,7 @@ export type ContactQuery = {
   syncSection: ContentSection;
 };
 
-export const ArtistsQuery = /* groq */ `
+export const ArtistsQuery = defineQuery(`
 *[_type == "artist" && defined(slug)] | order(name asc) {
   _id,
   slug,
@@ -91,11 +93,13 @@ export const ArtistsQuery = /* groq */ `
       metadata
     }
   }
-}`;
+}`);
 
-export const ArtistsStaticParamsQuery = /* groq */ `*[_type == "artist" && defined(slug)] | order(name asc) {
-  slug
-}`;
+export const ArtistsStaticParamsQuery = defineQuery(`
+  *[_type == "artist" && defined(slug)] | order(name asc) {
+    slug
+  }
+`);
 
 export type ArtistsStaticParamsQuery = { slug: Slug }[];
 
@@ -118,12 +122,8 @@ export type Artist = {
   >[];
 };
 
-export type ArtistsQuery = Pick<
-  Artist,
-  "coverImage" | "name" | "slug" | "_id"
->[];
-
-export const ArtistPageQuery = /* groq */ `*[_type == "artist" && slug.current == $slug][0] {
+export const ArtistPageQuery =
+  defineQuery(`*[_type == "artist" && slug.current == $slug][0] {
   ...,
   coverImage {
     ...,
@@ -138,12 +138,12 @@ export const ArtistPageQuery = /* groq */ `*[_type == "artist" && slug.current =
     releaseDate,
     slug,
   }
-}`;
+}`);
 
 export type ArtistPageQuery = Artist | null;
 
-export const FAQsQuery = /* groq */ `
-*[_type == "faqs" && defined(questions)] | order(_createdAt asc)`;
+export const FAQsQuery = defineQuery(`
+*[_type == "faqs" && defined(questions)] | order(_createdAt asc)`);
 
 export type QuestionAnswer = {
   _id: string;
@@ -186,7 +186,7 @@ export type Release = {
   trackList: TrackList;
 };
 
-export const ReleasesQuery = /* groq */ `
+export const ReleasesQuery = defineQuery(`
 *[_type == "release" && defined(slug)] | order(releaseDate desc) {
   ...,
   artist[]->{name},
@@ -204,18 +204,18 @@ export const ReleasesQuery = /* groq */ `
       artists[]->{name, slug}
     }
   }
-}`;
+}`);
 
 export type ReleasesQuery = Release[];
 
-export const ReleasesStaticParamsQuery = /* groq */ `
+export const ReleasesStaticParamsQuery = defineQuery(`
 *[_type == "release" && defined(slug)] | order(releaseDate desc) {
   slug
-}`;
+}`);
 
 export type ReleasesStaticParamsQuery = { slug: Slug }[];
 
-export const ReleasePageQuery = /* groq */ `
+export const ReleasePageQuery = defineQuery(`
 *[_type == "release" && slug.current == $slug][0] {
   ...,
   artist[]->{name, slug},
@@ -233,11 +233,11 @@ export const ReleasePageQuery = /* groq */ `
       artists[]->{name, slug}
     }
   }
-}`;
+}`);
 
 export type ReleasePageQuery = Release | null;
 
-export const ReleaseTracklistQuery = /* groq */ `
+export const ReleaseTracklistQuery = defineQuery(`
 *[_type == "release" && slug.current == $slug][0] {
   productImages[0...1],
   title,
@@ -248,21 +248,22 @@ export const ReleaseTracklistQuery = /* groq */ `
       artists[]->{name, slug}
     }
   }
-}`;
+}`);
 
 export type ReleaseTracklistQuery = Pick<
   Release,
   "trackList" | "title" | "productImages"
 > | null;
 
-export const LegalStaticParamsQuery = /* groq */ `*[_type == "legal" && defined(slug)] {
+export const LegalStaticParamsQuery =
+  defineQuery(`*[_type == "legal" && defined(slug)] {
   slug
-}`;
+}`);
 
 export type LegalStaticParamsQuery = { slug: Slug }[];
 
-export const LegalQuery = /* groq */ `
-*[_type == "legal" && defined(slug)]`;
+export const LegalQuery = defineQuery(`
+*[_type == "legal" && defined(slug)]`);
 
 export type Legal = {
   _id: string;
@@ -280,13 +281,15 @@ export type Legal = {
 
 export type LegalQuery = Legal[];
 
-export const LegalPageQuery = /* groq */ `*[_type == "legal" && slug.current == $slug][0]`;
+export const LegalPageQuery = defineQuery(`
+  *[_type == "legal" && slug.current == $slug][0]
+`);
 
 export type LegalPageQuery = Legal | null;
 
-export const PublishingQuery = /* groq */ `
+export const PublishingQuery = defineQuery(`
   *[_type == "publishing"][0]
-`;
+`);
 
 export type PublishingQuery = {
   title: string;
@@ -297,7 +300,7 @@ export type PublishingQuery = {
   artistsHeroImage: Image;
 };
 
-export const PublishingArtistsQuery = /* groq */ `
+export const PublishingArtistsQuery = defineQuery(`
 *[_type == "publishingArtist" && defined(slug)] | order(name asc) {
   _id,
   slug,
@@ -309,11 +312,13 @@ export const PublishingArtistsQuery = /* groq */ `
       metadata
     }
   },
-}`;
+}`);
 
-export const PublishingArtistsStaticParamsQuery = /* groq */ `*[_type == "publishingArtist" && defined(slug)] | order(name asc) {
-  slug
-}`;
+export const PublishingArtistsStaticParamsQuery = defineQuery(`
+  *[_type == "publishingArtist" && defined(slug)] | order(name asc) {
+    slug
+  }
+`);
 
 export type PublishingArtistsStaticParamsQuery = { slug: Slug }[];
 
@@ -359,15 +364,17 @@ export type PublishingArtistsQuery = Pick<
   "coverImage" | "name" | "slug" | "_id"
 >[];
 
-export const PublishingArtistPageQuery = /* groq */ `*[_type == "publishingArtist" && slug.current == $slug][0] {
-  ...,
-  coverImage {
+export const PublishingArtistPageQuery = defineQuery(`
+  *[_type == "publishingArtist" && slug.current == $slug][0] {
     ...,
-    asset->{
+    coverImage {
       ...,
-      metadata
-    }
-  },
-}`;
+      asset->{
+        ...,
+        metadata
+      }
+    },
+  }
+`);
 
 export type PublishingArtistPageQuery = PublishingArtist | null;

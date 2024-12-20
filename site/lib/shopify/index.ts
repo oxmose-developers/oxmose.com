@@ -283,6 +283,7 @@ export async function getCart(
     query: getCartQuery,
     variables: { cartId },
     tags: [TAGS.cart],
+    cache: "no-store",
   });
 
   // Old carts becomes `null` when you checkout.

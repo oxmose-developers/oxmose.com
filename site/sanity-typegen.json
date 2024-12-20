@@ -1,5 +1,5 @@
 {
-  "path": "./lib/sanity/**/*.{ts,tsx,js,jsx}",
+  "path": "./lib/sanity/**/**/*.{ts,tsx,js,jsx}",
   "schema": "../admin/schema.json",
   "generates": "./sanity.types.ts",
   "overloadClientMethods": true

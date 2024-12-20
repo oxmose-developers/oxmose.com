@@ -566,3 +566,616 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./lib/sanity/groq/index.ts
+// Variable: AboutQuery
+// Query: *[_type == "about"][0]
+export type AboutQueryResult = {
+  _id: string;
+  _type: "about";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  overview: MetaDescription;
+  part1: BlockContent;
+  part2: TwoColumn;
+  part3: BlockContent;
+  part4: TwoColumn;
+  part5: BlockContent;
+} | null;
+// Variable: ContactQuery
+// Query: *[_type == "contact"][0]
+export type ContactQueryResult = {
+  _id: string;
+  _type: "contact";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  overview: MetaDescription;
+  generalSection?: ContentSection;
+  locations: Array<{
+    type: string;
+    name: string;
+    phone?: string;
+    _type: "location";
+    _key: string;
+  }>;
+  listenLinks?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  followLinks?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  pressKit?: Link;
+  demoSection?: ContentSection;
+  syncSection?: ContentSection;
+} | null;
+// Variable: ArtistsQuery
+// Query: *[_type == "artist" && defined(slug)] | order(name asc) {  _id,  slug,  name,  coverImage {    ...,    asset->{      ...,      metadata    }  }}
+export type ArtistsQueryResult = Array<{
+  _id: string;
+  slug: Slug;
+  name: string;
+  coverImage: {
+    asset: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata: SanityImageMetadata | null;
+      source?: SanityAssetSourceData;
+    } | null;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+}>;
+// Variable: ArtistsStaticParamsQuery
+// Query: *[_type == "artist" && defined(slug)] | order(name asc) {    slug  }
+export type ArtistsStaticParamsQueryResult = Array<{
+  slug: Slug;
+}>;
+// Variable: ArtistPageQuery
+// Query: *[_type == "artist" && slug.current == $slug][0] {  ...,  coverImage {    ...,    asset->{      ...,      metadata    }  },  releases[]->{    title,    releaseReference,    releaseDate,    slug,  }}
+export type ArtistPageQueryResult = {
+  _id: string;
+  _type: "artist";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  slug: Slug;
+  overview: MetaDescription;
+  coverImage: {
+    asset: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata: SanityImageMetadata | null;
+      source?: SanityAssetSourceData;
+    } | null;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  links?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  body?: BlockContent;
+  releases: Array<{
+    title: string;
+    releaseReference: string;
+    releaseDate: ReleaseDate;
+    slug: Slug;
+  }>;
+} | null;
+// Variable: FAQsQuery
+// Query: *[_type == "faqs" && defined(questions)] | order(_createdAt asc)
+export type FAQsQueryResult = Array<{
+  _id: string;
+  _type: "faqs";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  category: string;
+  slug: Slug;
+  questions?: Array<
+    {
+      _key: string;
+    } & QuestionAnswer
+  >;
+}>;
+// Variable: ReleasesQuery
+// Query: *[_type == "release" && defined(slug)] | order(releaseDate desc) {  ...,  artist[]->{name},  coverImage {    ...,    asset->{      ...,      metadata    }  },  trackList {    ...,    tracks[] {      ...,      artists[]->{name, slug}    }  }}
+export type ReleasesQueryResult = Array<{
+  _id: string;
+  _type: "release";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  artist: Array<{
+    name: string;
+  }>;
+  overview: MetaDescription;
+  coverImage: {
+    asset: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata: SanityImageMetadata | null;
+      source?: SanityAssetSourceData;
+    } | null;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  productImages: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  description: BlockContent;
+  releaseDate: ReleaseDate;
+  releaseReference: string;
+  links: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  trackList: {
+    _type: "trackList";
+    tracks: Array<{
+      _key: string;
+      _type: "track";
+      name: string;
+      number: number;
+      length: string;
+      file?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        _type: "file";
+      };
+      artists: Array<{
+        name: string;
+        slug: Slug;
+      }> | null;
+    }> | null;
+  } | null;
+  shopifyProductDigital: string;
+  digitalProductFormat: string;
+  shopifyProductPhysical: string;
+  physicalProductFormat: string;
+}>;
+// Variable: ReleasesStaticParamsQuery
+// Query: *[_type == "release" && defined(slug)] | order(releaseDate desc) {  slug}
+export type ReleasesStaticParamsQueryResult = Array<{
+  slug: Slug;
+}>;
+// Variable: ReleasePageQuery
+// Query: *[_type == "release" && slug.current == $slug][0] {  ...,  artist[]->{name, slug},  productImages[] {    ...,    asset->{      ...,      metadata    }  },  trackList {    ...,    tracks[] {      ...,      artists[]->{name, slug}    }  }}
+export type ReleasePageQueryResult = {
+  _id: string;
+  _type: "release";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  artist: Array<{
+    name: string;
+    slug: Slug;
+  }>;
+  overview: MetaDescription;
+  coverImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  productImages: Array<{
+    asset: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata: SanityImageMetadata | null;
+      source?: SanityAssetSourceData;
+    } | null;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  description: BlockContent;
+  releaseDate: ReleaseDate;
+  releaseReference: string;
+  links: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  trackList: {
+    _type: "trackList";
+    tracks: Array<{
+      _key: string;
+      _type: "track";
+      name: string;
+      number: number;
+      length: string;
+      file?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        _type: "file";
+      };
+      artists: Array<{
+        name: string;
+        slug: Slug;
+      }> | null;
+    }> | null;
+  } | null;
+  shopifyProductDigital: string;
+  digitalProductFormat: string;
+  shopifyProductPhysical: string;
+  physicalProductFormat: string;
+} | null;
+// Variable: ReleaseTracklistQuery
+// Query: *[_type == "release" && slug.current == $slug][0] {  productImages[0...1],  title,  trackList {    ...,    tracks[] {      ...,      artists[]->{name, slug}    }  }}
+export type ReleaseTracklistQueryResult = {
+  productImages: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  title: string;
+  trackList: {
+    _type: "trackList";
+    tracks: Array<{
+      _key: string;
+      _type: "track";
+      name: string;
+      number: number;
+      length: string;
+      file?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        _type: "file";
+      };
+      artists: Array<{
+        name: string;
+        slug: Slug;
+      }> | null;
+    }> | null;
+  } | null;
+} | null;
+// Variable: LegalStaticParamsQuery
+// Query: *[_type == "legal" && defined(slug)] {  slug}
+export type LegalStaticParamsQueryResult = Array<{
+  slug: Slug;
+}>;
+// Variable: LegalQuery
+// Query: *[_type == "legal" && defined(slug)]
+export type LegalQueryResult = Array<{
+  _id: string;
+  _type: "legal";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  overview: MetaDescription;
+  englishTitle: string;
+  englishContent: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  frenchTitle: string;
+  frenchContent: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+}>;
+// Variable: LegalPageQuery
+// Query: *[_type == "legal" && slug.current == $slug][0]
+export type LegalPageQueryResult = {
+  _id: string;
+  _type: "legal";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  overview: MetaDescription;
+  englishTitle: string;
+  englishContent: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  frenchTitle: string;
+  frenchContent: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+} | null;
+// Variable: PublishingQuery
+// Query: *[_type == "publishing"][0]
+export type PublishingQueryResult = {
+  _id: string;
+  _type: "publishing";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  overview: MetaDescription;
+  creativeServicesSection?: ContentSection;
+  scoreSection?: ContentSection;
+  syncSection?: ContentSection;
+} | null;
+// Variable: PublishingArtistsQuery
+// Query: *[_type == "publishingArtist" && defined(slug)] | order(name asc) {  _id,  slug,  name,  coverImage {    ...,    asset->{      ...,      metadata    }  },}
+export type PublishingArtistsQueryResult = Array<{
+  _id: string;
+  slug: Slug;
+  name: string;
+  coverImage: {
+    asset: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata: SanityImageMetadata | null;
+      source?: SanityAssetSourceData;
+    } | null;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+}>;
+// Variable: PublishingArtistsStaticParamsQuery
+// Query: *[_type == "publishingArtist" && defined(slug)] | order(name asc) {    slug  }
+export type PublishingArtistsStaticParamsQueryResult = Array<{
+  slug: Slug;
+}>;
+// Variable: PublishingArtistPageQuery
+// Query: *[_type == "publishingArtist" && slug.current == $slug][0] {    ...,    coverImage {      ...,      asset->{        ...,        metadata      }    },  }
+export type PublishingArtistPageQueryResult = {
+  _id: string;
+  _type: "publishingArtist";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  slug: Slug;
+  overview: MetaDescription;
+  coverImage: {
+    asset: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata: SanityImageMetadata | null;
+      source?: SanityAssetSourceData;
+    } | null;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  projects?: Array<{
+    name: string;
+    href?: string;
+    _type: "link";
+    _key: string;
+  }>;
+  links?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  body?: BlockContent;
+  works?: TrackList;
+} | null;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    '\n  *[_type == "about"][0]\n': AboutQueryResult;
+    '\n  *[_type == "contact"][0]\n': ContactQueryResult;
+    '\n*[_type == "artist" && defined(slug)] | order(name asc) {\n  _id,\n  slug,\n  name,\n  coverImage {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  }\n}': ArtistsQueryResult;
+    '\n  *[_type == "artist" && defined(slug)] | order(name asc) {\n    slug\n  }\n': ArtistsStaticParamsQueryResult;
+    '*[_type == "artist" && slug.current == $slug][0] {\n  ...,\n  coverImage {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  },\n  releases[]->{\n    title,\n    releaseReference,\n    releaseDate,\n    slug,\n  }\n}': ArtistPageQueryResult;
+    '\n*[_type == "faqs" && defined(questions)] | order(_createdAt asc)': FAQsQueryResult;
+    '\n*[_type == "release" && defined(slug)] | order(releaseDate desc) {\n  ...,\n  artist[]->{name},\n  coverImage {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  },\n  trackList {\n    ...,\n    tracks[] {\n      ...,\n      artists[]->{name, slug}\n    }\n  }\n}': ReleasesQueryResult;
+    '\n*[_type == "release" && defined(slug)] | order(releaseDate desc) {\n  slug\n}': ReleasesStaticParamsQueryResult;
+    '\n*[_type == "release" && slug.current == $slug][0] {\n  ...,\n  artist[]->{name, slug},\n  productImages[] {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  },\n  trackList {\n    ...,\n    tracks[] {\n      ...,\n      artists[]->{name, slug}\n    }\n  }\n}': ReleasePageQueryResult;
+    '\n*[_type == "release" && slug.current == $slug][0] {\n  productImages[0...1],\n  title,\n  trackList {\n    ...,\n    tracks[] {\n      ...,\n      artists[]->{name, slug}\n    }\n  }\n}': ReleaseTracklistQueryResult;
+    '*[_type == "legal" && defined(slug)] {\n  slug\n}': LegalStaticParamsQueryResult;
+    '\n*[_type == "legal" && defined(slug)]': LegalQueryResult;
+    '\n  *[_type == "legal" && slug.current == $slug][0]\n': LegalPageQueryResult;
+    '\n  *[_type == "publishing"][0]\n': PublishingQueryResult;
+    '\n*[_type == "publishingArtist" && defined(slug)] | order(name asc) {\n  _id,\n  slug,\n  name,\n  coverImage {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  },\n}': PublishingArtistsQueryResult;
+    '\n  *[_type == "publishingArtist" && defined(slug)] | order(name asc) {\n    slug\n  }\n': PublishingArtistsStaticParamsQueryResult;
+    '\n  *[_type == "publishingArtist" && slug.current == $slug][0] {\n    ...,\n    coverImage {\n      ...,\n      asset->{\n        ...,\n        metadata\n      }\n    },\n  }\n': PublishingArtistPageQueryResult;
+  }
+}

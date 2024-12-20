@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 import type { CartItem } from "../../../lib/shopify/types";
 import { removeItem } from "./actions";
@@ -13,6 +13,11 @@ export function DeleteItemButton({
   optimisticUpdate: any;
 }) {
   const [message, formAction] = useActionState(removeItem, null);
+
+  useEffect(() => {
+    if (message) window.alert(message);
+  }, [message]);
+
   const merchandiseId = item.merchandise.id;
   const actionWithVariant = formAction.bind(null, merchandiseId);
 
@@ -30,7 +35,6 @@ export function DeleteItemButton({
       >
         Remove
       </button>
-
       <p aria-live="polite" className="sr-only" role="status">
         {message}
       </p>

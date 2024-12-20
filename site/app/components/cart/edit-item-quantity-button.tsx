@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 
 import type { CartItem } from "../../../lib/shopify/types";
 import { updateItemQuantity } from "./actions";
@@ -13,6 +13,10 @@ export function EditItemQuantityButton({
   optimisticUpdate: any;
 }) {
   const [message, formAction] = useActionState(updateItemQuantity, null);
+
+  useEffect(() => {
+    if (message) window.alert(message);
+  }, [message]);
 
   const increaseAction = formAction.bind(null, {
     merchandiseId: item.merchandise.id,

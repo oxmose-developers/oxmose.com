@@ -9,7 +9,7 @@ import {
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
-import { hasAtLeast } from "remeda";
+import { hasAtLeast, isEmpty } from "remeda";
 
 import { useCart } from "../../../context/cart-context";
 import { DEFAULT_OPTION } from "../../../lib/constants";
@@ -27,12 +27,6 @@ export default function CartDrawer() {
   const [open, openSet] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);
 
-  console.log({
-    cart: cart?.lines,
-    cartLines: cart?.lines?.length,
-    quantity: quantityRef.current,
-  });
-
   useEffect(() => {
     if (!cart) {
       createCartAndSetCookie();
@@ -48,6 +42,10 @@ export default function CartDrawer() {
       quantityRef.current = cart?.totalQuantity;
     }
   }, [open, cart?.totalQuantity, quantityRef]);
+
+  if (!cart || isEmpty(cart.lines)) {
+    return null;
+  }
 
   return (
     <>

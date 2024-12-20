@@ -211,16 +211,16 @@ export function CartProvider({
   );
 
   const updateCartItem = (merchandiseId: string, updateType: UpdateType) => {
-    if (
-      updateType === "plus" &&
-      optimisticCart?.lines.find(
-        (item) =>
-          item.merchandise.id === merchandiseId &&
-          item.merchandise.product.title.includes("Digital"),
-      )
-    ) {
-      return;
-    }
+    // if (
+    //   updateType === "plus" &&
+    //   optimisticCart?.lines.find(
+    //     (item) =>
+    //       item.merchandise.id === merchandiseId &&
+    //       item.merchandise.product.title.includes("Digital"),
+    //   )
+    // ) {
+    //   return;
+    // }
 
     updateOptimisticCart({
       type: "UPDATE_ITEM",
@@ -233,15 +233,15 @@ export function CartProvider({
     product: Product,
     selectedProductFormat: "Digital" | "Vinyl",
   ) => {
-    if (
-      optimisticCart?.lines.find(
-        (item) =>
-          item.merchandise.id === variant.id &&
-          selectedProductFormat === "Digital",
-      )
-    ) {
-      return;
-    }
+    // if (
+    //   optimisticCart?.lines.find(
+    //     (item) =>
+    //       item.merchandise.id === variant.id &&
+    //       selectedProductFormat === "Digital",
+    //   )
+    // ) {
+    //   return;
+    // }
 
     updateOptimisticCart({ type: "ADD_ITEM", payload: { variant, product } });
   };

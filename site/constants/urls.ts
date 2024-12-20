@@ -1,6 +1,4 @@
-export { links, publishingLicenseRequestEmail };
-
-const links = [
+export const links = [
   {
     href: "https://www.instagram.com/oxmose",
     label: "Instagram",
@@ -27,4 +25,4 @@ const links = [
   },
 ] as const;
 
-const publishingLicenseRequestEmail = "";
+export const publishingLicenseRequestEmail = "demo@oxmose.com";

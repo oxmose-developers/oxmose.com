@@ -56,7 +56,7 @@ export default async function Page(props: {
         className="px-9 md:border-b md:border-black md:px-10 md:dark:border-white"
         style={{ gridArea: "name" }}
       >
-        <h1 className="md:text-oxe-xxxxl/24 text-oxe-xl/15">{artist.name}</h1>
+        <h1 className="text-oxe-xl/15 md:text-oxe-xxxxl/24">{artist.name}</h1>
       </div>
 
       {/* Mobile-only Full Bleed Image */}
@@ -93,7 +93,7 @@ export default async function Page(props: {
           blurDataURL={artist.coverImage.asset.metadata?.lqip}
         />
 
-        <div className="prose-p:text-oxe-xxs/5 prose max-w-[unset] text-black prose-a:text-black prose-a:underline prose-strong:font-medium dark:text-white dark:prose-a:text-white md:prose-p:text-oxe-md">
+        <div className="prose max-w-[unset] text-black prose-p:text-oxe-xxs/5 prose-a:text-black prose-a:underline prose-strong:font-medium dark:text-white dark:prose-a:text-white md:prose-p:text-oxe-md">
           <PortableText value={artist.body} />
         </div>
 
@@ -138,7 +138,7 @@ export default async function Page(props: {
               </h3>
             </div>
 
-            <ul className="text-oxe-xxs ml-auto text-right md:ml-0 md:pl-9 md:text-left md:text-oxe-sm/8">
+            <ul className="ml-auto text-right text-oxe-xxs md:ml-0 md:pl-9 md:text-left md:text-oxe-sm/8">
               {artist.projects.map((link) => (
                 <li key={link._key}>
                   {link.href ? (
@@ -161,7 +161,7 @@ export default async function Page(props: {
             </h3>
           </div>
 
-          <ul className="text-oxe-xxs ml-auto text-right md:ml-0 md:pl-9 md:text-left md:text-oxe-sm/8">
+          <ul className="ml-auto text-right text-oxe-xxs md:ml-0 md:pl-9 md:text-left md:text-oxe-sm/8">
             {!!artist?.links &&
               hasAtLeast(artist.links, 1) &&
               artist.links.map((link) => (

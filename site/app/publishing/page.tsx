@@ -1,6 +1,5 @@
 import type { Metadata, ResolvingMetadata, Viewport } from "next";
 import { PortableText } from "next-sanity";
-// import Image from "next/image";
 import { Suspense } from "react";
 
 import { publishingLicenseRequestEmail } from "../../constants/urls";
@@ -44,25 +43,25 @@ export default async function Page() {
       <h1 hidden>{`${page.title} | Oxmose`}</h1>
 
       <section className="flex min-h-[25rem] flex-col border-b border-white bg-black px-9 py-5 text-white md:min-h-[60rem] md:justify-center md:p-10 md:py-16">
-        <h2 className="md:text-oxe-xxxxxl/tighter mb-2.5 text-oxe-md/snug md:mb-52">
+        <h2 className="mb-2.5 text-oxe-md/snug md:mb-52 md:text-oxe-xxxxxl/tighter">
           {page.creativeServicesSection.title}
         </h2>
 
-        <div className="md:text-oxe-xxxl/16 text-oxe-xxs/5">
+        <div className="text-oxe-xxs/5 md:text-oxe-xxxl/16">
           <PortableText value={page.creativeServicesSection.content} />
         </div>
       </section>
 
       <section className="flex min-h-[25rem] flex-col border-b border-white bg-black px-9 py-5 text-white md:min-h-[60rem] md:justify-center md:p-10 md:py-16">
-        <h2 className="md:text-oxe-xxxxxl/tighter mb-2.5 text-oxe-md/snug md:mb-52">
+        <h2 className="mb-2.5 text-oxe-md/snug md:mb-52 md:text-oxe-xxxxxl/tighter">
           {page.scoreSection.title}
         </h2>
 
-        <div className="md:text-oxe-xxxl/16 text-oxe-xxs/5">
+        <div className="text-oxe-xxs/5 md:text-oxe-xxxl/16">
           <PortableText value={page.scoreSection.content} />
         </div>
 
-        <p className="md:text-oxe-xxxl/16 mt-auto text-right text-oxe-md/snug md:mt-0 md:text-left">
+        <p className="mt-auto text-right text-oxe-md/snug md:mt-0 md:text-left md:text-oxe-xxxl/16">
           <a href={page.scoreSection.link.href}>
             {page.scoreSection.link.name}
           </a>
@@ -70,11 +69,11 @@ export default async function Page() {
       </section>
 
       <section className="flex min-h-64 flex-col bg-black px-9 py-5 text-white md:min-h-[60rem] md:justify-center md:p-10 md:py-16">
-        <h2 className="md:text-oxe-xxxxxl/tighter mb-2.5 text-oxe-md/snug md:mb-52">
+        <h2 className="mb-2.5 text-oxe-md/snug md:mb-52 md:text-oxe-xxxxxl/tighter">
           {page.syncSection.title}
         </h2>
 
-        <div className="md:text-oxe-xxxl/16 text-oxe-xxs/5">
+        <div className="text-oxe-xxs/5 md:text-oxe-xxxl/16">
           <PortableText value={page.syncSection.content} />
         </div>
       </section>
@@ -85,7 +84,7 @@ export default async function Page() {
 
       <section className="border-b border-t border-white bg-black text-white md:border-t-0">
         <div className="px-9 pb-5 pt-4 md:mb-28 md:py-0">
-          <h2 className="md:text-oxe-xxxxxl/snug text-oxe-md/snug">Artists</h2>
+          <h2 className="text-oxe-md/snug md:text-oxe-xxxxxl/snug">Artists</h2>
         </div>
 
         <ul className="divide-y divide-white border-t">
@@ -97,7 +96,7 @@ export default async function Page() {
           <li>
             <a
               href={`mailto:${publishingLicenseRequestEmail}`}
-              className="md:text-oxe-xxxxxl/snug block px-9 py-4 text-oxe-md/10 hover:bg-white hover:text-black md:py-0"
+              className="block px-9 py-4 text-oxe-md/10 hover:bg-white hover:text-black md:py-0 md:text-oxe-xxxxxl/snug"
             >
               License request +
             </a>

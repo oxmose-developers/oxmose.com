@@ -98,7 +98,7 @@ export default async function Page(props: {
           <div className="flex flex-col">
             {/* Title & Artist */}
             <div className="flex flex-col px-9 pt-7 md:gap-5">
-              <p className="md:text-oxe-xxxxl text-oxe-md font-medium">
+              <p className="text-oxe-md font-medium md:text-oxe-xxxxl">
                 {release.title}
               </p>
 
@@ -236,7 +236,7 @@ export default async function Page(props: {
                 Stream
               </h3>
 
-              <ul className="text-oxe-xxs ml-auto text-right md:text-left md:text-oxe-sm/8">
+              <ul className="ml-auto text-right text-oxe-xxs md:text-left md:text-oxe-sm/8">
                 {[...(release?.links ?? [])].map((link) => (
                   <li key={link._key}>
                     <a href={link.href}>{link.name}</a>
@@ -299,7 +299,7 @@ export default async function Page(props: {
             </p>
           </div>
 
-          <div className="prose-p:text-oxe-xxs/5 prose max-w-[unset] text-black prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-xxl md:prose-p:font-medium">
+          <div className="prose max-w-[unset] text-black prose-p:text-oxe-xxs/5 prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-xxl md:prose-p:font-medium">
             <PortableText value={release.description} />
           </div>
         </div>

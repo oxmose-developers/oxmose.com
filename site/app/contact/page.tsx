@@ -34,7 +34,7 @@ export default async function Page() {
     <>
       <section className="flex-1 divide-y divide-black border-black md:grid md:grid-cols-2 md:divide-x md:divide-y-0">
         <div className="p-9 md:p-10">
-          <h1 className="md:text-oxe-xxxxl mb-5 text-oxe-xxl">
+          <h1 className="mb-5 text-oxe-xxl md:text-oxe-xxxxl">
             {page.generalSection.title}
           </h1>
 

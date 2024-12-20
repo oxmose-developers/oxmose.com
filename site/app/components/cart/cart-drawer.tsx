@@ -51,7 +51,7 @@ export default function CartDrawer() {
       <button
         type="button"
         onClick={() => openSet(!open)}
-        className="text-oxe-xxs fixed bottom-20 right-5 inline-flex h-10 items-center whitespace-nowrap bg-black px-3 font-medium uppercase text-white dark:bg-white dark:text-black md:bottom-24 md:h-14 md:px-4 md:text-oxe-sm"
+        className="fixed bottom-20 right-5 inline-flex h-10 items-center whitespace-nowrap bg-black px-3 text-oxe-xxs font-medium uppercase text-white dark:bg-white dark:text-black md:bottom-24 md:h-14 md:px-4 md:text-oxe-sm"
       >
         <span>
           {quantityRef.current ? `Cart (${quantityRef.current})` : "Cart"}

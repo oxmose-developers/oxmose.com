@@ -32,7 +32,7 @@ export default function ArtistRow({
       </div>
 
       <Link
-        className="md:text-oxe-xxxxl/24 text-oxe-xl/15 relative z-10"
+        className="relative z-10 text-oxe-xl/15 md:text-oxe-xxxxl/24"
         href={link}
       >
         {artist.name}

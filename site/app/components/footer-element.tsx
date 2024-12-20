@@ -88,7 +88,7 @@ export default function Footer({ fullYear }: { fullYear: number }) {
           </Link>
         </div>
 
-        <span className="text-oxe-xxs ml-auto whitespace-nowrap uppercase md:text-oxe-sm">
+        <span className="ml-auto whitespace-nowrap text-oxe-xxs uppercase md:text-oxe-sm">
           {`© ${fullYear} Oxmose`}
         </span>
       </nav>

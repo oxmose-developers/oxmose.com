@@ -81,6 +81,11 @@ export type ContactQuery = {
   syncSection: ContentSection;
 };
 
+export type ArtistsQuery = Pick<
+  Artist,
+  "coverImage" | "name" | "slug" | "_id"
+>[];
+
 export const ArtistsQuery = defineQuery(`
 *[_type == "artist" && defined(slug)] | order(name asc) {
   _id,

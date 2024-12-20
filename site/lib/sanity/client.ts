@@ -34,3 +34,25 @@ export async function sanityFetch<const Result extends any>({
     },
   });
 }
+
+// Using typegen types, but its not ideal atm, too many undefined things
+//
+// export async function sanityFetch<const QueryString extends string>({
+//   query,
+//   params = {},
+//   revalidate = 60, // default revalidation time in seconds
+//   tags = [],
+// }: {
+//   query: QueryString;
+//   params?: QueryParams | Promise<QueryParams>;
+//   revalidate?: number | false;
+//   tags?: string[];
+// }): Promise<ClientReturn<QueryString>> {
+//   return client.fetch(query, params, {
+//     cache: IS_DEV ? "no-store" : "force-cache",
+//     next: {
+//       revalidate: tags.length ? undefined : revalidate, // for simple, time-based revalidation
+//       tags, // for tag-based revalidation
+//     },
+//   });
+// }

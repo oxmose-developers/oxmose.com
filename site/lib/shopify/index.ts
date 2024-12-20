@@ -90,7 +90,7 @@ export async function shopifyFetch<T>({
         ...(query && { query }),
         ...(variables && { variables }),
       }),
-      cache,
+      cache: process.env.NODE_ENV === "development" ? "no-cache" : cache,
       ...(tags && { next: { tags } }),
     });
 

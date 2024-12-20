@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
+import { hasAtLeast } from "remeda";
 
 import { useCart } from "../../../context/cart-context";
 import { DEFAULT_OPTION } from "../../../lib/constants";
@@ -42,16 +43,13 @@ export default function CartDrawer() {
     }
   }, [open, cart?.totalQuantity, quantityRef]);
 
-  if (!cart || cart.lines.length === 0) {
-    return null;
-  }
-
   return (
     <>
       <button
         type="button"
         onClick={() => openSet(!open)}
-        className="fixed bottom-20 right-5 inline-flex h-10 items-center whitespace-nowrap bg-black px-3 text-oxe-xxs font-medium uppercase text-white dark:bg-white dark:text-black md:bottom-24 md:h-14 md:px-4 md:text-oxe-sm"
+        data-show-cart={cart && hasAtLeast(cart.lines, 1)}
+        className="invisible fixed bottom-20 right-5 inline-flex h-10 items-center whitespace-nowrap bg-black px-3 text-oxe-xxs font-medium uppercase text-white data-[show-cart=true]:visible dark:bg-white dark:text-black md:bottom-24 md:h-14 md:px-4 md:text-oxe-sm"
       >
         <span>
           {quantityRef.current ? `Cart (${quantityRef.current})` : "Cart"}
@@ -98,71 +96,75 @@ export default function CartDrawer() {
                     </div>
 
                     <div className="relative flex-1 divide-y divide-black px-6 md:px-9">
-                      {cart.lines
-                        .sort((a, b) =>
-                          a.merchandise.product.title.localeCompare(
-                            b.merchandise.product.title,
-                          ),
-                        )
-                        .map((item, i) => {
-                          const merchandiseSearchParams =
-                            {} as MerchandiseSearchParams;
+                      {cart &&
+                        hasAtLeast(cart.lines, 1) &&
+                        cart.lines
+                          .sort((a, b) =>
+                            a.merchandise.product.title.localeCompare(
+                              b.merchandise.product.title,
+                            ),
+                          )
+                          .map((item, i) => {
+                            const merchandiseSearchParams =
+                              {} as MerchandiseSearchParams;
 
-                          item.merchandise.selectedOptions.forEach(
-                            ({ name, value }) => {
-                              if (value !== DEFAULT_OPTION) {
-                                merchandiseSearchParams[name.toLowerCase()] =
-                                  value;
-                              }
-                            },
-                          );
-
-                          return (
-                            <div
-                              key={i}
-                              className="flex items-start gap-4 py-6 md:py-7"
-                            >
-                              <Image
-                                className="size-20 object-contain md:size-24"
-                                src={item.merchandise.product.featuredImage.url}
-                                alt={
-                                  item.merchandise.product.featuredImage
-                                    .altText || item.merchandise.product.title
+                            item.merchandise.selectedOptions.forEach(
+                              ({ name, value }) => {
+                                if (value !== DEFAULT_OPTION) {
+                                  merchandiseSearchParams[name.toLowerCase()] =
+                                    value;
                                 }
-                                width={96}
-                                height={96}
-                                priority
-                              />
+                              },
+                            );
 
-                              <div>
-                                <p className="text-oxe-xxs font-medium md:text-oxe-sm">
-                                  {item.merchandise.product.title}
-                                </p>
-
-                                <EditItemQuantityButton
-                                  item={item}
-                                  optimisticUpdate={updateCartItem}
+                            return (
+                              <div
+                                key={i}
+                                className="flex items-start gap-4 py-6 md:py-7"
+                              >
+                                <Image
+                                  className="size-20 object-contain md:size-24"
+                                  src={
+                                    item.merchandise.product.featuredImage.url
+                                  }
+                                  alt={
+                                    item.merchandise.product.featuredImage
+                                      .altText || item.merchandise.product.title
+                                  }
+                                  width={96}
+                                  height={96}
+                                  priority
                                 />
 
-                                <p className="text-oxe-xxs md:text-oxe-sm">{`Price: ${new Intl.NumberFormat(
-                                  "fr-FR",
-                                  {
-                                    style: "currency",
-                                    currency:
-                                      item.cost.totalAmount.currencyCode,
-                                  },
-                                ).format(
-                                  parseFloat(item.cost.totalAmount.amount),
-                                )}`}</p>
+                                <div>
+                                  <p className="text-oxe-xxs font-medium md:text-oxe-sm">
+                                    {item.merchandise.product.title}
+                                  </p>
 
-                                <DeleteItemButton
-                                  item={item}
-                                  optimisticUpdate={updateCartItem}
-                                />
+                                  <EditItemQuantityButton
+                                    item={item}
+                                    optimisticUpdate={updateCartItem}
+                                  />
+
+                                  <p className="text-oxe-xxs md:text-oxe-sm">{`Price: ${new Intl.NumberFormat(
+                                    "fr-FR",
+                                    {
+                                      style: "currency",
+                                      currency:
+                                        item.cost.totalAmount.currencyCode,
+                                    },
+                                  ).format(
+                                    parseFloat(item.cost.totalAmount.amount),
+                                  )}`}</p>
+
+                                  <DeleteItemButton
+                                    item={item}
+                                    optimisticUpdate={updateCartItem}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                          );
-                        })}
+                            );
+                          })}
                     </div>
                   </div>
 
@@ -170,10 +172,12 @@ export default function CartDrawer() {
                     <p className="text-oxe-sm md:text-oxe-md">Total:</p>
 
                     <p className="text-oxe-sm md:text-oxe-md">
-                      {new Intl.NumberFormat("fr-FR", {
-                        style: "currency",
-                        currency: cart.cost.totalAmount.currencyCode,
-                      }).format(parseFloat(cart.cost.totalAmount.amount))}
+                      {cart &&
+                        hasAtLeast(cart.lines, 1) &&
+                        new Intl.NumberFormat("fr-FR", {
+                          style: "currency",
+                          currency: cart.cost.totalAmount.currencyCode,
+                        }).format(parseFloat(cart.cost.totalAmount.amount))}
                     </p>
                   </div>
 
@@ -185,9 +189,11 @@ export default function CartDrawer() {
                     </p>
                   </div>
 
-                  <form action={redirectToCheckout}>
-                    <CheckoutButton />
-                  </form>
+                  {cart && hasAtLeast(cart.lines, 1) && (
+                    <form action={redirectToCheckout}>
+                      <CheckoutButton />
+                    </form>
+                  )}
                 </div>
               </DialogPanel>
             </div>

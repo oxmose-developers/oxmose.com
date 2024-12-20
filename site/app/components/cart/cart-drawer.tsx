@@ -27,6 +27,8 @@ export default function CartDrawer() {
   const [open, openSet] = useState(false);
   const quantityRef = useRef(cart?.totalQuantity);
 
+  console.log({ cart, quantity: quantityRef.current });
+
   useEffect(() => {
     if (!cart) {
       createCartAndSetCookie();

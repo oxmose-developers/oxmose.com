@@ -401,6 +401,7 @@ export type Publishing = {
   creativeServicesSection?: ContentSection;
   scoreSection?: ContentSection;
   syncSection?: ContentSection;
+  licenseRequestEmail: string;
 };
 
 export type Contact = {
@@ -1063,6 +1064,7 @@ export type PublishingQueryResult = {
   creativeServicesSection?: ContentSection;
   scoreSection?: ContentSection;
   syncSection?: ContentSection;
+  licenseRequestEmail: string;
 } | null;
 // Variable: PublishingArtistsQuery
 // Query: *[_type == "publishingArtist" && defined(slug)] | order(name asc) {  _id,  slug,  name,  coverImage {    ...,    asset->{      ...,      metadata    }  },}

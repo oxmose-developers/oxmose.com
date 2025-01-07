@@ -303,6 +303,7 @@ export type PublishingQuery = {
   scoreSection: ContentSection;
   syncSection: ContentSection;
   artistsHeroImage: Image;
+  licenseRequestEmail: string;
 };
 
 export const PublishingArtistsQuery = defineQuery(`

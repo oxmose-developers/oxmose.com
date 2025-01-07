@@ -2,7 +2,6 @@ import type { Metadata, ResolvingMetadata, Viewport } from "next";
 import { PortableText } from "next-sanity";
 import { Suspense } from "react";
 
-import { publishingLicenseRequestEmail } from "../../constants/urls";
 import { fetchPublishingPage } from "../../lib/sanity";
 import PublishingArtistsList from "../components/publishing-artist-list";
 import PublishingVideo from "../components/publishing-video";
@@ -95,7 +94,7 @@ export default async function Page() {
 
           <li>
             <a
-              href={`mailto:${publishingLicenseRequestEmail}`}
+              href={`mailto:${page.licenseRequestEmail}`}
               className="block px-9 py-4 text-oxe-md/10 hover:bg-white hover:text-black md:py-0 md:text-oxe-xxxxxl/snug"
             >
               License request +

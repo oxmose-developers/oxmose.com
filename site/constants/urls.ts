@@ -24,5 +24,3 @@ export const links = [
     label: "SoundCloud",
   },
 ] as const;
-
-export const publishingLicenseRequestEmail = "demo@oxmose.com";

@@ -26,5 +26,10 @@ export default defineType({
       name: "syncSection",
       type: "contentSection",
     }),
+    defineField({
+      name: "licenseRequestEmail",
+      type: "string",
+      validation: (Rule) => [Rule.required()],
+    }),
   ],
 });

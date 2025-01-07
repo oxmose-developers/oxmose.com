@@ -2396,6 +2396,13 @@
           "name": "contentSection"
         },
         "optional": true
+      },
+      "licenseRequestEmail": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
       }
     }
   },

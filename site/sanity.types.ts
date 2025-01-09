@@ -46,6 +46,11 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type BlockBreak = {
+  _type: "blockBreak";
+  style?: string;
+};
+
 export type Track = {
   _type: "track";
   name: string;
@@ -107,6 +112,9 @@ export type QuestionAnswer = {
         _type: "image";
         _key: string;
       }
+    | ({
+        _key: string;
+      } & BlockBreak)
   >;
 };
 
@@ -157,6 +165,9 @@ export type BlockContent = Array<
       _type: "image";
       _key: string;
     }
+  | ({
+      _key: string;
+    } & BlockBreak)
 >;
 
 export type AccessibleImage = {
@@ -539,6 +550,7 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | Geopoint
+  | BlockBreak
   | Track
   | ReleaseDate
   | MetaDescription

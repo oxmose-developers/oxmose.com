@@ -19,18 +19,18 @@ export function ProductCarousel({
   return (
     <div className="flex flex-1 gap-10 md:p-10">
       {/* Desktop Product Images */}
-      <div className="mt-auto flex max-w-[40rem] flex-1 snap-x snap-mandatory overflow-x-auto">
+      <div className="mt-auto flex max-w-[56rem] flex-1 snap-x snap-mandatory overflow-x-auto">
         <Image
           key={activeIndex}
           loading="lazy"
           className="aspect-square shrink-0 snap-center object-cover object-center"
           src={urlForImage(productImages[activeIndex])
-            .width(640)
-            .height(640)
+            .width(896)
+            .height(896)
             .dpr(3)
             .url()}
-          width={640}
-          height={640}
+          width={896}
+          height={896}
           alt={""}
           draggable={false}
           placeholder="blur"

@@ -16,7 +16,7 @@ export default function Navigation() {
 
   return (
     <nav className="shrink-0 border-b border-black bg-white pb-[1.0625rem] pt-[1.125rem] dark:border-white dark:bg-black md:py-6">
-      <div className="max-w-[100rem]">
+      <div className="md:max-w-[calc(100vw-8%)]">
         <div className="flex items-center px-9 md:px-10">
           <Link href="/">
             <span className="sr-only">Back to Catalogue</span>

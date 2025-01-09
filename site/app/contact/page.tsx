@@ -45,12 +45,15 @@ export default async function Page() {
           </p>
 
           <div className="text-oxe-xxs md:text-oxe-md">
-            <PortableText value={page.generalSection.content} />
+            <PortableText
+              value={page.generalSection.content}
+              components={{ types: { blockBreak: () => <br /> } }}
+            />
           </div>
         </div>
 
         <div className="flex flex-col p-9 md:p-10 xl:p-16">
-          <dl className="flex flex-1 flex-col justify-between gap-10 xl:mt-auto xl:flex-initial xl:flex-row xl:gap-5">
+          <dl className="flex flex-1 flex-col justify-between gap-10 md:mt-auto md:flex-initial md:flex-row md:gap-5">
             {page.locations.map((location, idx) => (
               <div
                 className="text-oxe-sm md:text-oxe-xxl"

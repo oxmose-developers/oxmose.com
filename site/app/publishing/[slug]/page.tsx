@@ -112,7 +112,7 @@ export default async function Page(props: {
       </div>
 
       <div
-        className="flex min-h-[28rem] flex-col px-9 py-7 md:grid md:auto-rows-[minmax(max-content,calc(100svh/3))] md:gap-20 md:border-l md:border-black md:p-10 md:dark:border-white"
+        className="flex flex-col px-9 py-7 md:grid md:min-h-[28rem] md:auto-rows-[minmax(max-content,calc(100svh/3))] md:gap-20 md:border-l md:border-black md:p-10 md:dark:border-white"
         style={{ gridArea: "info" }}
       >
         {/* Desktop Only Table */}

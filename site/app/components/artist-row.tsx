@@ -13,7 +13,7 @@ export default function ArtistRow({
 
   return (
     <li className="group px-9 last:!border-b last:border-black md:px-10">
-      <div className="absolute right-10 top-1/2 hidden -translate-y-1/2 xl:group-hover:block">
+      <div className="absolute right-10 top-1/2 hidden -translate-y-1/2 md:group-hover:block">
         <Image
           className="w-full max-w-[36rem] select-none object-cover object-center"
           alt={artist.name}

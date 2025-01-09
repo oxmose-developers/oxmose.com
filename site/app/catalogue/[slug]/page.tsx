@@ -72,10 +72,10 @@ export default async function Page(props: {
     <ProductProvider>
       <div>
         {/* Desktop Design */}
-        <div className="hidden min-h-[85svh] grid-cols-2 md:grid">
+        <div className="hidden grid-cols-2 md:grid">
           <div className="flex flex-col border-r border-black">
             {/* ID & Release Date */}
-            <div className="shrink-0 border-b border-black px-9">
+            <div className="mb-32 shrink-0 border-b border-black px-9">
               <div className="flex h-10 items-center justify-between">
                 <p className="text-oxe-sm font-medium">
                   {release.releaseReference}
@@ -194,7 +194,7 @@ export default async function Page(props: {
 
           <div className="px-9 py-7">
             {/* Title & Artist */}
-            <div className="mb-5">
+            <div className="mb-9">
               <p className="text-oxe-md font-medium">{release.title}</p>
 
               <p className="text-oxe-sm/8">
@@ -229,7 +229,7 @@ export default async function Page(props: {
             )}
 
             {/* Stream Links */}
-            <div className="mt-5 flex items-start">
+            <div className="mt-9 flex items-start">
               <h3 className="text-oxe-sm font-medium uppercase md:text-oxe-lg/8">
                 Stream
               </h3>
@@ -304,7 +304,7 @@ export default async function Page(props: {
 
         {release?.trackList && (
           <>
-            <section className="md:border-t md:border-black">
+            <section className="mt-7 md:mt-0 md:border-t md:border-black">
               <div className="px-9 py-2 md:px-10">
                 <h3 className="text-oxe-sm font-medium uppercase">Tracklist</h3>
               </div>

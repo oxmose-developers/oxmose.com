@@ -29,7 +29,7 @@ export default async function Page() {
     <>
       <h1 hidden>Artists | Oxmose</h1>
 
-      <ul className="divide-y divide-black">
+      <ul className="relative mb-20 divide-y divide-black">
         {artists.map((artist) => (
           <ArtistRow key={artist._id} artist={artist} />
         ))}

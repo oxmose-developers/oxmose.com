@@ -2,7 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
+  /*
+   * This is god damn awful, I'm sorry.
+   */
+  *:focus {
+    outline: none;
+    /* text-decoration: underline; */
+  }
+
+  html {
+    @apply overflow-x-hidden bg-black;
+  }
+
   @screen md {
     html {
       font-size: /* 10px, viewport: 1024px -> 16px, viewport: 1920px */ clamp(
@@ -14,7 +27,7 @@
   }
 
   body {
-    @apply min-h-screen bg-white dark:bg-black;
+    @apply min-h-screen bg-white dark:bg-black overflow-x-hidden;
   }
 
   @supports (min-height: 100svh) {

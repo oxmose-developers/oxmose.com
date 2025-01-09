@@ -9,6 +9,7 @@ import item from "./objects/item";
 import link from "./objects/link";
 import metaDescription from "./objects/metaDescription";
 import questionAnswer from "./objects/questionAnswer";
+import blockBreak from "./objects/blockBreak";
 import releaseDate from "./objects/releaseDate";
 import track from "./objects/track";
 import trackList from "./objects/trackList";
@@ -43,6 +44,7 @@ export const schemaTypes = [
   releaseDate,
   trackList,
   track,
+  blockBreak,
 ];
 
 /**

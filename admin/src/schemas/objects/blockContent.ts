@@ -76,5 +76,9 @@ export default defineType({
       type: "image",
       options: { hotspot: true },
     }),
+    // @see https://www.sanity.io/schemas/breaks-for-portable-text-189dba35
+    defineArrayMember({
+      type: "blockBreak",
+    }),
   ],
 });

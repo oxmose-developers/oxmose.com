@@ -6,15 +6,12 @@
   .releases {
     @apply divide-y-0;
 
-    --gap: 0;
-    --line-offset: calc(var(--gap) / 2);
     --line-thickness: 1px;
     --line-color: #000000;
 
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     overflow: hidden;
-    gap: var(--gap);
     margin: calc(-1 * var(--line-thickness));
   }
 
@@ -31,16 +28,14 @@
   }
 
   .release::after {
-    inline-size: 100vw;
+    inline-size: 100%;
     block-size: var(--line-thickness);
     inset-inline-start: 0;
-    inset-block-start: calc(var(--line-offset) * -1);
   }
 
   .release::before {
     inline-size: var(--line-thickness);
-    block-size: 100vh;
+    block-size: 100%;
     inset-block-start: 0;
-    inset-inline-start: calc(var(--line-offset) * -1);
   }
 }

@@ -29,7 +29,7 @@ export default function CatalogueCard({
         className,
       )}
     >
-      <div className="flex flex-1 flex-col-reverse @2xl:grid @2xl:grid-cols-[minmax(11rem,1fr)_minmax(0,40.9375rem)] @2xl:gap-x-8 @2xl:gap-y-24 @2xl:p-9">
+      <div className="flex flex-1 flex-col-reverse @2xl:grid @2xl:grid-cols-[minmax(11rem,1fr)_minmax(0,56rem)] @2xl:gap-x-8 @2xl:gap-y-24 @2xl:p-9">
         <header className="col-span-full hidden shrink-0 @2xl:block">
           <h2 className="text-oxe-xxxxl font-medium">{release.title}</h2>
         </header>
@@ -47,7 +47,7 @@ export default function CatalogueCard({
           </p>
         </div>
 
-        <div className="relative aspect-square w-full @2xl:max-w-[40.9375rem]">
+        <div className="relative aspect-square w-full @2xl:max-w-[56rem]">
           <Link href={link}>
             <Image
               src={urlForImage(release.coverImage).url()}
@@ -55,8 +55,8 @@ export default function CatalogueCard({
               alt={`${release.title} Album Cover`}
               placeholder="blur"
               blurDataURL={release.coverImage.asset.metadata?.lqip}
-              width={655}
-              height={655}
+              width={896}
+              height={896}
             />
           </Link>
         </div>

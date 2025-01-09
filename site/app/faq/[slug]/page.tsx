@@ -56,7 +56,7 @@ export default async function Page(props: {
     <div className="md:item-stretch flex-1 md:flex md:flex-row md:divide-x md:divide-black">
       <h1 hidden>{title}</h1>
 
-      <ul className="hidden flex-1 divide-y divide-black md:block">
+      <ul className="hidden flex-1 divide-y divide-black pb-20 md:block">
         {categories.map((el) => (
           <li key={el._id} className="px-10 text-oxe-xxxxl/24 last:!border-b">
             <Link href={`/faq/${el.slug.current}`}>{el.category}</Link>

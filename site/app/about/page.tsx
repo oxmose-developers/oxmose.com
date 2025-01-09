@@ -4,7 +4,7 @@ import { PortableText } from "next-sanity";
 
 import { fetchAboutPage } from "../../lib/sanity";
 import CreditArticle from "../components/about-credit-article";
-import teamPhoto from "./team-photo.webp";
+import teamPhoto from "./team-photo.jpg";
 
 export async function generateMetadata(
   props: { params: Promise<{}> },
@@ -86,9 +86,9 @@ export default async function Page() {
       <section>
         <Image
           width={2560}
-          height={1440}
+          height={1707}
           alt="Team photo"
-          className="aspect-video object-cover"
+          className="object-cover"
           loading="lazy"
           placeholder="blur"
           priority={false}

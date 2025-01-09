@@ -216,7 +216,6 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    /* @ts-expect-error - This is a valid JSX element */
     <PlayerContext.Provider value={value}>
       {children}
 

@@ -35,6 +35,7 @@ export default function OxmoseLogoAnimation() {
   }, [pathname]);
 
   return (
+    // @ts-expect-error Ignore, this is typed properly.
     <dotlottie-player
       ref={animation}
       src="/V04_front_page_v01_192.lottie"

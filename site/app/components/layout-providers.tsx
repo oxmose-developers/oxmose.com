@@ -18,7 +18,6 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
       forcedTheme={forcedThemeFromPathname}
       attribute="class"
     >
-      {/* @ts-expect-error - This is a valid JSX element */}
       <PlayerProvider>{children}</PlayerProvider>
     </ThemeProvider>
   );

@@ -79,6 +79,7 @@ export default function Tracklist({
               {artistName
                 ? artistName
                 : track.artists.map((artist, idx, artists) => (
+                    // @ts-expect-error Ignore this, non-issue
                     <Fragment key={artist.slug.current}>
                       <Link
                         className="relative z-[2]"

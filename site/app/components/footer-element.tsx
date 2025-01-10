@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
 
+import type { Link as LinkType } from "../../sanity.types";
 import FollowPopover from "./footer-follow-popover";
 import NewsletterPopover from "./footer-newsletter-popover";
-import type { Link as LinkType } from "../../sanity.types";
 
 export default function Footer({
   fullYear,

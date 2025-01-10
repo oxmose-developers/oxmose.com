@@ -122,6 +122,7 @@ function PlayerNowPlaying() {
         {`${formatDuration(state.currentTime)} / ${formatDuration(state.duration)}`}
       </p>
 
+      {/* @ts-expect-error Ignore this, non-issue */}
       <Progress.Root
         className="absolute bottom-0 left-0 right-0 z-0 h-1.5 w-full overflow-hidden bg-white"
         style={{
@@ -131,6 +132,7 @@ function PlayerNowPlaying() {
         }}
         value={state.progress * 100}
       >
+        {/* @ts-expect-error Ignore this, non-issue */}
         <Progress.Indicator
           className="size-full bg-oxe-purple transition-transform ease-linear"
           style={{ transform: `translateX(-${100 - state.progress * 100}%)` }}

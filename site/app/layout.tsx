@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import Script from "next/script";
 
 import { CartProvider } from "../context/cart-context";
+import { fetchSEO } from "../lib/sanity";
 import { getCart } from "../lib/shopify";
 import CartDrawer from "./components/cart/cart-drawer";
 import ClientOnly from "./components/client-only";
@@ -13,7 +14,6 @@ import Footer from "./components/footer-element";
 import { Providers } from "./components/layout-providers";
 import Navigation from "./components/navigation-element";
 import Player from "./components/player-element";
-import { fetchSEO } from "../lib/sanity";
 
 export const viewport: Viewport = {
   themeColor: "#000000",

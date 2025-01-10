@@ -61,8 +61,6 @@ export default async function Page(props: {
           className="object-cover object-center"
           alt={artist.name}
           src={urlForImage(artist.coverImage).url()}
-          placeholder="blur"
-          blurDataURL={artist.coverImage.asset.metadata?.lqip}
           sizes="100vw"
           fill
         />
@@ -82,8 +80,6 @@ export default async function Page(props: {
           width={896}
           height={586}
           draggable={false}
-          placeholder="blur"
-          blurDataURL={artist.coverImage.asset.metadata?.lqip}
         />
 
         <div className="prose max-w-[unset] text-black prose-p:text-oxe-xxs/5 prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-md">

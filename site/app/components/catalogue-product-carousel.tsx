@@ -33,8 +33,6 @@ export function ProductCarousel({
           height={896}
           alt={""}
           draggable={false}
-          placeholder="blur"
-          blurDataURL={productImages[activeIndex].asset.metadata?.lqip}
         />
       </div>
 
@@ -56,8 +54,6 @@ export function ProductCarousel({
                 height={44}
                 alt={""}
                 draggable={false}
-                placeholder="blur"
-                blurDataURL={image.asset.metadata?.lqip}
               />
             </button>
           ))}
@@ -78,13 +74,11 @@ export function ProductFullBleedScroller({
       {productImages.map((image, idx) => (
         <Image
           alt={""}
-          blurDataURL={image.asset.metadata?.lqip}
           className="aspect-square shrink-0 snap-center object-cover object-center"
           draggable={false}
           height={768}
           key={`full-bleed-${idx}`}
           loading="lazy"
-          placeholder="blur"
           sizes="100vw"
           src={urlForImage(image).width(768).height(768).dpr(3).url()}
           width={768}

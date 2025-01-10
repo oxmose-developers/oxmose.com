@@ -90,7 +90,6 @@ export default async function Page() {
           alt="Team photo"
           className="object-cover"
           loading="lazy"
-          placeholder="blur"
           priority={false}
           sizes="100vw"
           src={teamPhoto}

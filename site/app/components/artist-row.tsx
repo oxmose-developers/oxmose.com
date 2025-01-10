@@ -26,8 +26,6 @@ export default function ArtistRow({
           height={380}
           draggable={false}
           loading="lazy"
-          placeholder="blur"
-          blurDataURL={artist.coverImage.asset.metadata?.lqip}
         />
       </div>
 

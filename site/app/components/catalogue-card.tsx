@@ -53,8 +53,6 @@ export default function CatalogueCard({
               src={urlForImage(release.coverImage).url()}
               className="size-full object-cover object-center"
               alt={`${release.title} Album Cover`}
-              placeholder="blur"
-              blurDataURL={release.coverImage.asset.metadata?.lqip}
               width={896}
               height={896}
             />

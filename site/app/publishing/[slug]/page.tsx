@@ -45,7 +45,7 @@ export default async function Page(props: {
   const { slug } = params;
 
   const artist = await fetchPublishingArtistPage({ slug: slug });
-  artist.works.tracks.map((track) => ({
+  artist.works?.tracks.map((track) => ({
     ...track,
     artists: [artist.name],
   }));
@@ -82,7 +82,7 @@ export default async function Page(props: {
           src={urlForImage(artist.coverImage)
             .width(896)
             .height(586)
-            .dpr(3)
+            .dpr(2)
             .url()}
           width={896}
           height={586}

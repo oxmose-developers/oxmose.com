@@ -16,6 +16,7 @@ import {
 } from "../../components/catalogue-product-carousel";
 import VariantSelector from "../../components/catalogue-variant-selector";
 import Tracklist from "../../components/tracklist";
+import { hasAtLeast } from "remeda";
 
 export async function generateMetadata(
   props: { params: Promise<{ slug: string }> },
@@ -103,7 +104,7 @@ export default async function Page(props: {
               </p>
 
               <p className="text-oxe-sm/8 md:self-end md:text-right md:text-oxe-xxl md:font-medium">
-                {release.artist.map((artist, idx, artists) => (
+                {[...(release?.artist ?? [])].map((artist, idx, artists) => (
                   <span key={artist.slug.current}>
                     <Link href={`/artists/${artist.slug.current}`}>
                       {artist.name}
@@ -172,17 +173,19 @@ export default async function Page(props: {
                 />
               )}
 
-              {release?.trackList?.tracks?.every((el) => el.file) && (
-                <ListenButton
-                  tracks={release.trackList}
-                  album={release.title}
-                  artwork={urlForImage(release.productImages[0])
-                    .width(512)
-                    .height(512)
-                    .format("jpg")
-                    .url()}
-                />
-              )}
+              {!!release?.trackList &&
+                hasAtLeast(release.trackList.tracks, 1) &&
+                release?.trackList?.tracks?.every((el) => el.file) && (
+                  <ListenButton
+                    tracks={release.trackList}
+                    album={release.title}
+                    artwork={urlForImage(release.productImages[0])
+                      .width(512)
+                      .height(512)
+                      .format("jpg")
+                      .url()}
+                  />
+                )}
             </div>
           </div>
         </div>
@@ -200,7 +203,7 @@ export default async function Page(props: {
               <p className="text-oxe-md font-medium">{release.title}</p>
 
               <p className="text-oxe-sm/8">
-                {release.artist.map((artist, idx, artists) => (
+                {[...(release?.artist ?? [])].map((artist, idx, artists) => (
                   <span key={artist.slug.current}>
                     <Link href={`/artists/${artist.slug.current}`}>
                       {artist.name}
@@ -272,17 +275,19 @@ export default async function Page(props: {
               />
             )}
 
-            {release?.trackList?.tracks?.every((el) => el.file) && (
-              <ListenButton
-                tracks={release.trackList}
-                album={release.title}
-                artwork={urlForImage(release.productImages[0])
-                  .width(512)
-                  .height(512)
-                  .format("jpg")
-                  .url()}
-              />
-            )}
+            {release?.trackList &&
+              hasAtLeast(release.trackList.tracks, 1) &&
+              release?.trackList?.tracks?.every((el) => el.file) && (
+                <ListenButton
+                  tracks={release.trackList}
+                  album={release.title}
+                  artwork={urlForImage(release.productImages[0])
+                    .width(512)
+                    .height(512)
+                    .format("jpg")
+                    .url()}
+                />
+              )}
           </div>
         </div>
 
@@ -306,7 +311,7 @@ export default async function Page(props: {
           </div>
         </div>
 
-        {release?.trackList && (
+        {release?.trackList && hasAtLeast(release.trackList.tracks, 1) && (
           <>
             <section className="mt-7 md:mt-0 md:border-t md:border-black">
               <div className="px-9 py-2 md:px-10">

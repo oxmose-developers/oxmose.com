@@ -75,7 +75,7 @@ export default async function Page(props: {
           src={urlForImage(artist.coverImage)
             .width(896)
             .height(586)
-            .dpr(3)
+            .dpr(2)
             .url()}
           width={896}
           height={586}

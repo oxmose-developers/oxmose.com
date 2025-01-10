@@ -28,7 +28,6 @@ export default defineType({
           to: { type: "artist" },
         }),
       ],
-      validation: (ArrayRule) => [ArrayRule.required()],
     }),
     defineField({
       name: "overview",
@@ -74,7 +73,6 @@ export default defineType({
           type: "link",
         }),
       ],
-      validation: (Rule) => [Rule.required()],
     }),
     defineField({
       name: "trackList",

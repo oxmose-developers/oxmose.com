@@ -283,7 +283,7 @@ export type Release = {
   _rev: string;
   title: string;
   slug: Slug;
-  artist: Array<{
+  artist?: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -317,7 +317,7 @@ export type Release = {
   description: BlockContent;
   releaseDate: ReleaseDate;
   releaseReference: string;
-  links: Array<
+  links?: Array<
     {
       _key: string;
     } & Link
@@ -386,7 +386,7 @@ export type Artist = {
     } & Link
   >;
   body?: BlockContent;
-  releases: Array<{
+  releases?: Array<{
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -716,7 +716,7 @@ export type ArtistPageQueryResult = {
     releaseReference: string;
     releaseDate: ReleaseDate;
     slug: Slug;
-  }>;
+  }> | null;
 } | null;
 // Variable: FAQsQuery
 // Query: *[_type == "faqs" && defined(questions)] | order(_createdAt asc)
@@ -735,7 +735,7 @@ export type FAQsQueryResult = Array<{
   >;
 }>;
 // Variable: ReleasesQuery
-// Query: *[_type == "release" && defined(slug)] | order(releaseDate desc) {  ...,  artist[]->{name},  coverImage {    ...,    asset->{      ...,      metadata    }  },  trackList {    ...,    tracks[] {      ...,      artists[]->{name, slug}    }  }}
+// Query: *[_type == "release" && defined(slug)] | order(releaseDate asc) {  ...,  artist[]->{name},  coverImage {    ...,    asset->{      ...,      metadata    }  },  trackList {    ...,    tracks[] {      ...,      artists[]->{name, slug}    }  }}
 export type ReleasesQueryResult = Array<{
   _id: string;
   _type: "release";
@@ -746,7 +746,7 @@ export type ReleasesQueryResult = Array<{
   slug: Slug;
   artist: Array<{
     name: string;
-  }>;
+  }> | null;
   overview: MetaDescription;
   coverImage: {
     asset: {
@@ -790,7 +790,7 @@ export type ReleasesQueryResult = Array<{
   description: BlockContent;
   releaseDate: ReleaseDate;
   releaseReference: string;
-  links: Array<
+  links?: Array<
     {
       _key: string;
     } & Link
@@ -824,7 +824,7 @@ export type ReleasesQueryResult = Array<{
   physicalProductFormat: string;
 }>;
 // Variable: ReleasesStaticParamsQuery
-// Query: *[_type == "release" && defined(slug)] | order(releaseDate desc) {  slug}
+// Query: *[_type == "release" && defined(slug)] | order(releaseDate asc) {  slug}
 export type ReleasesStaticParamsQueryResult = Array<{
   slug: Slug;
 }>;
@@ -841,7 +841,7 @@ export type ReleasePageQueryResult = {
   artist: Array<{
     name: string;
     slug: Slug;
-  }>;
+  }> | null;
   overview: MetaDescription;
   coverImage: {
     asset?: {
@@ -885,7 +885,7 @@ export type ReleasePageQueryResult = {
   description: BlockContent;
   releaseDate: ReleaseDate;
   releaseReference: string;
-  links: Array<
+  links?: Array<
     {
       _key: string;
     } & Link
@@ -1180,8 +1180,8 @@ declare module "@sanity/client" {
     '\n  *[_type == "artist" && defined(slug)] | order(name asc) {\n    slug\n  }\n': ArtistsStaticParamsQueryResult;
     '*[_type == "artist" && slug.current == $slug][0] {\n  ...,\n  coverImage {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  },\n  releases[]->{\n    title,\n    releaseReference,\n    releaseDate,\n    slug,\n  }\n}': ArtistPageQueryResult;
     '\n*[_type == "faqs" && defined(questions)] | order(_createdAt asc)': FAQsQueryResult;
-    '\n*[_type == "release" && defined(slug)] | order(releaseDate desc) {\n  ...,\n  artist[]->{name},\n  coverImage {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  },\n  trackList {\n    ...,\n    tracks[] {\n      ...,\n      artists[]->{name, slug}\n    }\n  }\n}': ReleasesQueryResult;
-    '\n*[_type == "release" && defined(slug)] | order(releaseDate desc) {\n  slug\n}': ReleasesStaticParamsQueryResult;
+    '\n*[_type == "release" && defined(slug)] | order(releaseDate asc) {\n  ...,\n  artist[]->{name},\n  coverImage {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  },\n  trackList {\n    ...,\n    tracks[] {\n      ...,\n      artists[]->{name, slug}\n    }\n  }\n}': ReleasesQueryResult;
+    '\n*[_type == "release" && defined(slug)] | order(releaseDate asc) {\n  slug\n}': ReleasesStaticParamsQueryResult;
     '\n*[_type == "release" && slug.current == $slug][0] {\n  ...,\n  artist[]->{name, slug},\n  productImages[] {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  },\n  trackList {\n    ...,\n    tracks[] {\n      ...,\n      artists[]->{name, slug}\n    }\n  }\n}': ReleasePageQueryResult;
     '\n*[_type == "release" && slug.current == $slug][0] {\n  productImages[0...1],\n  title,\n  trackList {\n    ...,\n    tracks[] {\n      ...,\n      artists[]->{name, slug}\n    }\n  }\n}': ReleaseTracklistQueryResult;
     '*[_type == "legal" && defined(slug)] {\n  slug\n}': LegalStaticParamsQueryResult;

@@ -35,7 +35,7 @@ export default function Tracklist({
           </td>
 
           <td className="hidden bg-black pb-1 pt-1.5 uppercase text-white first:pl-9 last:pr-5 dark:bg-white dark:text-black md:table-cell md:py-2 md:first:pl-10 md:last:pr-10">
-            Artist
+            {`Artist(s)`}
           </td>
 
           <td className="bg-black pb-1 pt-1.5 uppercase text-white first:pl-9 last:pr-5 dark:bg-white dark:text-black md:py-2 md:first:pl-10 md:last:pr-10">
@@ -46,7 +46,7 @@ export default function Tracklist({
 
       <tbody>
         {tracks.tracks.map((track, idx) => (
-          <tr key={track._key} className="group">
+          <tr key={track._key} className="group relative">
             <td className="px-0 py-0.5 pr-2 first:pl-9 last:pr-5 group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black md:w-12 md:pr-5 md:first:pl-10 md:last:pr-10">
               <span className="tabular-nums">
                 {`${track.number}`.padStart(2, "0")}

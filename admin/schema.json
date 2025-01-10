@@ -1745,7 +1745,7 @@
             }
           }
         },
-        "optional": false
+        "optional": true
       },
       "overview": {
         "type": "objectAttribute",
@@ -1936,7 +1936,7 @@
             }
           }
         },
-        "optional": false
+        "optional": true
       },
       "trackList": {
         "type": "objectAttribute",
@@ -2342,7 +2342,7 @@
             }
           }
         },
-        "optional": false
+        "optional": true
       }
     }
   },

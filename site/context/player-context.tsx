@@ -99,8 +99,13 @@ function playerReducer(state: PlayerState, action: PlayerAction): PlayerState {
     case "NEXT_TRACK":
       return {
         ...state,
+        // Looping logic
+        // currentTrackIndex:
+        //   (state.currentTrackIndex + 1) % state.playlist.length,
         currentTrackIndex:
-          (state.currentTrackIndex + 1) % state.playlist.length,
+          state.currentTrackIndex < state.playlist.length - 1
+            ? state.currentTrackIndex + 1
+            : state.currentTrackIndex,
         currentTime: 0,
         progress: 0,
         isPlaying: true,
@@ -108,9 +113,14 @@ function playerReducer(state: PlayerState, action: PlayerAction): PlayerState {
     case "PREVIOUS_TRACK":
       return {
         ...state,
+        // Looping logic
+        // currentTrackIndex:
+        //   (state.currentTrackIndex - 1 + state.playlist.length) %
+        //   state.playlist.length,
         currentTrackIndex:
-          (state.currentTrackIndex - 1 + state.playlist.length) %
-          state.playlist.length,
+          state.currentTrackIndex > 0
+            ? state.currentTrackIndex - 1
+            : state.currentTrackIndex,
         currentTime: 0,
         progress: 0,
         isPlaying: true,

@@ -2,18 +2,20 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-96 flex-col border-b border-black p-9 md:min-h-128 md:p-10">
-      <h2 className="mb-1.5 text-oxe-md md:mb-10 md:text-oxe-xxxxl">
-        Not found
-      </h2>
-
-      <p className="text-oxe-sm md:text-oxe-xxl">
-        Could not find requested resource
-      </p>
-
-      <p className="mt-auto text-right text-oxe-md uppercase md:text-oxe-xxxxl">
-        <Link href="/">home</Link>
-      </p>
+    <section className="fixed inset-0 z-10 grid place-items-center bg-white">
+      <div>
+        <h2 className="mb-1.5 text-center text-oxe-md md:mb-10 md:text-oxe-xxxxl">
+          Not found 404 broken record
+          <br />
+          <br />
+          <Link
+            className="mt-auto text-center text-oxe-md font-semibold uppercase md:text-oxe-xxxxl"
+            href="/"
+          >
+            Back home
+          </Link>
+        </h2>
+      </div>
     </section>
   );
 }

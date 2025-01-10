@@ -27,36 +27,36 @@ export function ProductCarousel({
           src={urlForImage(productImages[activeIndex])
             .width(896)
             .height(896)
-            .dpr(3)
+            .dpr(2)
             .url()}
           width={896}
           height={896}
-          alt={""}
+          alt=""
           draggable={false}
         />
       </div>
 
       {/* Carousel Controls */}
-      <div className="flex shrink-0 gap-2 self-end justify-self-end">
-        {productImages
-          // .filter((_, idx) => idx !== activeIndex)
-          .map((image, idx) => (
-            <button
-              key={`carousel-${idx}`}
-              type="button"
-              onClick={() => activeIndexSet(idx)}
-            >
-              <Image
-                loading="lazy"
-                className="aspect-square size-11 shrink-0"
-                src={urlForImage(image).width(44).height(44).dpr(3).url()}
-                width={44}
-                height={44}
-                alt={""}
-                draggable={false}
-              />
-            </button>
-          ))}
+      <div
+        className="flex shrink-0 gap-2 self-end justify-self-end"
+        onMouseLeave={() => activeIndexSet(0)}
+      >
+        {productImages.slice(1).map((image, idx) => (
+          <div
+            key={`carousel-${idx}`}
+            onMouseEnter={() => activeIndexSet(idx + 1)}
+          >
+            <Image
+              loading="lazy"
+              className="aspect-square size-11 shrink-0"
+              src={urlForImage(image).width(44).height(44).dpr(2).url()}
+              width={44}
+              height={44}
+              alt=""
+              draggable={false}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -73,14 +73,14 @@ export function ProductFullBleedScroller({
     <div className="relative flex aspect-square w-full snap-x snap-mandatory overflow-x-auto">
       {productImages.map((image, idx) => (
         <Image
-          alt={""}
+          alt=""
           className="aspect-square shrink-0 snap-center object-cover object-center"
           draggable={false}
           height={768}
           key={`full-bleed-${idx}`}
           loading="lazy"
           sizes="100vw"
-          src={urlForImage(image).width(768).height(768).dpr(3).url()}
+          src={urlForImage(image).width(768).height(768).dpr(2).url()}
           width={768}
         />
       ))}

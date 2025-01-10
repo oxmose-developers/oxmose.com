@@ -107,15 +107,19 @@ function PlayerNowPlaying() {
     ? `${currentTrack.artist} • ${currentTrack.title}`
     : undefined;
 
+  const nowPlayingMobile = currentTrack
+    ? `${currentTrack.title} • ${currentTrack.artist}`
+    : undefined;
+
   return (
     <div className="relative flex flex-1 items-center justify-between gap-4 overflow-x-hidden px-5 text-oxe-xxs uppercase leading-[inherit] md:text-oxe-xs">
       <p className="truncate whitespace-nowrap">
-        <span className="inline sm:hidden">{currentTrack?.title}</span>
+        <span className="inline sm:hidden">{nowPlayingMobile}</span>
         <span className="hidden sm:inline">{nowPlaying}</span>
       </p>
 
       <p className="hidden whitespace-nowrap tabular-nums text-oxe-grey sm:block">
-        {formatDuration(state.duration)}
+        {`${formatDuration(state.currentTime)} / ${formatDuration(state.duration)}`}
       </p>
 
       <Progress.Root

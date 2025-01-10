@@ -20,7 +20,7 @@ export default function ArtistRow({
           src={urlForImage(artist.coverImage)
             .width(576)
             .height(380)
-            .dpr(3)
+            .dpr(2)
             .url()}
           width={576}
           height={380}

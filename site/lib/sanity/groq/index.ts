@@ -192,7 +192,7 @@ export type Release = {
 };
 
 export const ReleasesQuery = defineQuery(`
-*[_type == "release" && defined(slug)] | order(releaseDate desc) {
+*[_type == "release" && defined(slug)] | order(releaseDate asc) {
   ...,
   artist[]->{name},
   coverImage {
@@ -214,7 +214,7 @@ export const ReleasesQuery = defineQuery(`
 export type ReleasesQuery = Release[];
 
 export const ReleasesStaticParamsQuery = defineQuery(`
-*[_type == "release" && defined(slug)] | order(releaseDate desc) {
+*[_type == "release" && defined(slug)] | order(releaseDate asc) {
   slug
 }`);
 

@@ -54,6 +54,7 @@ import type {
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
 } from "./types";
+import { NEXT_TAGS } from "../../constants/tags";
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
   ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, "https://")
@@ -483,10 +484,14 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
 
   if (isCollectionUpdate) {
     revalidateTag(TAGS.collections);
+    revalidateTag(NEXT_TAGS.RELEASES);
+    revalidateTag(NEXT_TAGS.RELEASES_STATIC_PARAMS);
   }
 
   if (isProductUpdate) {
     revalidateTag(TAGS.products);
+    revalidateTag(NEXT_TAGS.RELEASES);
+    revalidateTag(NEXT_TAGS.RELEASES_STATIC_PARAMS);
   }
 
   return NextResponse.json({ status: 200, revalidated: true, now: Date.now() });

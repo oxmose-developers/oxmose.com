@@ -20,9 +20,13 @@ export async function addItem(
     selectedProductFormat,
   }: {
     selectedVariantId: string | undefined;
-    selectedProductFormat: "Digital" | "Vinyl";
+    selectedProductFormat: "Digital" | "Vinyl" | undefined;
   },
 ) {
+  if (!selectedVariantId) {
+    return "Select format";
+  }
+
   let cartId = (await cookies()).get("cartId")?.value;
 
   if (!cartId || !selectedVariantId) {

@@ -54,7 +54,6 @@ export default defineType({
           to: { type: "release" },
         }),
       ],
-      validation: (ArrayRule) => [ArrayRule.required()],
     }),
   ],
 });

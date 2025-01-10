@@ -11,14 +11,14 @@ export async function generateMetadata(
   const existingMetadata = (await parent) as unknown as Metadata;
 
   return {
-    title: "Catalogue",
+    title: "Catalogue | Oxmose",
     openGraph: {
       ...existingMetadata.openGraph,
-      title: "Catalogue",
+      title: "Catalogue | Oxmose",
     },
     twitter: {
       ...existingMetadata.twitter,
-      title: "Catalogue",
+      title: "Catalogue | Oxmose",
     },
   };
 }

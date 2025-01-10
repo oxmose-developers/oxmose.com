@@ -8,8 +8,8 @@ export const links = [
     label: "Facebook",
   },
   {
-    href: "https://twitter.com/oxmose_records",
-    label: "Twitter",
+    href: "https://x.com/oxmose_records",
+    label: "X",
   },
   {
     href: "https://spoti.fi/34oYpfp",
@@ -22,5 +22,9 @@ export const links = [
   {
     href: "https://soundcloud.com/oxmose",
     label: "SoundCloud",
+  },
+  {
+    href: "https://www.discogs.com/fr/label/1361763-Oxmose",
+    label: "Discogs",
   },
 ] as const;

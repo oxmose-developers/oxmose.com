@@ -4,6 +4,7 @@
   "scripts": {},
   "keywords": [],
   "devDependencies": {
-    "concurrently": "^9.1.0"
+    "concurrently": "^9.1.0",
+    "typescript": "^5.7.3"
   }
 }

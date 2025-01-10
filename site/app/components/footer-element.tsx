@@ -50,7 +50,7 @@ export default function Footer({
                 Publishing
               </Link>
 
-              <FollowPopover offset={height} />
+              <FollowPopover offset={height} followLinks={followLinks} />
 
               <NewsletterPopover offset={height} />
 

@@ -138,7 +138,9 @@ export default async function Page(props: {
           <ul className="ml-auto text-right text-oxe-xxs md:ml-0 md:pl-9 md:text-left md:text-oxe-sm/8">
             {[...(artist?.links ?? [])].map((link) => (
               <li key={link._key}>
-                <a href={link.href}>{link.name}</a>
+                <a href={link.href} target="_blank">
+                  {link.name}
+                </a>
               </li>
             ))}
           </ul>

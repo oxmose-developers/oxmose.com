@@ -140,7 +140,9 @@ export default async function Page(props: {
                 <ul className="ml-auto text-right text-oxe-md/8">
                   {[...(release?.links ?? [])].map((link) => (
                     <li key={link._key}>
-                      <a href={link.href}>{link.name}</a>
+                      <a href={link.href} target="_blank">
+                        {link.name}
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -237,7 +239,9 @@ export default async function Page(props: {
               <ul className="ml-auto text-right text-oxe-xxs md:text-left md:text-oxe-sm/8">
                 {[...(release?.links ?? [])].map((link) => (
                   <li key={link._key}>
-                    <a href={link.href}>{link.name}</a>
+                    <a href={link.href} target="_blank">
+                      {link.name}
+                    </a>
                   </li>
                 ))}
               </ul>

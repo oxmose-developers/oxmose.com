@@ -142,7 +142,9 @@ export default async function Page(props: {
               {artist.projects.map((link) => (
                 <li key={link._key}>
                   {link.href ? (
-                    <a href={link.href}>{link.name}</a>
+                    <a href={link.href} target="_blank">
+                      {link.name}
+                    </a>
                   ) : (
                     <span>{link.name}</span>
                   )}
@@ -166,7 +168,9 @@ export default async function Page(props: {
               hasAtLeast(artist.links, 1) &&
               artist.links.map((link) => (
                 <li key={link._key}>
-                  <a href={link.href}>{link.name}</a>
+                  <a href={link.href} target="_blank">
+                    {link.name}
+                  </a>
                 </li>
               ))}
           </ul>

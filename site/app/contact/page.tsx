@@ -39,6 +39,7 @@ export default async function Page() {
           </h1>
 
           <p className="mb-8 text-oxe-md md:mb-20 md:text-oxe-xxl">
+            {/* @mailto is set on CMS */}
             <a href={page.generalSection.link.href}>
               {page.generalSection.link.name}
             </a>

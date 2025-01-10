@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
@@ -31,7 +32,7 @@ const OxmoseLogoAnimation = dynamic(() => import("./logo-animation"), {
 
 export function OxmoseAnimatedLogo({ className }: { className?: string }) {
   return (
-    <div className={className}>
+    <div className={clsx(className)}>
       <Suspense fallback={null}>
         <OxmoseLogoAnimation />
       </Suspense>

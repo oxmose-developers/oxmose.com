@@ -1,8 +1,8 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import { PortableText } from "next-sanity";
 
 import { fetchLegalPage } from "../../../lib/sanity";
 import Prose from "../../components/legal-prose";
+import { CustomPortableText } from "../../components/portable-text";
 
 export async function generateMetadata(
   props: { params: Promise<{ slug: string }> },
@@ -54,7 +54,7 @@ export default async function Page(props: {
         </div>
 
         <Prose>
-          <PortableText value={page.englishContent} />
+          <CustomPortableText value={page.englishContent} />
         </Prose>
       </section>
 
@@ -70,7 +70,7 @@ export default async function Page(props: {
         </div>
 
         <Prose>
-          <PortableText value={page.frenchContent} />
+          <CustomPortableText value={page.frenchContent} />
         </Prose>
       </section>
     </div>

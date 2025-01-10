@@ -1,10 +1,10 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PortableText } from "next-sanity";
 import { Fragment } from "react";
 
 import { fetchFaq, fetchFaqs } from "../../../lib/sanity";
+import { CustomPortableText } from "../../components/portable-text";
 
 export async function generateMetadata(
   props: { params: Promise<{ slug: string }> },
@@ -80,7 +80,7 @@ export default async function Page(props: {
                   <div key={`${qa._id}-${idx}-question`} className="space-y-4">
                     <h4 className="-mb-4 font-medium">{qa.question}</h4>
 
-                    <PortableText value={qa.answer} />
+                    <CustomPortableText value={qa.answer} />
                   </div>
                 ))}
               </article>

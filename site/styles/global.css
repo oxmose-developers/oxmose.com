@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   /*
    * This is god damn awful, I'm sorry.
@@ -27,7 +26,7 @@
   }
 
   body {
-    @apply min-h-screen bg-white dark:bg-black overflow-x-hidden;
+    @apply min-h-screen overflow-x-hidden bg-white dark:bg-black;
   }
 
   @supports (min-height: 100svh) {
@@ -61,4 +60,8 @@
       "pagination pagination"
       "bio info";
   }
+}
+
+dotlottie-player svg {
+  transform: none !important;
 }

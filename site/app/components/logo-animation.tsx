@@ -13,6 +13,13 @@ export default function OxmoseLogoAnimation() {
     const ref = animation.current;
 
     if (ref) {
+      /**
+       * Hacky fix to prevent blurry animation on some browsers and OSs.
+       */
+      const sheet = new CSSStyleSheet();
+      sheet.replaceSync(`svg { transform: none !important; }`);
+      ref.shadowRoot?.adoptedStyleSheets.push(sheet);
+
       ref.addEventListener("ready", () => ref.play());
     }
 
@@ -46,7 +53,6 @@ export default function OxmoseLogoAnimation() {
         width: "100%",
         height: "100%",
         pointerEvents: "none",
-        // shapeRendering: "crispEdges",
       }}
     />
   );

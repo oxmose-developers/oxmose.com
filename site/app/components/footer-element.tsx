@@ -6,8 +6,15 @@ import useMeasure from "react-use-measure";
 
 import FollowPopover from "./footer-follow-popover";
 import NewsletterPopover from "./footer-newsletter-popover";
+import type { Link as LinkType } from "../../sanity.types";
 
-export default function Footer({ fullYear }: { fullYear: number }) {
+export default function Footer({
+  fullYear,
+  followLinks,
+}: {
+  fullYear: number;
+  followLinks: LinkType[];
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const [ref, { height }] = useMeasure();
@@ -70,7 +77,7 @@ export default function Footer({ fullYear }: { fullYear: number }) {
             Publishing
           </Link>
 
-          <FollowPopover offset={height} />
+          <FollowPopover offset={height} followLinks={followLinks} />
 
           <NewsletterPopover offset={height} />
 

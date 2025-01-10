@@ -1,6 +1,6 @@
 import type { Metadata, ResolvingMetadata } from "next";
 
-import { fetchReleases } from "../lib/sanity";
+import { fetchReleases, fetchSEO } from "../lib/sanity";
 import styles from "../styles/catalogue.module.css";
 import CatalogueCard from "./components/catalogue-card";
 
@@ -10,15 +10,17 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const existingMetadata = (await parent) as unknown as Metadata;
 
+  const seo = await fetchSEO();
+
   return {
-    title: "Catalogue | Oxmose",
+    title: seo.cataloguePageTitle,
     openGraph: {
       ...existingMetadata.openGraph,
-      title: "Catalogue | Oxmose",
+      title: seo.cataloguePageTitle,
     },
     twitter: {
       ...existingMetadata.twitter,
-      title: "Catalogue | Oxmose",
+      title: seo.cataloguePageTitle,
     },
   };
 }

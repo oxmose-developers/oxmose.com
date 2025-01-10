@@ -408,7 +408,15 @@ export type Seo = {
   _updatedAt: string;
   _rev: string;
   title: string;
-  description: MetaDescription;
+  description: string;
+  twitterSite: string;
+  keywords: string;
+  followLinks?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  cataloguePageTitle: string;
 };
 
 export type Publishing = {
@@ -638,6 +646,25 @@ export type ContactQueryResult = {
   pressKit?: Link;
   demoSection?: ContentSection;
   syncSection?: ContentSection;
+} | null;
+// Variable: SEOQuery
+// Query: *[_type == "seo"][0]
+export type SEOQueryResult = {
+  _id: string;
+  _type: "seo";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  description: string;
+  twitterSite: string;
+  keywords: string;
+  followLinks?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  cataloguePageTitle: string;
 } | null;
 // Variable: ArtistsQuery
 // Query: *[_type == "artist" && defined(slug)] | order(name asc) {  _id,  slug,  name,  coverImage {    ...,    asset->{      ...,      metadata    }  }}
@@ -1187,6 +1214,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '\n  *[_type == "about"][0]\n': AboutQueryResult;
     '\n  *[_type == "contact"][0]\n': ContactQueryResult;
+    '\n  *[_type == "seo"][0]\n': SEOQueryResult;
     '\n*[_type == "artist" && defined(slug)] | order(name asc) {\n  _id,\n  slug,\n  name,\n  coverImage {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  }\n}': ArtistsQueryResult;
     '\n  *[_type == "artist" && defined(slug)] | order(name asc) {\n    slug\n  }\n': ArtistsStaticParamsQueryResult;
     '*[_type == "artist" && slug.current == $slug][0] {\n  ...,\n  coverImage {\n    ...,\n    asset->{\n      ...,\n      metadata\n    }\n  },\n  releases[]->{\n    title,\n    releaseReference,\n    releaseDate,\n    slug,\n  }\n}': ArtistPageQueryResult;

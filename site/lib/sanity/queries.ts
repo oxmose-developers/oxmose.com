@@ -18,6 +18,7 @@ import {
   ReleasePageQuery,
   ReleasesQuery,
   ReleasesStaticParamsQuery,
+  SEOQuery,
 } from "./groq";
 
 export const fetchReleases = async () => {
@@ -161,5 +162,12 @@ export const fetchAboutPage = async () => {
   return sanityFetch<AboutQuery>({
     query: AboutQuery,
     tags: [NEXT_TAGS.ABOUT],
+  });
+};
+
+export const fetchSEO = async () => {
+  return sanityFetch<SEOQuery>({
+    query: SEOQuery,
+    tags: [NEXT_TAGS.SEO],
   });
 };

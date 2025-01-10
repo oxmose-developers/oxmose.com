@@ -2,9 +2,15 @@
 
 import { useState } from "react";
 
-import { links } from "../../constants/urls";
+import type { Link } from "../../sanity.types";
 
-export default function FollowPopover({ offset }: { offset: number }) {
+export default function FollowPopover({
+  offset,
+  followLinks,
+}: {
+  offset: number;
+  followLinks: Link[];
+}) {
   const [isOpen, isOpenSet] = useState(false);
 
   return (
@@ -23,14 +29,14 @@ export default function FollowPopover({ offset }: { offset: number }) {
           style={{ "--offset": `${offset}px` } as React.CSSProperties}
         >
           <div className="flex flex-wrap gap-4 md:gap-10">
-            {links.map((link, idx) => (
+            {followLinks.map((link, idx) => (
               <a
                 href={link.href}
                 target="_blank"
-                key={`${link.label}-${idx}`}
+                key={`${link.name}-${idx}`}
                 className="text-oxe-xxs font-medium uppercase md:text-oxe-sm"
               >
-                {link.label}
+                {link.name}
               </a>
             ))}
           </div>

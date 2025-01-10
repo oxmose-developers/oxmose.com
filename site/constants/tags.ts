@@ -15,4 +15,6 @@ export const NEXT_TAGS = {
 
   ARTISTS: "artists",
   ARTISTS_STATIC_PARAMS: "artistsStaticParams",
+
+  SEO: "seo",
 } as const;

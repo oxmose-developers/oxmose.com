@@ -5,7 +5,6 @@ import localFont from "next/font/local";
 import { cookies } from "next/headers";
 import Script from "next/script";
 
-import { description } from "../constants/seo";
 import { CartProvider } from "../context/cart-context";
 import { getCart } from "../lib/shopify";
 import CartDrawer from "./components/cart/cart-drawer";
@@ -14,6 +13,7 @@ import Footer from "./components/footer-element";
 import { Providers } from "./components/layout-providers";
 import Navigation from "./components/navigation-element";
 import Player from "./components/player-element";
+import { fetchSEO } from "../lib/sanity";
 
 export const viewport: Viewport = {
   themeColor: "#000000",
@@ -23,45 +23,39 @@ const baseUrl = process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
   : "http://localhost:3000";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
-  title: {
-    template: "Oxmose | %s",
-    default: "Oxmose",
-  },
-  description: description,
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await fetchSEO();
+
+  return {
+    metadataBase: new URL(baseUrl),
     title: {
-      template: "Oxmose | %s",
-      default: "Oxmose",
+      template: `${seo.title} | %s`,
+      default: `${seo.title}`,
     },
-    description: description,
-    type: "website",
-    siteName: "Oxmose",
-    url: new URL(baseUrl),
-  },
-  twitter: {
-    title: {
-      template: "Oxmose | %s",
-      default: "Oxmose",
+    description: seo.description,
+    openGraph: {
+      title: {
+        template: `${seo.title} | %s`,
+        default: `${seo.title}`,
+      },
+      description: seo.description,
+      type: "website",
+      siteName: seo.title,
+      url: new URL(baseUrl),
     },
-    description: description,
-    site: "@oxmose_records",
-    creator: "@oxmose_records",
-  },
-  creator: "Oxmose Team",
-  publisher: "Oxmose",
-  keywords: [
-    "oxmose",
-    "oxmose records",
-    "oxmose label",
-    "oxmose music",
-    "label",
-    "musique",
-    "music",
-    "independant",
-  ],
-};
+    twitter: {
+      title: {
+        template: `${seo.title} | %s`,
+        default: `${seo.title}`,
+      },
+      description: seo.description,
+      site: seo.twitterSite,
+      creator: seo.twitterSite,
+    },
+    publisher: seo.title,
+    keywords: seo.keywords,
+  } satisfies Metadata;
+}
 
 const monumentGrotesk = localFont({
   preload: true,
@@ -106,6 +100,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const seo = await fetchSEO();
+
   const fullYear = new Date().getFullYear();
 
   const cartId = (await cookies()).get("cartId")?.value;
@@ -125,7 +121,7 @@ export default async function RootLayout({
 
             <main className="flex flex-1 flex-col">{children}</main>
 
-            <Footer fullYear={fullYear} />
+            <Footer fullYear={fullYear} followLinks={seo.followLinks} />
 
             <ClientOnly>
               <Player />

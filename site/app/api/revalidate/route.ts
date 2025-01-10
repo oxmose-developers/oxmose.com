@@ -48,6 +48,9 @@ export async function POST(req: NextRequest) {
           revalidateTag(body.slug);
         }
       }
+      case "seo": {
+        revalidateTag(NEXT_TAGS.SEO);
+      }
       case "about": {
         revalidateTag(NEXT_TAGS.ABOUT);
       }

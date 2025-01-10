@@ -47,6 +47,19 @@ export const ContactQuery = defineQuery(`
   *[_type == "contact"][0]
 `);
 
+export type SEOQuery = {
+  description: string;
+  title: string;
+  twitterSite: string;
+  keywords: string;
+  followLinks: Link[];
+  cataloguePageTitle: string;
+};
+
+export const SEOQuery = defineQuery(`
+  *[_type == "seo"][0]
+`);
+
 export type ContentSection = {
   _type: "contentSection";
   title: string;

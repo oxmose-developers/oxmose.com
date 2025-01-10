@@ -1,1 +1,0 @@
-export const description = `Oxmose is an independent french record label with a non-linear contemporary music vision, defining its sound identity through artistic concepts that blur genre lines, while also immersing the audience in a unique visual experience.`;

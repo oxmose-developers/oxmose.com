@@ -68,11 +68,7 @@ export default defineType({
       name: "links",
       description: "Where to stream this release",
       type: "array",
-      of: [
-        defineArrayMember({
-          type: "link",
-        }),
-      ],
+      of: [defineArrayMember({ type: "link" })],
     }),
     defineField({
       name: "trackList",

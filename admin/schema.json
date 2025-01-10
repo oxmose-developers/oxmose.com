@@ -2421,8 +2421,50 @@
       "description": {
         "type": "objectAttribute",
         "value": {
-          "type": "inline",
-          "name": "metaDescription"
+          "type": "string"
+        },
+        "optional": false
+      },
+      "twitterSite": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
+      "keywords": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
+      "followLinks": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "object",
+            "attributes": {
+              "_key": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                }
+              }
+            },
+            "rest": {
+              "type": "inline",
+              "name": "link"
+            }
+          }
+        },
+        "optional": true
+      },
+      "cataloguePageTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": false
       }

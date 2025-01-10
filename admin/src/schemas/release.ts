@@ -80,6 +80,7 @@ export default defineType({
     }),
     defineField({
       name: "shopifyProductDigital",
+      description: "Found as the URL Handle in Shopify",
       type: "string",
       placeholder: "e.g. oxe-001-digital",
       validation: (Rule) => [Rule.required()],
@@ -87,10 +88,12 @@ export default defineType({
     defineField({
       name: "digitalProductFormat",
       type: "string",
+      placeholder: "WAV 24bit",
       validation: (Rule) => [Rule.required()],
     }),
     defineField({
       name: "shopifyProductPhysical",
+      description: "Found as the URL Handle in Shopify",
       type: "string",
       placeholder: "e.g. oxe-001-vinyl",
       validation: (Rule) => [Rule.required()],
@@ -98,6 +101,7 @@ export default defineType({
     defineField({
       name: "physicalProductFormat",
       type: "string",
+      placeholder: '12" 180g limited edition',
       validation: (Rule) => [Rule.required()],
     }),
   ],

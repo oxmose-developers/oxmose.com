@@ -19,12 +19,14 @@ import release from "./release";
 import about from "./singletons/about";
 import contact from "./singletons/contact";
 import publishing from "./singletons/publishing";
+import seo from "./singletons/seo";
 
 export const schemaTypes = [
   // singleton document types
   about,
   contact,
   publishing,
+  seo,
   // regular document types
   artist,
   release,
@@ -54,4 +56,5 @@ export const singletonTypes = new Set<string>([
   about.name,
   contact.name,
   publishing.name,
+  seo.name,
 ]);

@@ -401,6 +401,16 @@ export type Slug = {
   source?: string;
 };
 
+export type Seo = {
+  _id: string;
+  _type: "seo";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  description: MetaDescription;
+};
+
 export type Publishing = {
   _id: string;
   _type: "publishing";
@@ -567,6 +577,7 @@ export type AllSanitySchemaTypes =
   | TrackList
   | Artist
   | Slug
+  | Seo
   | Publishing
   | Contact
   | Link

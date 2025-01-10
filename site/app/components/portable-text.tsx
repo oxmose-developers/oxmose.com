@@ -1,10 +1,10 @@
+import NextLink from "next/link";
 import {
   PortableText,
-  type PortableTextComponents,
   type PortableTextBlock,
+  type PortableTextComponents,
 } from "next-sanity";
 
-import NextLink from "next/link";
 import type { Link } from "../../lib/sanity";
 
 interface ResolvedLinkProps {

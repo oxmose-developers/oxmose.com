@@ -3,6 +3,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { PortableText } from "next-sanity";
 import { Fragment } from "react";
+import { hasAtLeast } from "remeda";
 
 import { ProductProvider } from "../../../context/product-context";
 import { fetchReleasePage, urlForImage } from "../../../lib/sanity";
@@ -16,7 +17,6 @@ import {
 } from "../../components/catalogue-product-carousel";
 import VariantSelector from "../../components/catalogue-variant-selector";
 import Tracklist from "../../components/tracklist";
-import { hasAtLeast } from "remeda";
 
 export async function generateMetadata(
   props: { params: Promise<{ slug: string }> },

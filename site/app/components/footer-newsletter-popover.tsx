@@ -5,6 +5,11 @@ import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 
 import { subscribeToNewsletter } from "../../lib/actions";
+import {
+  OpenPopover,
+  setOpenPopover,
+  useGlobalStore,
+} from "../../store/global-store";
 
 export function SubmitButton() {
   const { pending } = useFormStatus();
@@ -28,7 +33,7 @@ export function SubmitButton() {
 const initialState = { message: "", success: false };
 
 export default function NewsletterPopover({ offset }: { offset: number }) {
-  const [isOpen, isOpenSet] = useState(false);
+  const { openPopover } = useGlobalStore();
 
   const [state, formAction] = useActionState(
     subscribeToNewsletter,
@@ -39,7 +44,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
     if (state.success) {
       window.alert("Successfully subscribed!");
 
-      isOpenSet(false);
+      setOpenPopover(undefined);
     } else if (state.message.trim() !== "") {
       window.alert(state.message);
     }
@@ -50,12 +55,18 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
       <button
         type="button"
         className="text-oxe-xxs uppercase md:text-oxe-sm"
-        onClick={() => isOpenSet(!isOpen)}
+        onClick={() =>
+          setOpenPopover(
+            openPopover === OpenPopover.NEWSLETTER
+              ? undefined
+              : OpenPopover.NEWSLETTER,
+          )
+        }
       >
         Newsletter
       </button>
 
-      {isOpen && (
+      {openPopover === OpenPopover.NEWSLETTER && (
         <form
           action={formAction}
           className="absolute bottom-[var(--offset)] left-0 right-0 z-50 grid divide-y divide-black border-t border-black bg-white text-black md:grid-cols-[1fr_min-content_min-content]"
@@ -65,7 +76,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
             <p className="text-oxe-md/10 md:text-oxe-xxxxl">Stay in the loop</p>
 
             <button
-              onClick={() => isOpenSet(!isOpen)}
+              onClick={() => setOpenPopover(undefined)}
               type="button"
               className="ml-auto"
             >

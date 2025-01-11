@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
-
 import type { Link } from "../../sanity.types";
+import {
+  OpenPopover,
+  setOpenPopover,
+  useGlobalStore,
+} from "../../store/global-store";
 
 export default function FollowPopover({
   offset,
@@ -11,19 +14,23 @@ export default function FollowPopover({
   offset: number;
   followLinks: Link[];
 }) {
-  const [isOpen, isOpenSet] = useState(false);
+  const { openPopover } = useGlobalStore();
 
   return (
     <div>
       <button
         type="button"
         className="text-oxe-xxs uppercase md:text-oxe-sm"
-        onClick={() => isOpenSet(!isOpen)}
+        onClick={() =>
+          setOpenPopover(
+            openPopover === OpenPopover.FOLLOW ? undefined : OpenPopover.FOLLOW,
+          )
+        }
       >
         Follow
       </button>
 
-      {isOpen && (
+      {openPopover === OpenPopover.FOLLOW && (
         <div
           className="md:min-h-oxe-xxxl absolute bottom-[var(--offset)] left-0 right-0 z-50 flex w-full items-start gap-4 border-t border-black bg-white px-9 py-3 text-black md:items-center md:py-[0.8125rem] md:pl-10"
           style={{ "--offset": `${offset}px` } as React.CSSProperties}
@@ -43,7 +50,7 @@ export default function FollowPopover({
 
           <button
             type="button"
-            onClick={() => isOpenSet(!isOpen)}
+            onClick={() => setOpenPopover(undefined)}
             className="ml-auto"
           >
             <span className="sr-only">Close</span>

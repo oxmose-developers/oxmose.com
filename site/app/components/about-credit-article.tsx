@@ -1,3 +1,5 @@
+import { hasAtLeast } from "remeda";
+
 import type { Credits } from "../../lib/sanity";
 
 export default function CreditArticle({ credit }: { credit: Credits }) {
@@ -9,12 +11,33 @@ export default function CreditArticle({ credit }: { credit: Credits }) {
         {credit.title}
       </h3>
 
-      <p
-        className="text-oxe-xxs md:text-oxe-md"
-        dangerouslySetInnerHTML={{
-          __html: credit.items.map((item) => item.name).join(joinHtmlString),
-        }}
-      ></p>
+      {!!credit?.namedItems && hasAtLeast(credit.namedItems, 1) ? (
+        <>
+          {credit.namedItems.map((namedItem) => (
+            <div key={namedItem._key}>
+              <h4 className="text-oxe-xxs font-medium uppercase md:text-oxe-md">
+                {namedItem.name}
+              </h4>
+
+              <p
+                className="text-oxe-xxs md:text-oxe-md"
+                dangerouslySetInnerHTML={{
+                  __html: namedItem.items
+                    .map((item) => item.name)
+                    .join(joinHtmlString),
+                }}
+              ></p>
+            </div>
+          ))}
+        </>
+      ) : (
+        <p
+          className="text-oxe-xxs md:text-oxe-md"
+          dangerouslySetInnerHTML={{
+            __html: credit.items.map((item) => item.name).join(joinHtmlString),
+          }}
+        ></p>
+      )}
     </article>
   );
 }

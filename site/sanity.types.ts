@@ -127,6 +127,16 @@ export type Item = {
 export type Credits = {
   _type: "credits";
   title: string;
+  namedItems?: Array<{
+    name: string;
+    items?: Array<
+      {
+        _key: string;
+      } & Item
+    >;
+    _type: "namedItem";
+    _key: string;
+  }>;
   items?: Array<
     {
       _key: string;

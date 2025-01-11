@@ -10,6 +10,33 @@ export default defineType({
       validation: (Rule) => [Rule.required()],
     }),
     defineField({
+      name: "namedItems",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "namedItem",
+          fields: [
+            defineField({
+              name: "name",
+              type: "string",
+              validation: (Rule) => [Rule.required()],
+            }),
+            defineField({
+              name: "items",
+              type: "array",
+              of: [
+                defineArrayMember({
+                  type: "item",
+                  validation: (Rule) => [Rule.required()],
+                }),
+              ],
+            }),
+          ],
+        }),
+      ],
+    }),
+    defineField({
       name: "items",
       type: "array",
       of: [

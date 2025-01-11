@@ -24,6 +24,14 @@ export type Credits = {
   title: string;
   _type: "credits";
   items: Item[];
+  namedItems?: NamedItem[];
+};
+
+export type NamedItem = {
+  _key: string;
+  _type: "namedItem";
+  name: string;
+  items: Item[];
 };
 
 export type AboutQuery = {

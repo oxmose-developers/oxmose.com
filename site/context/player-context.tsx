@@ -31,6 +31,7 @@ export function tracksToPlaylist(
         ? [{ src: artwork, sizes: "512x512", type: "image/jpeg" }]
         : undefined,
       src: urlForFile(track.file as SanityFile)!,
+      duration: track.length,
     }));
 }
 
@@ -40,6 +41,7 @@ interface Track {
   album: string | undefined;
   artwork: { src: string; sizes: string; type: string }[] | undefined;
   src: string;
+  duration: string;
 }
 
 interface PlayerState {

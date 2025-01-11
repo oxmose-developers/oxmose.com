@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
+import { useOnClickOutside } from "usehooks-ts";
 
 import { subscribeToNewsletter } from "../../lib/actions";
 import {
@@ -50,24 +51,22 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
     }
   }, [state]);
 
+  const ref = useRef<HTMLFormElement>(null);
+  useOnClickOutside(ref, () => setOpenPopover(undefined));
+
   return (
     <div>
       <button
         type="button"
         className="text-oxe-xxs uppercase md:text-oxe-sm"
-        onClick={() =>
-          setOpenPopover(
-            openPopover === OpenPopover.NEWSLETTER
-              ? undefined
-              : OpenPopover.NEWSLETTER,
-          )
-        }
+        onClick={() => setOpenPopover(OpenPopover.NEWSLETTER)}
       >
         Newsletter
       </button>
 
       {openPopover === OpenPopover.NEWSLETTER && (
         <form
+          ref={ref}
           action={formAction}
           className="absolute bottom-[var(--offset)] left-0 right-0 z-50 grid divide-y divide-black border-t border-black bg-white text-black md:grid-cols-[1fr_min-content_min-content]"
           style={{ "--offset": `${offset}px` } as React.CSSProperties}

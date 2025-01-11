@@ -2,8 +2,9 @@
 
 import * as Progress from "@radix-ui/react-progress";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { hasAtLeast } from "remeda";
+import { useOnClickOutside } from "usehooks-ts";
 
 import {
   type Track,
@@ -150,18 +151,19 @@ function PlayerPlaylist() {
   return (
     <div className="max-h-[calc(100svh/2)] overflow-y-scroll border-t-hairline border-white/40 bg-black text-white">
       <div className="grid divide-y-hairline divide-white/40">
-        <div className="relative grid grid-cols-2 gap-x-5 px-5 py-1.5 text-oxe-xxs leading-[inherit] md:grid-cols-3 md:text-oxe-xs">
+        <div className="relative grid grid-cols-3 gap-x-5 px-5 py-1.5 text-oxe-xxs leading-[inherit] text-oxe-grey md:grid-cols-4 md:text-oxe-xs">
           <div className="hidden uppercase md:block">#</div>
           <div className="uppercase">Title</div>
+          <div className="uppercase">{`Artist(s)`}</div>
           <div className="place-self-end uppercase md:place-self-start">
-            Artist
+            Time
           </div>
         </div>
 
         {state.playlist.map((track, index) => (
           <div
             key={track.title}
-            className="relative grid grid-cols-[1fr_auto] gap-x-5 px-5 py-1.5 text-oxe-xxs leading-[inherit] hover:bg-white hover:text-black data-[current-track=true]:bg-oxe-purple data-[current-track=true]:text-black md:grid-cols-3 md:text-oxe-xs"
+            className="relative grid grid-cols-3 gap-x-5 px-5 py-1.5 text-oxe-xxs leading-[inherit] hover:bg-white hover:text-black data-[current-track=true]:bg-oxe-purple data-[current-track=true]:text-black md:grid-cols-4 md:text-oxe-xs"
             data-current-track={state.currentTrackIndex === index}
           >
             <div className="hidden uppercase md:block">
@@ -170,8 +172,10 @@ function PlayerPlaylist() {
 
             <div className="truncate">{track.title}</div>
 
+            <div className="truncate">{track.artist}</div>
+
             <div className="place-self-end md:place-self-start">
-              {track.artist}
+              {track.duration}
             </div>
 
             <button
@@ -193,10 +197,16 @@ export default function Player() {
   const [isPlayerOpen, isPlayerOpenSet] = useState(true);
   const [isPlaylistOpen, isPlaylistOpenSet] = useState(false);
 
+  const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => isPlaylistOpenSet(false));
+
   if (hasAtLeast(state.playlist, 1)) {
     if (isPlayerOpen) {
       return (
-        <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 after:absolute after:inset-x-0 after:h-[env(safe-area-inset-bottom)] after:border-t-hairline after:border-white/40 after:bg-black">
+        <div
+          className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 after:absolute after:inset-x-0 after:h-[env(safe-area-inset-bottom)] after:border-t-hairline after:border-white/40 after:bg-black"
+          ref={ref}
+        >
           {isPlaylistOpen && <PlayerPlaylist />}
 
           <div className="flex h-14 items-stretch divide-x-hairline divide-white/40 border-t-hairline border-white/40 bg-black text-white md:h-18">

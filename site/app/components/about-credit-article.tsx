@@ -14,20 +14,19 @@ export default function CreditArticle({ credit }: { credit: Credits }) {
       {!!credit?.namedItems && hasAtLeast(credit.namedItems, 1) ? (
         <>
           {credit.namedItems.map((namedItem) => (
-            <div key={namedItem._key}>
-              <h4 className="text-oxe-xxs font-medium uppercase md:text-oxe-md">
-                {namedItem.name}
-              </h4>
-
-              <p
-                className="text-oxe-xxs md:text-oxe-md"
+            <p
+              className="text-oxe-xxs uppercase md:text-oxe-md"
+              key={namedItem._key}
+            >
+              <span>{namedItem.name}</span>{" "}
+              <span
                 dangerouslySetInnerHTML={{
                   __html: namedItem.items
                     .map((item) => item.name)
                     .join(joinHtmlString),
                 }}
-              ></p>
-            </div>
+              ></span>
+            </p>
           ))}
         </>
       ) : (

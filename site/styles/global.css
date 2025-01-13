@@ -79,5 +79,5 @@ dotlottie-player svg {
 
 :root {
   --fluid-size: clamp(3rem, 16.1157vh + -6.6942rem, 6rem);
-  --catalogue-fluid-size: clamp(3rem, 26.8456vw + -10.1208rem, 8rem)
+  --catalogue-fluid-size: calc(clamp(3rem, 26.8456vh + -10.1208rem, 8rem) - 3rem)
 }

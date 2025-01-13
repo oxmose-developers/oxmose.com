@@ -213,7 +213,7 @@ export type Release = {
 };
 
 export const ReleasesQuery = defineQuery(`
-*[_type == "release" && defined(slug)] | order(releaseDate asc) {
+*[_type == "release" && defined(slug)] | order(releaseDate desc) {
   ...,
   artist[]->{name},
   coverImage {

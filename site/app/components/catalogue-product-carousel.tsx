@@ -45,6 +45,7 @@ export function ProductCarousel({
           <div
             key={`carousel-${idx}`}
             onMouseEnter={() => activeIndexSet(idx + 1)}
+            className="cursor-pointer"
           >
             <Image
               loading="lazy"

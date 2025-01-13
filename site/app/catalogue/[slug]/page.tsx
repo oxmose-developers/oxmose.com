@@ -2,7 +2,6 @@ import { format, formatISO } from "date-fns";
 import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { PortableText } from "next-sanity";
-import { Fragment } from "react";
 import { hasAtLeast } from "remeda";
 
 import { ProductProvider } from "../../../context/product-context";
@@ -73,10 +72,10 @@ export default async function Page(props: {
     <ProductProvider>
       <div>
         {/* Desktop Design */}
-        <div className="hidden grid-cols-2 md:grid">
+        <div className="hidden h-[clamp(42rem,50vw,64rem)] grid-cols-2 md:grid">
           <div className="flex flex-col border-r border-black">
             {/* ID & Release Date */}
-            <div className="mb-32 shrink-0 border-b border-black px-9">
+            <div className="mb-auto shrink-0 border-b border-black px-9">
               <div className="flex h-10 items-center justify-between">
                 <p className="text-oxe-sm font-medium">
                   {release.releaseReference}

@@ -65,3 +65,14 @@
 dotlottie-player svg {
   transform: none !important;
 }
+
+
+.safe-full-height {
+  min-height: calc(100vh - 60px)
+}
+
+@supports (min-height: 100svh) {
+  .safe-full-height {
+    min-height: calc(100svh - 60px)
+  }
+}

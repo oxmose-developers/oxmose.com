@@ -83,10 +83,9 @@ export default async function Page() {
         </div>
       </section>
 
-      <section>
+      <section className="safe-full-height relative">
         <Image
-          width={2560}
-          height={1707}
+          fill
           alt="Team photo"
           className="object-cover"
           loading="lazy"

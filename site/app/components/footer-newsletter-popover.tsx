@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect } from "react";
 import { useFormStatus } from "react-dom";
-import { useOnClickOutside } from "usehooks-ts";
 
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { subscribeToNewsletter } from "../../lib/actions";
 import {
   OpenPopover,
@@ -51,9 +51,6 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
     }
   }, [state]);
 
-  const ref = useRef<HTMLFormElement>(null);
-  useOnClickOutside(ref, () => setOpenPopover(undefined));
-
   return (
     <div>
       <button
@@ -64,9 +61,15 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
         Newsletter
       </button>
 
-      {openPopover === OpenPopover.NEWSLETTER && (
-        <form
-          ref={ref}
+      <Dialog
+        open={openPopover === OpenPopover.NEWSLETTER}
+        onClose={() => setOpenPopover(undefined)}
+        className="relative z-50"
+      >
+        <DialogBackdrop className="fixed inset-0" />
+
+        <DialogPanel
+          as="form"
           action={formAction}
           className="absolute bottom-[var(--offset)] left-0 right-0 z-50 grid divide-y divide-black border-t border-black bg-white text-black md:grid-cols-[1fr_min-content_min-content]"
           style={{ "--offset": `${offset}px` } as React.CSSProperties}
@@ -109,7 +112,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
               autoComplete="off"
               autoCorrect="off"
               required
-              className="form-input h-10 w-full border-0 text-oxe-sm/10 ring-0 placeholder:text-oxe-grey focus:ring-0 focus:ring-offset-0 md:h-15.5 md:text-oxe-xxl/15.5"
+              className="form-input h-10 w-full border-0 p-0 text-oxe-sm/10 ring-0 placeholder:text-oxe-grey focus:ring-0 focus:ring-offset-0 md:h-15.5 md:text-oxe-xxl/15.5"
               type="email"
               placeholder="Email"
               name="email"
@@ -119,7 +122,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
           <div className="px-9 py-1.5 md:py-3">
             <div className="flex items-center gap-3 md:gap-6">
               <input
-                className="form-checkbox size-4 rounded-full border-black checked:bg-black checked:bg-none hover:bg-black hover:ring-0 hover:ring-offset-0 checked:hover:bg-black focus:shadow-none focus:ring-0 focus:ring-black focus:ring-offset-0 checked:focus:bg-black md:size-5"
+                className="form-checkbox size-4 shrink-0 cursor-pointer rounded-full border-black checked:bg-black checked:bg-none hover:bg-black/50 hover:ring-0 hover:ring-offset-0 checked:hover:bg-black/50 focus:shadow-none focus:ring-0 focus:ring-black focus:ring-offset-0 checked:focus:bg-black md:size-5"
                 id="newsletter-privacy-policy"
                 required
                 type="checkbox"
@@ -127,7 +130,7 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
 
               <label
                 htmlFor="newsletter-privacy-policy"
-                className="text-oxe-sm/10 md:whitespace-nowrap md:text-oxe-xxl/15.5"
+                className="cursor-pointer text-oxe-sm/10 md:whitespace-nowrap md:text-oxe-xxl/15.5"
               >
                 I accept the{" "}
                 <Link href="/privacy-policy" className="underline">
@@ -140,8 +143,8 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
           <div className="border-black px-9 py-1.5 md:border-l md:py-3">
             <SubmitButton />
           </div>
-        </form>
-      )}
+        </DialogPanel>
+      </Dialog>
     </div>
   );
 }

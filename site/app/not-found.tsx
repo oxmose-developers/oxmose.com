@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="fixed inset-0 z-10 grid place-items-center bg-white">
+    <section className="grid flex-1 place-items-center">
       <div>
         <h2 className="mb-1.5 text-center text-oxe-md md:mb-10 md:text-oxe-xxxxl">
           Not found 404 broken record

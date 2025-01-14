@@ -1,8 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { useOnClickOutside } from "usehooks-ts";
-
+import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import type { Link } from "../../sanity.types";
 import {
   OpenPopover,
@@ -19,9 +17,6 @@ export default function FollowPopover({
 }) {
   const { openPopover } = useGlobalStore();
 
-  const ref = useRef<HTMLDivElement>(null);
-  useOnClickOutside(ref, () => setOpenPopover(undefined));
-
   return (
     <div>
       <button
@@ -32,9 +27,14 @@ export default function FollowPopover({
         Follow
       </button>
 
-      {openPopover === OpenPopover.FOLLOW && (
-        <div
-          ref={ref}
+      <Dialog
+        open={openPopover === OpenPopover.FOLLOW}
+        onClose={() => setOpenPopover(undefined)}
+        className="relative z-50"
+      >
+        <DialogBackdrop className="fixed inset-0" />
+
+        <DialogPanel
           className="md:min-h-oxe-xxxl absolute bottom-[var(--offset)] left-0 right-0 z-50 flex w-full items-start gap-4 border-t border-black bg-white px-9 py-3 text-black md:items-center md:py-[0.8125rem] md:pl-10"
           style={{ "--offset": `${offset}px` } as React.CSSProperties}
         >
@@ -73,8 +73,8 @@ export default function FollowPopover({
               </defs>
             </svg>
           </button>
-        </div>
-      )}
+        </DialogPanel>
+      </Dialog>
     </div>
   );
 }

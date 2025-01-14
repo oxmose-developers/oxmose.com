@@ -26,6 +26,7 @@ export default function OxmoseLogoAnimation() {
     return () => {
       if (ref) {
         ref.removeEventListener("ready", () => ref.play());
+        // ref.setSegment([30, 30]);
       }
     };
   }, [animation]);

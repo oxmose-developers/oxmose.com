@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
+import { usePathname } from "next/navigation";
 
 import type { Link as LinkType } from "../../sanity.types";
 import FollowPopover from "./footer-follow-popover";
@@ -15,18 +16,24 @@ export default function Footer({
   fullYear: number;
   followLinks: LinkType[];
 }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isOpen, isOpenSet] = useState(false);
 
   const [ref, { height }] = useMeasure();
 
   useEffect(() => {
-    if (isExpanded) {
+    if (isOpen) {
       window.scrollTo({
         top: document.documentElement.scrollHeight,
         behavior: "smooth",
       });
     }
-  }, [isExpanded]);
+  }, [isOpen]);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    isOpenSet(false);
+  }, [pathname]);
 
   return (
     <footer ref={ref} className="relative shrink-0 bg-black text-white">
@@ -34,17 +41,17 @@ export default function Footer({
         <div className="flex flex-col gap-1 md:hidden">
           <button
             type="button"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => isOpenSet(!isOpen)}
             className="block self-start"
           >
             <span role="img" aria-hidden="true">
-              {isExpanded ? "↓" : "↑"}
+              {isOpen ? "↓" : "↑"}
             </span>
 
-            <span className="sr-only">{isExpanded ? "Close" : "Expand"}</span>
+            <span className="sr-only">{isOpen ? "Close" : "Expand"}</span>
           </button>
 
-          {isExpanded && (
+          {isOpen && (
             <>
               <Link className="text-oxe-xxs uppercase" href="/publishing">
                 Publishing

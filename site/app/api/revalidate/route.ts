@@ -16,6 +16,8 @@ export async function POST(req: NextRequest) {
       return new Response("Invalid Signature", { status: 401 });
     }
 
+    console.log(body);
+
     if (!body?._type) {
       return new Response("Bad Request", { status: 400 });
     }

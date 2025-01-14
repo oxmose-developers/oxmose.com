@@ -14,11 +14,8 @@ export default function CreditArticle({ credit }: { credit: Credits }) {
       {!!credit?.namedItems && hasAtLeast(credit.namedItems, 1) ? (
         <>
           {credit.namedItems.map((namedItem) => (
-            <p
-              className="text-oxe-xxs uppercase md:text-oxe-md"
-              key={namedItem._key}
-            >
-              <span>{namedItem.name}</span>{" "}
+            <p className="text-oxe-xxs md:text-oxe-md" key={namedItem._key}>
+              <span className="uppercase">{namedItem.name}</span>{" "}
               <span
                 dangerouslySetInnerHTML={{
                   __html: namedItem.items

@@ -54,7 +54,7 @@ export default async function Page() {
         </div>
 
         <div className="flex flex-col p-9 md:p-10 xl:p-16">
-          <dl className="flex flex-1 flex-col justify-between gap-10 md:mt-auto md:flex-initial md:flex-row md:gap-5">
+          <dl className="flex flex-1 flex-col justify-between gap-10 lg:mt-auto lg:flex-initial lg:flex-row lg:gap-5">
             {page.locations.map((location, idx) => (
               <div
                 className="text-oxe-sm md:text-oxe-xxl"

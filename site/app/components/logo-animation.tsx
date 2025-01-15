@@ -6,19 +6,25 @@ import type DotLottiePlayer from "@aarsteinmedia/dotlottie-player-light";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-export default function OxmoseLogoAnimation() {
+export default function LogoAnimation() {
   const animation = useRef<DotLottiePlayer | null>(null);
 
   useEffect(() => {
     const ref = animation.current;
 
     if (ref) {
-      /**
-       * Hacky fix to prevent blurry animation on some browsers and OSs.
-       */
-      // const sheet = new CSSStyleSheet();
-      // sheet.replaceSync(`svg { transform: none !important; }`);
-      // ref.shadowRoot?.adoptedStyleSheets.push(sheet);
+      try {
+        /**
+         * Hacky fix to prevent blurry animation on some browsers and OSs.
+         *
+         * This crashes on Safari prior to 16.4, so wrapped in try catch
+         */
+        const sheet = new CSSStyleSheet();
+        sheet.replaceSync(`svg { transform: none !important; }`);
+        ref.shadowRoot?.adoptedStyleSheets.push(sheet);
+      } catch (e) {
+        console.error(e);
+      }
 
       ref.addEventListener("ready", () => ref.play());
     }

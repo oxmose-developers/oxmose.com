@@ -21,6 +21,14 @@ export async function subscribeToNewsletter(
   "use server";
 
   const email = formData.get("email");
+  const acceptPrivacyPolicy = formData.get("accept-privacy-policy");
+
+  if (!acceptPrivacyPolicy) {
+    return {
+      message: "You must accept the privacy policy",
+      success: false,
+    };
+  }
 
   if (!email) {
     return {

@@ -10,14 +10,11 @@ import React, {
 
 type ProductState = {
   [key: string]: string;
-} & {
-  image?: string;
 };
 
 type ProductContextType = {
   state: ProductState;
   updateOption: (name: string, value: string) => ProductState;
-  updateImage: (index: string) => ProductState;
 };
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
@@ -47,17 +44,10 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
     return { ...state, ...newState };
   };
 
-  const updateImage = (index: string) => {
-    const newState = { image: index };
-    setOptimisticState(newState);
-    return { ...state, ...newState };
-  };
-
   const value = useMemo(
     () => ({
       state,
       updateOption,
-      updateImage,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [state],

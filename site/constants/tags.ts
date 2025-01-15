@@ -1,3 +1,6 @@
+/**
+ * @note Used for fetch next.tag cache invalidation
+ */
 export const NEXT_TAGS = {
   FAQ: "faq",
 

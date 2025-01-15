@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
-import { usePathname } from "next/navigation";
 
 import type { Link as LinkType } from "../../sanity.types";
 import FollowPopover from "./footer-follow-popover";

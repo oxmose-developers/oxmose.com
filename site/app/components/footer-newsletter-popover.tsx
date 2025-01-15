@@ -1,10 +1,17 @@
 "use client";
 
+import {
+  Checkbox,
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  Field,
+  Label,
+} from "@headlessui/react";
 import Link from "next/link";
 import { useActionState, useEffect } from "react";
 import { useFormStatus } from "react-dom";
 
-import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { subscribeToNewsletter } from "../../lib/actions";
 import {
   OpenPopover,
@@ -120,24 +127,20 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
           </div>
 
           <div className="px-9 py-1.5 md:py-3">
-            <div className="flex items-center gap-3 md:gap-6">
-              <input
-                className="form-checkbox size-4 shrink-0 cursor-pointer rounded-full border-black checked:bg-black checked:bg-none hover:bg-black/50 hover:ring-0 hover:ring-offset-0 checked:hover:bg-black/50 focus:shadow-none focus:ring-0 focus:ring-black focus:ring-offset-0 checked:focus:bg-black md:size-5"
-                id="newsletter-privacy-policy"
-                required
-                type="checkbox"
+            <Field className="flex items-center gap-3 md:gap-6">
+              <Checkbox
+                className="size-4 shrink-0 cursor-pointer rounded-full border border-black hover:bg-black peer-hover:bg-black data-[checked]:bg-black md:size-5"
+                name="accept-privacy-policy"
+                defaultChecked={false}
               />
 
-              <label
-                htmlFor="newsletter-privacy-policy"
-                className="cursor-pointer text-oxe-sm/10 md:whitespace-nowrap md:text-oxe-xxl/15.5"
-              >
+              <Label className="peer cursor-pointer text-oxe-sm/10 md:whitespace-nowrap md:text-oxe-xxl/15.5">
                 I accept the{" "}
                 <Link href="/privacy-policy" className="underline">
                   privacy policy
                 </Link>
-              </label>
-            </div>
+              </Label>
+            </Field>
           </div>
 
           <div className="border-black px-9 py-1.5 md:border-l md:py-3">

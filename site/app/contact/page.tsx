@@ -32,11 +32,13 @@ export default async function Page() {
 
   return (
     <>
-      <section className="flex-1 divide-y divide-black border-black md:grid md:grid-cols-2 md:divide-x md:divide-y-0">
-        <div className="p-9 md:p-10">
-          <h1 className="mb-5 text-oxe-xxl md:text-oxe-xxxxl">
+      <h1 hidden>{`${page.title} | Oxmose`}</h1>
+
+      <section className="flex-1 divide-y divide-black border-black md:flex md:flex-row md:divide-x md:divide-y-0">
+        <div className="flex-1 p-9 md:p-10">
+          <h2 className="mb-5 text-oxe-xxl md:text-oxe-xxxxl">
             {page.generalSection.title}
-          </h1>
+          </h2>
 
           <p className="mb-8 text-oxe-md md:mb-20 md:text-oxe-xxl">
             {/* @mailto is set on CMS */}
@@ -53,7 +55,7 @@ export default async function Page() {
           </div>
         </div>
 
-        <div className="flex flex-col p-9 md:p-10 xl:p-16">
+        <div className="flex flex-1 flex-col p-9 md:p-10 xl:p-16">
           <dl className="flex flex-1 flex-col justify-between gap-10 lg:mt-auto lg:flex-initial lg:flex-row lg:gap-5">
             {page.locations.map((location, idx) => (
               <div

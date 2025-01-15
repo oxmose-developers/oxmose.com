@@ -16,9 +16,9 @@ export default function OxmoseLogoAnimation() {
       /**
        * Hacky fix to prevent blurry animation on some browsers and OSs.
        */
-      const sheet = new CSSStyleSheet();
-      sheet.replaceSync(`svg { transform: none !important; }`);
-      ref.shadowRoot?.adoptedStyleSheets.push(sheet);
+      // const sheet = new CSSStyleSheet();
+      // sheet.replaceSync(`svg { transform: none !important; }`);
+      // ref.shadowRoot?.adoptedStyleSheets.push(sheet);
 
       ref.addEventListener("ready", () => ref.play());
     }

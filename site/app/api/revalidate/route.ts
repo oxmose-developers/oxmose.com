@@ -38,10 +38,8 @@ export async function POST(req: NextRequest) {
           revalidateTag(body.slug);
         }
       }
+      case "publishingArtist":
       case "publishing": {
-        revalidateTag(NEXT_TAGS.PUBLISHING);
-      }
-      case "publishingArtist": {
         revalidateTag(NEXT_TAGS.PUBLISHING);
         revalidateTag(NEXT_TAGS.PUBLISHING_ARTISTS);
         revalidateTag(NEXT_TAGS.PUBLISHING_ARTISTS_STATIC_PARAMS);

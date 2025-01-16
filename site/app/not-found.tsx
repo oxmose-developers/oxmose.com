@@ -9,7 +9,7 @@ export default function NotFound() {
           <br />
           <br />
           <Link
-            className="mt-auto text-center text-oxe-md font-semibold uppercase md:text-oxe-xxxxl"
+            className="mt-auto text-center font-semibold uppercase"
             href="/"
           >
             Back home

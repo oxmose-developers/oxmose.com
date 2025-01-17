@@ -1,8 +1,6 @@
 {
   "private": true,
-  "version": "1.0.0",
   "main": "package.json",
-  "license": "UNLICENSED",
   "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",
@@ -11,9 +9,6 @@
     "deploy": "sanity deploy",
     "extract-types": "sanity schema extract --enforce-required-fields"
   },
-  "keywords": [
-    "sanity"
-  ],
   "dependencies": {
     "@sanity/assist": "^3.1.0",
     "@sanity/icons": "^3.5.7",

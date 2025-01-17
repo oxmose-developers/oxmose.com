@@ -5,22 +5,47 @@ import { parseBody } from "next-sanity/webhook";
 import { NEXT_TAGS } from "../../../constants/tags";
 import { TAGS } from "../../../lib/constants";
 
+type WebhookPayload = {
+  _type: string;
+  slug?: string | undefined;
+};
+
 export async function POST(req: NextRequest) {
   try {
-    const { body, isValidSignature } = await parseBody<{
-      _type: string;
-      slug?: string | undefined;
-    }>(req, process.env.SANITY_REVALIDATE_SECRET);
+    if (!process.env.SANITY_REVALIDATE_SECRET) {
+      return new Response(
+        "Missing environment variable SANITY_REVALIDATE_SECRET",
+        { status: 500 },
+      );
+    }
+
+    const { body, isValidSignature } = await parseBody<WebhookPayload>(
+      req,
+      process.env.SANITY_REVALIDATE_SECRET,
+    );
 
     if (!isValidSignature) {
-      return new Response("Invalid Signature", { status: 401 });
+      const message = "Invalid signature";
+      return new Response(
+        JSON.stringify({
+          message,
+          isValidSignature,
+          body,
+        }),
+        { status: 401 },
+      );
+    } else if (!body?._type) {
+      const message = "Bad Request";
+      return new Response(
+        JSON.stringify({
+          message,
+          body,
+        }),
+        { status: 400 },
+      );
     }
 
     console.log(body);
-
-    if (!body?._type) {
-      return new Response("Bad Request", { status: 400 });
-    }
 
     switch (body._type) {
       case "artist": {

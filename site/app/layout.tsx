@@ -81,6 +81,7 @@ const monumentGrotesk = localFont({
       style: "italic",
       weight: "500",
     },
+    // We don't use this font, but it's included in the project for later use in case we want to add the bold font weight.
     // {
     //   path: "../fonts/ABCMonumentGrotesk-Bold.woff2",
     //   style: "normal",

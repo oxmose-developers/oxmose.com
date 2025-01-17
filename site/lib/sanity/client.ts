@@ -6,13 +6,11 @@ import {
   SANITY_PROJECT_ID,
 } from "./config";
 
-const IS_DEV = process.env.NODE_ENV === "development";
-
 export const client = createClient({
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET_NAME,
   apiVersion: SANITY_API_VERSION,
-  useCdn: IS_DEV ? false : true,
+  useCdn: process.env.USE_SANITY_CDN === "1",
 });
 
 export async function sanityFetch<const Result extends any>({
@@ -27,7 +25,7 @@ export async function sanityFetch<const Result extends any>({
   tags?: string[];
 }): Promise<Result> {
   return client.fetch(query, params, {
-    cache: IS_DEV ? "no-store" : "force-cache",
+    cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     next: {
       revalidate: tags.length ? undefined : revalidate, // for simple, time-based revalidation
       tags, // for tag-based revalidation

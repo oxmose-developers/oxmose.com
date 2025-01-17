@@ -8,7 +8,6 @@
    */
   *:focus {
     outline: none;
-    /* text-decoration: underline; */
   }
 
   html {
@@ -66,18 +65,9 @@ dotlottie-player svg {
   transform: none !important;
 }
 
-
-.safe-full-height {
-  min-height: calc(100vh - 60px)
-}
-
-@supports (min-height: 100svh) {
-  .safe-full-height {
-    min-height: calc(100svh - 60px)
-  }
-}
-
 :root {
+  /* Used for the catalogue card margin */
   --fluid-size: clamp(3rem, 16.1157vh + -6.6942rem, 6rem);
+  /* Used for the catalogue page */
   --catalogue-fluid-size: calc(clamp(3rem, 26.8456vh + -10.1208rem, 8rem) - 3rem)
 }

@@ -2,7 +2,7 @@ import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import { NEXT_TAGS } from "../../constants/tags";
+import { FETCH_CACHE_TAGS } from "../../constants/tags";
 import {
   HIDDEN_PRODUCT_TAG,
   SHOPIFY_GRAPHQL_API_ENDPOINT,
@@ -484,14 +484,14 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
 
   if (isCollectionUpdate) {
     revalidateTag(TAGS.collections);
-    revalidateTag(NEXT_TAGS.RELEASES);
-    revalidateTag(NEXT_TAGS.RELEASES_STATIC_PARAMS);
+    revalidateTag(FETCH_CACHE_TAGS.RELEASES);
+    revalidateTag(FETCH_CACHE_TAGS.RELEASES_STATIC_PARAMS);
   }
 
   if (isProductUpdate) {
     revalidateTag(TAGS.products);
-    revalidateTag(NEXT_TAGS.RELEASES);
-    revalidateTag(NEXT_TAGS.RELEASES_STATIC_PARAMS);
+    revalidateTag(FETCH_CACHE_TAGS.RELEASES);
+    revalidateTag(FETCH_CACHE_TAGS.RELEASES_STATIC_PARAMS);
   }
 
   return NextResponse.json({ status: 200, revalidated: true, now: Date.now() });

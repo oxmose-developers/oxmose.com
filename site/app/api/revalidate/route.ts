@@ -2,7 +2,7 @@ import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 
-import { NEXT_TAGS } from "../../../constants/tags";
+import { FETCH_CACHE_TAGS } from "../../../constants/tags";
 import { TAGS } from "../../../lib/constants";
 
 type WebhookPayload = {
@@ -49,15 +49,15 @@ export async function POST(req: NextRequest) {
 
     switch (body._type) {
       case "artist": {
-        revalidateTag(NEXT_TAGS.ARTISTS);
-        revalidateTag(NEXT_TAGS.ARTISTS_STATIC_PARAMS);
+        revalidateTag(FETCH_CACHE_TAGS.ARTISTS);
+        revalidateTag(FETCH_CACHE_TAGS.ARTISTS_STATIC_PARAMS);
 
         if (body.slug) {
           revalidateTag(body.slug);
         }
       }
       case "faqs": {
-        revalidateTag(NEXT_TAGS.FAQ);
+        revalidateTag(FETCH_CACHE_TAGS.FAQ);
 
         if (body.slug) {
           revalidateTag(body.slug);
@@ -65,33 +65,33 @@ export async function POST(req: NextRequest) {
       }
       case "publishingArtist":
       case "publishing": {
-        revalidateTag(NEXT_TAGS.PUBLISHING);
-        revalidateTag(NEXT_TAGS.PUBLISHING_ARTISTS);
-        revalidateTag(NEXT_TAGS.PUBLISHING_ARTISTS_STATIC_PARAMS);
+        revalidateTag(FETCH_CACHE_TAGS.PUBLISHING);
+        revalidateTag(FETCH_CACHE_TAGS.PUBLISHING_ARTISTS);
+        revalidateTag(FETCH_CACHE_TAGS.PUBLISHING_ARTISTS_STATIC_PARAMS);
 
         if (body.slug) {
           revalidateTag(body.slug);
         }
       }
       case "seo": {
-        revalidateTag(NEXT_TAGS.SEO);
+        revalidateTag(FETCH_CACHE_TAGS.SEO);
       }
       case "about": {
-        revalidateTag(NEXT_TAGS.ABOUT);
+        revalidateTag(FETCH_CACHE_TAGS.ABOUT);
       }
       case "contact": {
-        revalidateTag(NEXT_TAGS.CONTACT);
+        revalidateTag(FETCH_CACHE_TAGS.CONTACT);
       }
       case "legal": {
-        revalidateTag(NEXT_TAGS.LEGAL_STATIC_PARAMS);
+        revalidateTag(FETCH_CACHE_TAGS.LEGAL_STATIC_PARAMS);
 
         if (body.slug) {
           revalidateTag(body.slug);
         }
       }
       case "release": {
-        revalidateTag(NEXT_TAGS.RELEASES);
-        revalidateTag(NEXT_TAGS.RELEASES_STATIC_PARAMS);
+        revalidateTag(FETCH_CACHE_TAGS.RELEASES);
+        revalidateTag(FETCH_CACHE_TAGS.RELEASES_STATIC_PARAMS);
 
         if (body.slug) {
           /**

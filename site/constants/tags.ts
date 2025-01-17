@@ -1,7 +1,7 @@
 /**
  * @note Used for fetch next.tag cache invalidation
  */
-export const NEXT_TAGS = {
+export const FETCH_CACHE_TAGS = {
   FAQ: "faq",
 
   PUBLISHING: "publishing",

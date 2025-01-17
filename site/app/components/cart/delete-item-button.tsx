@@ -15,7 +15,7 @@ export function DeleteItemButton({
   const [message, formAction] = useActionState(removeItem, null);
 
   useEffect(() => {
-    if (message) window.alert(message);
+    if (message) globalThis.alert(message);
   }, [message]);
 
   const merchandiseId = item.merchandise.id;

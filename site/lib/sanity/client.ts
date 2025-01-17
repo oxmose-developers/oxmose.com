@@ -27,7 +27,7 @@ export async function sanityFetch<const Result extends any>({
   return client.fetch(query, params, {
     cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
     next: {
-      revalidate: tags.length ? undefined : revalidate, // for simple, time-based revalidation
+      revalidate: tags.length > 0 ? undefined : revalidate, // for simple, time-based revalidation
       tags, // for tag-based revalidation
     },
   });

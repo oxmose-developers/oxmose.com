@@ -44,7 +44,7 @@ export default function AddToCart({
   const [message, formAction] = useActionState(addItem, null);
 
   useEffect(() => {
-    if (message) window.alert(message);
+    if (message) globalThis.alert(message);
   }, [message]);
 
   const defaultVariantId =

@@ -18,17 +18,16 @@ import playlistIcon from "../../images/playlist.svg";
 import skipIcon from "../../images/skip.svg";
 
 function formatDuration(durationInSeconds: number): string {
-  if (isNaN(durationInSeconds) || durationInSeconds === Infinity) return "0:00";
+  if (Number.isNaN(durationInSeconds) || durationInSeconds === Infinity)
+    return "0:00";
 
   const hours = Math.floor(durationInSeconds / 3600);
   const minutes = Math.floor((durationInSeconds % 3600) / 60);
   const seconds = Math.floor(durationInSeconds % 60);
 
-  if (hours > 0) {
-    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  } else {
-    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  }
+  return hours > 0
+    ? `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
+    : `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 }
 
 function PlayerControls() {

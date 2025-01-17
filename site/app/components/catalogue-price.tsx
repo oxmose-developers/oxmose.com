@@ -18,7 +18,7 @@ const Price = ({
       style: "currency",
       currency: currencyCode,
       currencyDisplay: "narrowSymbol",
-    }).format(parseFloat(amount))}`}
+    }).format(Number.parseFloat(amount))}`}
     {hideCurrencyCode ? null : (
       <span
         className={clsx("ml-1 inline", currencyCodeClassName)}

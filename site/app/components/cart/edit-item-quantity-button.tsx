@@ -15,7 +15,7 @@ export function EditItemQuantityButton({
   const [message, formAction] = useActionState(updateItemQuantity, null);
 
   useEffect(() => {
-    if (message) window.alert(message);
+    if (message) globalThis.alert(message);
   }, [message]);
 
   const increaseAction = formAction.bind(null, {

@@ -5,7 +5,7 @@ export const createUrl = (
   params: URLSearchParams | ReadonlyURLSearchParams,
 ) => {
   const paramsString = params.toString();
-  const queryString = `${paramsString.length ? "?" : ""}${paramsString}`;
+  const queryString = `${paramsString.length > 0 ? "?" : ""}${paramsString}`;
 
   return `${pathname}${queryString}`;
 };
@@ -22,13 +22,13 @@ export const validateEnvironmentVariables = () => {
   ];
   const missingEnvironmentVariables = [] as string[];
 
-  requiredEnvironmentVariables.forEach((envVar) => {
+  for (const envVar of requiredEnvironmentVariables) {
     if (!process.env[envVar]) {
       missingEnvironmentVariables.push(envVar);
     }
-  });
+  }
 
-  if (missingEnvironmentVariables.length) {
+  if (missingEnvironmentVariables.length > 0) {
     throw new Error(
       `The following environment variables are missing. Your site will not work without them. Read more: https://vercel.com/docs/integrations/shopify#configure-environment-variables\n\n${missingEnvironmentVariables.join(
         "\n",

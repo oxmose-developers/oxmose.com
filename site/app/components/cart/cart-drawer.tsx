@@ -112,14 +112,13 @@ export default function CartDrawer() {
                             const merchandiseSearchParams =
                               {} as MerchandiseSearchParams;
 
-                            item.merchandise.selectedOptions.forEach(
-                              ({ name, value }) => {
-                                if (value !== DEFAULT_OPTION) {
-                                  merchandiseSearchParams[name.toLowerCase()] =
-                                    value;
-                                }
-                              },
-                            );
+                            for (const { name, value } of item.merchandise
+                              .selectedOptions) {
+                              if (value !== DEFAULT_OPTION) {
+                                merchandiseSearchParams[name.toLowerCase()] =
+                                  value;
+                              }
+                            }
 
                             return (
                               <div
@@ -158,7 +157,9 @@ export default function CartDrawer() {
                                         item.cost.totalAmount.currencyCode,
                                     },
                                   ).format(
-                                    parseFloat(item.cost.totalAmount.amount),
+                                    Number.parseFloat(
+                                      item.cost.totalAmount.amount,
+                                    ),
                                   )}`}</p>
 
                                   <DeleteItemButton
@@ -181,7 +182,9 @@ export default function CartDrawer() {
                         new Intl.NumberFormat("fr-FR", {
                           style: "currency",
                           currency: cart.cost.totalAmount.currencyCode,
-                        }).format(parseFloat(cart.cost.totalAmount.amount))}
+                        }).format(
+                          Number.parseFloat(cart.cost.totalAmount.amount),
+                        )}
                     </p>
                   </div>
 

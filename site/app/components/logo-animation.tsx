@@ -12,39 +12,36 @@ export default function LogoAnimation() {
   useEffect(() => {
     const ref = animation.current;
 
-    if (ref) {
-      try {
-        /**
-         * Hacky fix to prevent blurry animation on some browsers and OSs.
-         *
-         * This crashes on Safari prior to 16.4, so wrapped in try catch
-         */
-        const sheet = new CSSStyleSheet();
-        sheet.replaceSync(`svg { transform: none !important; }`);
-        ref.shadowRoot?.adoptedStyleSheets.push(sheet);
-      } catch (e) {
-        console.error(e);
-      }
+    if (!ref) return;
 
-      ref.addEventListener("ready", () => ref.play());
+    try {
+      /**
+       * Hacky fix to prevent blurry animation on some browsers and OSs.
+       *
+       * This crashes on Safari prior to 16.4, so wrapped in try catch
+       */
+      const sheet = new CSSStyleSheet();
+      sheet.replaceSync(`svg { transform: none !important; }`);
+      ref.shadowRoot?.adoptedStyleSheets.push(sheet);
+    } catch (error) {
+      console.error(error);
     }
 
+    const play = () => ref.play();
+
+    ref.addEventListener("ready", play);
+
     return () => {
-      if (ref) {
-        ref.removeEventListener("ready", () => ref.play());
-        // ref.setSegment([30, 30]);
-      }
+      ref.removeEventListener("ready", play);
     };
   }, [animation]);
 
   const pathname = usePathname();
 
   useEffect(() => {
-    if (animation.current) {
-      if (["/publishing"].includes(pathname)) {
-        animation.current.seek(0);
-        animation.current.play();
-      }
+    if (animation.current && ["/publishing"].includes(pathname)) {
+      animation.current.seek(0);
+      animation.current.play();
     }
   }, [pathname]);
 

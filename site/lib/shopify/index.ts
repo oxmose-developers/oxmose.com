@@ -105,18 +105,18 @@ export async function shopifyFetch<T>({
       status: result.status,
       body,
     };
-  } catch (e) {
-    if (isShopifyError(e)) {
+  } catch (error) {
+    if (isShopifyError(error)) {
       throw {
-        cause: e.cause?.toString() || "unknown",
-        status: e.status || 500,
-        message: e.message,
+        cause: error.cause?.toString() || "unknown",
+        status: error.status || 500,
+        message: error.message,
         query,
       };
     }
 
     throw {
-      error: e,
+      error: error,
       query,
     };
   }
@@ -189,7 +189,7 @@ const reshapeProduct = (
     !product ||
     (filterHiddenProducts && product.tags.includes(HIDDEN_PRODUCT_TAG))
   ) {
-    return undefined;
+    return;
   }
 
   const { images, variants, ...rest } = product;

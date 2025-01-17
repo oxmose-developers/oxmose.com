@@ -50,11 +50,11 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
 
   useEffect(() => {
     if (state.success) {
-      window.alert("Successfully subscribed!");
+      globalThis.alert("Successfully subscribed!");
 
       setOpenPopover(undefined);
     } else if (state.message.trim() !== "") {
-      window.alert(state.message);
+      globalThis.alert(state.message);
     }
   }, [state]);
 

@@ -27,8 +27,8 @@ export default function DownloadLink({
           await writer.write(blob);
 
           await writer.close();
-        } catch (err) {
-          console.error(err);
+        } catch (error) {
+          console.error(error);
 
           window.open(href);
         }

@@ -14,7 +14,7 @@ export default async function Pagination({
 
   const index = release.findIndex((el) => el.slug.current === slug);
 
-  const prev = index === 0 ? release.at(-1) : release[index - 1];
+  const prev = index === 0 ? release.at(-1)! : release[index - 1];
 
   const next = release.length === index + 1 ? release[0] : release[index + 1];
 

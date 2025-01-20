@@ -25,7 +25,7 @@ export default function Footer({
 
     if (isOpen) {
       window.scrollTo({
-        top: document.documentElement.scrollHeight,
+        top: document?.documentElement.scrollHeight,
         behavior: "smooth",
       });
     }

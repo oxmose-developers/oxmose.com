@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-import { LottieOxmoseStill, OxmoseAnimatedLogo } from "./logo";
+import { OxmoseStillLogo, OxmoseAnimatedLogo } from "./logo";
 
 export default function Navigation() {
   const [open, openSet] = useState(false);
@@ -94,7 +94,7 @@ export default function Navigation() {
                       <Link href="/">
                         <span className="sr-only">Back to Catalogue</span>
                         <div className="relative -m-1 size-14 invert dark:invert-0">
-                          <LottieOxmoseStill />
+                          <OxmoseStillLogo />
                         </div>
                       </Link>
 

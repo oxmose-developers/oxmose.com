@@ -73,3 +73,19 @@ dotlottie-player svg {
     clamp(3rem, 26.8456vh + -10.1208rem, 8rem) - 3rem
   );
 }
+
+.footer-padding {
+  padding-top: calc((3.5rem - 1.5625rem) / 2);
+  padding-bottom: calc(
+    (3.5rem-1.5625rem) / 2 + env(safe-area-inset-bottom, 0px)
+  );
+}
+
+@screen md {
+  .footer-padding {
+    padding-top: calc((4.5rem - 2.125rem) / 2);
+    padding-bottom: calc(
+      (4.5rem - 2.125rem) / 2 + env(safe-area-inset-bottom, 0px)
+    );
+  }
+}

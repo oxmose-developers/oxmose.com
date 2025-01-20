@@ -44,6 +44,8 @@ export default function AddToCart({
   const [message, formAction] = useActionState(addItem, null);
 
   useEffect(() => {
+    if (typeof document === "undefined") return;
+
     if (message) globalThis.alert(message);
   }, [message]);
 

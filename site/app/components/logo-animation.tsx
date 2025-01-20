@@ -41,6 +41,8 @@ export default function LogoAnimation() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (typeof document === "undefined") return;
+
     if (animation.current && ["/publishing"].includes(pathname)) {
       animation.current.seek(0);
       animation.current.play();

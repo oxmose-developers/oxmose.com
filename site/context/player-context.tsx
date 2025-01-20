@@ -177,6 +177,8 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
+    if (typeof document === "undefined") return;
+
     const audio = audioRef.current;
     if (!audio) return;
 

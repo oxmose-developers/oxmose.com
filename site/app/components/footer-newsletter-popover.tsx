@@ -49,6 +49,8 @@ export default function NewsletterPopover({ offset }: { offset: number }) {
   );
 
   useEffect(() => {
+    if (typeof document === "undefined") return;
+
     if (state.success) {
       globalThis.alert("Successfully subscribed!");
 

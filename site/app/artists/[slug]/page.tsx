@@ -69,18 +69,19 @@ export default async function Page(props: {
       <Pagination slug={slug} style={{ gridArea: "pagination" }} />
 
       <div className="px-9 py-7 md:p-10" style={{ gridArea: "bio" }}>
-        <Image
-          className="mb-10 hidden aspect-[16/10] w-full max-w-4xl select-none object-cover object-center md:block"
-          alt={artist.name}
-          src={urlForImage(artist.coverImage)
-            .width(896)
-            .height(586)
-            .dpr(2)
-            .url()}
-          width={896}
-          height={586}
-          draggable={false}
-        />
+        <div
+          className="relative mb-10 hidden aspect-[16/10] w-full md:block"
+          style={{ gridArea: "image" }}
+        >
+          <Image
+            className="object-cover object-center"
+            alt={artist.name}
+            src={urlForImage(artist.coverImage).url()}
+            sizes="50vw"
+            fill
+            draggable={false}
+          />
+        </div>
 
         <div className="prose max-w-[unset] text-black prose-p:text-oxe-xxs/5 prose-a:text-black prose-a:underline prose-strong:font-medium md:prose-p:text-oxe-md">
           <PortableText value={artist.body} />

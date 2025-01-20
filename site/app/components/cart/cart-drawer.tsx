@@ -28,16 +28,12 @@ export default function CartDrawer() {
   const quantityRef = useRef(cart?.totalQuantity);
 
   useEffect(() => {
-    if (typeof document === "undefined") return;
-
     if (!cart) {
       createCartAndSetCookie();
     }
   }, [cart]);
 
   useEffect(() => {
-    if (typeof document === "undefined") return;
-
     if (
       cart?.totalQuantity &&
       cart?.totalQuantity !== quantityRef.current &&

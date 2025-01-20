@@ -21,6 +21,9 @@ export default function Footer({
   const [ref, { height }] = useMeasure();
 
   useEffect(() => {
+    /**
+     * Check for if server-side
+     */
     if (typeof document === "undefined") return;
 
     if (isOpen) {

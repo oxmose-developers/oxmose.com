@@ -15,8 +15,6 @@ export function DeleteItemButton({
   const [message, formAction] = useActionState(removeItem, null);
 
   useEffect(() => {
-    if (typeof document === "undefined") return;
-
     if (message) globalThis.alert(message);
   }, [message]);
 

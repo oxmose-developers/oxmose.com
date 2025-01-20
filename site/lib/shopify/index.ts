@@ -2,7 +2,6 @@ import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import { FETCH_CACHE_TAGS } from "../../constants/tags";
 import {
   HIDDEN_PRODUCT_TAG,
   SHOPIFY_GRAPHQL_API_ENDPOINT,
@@ -91,7 +90,7 @@ export async function shopifyFetch<T>({
         ...(query && { query }),
         ...(variables && { variables }),
       }),
-      cache: process.env.NODE_ENV === "development" ? "no-cache" : cache,
+      cache: cache,
       ...(tags && { next: { tags } }),
     });
 

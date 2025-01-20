@@ -18,14 +18,16 @@ export async function sanityFetch<const Result extends any>({
   params = {},
   revalidate = 60, // default revalidation time in seconds
   tags = [],
+  cache = "force-cache",
 }: {
   query: string;
   params?: QueryParams;
   revalidate?: number | false;
   tags?: string[];
+  cache?: RequestCache;
 }): Promise<Result> {
   return client.fetch(query, params, {
-    cache: process.env.NODE_ENV === "development" ? "no-store" : "force-cache",
+    cache: cache,
     next: {
       revalidate: tags.length > 0 ? undefined : revalidate, // for simple, time-based revalidation
       tags, // for tag-based revalidation

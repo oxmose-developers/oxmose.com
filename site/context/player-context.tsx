@@ -228,7 +228,6 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    // @ts-expect-error Ignore this, non-issue
     <PlayerContext.Provider value={value}>
       {children}
 

@@ -87,7 +87,6 @@ export default async function Page() {
         </div>
 
         <ul className="divide-y divide-white border-t">
-          {/* @ts-expect-error Ignore this, non-issue */}
           <Suspense>
             <PublishingArtistsList />
           </Suspense>

@@ -78,7 +78,6 @@ export default function Tracklist({
             <td className="hidden px-0 py-0.5 uppercase first:pl-9 last:pr-5 group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black md:table-cell md:w-1/2 md:pr-5 md:first:pl-10 md:last:pr-10">
               {artistName ??
                 track.artists.map((artist, idx, artists) => (
-                  // @ts-expect-error Ignore this, non-issue
                   <Fragment key={artist.slug.current}>
                     <Link
                       className="relative z-[2]"

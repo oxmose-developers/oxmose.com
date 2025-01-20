@@ -484,14 +484,10 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
 
   if (isCollectionUpdate) {
     revalidateTag(TAGS.collections);
-    revalidateTag(FETCH_CACHE_TAGS.RELEASES);
-    revalidateTag(FETCH_CACHE_TAGS.RELEASES_STATIC_PARAMS);
   }
 
   if (isProductUpdate) {
     revalidateTag(TAGS.products);
-    revalidateTag(FETCH_CACHE_TAGS.RELEASES);
-    revalidateTag(FETCH_CACHE_TAGS.RELEASES_STATIC_PARAMS);
   }
 
   return NextResponse.json({ status: 200, revalidated: true, now: Date.now() });

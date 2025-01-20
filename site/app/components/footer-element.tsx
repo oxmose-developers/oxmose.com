@@ -42,7 +42,7 @@ export default function Footer({
 
   return (
     <footer ref={ref} className="relative shrink-0 bg-black text-white">
-      <nav className="footer-padding flex min-h-14 items-end px-9 pr-20 md:min-h-18 md:items-center md:pl-10 md:pr-24">
+      <nav className="footer-padding flex min-h-[--footer-height] items-end px-9 pr-20 md:items-center md:pl-10 md:pr-24">
         <div className="flex flex-col gap-1 md:hidden">
           <button
             type="button"

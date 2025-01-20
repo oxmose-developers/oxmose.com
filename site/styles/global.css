@@ -75,17 +75,29 @@ dotlottie-player svg {
 }
 
 .footer-padding {
-  padding-top: calc((3.5rem - 1.5625rem) / 2);
+  /* The height of the footer */
+  --footer-height: 3.5rem;
+  /* The line-height of the text at the size, used to pad the top of the text evenly to handle the expanding footer */
+  --line-height: 1.5625rem;
+
+  padding-top: calc((var(--footer-height) - var(--line-height)) / 2);
   padding-bottom: calc(
-    (3.5rem-1.5625rem) / 2 + env(safe-area-inset-bottom, 0px)
+    (var(--footer-height) - var(--line-height)) / 2 +
+      env(safe-area-inset-bottom, 0px)
   );
 }
 
 @screen md {
   .footer-padding {
-    padding-top: calc((4.5rem - 2.125rem) / 2);
+    /* The height of the footer */
+    --footer-height: 4.5rem;
+    /* The line-height of the text at the size, used to pad the top of the text evenly to handle the expanding footer */
+    --line-height: 2.125rem;
+
+    padding-top: calc((var(--footer-height) - var(--line-height)) / 2);
     padding-bottom: calc(
-      (4.5rem - 2.125rem) / 2 + env(safe-area-inset-bottom, 0px)
+      (var(--footer-height) - var(--line-height)) / 2 +
+        env(safe-area-inset-bottom, 0px)
     );
   }
 }

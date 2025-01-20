@@ -476,6 +476,12 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ status: 401 });
   }
 
+  console.log({
+    topic,
+    isCollectionUpdate,
+    isProductUpdate,
+  });
+
   if (!isCollectionUpdate && !isProductUpdate) {
     // We don't need to revalidate anything for any other topics.
     return NextResponse.json({ status: 200 });

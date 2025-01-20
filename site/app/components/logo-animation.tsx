@@ -10,8 +10,6 @@ export default function LogoAnimation() {
   const animation = useRef<DotLottiePlayer | null>(null);
 
   useEffect(() => {
-    if (typeof document === "undefined") return;
-
     const ref = animation.current;
 
     if (!ref) return;

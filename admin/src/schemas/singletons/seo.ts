@@ -22,7 +22,6 @@ export default defineType({
       name: "twitterSite",
       type: "string",
       description: "X (Twitter) handle, e.g. @oxmose_records",
-      validation: (Rule) => [Rule.required()],
     }),
     defineField({
       name: "keywords",

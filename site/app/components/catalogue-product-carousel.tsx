@@ -17,7 +17,7 @@ export function ProductCarousel({
   const [activeIndex, activeIndexSet] = useState(0);
 
   return (
-    <div className="flex flex-1 gap-10 md:p-10">
+    <div className="flex flex-1 gap-10 md:px-10 md:pb-10">
       {/* Desktop Product Images */}
       <div className="mt-auto flex max-w-[56rem] flex-1 snap-x snap-mandatory overflow-x-auto">
         <Image

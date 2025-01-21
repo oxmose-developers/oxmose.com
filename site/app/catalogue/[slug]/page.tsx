@@ -1,7 +1,7 @@
 import { format, formatISO } from "date-fns";
 import type { Metadata, ResolvingMetadata } from "next";
-import Link from "next/link";
 import { PortableText } from "next-sanity";
+import Link from "next/link";
 import { hasAtLeast } from "remeda";
 
 import { ProductProvider } from "../../../context/product-context";
@@ -14,7 +14,9 @@ import {
   ProductCarousel,
   ProductFullBleedScroller,
 } from "../../components/catalogue-product-carousel";
-import VariantSelector from "../../components/catalogue-variant-selector";
+import VariantSelector, {
+  type DigitalOrVinylProductVariant,
+} from "../../components/catalogue-variant-selector";
 import Tracklist from "../../components/tracklist";
 
 export async function generateMetadata(
@@ -117,7 +119,7 @@ export default async function Page(props: {
 
             {/* Purchase & Stream */}
             <div className="flex flex-1 flex-col px-9 py-7">
-              {digitalProduct && physicalProduct && (
+              {digitalProduct && (
                 <VariantSelector
                   products={[
                     {
@@ -125,11 +127,15 @@ export default async function Page(props: {
                       product: digitalProduct,
                       format: release.digitalProductFormat,
                     },
-                    {
-                      type: "Vinyl",
-                      product: physicalProduct,
-                      format: release.physicalProductFormat,
-                    },
+                    ...(physicalProduct
+                      ? [
+                          {
+                            type: "Vinyl",
+                            product: physicalProduct,
+                            format: release.physicalProductFormat,
+                          } as DigitalOrVinylProductVariant,
+                        ]
+                      : []),
                   ]}
                 />
               )}
@@ -150,7 +156,7 @@ export default async function Page(props: {
             </div>
 
             <div className="flex h-10 items-center justify-between border-y border-black px-9 md:px-10">
-              {digitalProduct && physicalProduct && (
+              {digitalProduct && (
                 <BuyButton
                   products={[
                     {
@@ -158,11 +164,15 @@ export default async function Page(props: {
                       product: digitalProduct,
                       format: release.digitalProductFormat,
                     },
-                    {
-                      type: "Vinyl",
-                      product: physicalProduct,
-                      format: release.physicalProductFormat,
-                    },
+                    ...(physicalProduct
+                      ? [
+                          {
+                            type: "Vinyl",
+                            product: physicalProduct,
+                            format: release.physicalProductFormat,
+                          } as DigitalOrVinylProductVariant,
+                        ]
+                      : []),
                   ]}
                   defaultProduct={{
                     type: "Digital",
@@ -215,7 +225,7 @@ export default async function Page(props: {
             </div>
 
             {/* Purchase  */}
-            {digitalProduct && physicalProduct && (
+            {digitalProduct && (
               <VariantSelector
                 products={[
                   {
@@ -223,11 +233,15 @@ export default async function Page(props: {
                     product: digitalProduct,
                     format: release.digitalProductFormat,
                   },
-                  {
-                    type: "Vinyl",
-                    product: physicalProduct,
-                    format: release.physicalProductFormat,
-                  },
+                  ...(physicalProduct
+                    ? [
+                        {
+                          type: "Vinyl",
+                          product: physicalProduct,
+                          format: release.physicalProductFormat,
+                        } as DigitalOrVinylProductVariant,
+                      ]
+                    : []),
                 ]}
               />
             )}
@@ -252,7 +266,7 @@ export default async function Page(props: {
 
           {/* Buy & Listen */}
           <div className="flex h-10 items-center justify-between border-y border-black px-9 md:px-10">
-            {digitalProduct && physicalProduct && (
+            {digitalProduct && (
               <BuyButton
                 products={[
                   {
@@ -260,11 +274,15 @@ export default async function Page(props: {
                     product: digitalProduct,
                     format: release.digitalProductFormat,
                   },
-                  {
-                    type: "Vinyl",
-                    product: physicalProduct,
-                    format: release.physicalProductFormat,
-                  },
+                  ...(physicalProduct
+                    ? [
+                        {
+                          type: "Vinyl",
+                          product: physicalProduct,
+                          format: release.physicalProductFormat,
+                        } as DigitalOrVinylProductVariant,
+                      ]
+                    : []),
                 ]}
                 defaultProduct={{
                   type: "Digital",

@@ -1,6 +1,5 @@
-import { ErrorBoundary } from "react-error-boundary";
-
 import dynamic from "next/dynamic";
+import { ErrorBoundary } from "react-error-boundary";
 
 const LogoAnimation = dynamic(() => import("./logo-animation"), { ssr: false });
 

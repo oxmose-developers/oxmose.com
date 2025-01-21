@@ -1,7 +1,7 @@
 import { format, formatISO } from "date-fns";
 import type { Metadata, ResolvingMetadata } from "next";
-import { PortableText } from "next-sanity";
 import Link from "next/link";
+import { PortableText } from "next-sanity";
 import { hasAtLeast } from "remeda";
 
 import { ProductProvider } from "../../../context/product-context";

@@ -77,9 +77,8 @@ export default function Tracklist({
             </td>
 
             <td className="hidden px-0 py-0.5 uppercase first:pl-9 last:pr-5 group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black md:table-cell md:w-1/2 md:pr-5 md:first:pl-10 md:last:pr-10">
-              {artistName
-                ? artistName
-                : track?.artists &&
+              {artistName ??
+                (track?.artists &&
                   hasAtLeast(track?.artists, 1) &&
                   track.artists.map((artist, idx, artists) => (
                     <Fragment key={artist.slug.current}>
@@ -92,7 +91,7 @@ export default function Tracklist({
 
                       {idx !== artists.length - 1 && <span>{", "}</span>}
                     </Fragment>
-                  ))}
+                  )))}
             </td>
 
             <td className="px-0 py-0.5 pr-5 first:pl-9 last:pr-5 group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black md:w-24 md:first:pl-10 md:last:pr-10">

@@ -17,7 +17,7 @@ export default function CreditArticle({ credit }: { credit: Credits }) {
               <span className="uppercase">{namedItem.name}</span>{" "}
               {namedItem.items.map((item, idx) => (
                 <Fragment key={`${idx}-${item.name}`}>
-                  {!!item?.link ? (
+                  {item?.link ? (
                     <a href={item.link} target="_blank">
                       {item.name}
                     </a>
@@ -39,7 +39,7 @@ export default function CreditArticle({ credit }: { credit: Credits }) {
         <p className="text-oxe-xxs md:text-oxe-md">
           {credit.items.map((item, idx) => (
             <Fragment key={`${idx}-${item.name}`}>
-              {!!item?.link ? (
+              {item?.link ? (
                 <a href={item.link} target="_blank">
                   {item.name}
                 </a>

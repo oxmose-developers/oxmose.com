@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-import { OxmoseStillLogo, OxmoseAnimatedLogo } from "./logo";
+import { OxmoseAnimatedLogo,OxmoseStillLogo } from "./logo";
 
 export default function Navigation() {
   const [open, openSet] = useState(false);

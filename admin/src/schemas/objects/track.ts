@@ -27,6 +27,7 @@ export default defineType({
     defineField({
       name: "artists",
       type: "array",
+      description: "To add tracks, the artist must be published.",
       of: [
         defineArrayMember({
           type: "reference",

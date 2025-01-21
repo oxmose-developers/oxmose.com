@@ -4,6 +4,29 @@ export default defineType({
   name: "release",
   title: "Release",
   type: "document",
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "releaseReference",
+    },
+  },
+  orderings: [
+    {
+      title: "Release Reference, Chronological",
+      name: "releaseReferenceDesc",
+      by: [{ field: "releaseReference", direction: "asc" }],
+    },
+    {
+      title: "Title, Ascending",
+      name: "titleAsc",
+      by: [{ field: "title", direction: "asc" }],
+    },
+    {
+      title: "Title, Descending",
+      name: "titleDesc",
+      by: [{ field: "title", direction: "desc" }],
+    },
+  ],
   fields: [
     defineField({
       name: "title",
@@ -92,13 +115,11 @@ export default defineType({
       description: "Found as the URL Handle in Shopify",
       type: "string",
       placeholder: "e.g. oxe-001-vinyl",
-      validation: (Rule) => [Rule.required()],
     }),
     defineField({
       name: "physicalProductFormat",
       type: "string",
       placeholder: '12" 180g limited edition',
-      validation: (Rule) => [Rule.required()],
     }),
   ],
 });

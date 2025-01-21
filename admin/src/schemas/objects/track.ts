@@ -33,6 +33,7 @@ export default defineType({
           to: { type: "artist" },
         }),
       ],
+      validation: (Rule) => [Rule.required()],
     }),
   ],
 });

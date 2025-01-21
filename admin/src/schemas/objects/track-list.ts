@@ -7,11 +7,7 @@ export default defineType({
     defineField({
       name: "tracks",
       type: "array",
-      of: [
-        defineArrayMember({
-          type: "track",
-        }),
-      ],
+      of: [defineArrayMember({ type: "track" })],
     }),
   ],
 });

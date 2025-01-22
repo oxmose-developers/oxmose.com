@@ -1,3 +1,5 @@
+import { setTimeout } from "node:timers/promises";
+
 import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { after, NextRequest, NextResponse } from "next/server";
@@ -54,7 +56,6 @@ import type {
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
 } from "./types";
-import { setTimeout } from "node:timers/promises";
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
   ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, "https://")
@@ -490,7 +491,7 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
 
   if (isCollectionUpdate) {
     after(async () => {
-      await setTimeout(5_000);
+      await setTimeout(5000);
 
       revalidateTag(TAGS.collections);
 
@@ -502,7 +503,7 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
 
   if (isProductUpdate) {
     after(async () => {
-      await setTimeout(5_000);
+      await setTimeout(5000);
 
       revalidateTag(TAGS.products);
 

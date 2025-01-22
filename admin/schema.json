@@ -334,7 +334,7 @@
               }
             }
           },
-          "optional": true
+          "optional": false
         }
       }
     }
@@ -2024,14 +2024,14 @@
         "value": {
           "type": "string"
         },
-        "optional": false
+        "optional": true
       },
       "physicalProductFormat": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
         },
-        "optional": false
+        "optional": true
       }
     }
   },
@@ -2489,7 +2489,7 @@
         "value": {
           "type": "string"
         },
-        "optional": false
+        "optional": true
       },
       "keywords": {
         "type": "objectAttribute",

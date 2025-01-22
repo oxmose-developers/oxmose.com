@@ -12,20 +12,21 @@ import { useEvent } from "../hooks/use-event";
 import { useInterval } from "../hooks/use-interval";
 import type { Track as SanityTrack } from "../lib/sanity";
 import { urlForFile } from "../lib/sanity";
+import { hasAtLeast } from "remeda";
 
 export function tracksToPlaylist(
   tracks: SanityTrack[],
   artwork?: string,
   album?: string,
-  artistName?: string,
 ): Track[] {
   return tracks
     .filter((track) => !!track.file)
     .map((track) => ({
       title: track.name,
-      artist: artistName
-        ? artistName
-        : track.artists.map((el) => el.name).join(", "),
+      artist:
+        track?.artists && hasAtLeast(track?.artists, 1)
+          ? track.artists.map((el) => el.name).join(", ")
+          : "",
       album: album,
       artwork: artwork
         ? [{ src: artwork, sizes: "512x512", type: "image/jpeg" }]

@@ -103,7 +103,7 @@ export default async function Page(props: {
               </h3>
             </div>
 
-            <Tracklist tracks={artist.works} artistName={artist.name} />
+            <Tracklist tracks={artist.works} />
           </div>
         )}
       </div>
@@ -121,7 +121,7 @@ export default async function Page(props: {
               </h3>
             </div>
 
-            <Tracklist tracks={artist.works} artistName={artist.name} />
+            <Tracklist tracks={artist.works} />
           </div>
         )}
 

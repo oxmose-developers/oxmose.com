@@ -14,12 +14,10 @@ export default function Tracklist({
   tracks,
   album,
   artwork,
-  artistName,
 }: {
   tracks: TrackList;
   album?: string;
   artwork?: string;
-  artistName?: string;
 }) {
   const playerActions = usePlayerActions();
 
@@ -62,12 +60,7 @@ export default function Tracklist({
                   className="absolute inset-0 z-[1] block"
                   onClick={() => {
                     playerActions.loadPlaylist(
-                      tracksToPlaylist(
-                        tracks.tracks,
-                        artwork,
-                        album,
-                        artistName,
-                      ),
+                      tracksToPlaylist(tracks.tracks, artwork, album),
                     );
 
                     playerActions.play(idx);
@@ -77,21 +70,20 @@ export default function Tracklist({
             </td>
 
             <td className="hidden px-0 py-0.5 uppercase first:pl-9 last:pr-5 group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black md:table-cell md:w-1/2 md:pr-5 md:first:pl-10 md:last:pr-10">
-              {artistName ??
-                (track?.artists &&
-                  hasAtLeast(track?.artists, 1) &&
-                  track.artists.map((artist, idx, artists) => (
-                    <Fragment key={artist.slug.current}>
-                      <Link
-                        className="relative z-[2]"
-                        href={`/artists/${artist.slug.current}`}
-                      >
-                        {artist.name}
-                      </Link>
+              {track?.artists &&
+                hasAtLeast(track?.artists, 1) &&
+                track.artists.map((artist, idx, artists) => (
+                  <Fragment key={artist.slug.current}>
+                    <Link
+                      className="relative z-[2]"
+                      href={`/artists/${artist.slug.current}`}
+                    >
+                      {artist.name}
+                    </Link>
 
-                      {idx !== artists.length - 1 && <span>{", "}</span>}
-                    </Fragment>
-                  )))}
+                    {idx !== artists.length - 1 && <span>{", "}</span>}
+                  </Fragment>
+                ))}
             </td>
 
             <td className="px-0 py-0.5 pr-5 first:pl-9 last:pr-5 group-hover:bg-black group-hover:text-white dark:group-hover:bg-white dark:group-hover:text-black md:w-24 md:first:pl-10 md:last:pr-10">

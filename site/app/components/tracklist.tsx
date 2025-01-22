@@ -74,12 +74,16 @@ export default function Tracklist({
                 hasAtLeast(track?.artists, 1) &&
                 track.artists.map((artist, idx, artists) => (
                   <Fragment key={artist.slug.current}>
-                    <Link
-                      className="relative z-[2]"
-                      href={`/artists/${artist.slug.current}`}
-                    >
-                      {artist.name}
-                    </Link>
+                    {artist._type === "artist" ? (
+                      <Link
+                        className="relative z-[2]"
+                        href={`/artists/${artist.slug.current}`}
+                      >
+                        {artist.name}
+                      </Link>
+                    ) : (
+                      <span className="relative z-[2]">{artist.name}</span>
+                    )}
 
                     {idx !== artists.length - 1 && <span>{", "}</span>}
                   </Fragment>

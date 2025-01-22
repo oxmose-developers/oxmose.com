@@ -227,7 +227,7 @@ export const ReleasesQuery = defineQuery(`
     ...,
     tracks[] {
       ...,
-      artists[]->{name, slug}
+      artists[]->{name, slug, _type}
     }
   }
 }`);
@@ -256,7 +256,7 @@ export const ReleasePageQuery = defineQuery(`
     ...,
     tracks[] {
       ...,
-      artists[]->{name, slug}
+      artists[]->{name, slug, _type}
     }
   }
 }`);
@@ -271,7 +271,7 @@ export const ReleaseTracklistQuery = defineQuery(`
     ...,
     tracks[] {
       ...,
-      artists[]->{name, slug}
+      artists[]->{name, slug, _type}
     }
   }
 }`);
@@ -377,7 +377,9 @@ export type Track = {
   length: string;
   name: string;
   number: number;
-  artists: Pick<Artist, "name" | "slug">[];
+  artists: (Pick<Artist, "name" | "slug"> & {
+    _type: "publishingArtist" | "artist";
+  })[];
   file?: SanityFile;
 };
 
@@ -405,7 +407,7 @@ export const PublishingArtistPageQuery = defineQuery(`
       ...,
       tracks[] {
         ...,
-        artists[]->{name, slug}
+        artists[]->{name, slug, _type}
       }
     }
   }

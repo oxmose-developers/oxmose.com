@@ -31,7 +31,7 @@ export default defineType({
       of: [
         defineArrayMember({
           type: "reference",
-          to: { type: "artist" },
+          to: [{ type: "artist" }, { type: "publishingArtist" }],
         }),
       ],
       validation: (Rule) => [Rule.required()],

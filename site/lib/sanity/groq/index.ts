@@ -401,6 +401,13 @@ export const PublishingArtistPageQuery = defineQuery(`
         metadata
       }
     },
+    works {
+      ...,
+      tracks[] {
+        ...,
+        artists[]->{name, slug}
+      }
+    }
   }
 `);
 

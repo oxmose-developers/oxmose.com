@@ -1,6 +1,6 @@
 import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 
 import {
   HIDDEN_PRODUCT_TAG,
@@ -54,6 +54,7 @@ import type {
   ShopifyRemoveFromCartOperation,
   ShopifyUpdateCartOperation,
 } from "./types";
+import { setTimeout } from "node:timers/promises";
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
   ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, "https://")
@@ -488,10 +489,26 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   }
 
   if (isCollectionUpdate) {
+    after(async () => {
+      await setTimeout(5_000);
+
+      revalidateTag(TAGS.collections);
+
+      console.log("Revalidated 'collections' again after 5 seconds.");
+    });
+
     revalidateTag(TAGS.collections);
   }
 
   if (isProductUpdate) {
+    after(async () => {
+      await setTimeout(5_000);
+
+      revalidateTag(TAGS.products);
+
+      console.log("Revalidated 'products' again after 5 seconds.");
+    });
+
     revalidateTag(TAGS.products);
   }
 

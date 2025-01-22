@@ -8,7 +8,6 @@ export default defineType({
     select: {
       title: "title",
       subtitle: "releaseReference",
-      media: "coverImage",
     },
   },
   orderings: [

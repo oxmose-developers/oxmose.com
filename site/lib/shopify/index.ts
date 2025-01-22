@@ -489,7 +489,7 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
 
   if (isCollectionUpdate) {
     after(async () => {
-      await delay(5000);
+      await delay(30 * 1000);
 
       revalidateTag(TAGS.collections);
 
@@ -501,7 +501,7 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
 
   if (isProductUpdate) {
     after(async () => {
-      await delay(5000);
+      await delay(30 * 1000);
 
       revalidateTag(TAGS.products);
 

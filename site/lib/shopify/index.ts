@@ -1,5 +1,3 @@
-import { setTimeout } from "node:timers/promises";
-
 import { revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { after, NextRequest, NextResponse } from "next/server";
@@ -491,7 +489,7 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
 
   if (isCollectionUpdate) {
     after(async () => {
-      await setTimeout(5000);
+      await new Promise((resolve) => setTimeout(resolve, 5_000));
 
       revalidateTag(TAGS.collections);
 
@@ -503,7 +501,7 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
 
   if (isProductUpdate) {
     after(async () => {
-      await setTimeout(5000);
+      await new Promise((resolve) => setTimeout(resolve, 5_000));
 
       revalidateTag(TAGS.products);
 

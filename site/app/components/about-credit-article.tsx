@@ -1,7 +1,33 @@
-import { Fragment } from "react";
 import { hasAtLeast } from "remeda";
 
 import type { Credits } from "../../lib/sanity";
+
+function CreditArticleItem({
+  item,
+  isNotLastIndex,
+}: {
+  item: Credits["items"][0];
+  isNotLastIndex: boolean;
+}) {
+  return (
+    <>
+      {item?.link ? (
+        <a href={item.link} target="_blank">
+          {item.name}
+        </a>
+      ) : (
+        <span>{item.name}</span>
+      )}
+
+      {isNotLastIndex && (
+        <>
+          <span className="hidden md:inline">, </span>
+          <br className="md:hidden" />
+        </>
+      )}
+    </>
+  );
+}
 
 export default function CreditArticle({ credit }: { credit: Credits }) {
   return (
@@ -16,21 +42,11 @@ export default function CreditArticle({ credit }: { credit: Credits }) {
             <p className="text-oxe-xxs md:text-oxe-md" key={namedItem._key}>
               <span className="uppercase">{namedItem.name}</span>{" "}
               {namedItem.items.map((item, idx) => (
-                <Fragment key={`${idx}-${item.name}`}>
-                  {item?.link ? (
-                    <a href={item.link} target="_blank">
-                      {item.name}
-                    </a>
-                  ) : (
-                    <span>{item.name}</span>
-                  )}
-                  {idx !== namedItem.items.length - 1 && (
-                    <>
-                      <span className="hidden md:inline">, </span>
-                      <br className="md:hidden" />
-                    </>
-                  )}
-                </Fragment>
+                <CreditArticleItem
+                  key={`${idx}-${item.name}`}
+                  item={item}
+                  isNotLastIndex={idx !== namedItem.items.length - 1}
+                />
               ))}
             </p>
           ))}
@@ -38,21 +54,11 @@ export default function CreditArticle({ credit }: { credit: Credits }) {
       ) : (
         <p className="text-oxe-xxs md:text-oxe-md">
           {credit.items.map((item, idx) => (
-            <Fragment key={`${idx}-${item.name}`}>
-              {item?.link ? (
-                <a href={item.link} target="_blank">
-                  {item.name}
-                </a>
-              ) : (
-                <span>{item.name}</span>
-              )}
-              {idx !== credit.items.length - 1 && (
-                <>
-                  <span className="hidden md:inline">, </span>
-                  <br className="md:hidden" />
-                </>
-              )}
-            </Fragment>
+            <CreditArticleItem
+              key={`${idx}-${item.name}`}
+              item={item}
+              isNotLastIndex={idx !== credit.items.length - 1}
+            />
           ))}
         </p>
       )}

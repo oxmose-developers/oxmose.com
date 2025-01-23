@@ -2,19 +2,23 @@ import "../styles/global.css";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import { cookies } from "next/headers";
 import Script from "next/script";
+import { ErrorBoundary } from "react-error-boundary";
 
 import { CartProvider } from "../context/cart-context";
 import { fetchSEO } from "../lib/sanity";
 import { getCart } from "../lib/shopify";
 import CartDrawer from "./components/cart/cart-drawer";
-import ClientOnly from "./components/client-only";
 import Footer from "./components/footer-element";
 import { Providers } from "./components/layout-providers";
 import Navigation from "./components/navigation-element";
-import Player from "./components/player-element";
+
+const Player = dynamic(() => import("./components/player-element"), {
+  ssr: false,
+});
 
 export const viewport: Viewport = {
   themeColor: "#000000",
@@ -125,9 +129,9 @@ export default async function RootLayout({
 
             <Footer fullYear={fullYear} followLinks={seo.followLinks} />
 
-            <ClientOnly>
+            <ErrorBoundary fallback={null}>
               <Player />
-            </ClientOnly>
+            </ErrorBoundary>
 
             <CartDrawer />
           </Providers>

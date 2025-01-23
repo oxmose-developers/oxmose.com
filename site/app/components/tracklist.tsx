@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Fragment } from "react";
 import { hasAtLeast } from "remeda";
 
 import {
@@ -9,6 +8,31 @@ import {
   usePlayerActions,
 } from "../../context/player-context";
 import type { TrackList } from "../../lib/sanity";
+
+function TracklistArtistItem({
+  artist,
+  isNotLastIndex,
+}: {
+  artist: TrackList["tracks"][0]["artists"][0];
+  isNotLastIndex: boolean;
+}) {
+  return (
+    <>
+      {artist._type === "artist" ? (
+        <Link
+          className="relative z-[2]"
+          href={`/artists/${artist.slug.current}`}
+        >
+          {artist.name}
+        </Link>
+      ) : (
+        <span className="relative z-[2]">{artist.name}</span>
+      )}
+
+      {isNotLastIndex && <span>{", "}</span>}
+    </>
+  );
+}
 
 export default function Tracklist({
   tracks,
@@ -73,20 +97,11 @@ export default function Tracklist({
               {track?.artists &&
                 hasAtLeast(track?.artists, 1) &&
                 track.artists.map((artist, idx, artists) => (
-                  <Fragment key={artist.slug.current}>
-                    {artist._type === "artist" ? (
-                      <Link
-                        className="relative z-[2]"
-                        href={`/artists/${artist.slug.current}`}
-                      >
-                        {artist.name}
-                      </Link>
-                    ) : (
-                      <span className="relative z-[2]">{artist.name}</span>
-                    )}
-
-                    {idx !== artists.length - 1 && <span>{", "}</span>}
-                  </Fragment>
+                  <TracklistArtistItem
+                    key={artist.slug.current}
+                    isNotLastIndex={idx !== artists.length - 1}
+                    artist={artist}
+                  />
                 ))}
             </td>
 

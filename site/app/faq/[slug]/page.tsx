@@ -1,9 +1,9 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Fragment } from "react";
 
-import { fetchFaq, fetchFaqs } from "../../../lib/sanity";
+import { type FAQ, fetchFaq, fetchFaqs } from "../../../lib/sanity";
+import type { Slug } from "../../../sanity.types";
 import { CustomPortableText } from "../../components/portable-text";
 
 export async function generateMetadata(
@@ -66,28 +66,51 @@ export default async function Page(props: {
 
       <div className="flex-1 divide-y divide-black md:divide-y-reverse">
         {categories.map((el, idx) => (
-          <Fragment key={`${el._id}-${idx}-category`}>
-            <Link
-              className="block w-full px-9 text-left text-oxe-xl/15 md:hidden"
-              href={`/faq/${el.slug.current}`}
-            >
-              {el.category}
-            </Link>
-
-            {el.slug.current === slug && (
-              <article className="space-y-9 p-9 text-oxe-xxs/5 md:space-y-10 md:border-none md:p-10 md:text-oxe-sm">
-                {faq.questions.map((qa, idx) => (
-                  <div key={`${qa._id}-${idx}-question`} className="space-y-4">
-                    <h4 className="-mb-4 font-medium">{qa.question}</h4>
-
-                    <CustomPortableText value={qa.answer} />
-                  </div>
-                ))}
-              </article>
-            )}
-          </Fragment>
+          <FaqCategory
+            key={`${el._id}-${idx}-category`}
+            category={el}
+            faq={faq}
+            slug={slug}
+          />
         ))}
       </div>
     </div>
+  );
+}
+
+function FaqCategory({
+  category,
+  faq,
+  slug,
+}: {
+  category: {
+    _id: string;
+    slug: Slug;
+    category: string;
+  };
+  faq: FAQ;
+  slug: string;
+}) {
+  return (
+    <>
+      <Link
+        className="block w-full px-9 text-left text-oxe-xl/15 md:hidden"
+        href={`/faq/${category.slug.current}`}
+      >
+        {category.category}
+      </Link>
+
+      {category.slug.current === slug && (
+        <article className="space-y-9 p-9 text-oxe-xxs/5 md:space-y-10 md:border-none md:p-10 md:text-oxe-sm">
+          {faq.questions.map((qa, idx) => (
+            <div key={`${qa._id}-${idx}-question`} className="space-y-4">
+              <h4 className="-mb-4 font-medium">{qa.question}</h4>
+
+              <CustomPortableText value={qa.answer} />
+            </div>
+          ))}
+        </article>
+      )}
+    </>
   );
 }

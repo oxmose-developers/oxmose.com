@@ -195,11 +195,7 @@ export default function Player() {
   const [isPlaylistOpen, isPlaylistOpenSet] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
-  useOnClickOutside(
-    // @ts-expect-error Ignore this, non-issue
-    ref,
-    () => isPlaylistOpenSet(false),
-  );
+  useOnClickOutside(ref, () => isPlaylistOpenSet(false));
 
   if (hasAtLeast(state.playlist, 1)) {
     if (isPlayerOpen) {

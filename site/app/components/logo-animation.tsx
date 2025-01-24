@@ -46,6 +46,7 @@ export default function LogoAnimation() {
   }, [pathname]);
 
   return (
+    /* @ts-expect-error Ignore: Type error: Property 'dotlottie-player' does not exist on type 'JSX.IntrinsicElements' */
     <dotlottie-player
       ref={animation}
       src="/V04_front_page_v01_192.lottie"

@@ -6,13 +6,13 @@ import {
   useReducer,
   useRef,
 } from "react";
+import { hasAtLeast } from "remeda";
 import type { File as SanityFile } from "sanity";
 
 import { useEvent } from "../hooks/use-event";
 import { useInterval } from "../hooks/use-interval";
 import type { Track as SanityTrack } from "../lib/sanity";
 import { urlForFile } from "../lib/sanity";
-import { hasAtLeast } from "remeda";
 
 export function tracksToPlaylist(
   tracks: SanityTrack[],
@@ -86,20 +86,23 @@ const initialState: PlayerState = {
 
 function playerReducer(state: PlayerState, action: PlayerAction): PlayerState {
   switch (action.type) {
-    case "LOAD_PLAYLIST":
+    case "LOAD_PLAYLIST": {
       return { ...state, playlist: action.payload, currentTrackIndex: 0 };
-    case "PLAY":
+    }
+    case "PLAY": {
       return {
         ...state,
         isPlaying: true,
         currentTrackIndex:
-          action.payload?.currentTrackIndex !== undefined
-            ? action.payload.currentTrackIndex
-            : state.currentTrackIndex,
+          action.payload?.currentTrackIndex === undefined
+            ? state.currentTrackIndex
+            : action.payload.currentTrackIndex,
       };
-    case "PAUSE":
+    }
+    case "PAUSE": {
       return { ...state, isPlaying: false };
-    case "NEXT_TRACK":
+    }
+    case "NEXT_TRACK": {
       return {
         ...state,
         // Looping logic
@@ -113,7 +116,8 @@ function playerReducer(state: PlayerState, action: PlayerAction): PlayerState {
         progress: 0,
         isPlaying: true,
       };
-    case "PREVIOUS_TRACK":
+    }
+    case "PREVIOUS_TRACK": {
       return {
         ...state,
         // Looping logic
@@ -128,13 +132,15 @@ function playerReducer(state: PlayerState, action: PlayerAction): PlayerState {
         progress: 0,
         isPlaying: true,
       };
-    case "SEEK":
+    }
+    case "SEEK": {
       return {
         ...state,
         currentTime: action.payload * state.duration,
         progress: action.payload,
       };
-    case "UPDATE_PROGRESS":
+    }
+    case "UPDATE_PROGRESS": {
       return {
         ...state,
         currentTime: action.payload.currentTime,
@@ -144,8 +150,10 @@ function playerReducer(state: PlayerState, action: PlayerAction): PlayerState {
             ? action.payload.currentTime / action.payload.duration
             : 0,
       };
-    default:
+    }
+    default: {
       return state;
+    }
   }
 }
 
@@ -157,7 +165,7 @@ interface PlayerContextType {
 
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
 
-export function PlayerProvider({ children }: { children: ReactNode }) {
+export function PlayerProvider({ children }: React.PropsWithChildren<{}>) {
   const [state, dispatch] = useReducer(playerReducer, initialState);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -171,7 +179,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     });
   });
 
-  useInterval(updateProgress, state.isPlaying ? 1_000 : null);
+  useInterval(updateProgress, state.isPlaying ? 1000 : null);
 
   const onEnded = useEvent(() => {
     dispatch({ type: "NEXT_TRACK" });
@@ -259,7 +267,7 @@ export function usePlayerActions() {
       dispatch({
         type: "PLAY",
         payload:
-          currentTrackIndex !== undefined ? { currentTrackIndex } : undefined,
+          currentTrackIndex === undefined ? undefined : { currentTrackIndex },
       }),
     pause: () => dispatch({ type: "PAUSE" }),
     nextTrack: () => dispatch({ type: "NEXT_TRACK" }),

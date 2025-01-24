@@ -5,9 +5,7 @@ import { ThemeProvider } from "next-themes";
 
 import { PlayerProvider } from "../../context/player-context";
 
-export const Providers: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const Providers = ({ children }: React.PropsWithChildren<{}>) => {
   const pathname = usePathname();
 
   const forcedThemeFromPathname = pathname.includes("publishing")
@@ -20,10 +18,7 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({
       forcedTheme={forcedThemeFromPathname}
       attribute="class"
     >
-      <PlayerProvider>
-        {/* @ts-expect-error IGNORE */}
-        {children}
-      </PlayerProvider>
+      <PlayerProvider>{children}</PlayerProvider>
     </ThemeProvider>
   );
 };

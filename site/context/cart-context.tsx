@@ -200,10 +200,9 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
 export function CartProvider({
   children,
   cartPromise,
-}: {
-  children: React.ReactNode;
+}: React.PropsWithChildren<{
   cartPromise: Promise<Cart | undefined>;
-}) {
+}>) {
   const initialCart = use(cartPromise);
   const [optimisticCart, updateOptimisticCart] = useOptimistic(
     initialCart,

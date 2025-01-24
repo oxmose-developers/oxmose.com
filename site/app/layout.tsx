@@ -98,9 +98,7 @@ const monumentGrotesk = localFont({
 
 export default async function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: React.PropsWithChildren<{}>) {
   const seo = await fetchSEO();
 
   const fullYear = new Date().getFullYear();

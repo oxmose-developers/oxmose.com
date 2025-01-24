@@ -9,11 +9,10 @@ import type { DigitalOrVinylProductVariant } from "./catalogue-variant-selector"
 export function SubmitButton({
   children,
   availableForSale,
-}: {
-  children: React.ReactNode;
+}: React.PropsWithChildren<{
   availableForSale: boolean;
   selectedVariantId: string | undefined;
-}) {
+}>) {
   const buttonClasses =
     "block text-oxe-sm font-medium uppercase disabled:opacity-50";
 

@@ -19,7 +19,7 @@ type ProductContextType = {
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
-export function ProductProvider({ children }: { children: React.ReactNode }) {
+export function ProductProvider({ children }: React.PropsWithChildren<{}>) {
   const searchParams = useSearchParams();
 
   const getInitialState = () => {

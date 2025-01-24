@@ -6,11 +6,10 @@ export default function DownloadLink({
   href,
   fileName,
   children,
-}: {
+}: React.PropsWithChildren<{
   href: string;
   fileName?: string;
-  children: React.ReactNode;
-}) {
+}>) {
   return (
     <button
       onClick={async () => {

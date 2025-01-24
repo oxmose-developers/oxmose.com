@@ -9,7 +9,6 @@ import type { Link } from "../../lib/sanity";
 
 interface ResolvedLinkProps {
   link: Link;
-  children: React.ReactNode;
   className?: string;
 }
 
@@ -17,7 +16,7 @@ export default function ResolvedLink({
   link,
   children,
   className,
-}: ResolvedLinkProps) {
+}: React.PropsWithChildren<ResolvedLinkProps>) {
   if (typeof link.href === "string") {
     return (
       <NextLink

@@ -5,7 +5,9 @@ import { ThemeProvider } from "next-themes";
 
 import { PlayerProvider } from "../../context/player-context";
 
-export const Providers = ({ children }: { children: React.ReactNode }) => {
+export const Providers: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const pathname = usePathname();
 
   const forcedThemeFromPathname = pathname.includes("publishing")

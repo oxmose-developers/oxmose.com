@@ -20,7 +20,10 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({
       forcedTheme={forcedThemeFromPathname}
       attribute="class"
     >
-      <PlayerProvider>{children}</PlayerProvider>
+      <PlayerProvider>
+        {/* @ts-expect-error IGNORE */}
+        {children}
+      </PlayerProvider>
     </ThemeProvider>
   );
 };

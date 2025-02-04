@@ -4,7 +4,7 @@ import { PortableText } from "next-sanity";
 
 import { fetchAboutPage } from "../../lib/sanity";
 import CreditArticle from "../components/about-credit-article";
-import teamPhoto from "./team-photo.jpg";
+import teamPhoto from "./team-photo-enlarged.jpg";
 
 export async function generateMetadata(
   props: { params: Promise<{}> },

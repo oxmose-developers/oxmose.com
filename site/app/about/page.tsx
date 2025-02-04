@@ -85,10 +85,8 @@ export default async function Page() {
 
       <section className="relative">
         <Image
-          width={2560}
-          height={1707}
           alt="Team photo"
-          className="max-h-[calc(100vh-60px)] object-cover"
+          className="max-h-[calc(100vh-60px)] object-cover object-bottom"
           loading="lazy"
           priority={false}
           sizes="100vw"

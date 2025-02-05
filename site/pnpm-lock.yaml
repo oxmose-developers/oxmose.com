@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@aarsteinmedia/dotlottie-player-light':
-        specifier: ^4.0.11
-        version: 4.0.11(@types/react@19.0.8)
+        specifier: 4.0.9
+        version: 4.0.9(@types/react@19.0.8)
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -135,8 +135,8 @@ importers:
 
 packages:
 
-  '@aarsteinmedia/dotlottie-player-light@4.0.11':
-    resolution: {integrity: sha512-flUQld10IkEkozBKpJc0Rwc9EzifaMe2XalHZTxPv2HxZbuwINgCqkl8/SLViK3kvaRP6tvLaIdSc63tdvscHA==}
+  '@aarsteinmedia/dotlottie-player-light@4.0.9':
+    resolution: {integrity: sha512-7TA1W6//7/fOCHwsYB22vOKyYUol8T/Qbq+vP/J0/8fwhsLnA8gU0De2HAUxh6Fb75Lshx+WvwFrAzpxkJbr1Q==}
     engines: {node: '>= 8.17.0'}
     peerDependencies:
       '@types/react': '>= 16.0.0'
@@ -5926,7 +5926,7 @@ packages:
 
 snapshots:
 
-  '@aarsteinmedia/dotlottie-player-light@4.0.11(@types/react@19.0.8)':
+  '@aarsteinmedia/dotlottie-player-light@4.0.9(@types/react@19.0.8)':
     dependencies:
       '@types/react': 19.0.8
       fflate: 0.8.2

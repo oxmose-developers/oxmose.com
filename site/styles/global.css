@@ -66,13 +66,17 @@ dotlottie-player svg {
 }
 
 :root {
-  /* Used for the catalogue card margin */
-  --fluid-size: clamp(3rem, 16.1157vh + -6.6942rem, 6rem);
-  /* Used for the catalogue page */
-  --catalogue-fluid-size: clamp(3rem, 5vh, 6rem);
-
+  /* The gap between the header of the release card and the artist + image section */
+  --catalogue-gap: 2.25rem;
   /* The height of the footer */
   --footer-height: 3.5rem;
+}
+
+@media (min-height: 50rem) {
+  :root {
+    /* The gap between the header of the release card and the artist + image section */
+    --catalogue-gap: 6rem;
+  }
 }
 
 .footer-padding {

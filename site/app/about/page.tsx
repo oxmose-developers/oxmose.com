@@ -86,7 +86,7 @@ export default async function Page() {
       <section className="relative">
         <Image
           alt="Team photo"
-          className="max-h-[calc(100vh-60px)] object-cover object-bottom"
+          className="max-h-[calc(100vh-var(--footer-height))] object-cover object-bottom xl:object-center"
           loading="lazy"
           priority={false}
           sizes="100vw"

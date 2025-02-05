@@ -69,12 +69,13 @@ dotlottie-player svg {
   /* Used for the catalogue card margin */
   --fluid-size: clamp(3rem, 16.1157vh + -6.6942rem, 6rem);
   /* Used for the catalogue page */
-  --catalogue-fluid-size: clamp(3rem, 5vh, 6rem)
+  --catalogue-fluid-size: clamp(3rem, 5vh, 6rem);
+
+  /* The height of the footer */
+  --footer-height: 3.5rem;
 }
 
 .footer-padding {
-  /* The height of the footer */
-  --footer-height: 3.5rem;
   /* The line-height of the text at the size, used to pad the top of the text evenly to handle the expanding footer */
   --line-height: 1.5625rem;
 
@@ -86,9 +87,13 @@ dotlottie-player svg {
 }
 
 @screen md {
-  .footer-padding {
+  :root {
     /* The height of the footer */
     --footer-height: 4.5rem;
+  }
+
+  .footer-padding {
+    
     /* The line-height of the text at the size, used to pad the top of the text evenly to handle the expanding footer */
     --line-height: 2.125rem;
 

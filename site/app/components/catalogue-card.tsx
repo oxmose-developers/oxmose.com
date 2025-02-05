@@ -33,7 +33,7 @@ export default function CatalogueCard({
         <h2 className="-my-2.5 text-oxe-xxxxl font-medium">{release.title}</h2>
       </header>
 
-      <div className="mt-[--catalogue-gap] flex flex-1 flex-col-reverse @2xl:grid @2xl:grid-cols-[minmax(14rem,1fr)_minmax(0,56rem)] @2xl:gap-x-8 @2xl:px-9 @2xl:pb-9">
+      <div className="flex flex-1 flex-col-reverse @2xl:mt-[--catalogue-gap] @2xl:grid @2xl:grid-cols-[minmax(14rem,1fr)_minmax(0,56rem)] @2xl:gap-x-8 @2xl:px-9 @2xl:pb-9">
         <div className="px-9 py-5 @2xl:ml-auto @2xl:self-end @2xl:p-0">
           <h2 className="block text-oxe-sm/7 font-medium @2xl:hidden">
             {release.title}

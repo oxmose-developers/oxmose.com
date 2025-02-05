@@ -70,12 +70,16 @@ dotlottie-player svg {
   --catalogue-gap: 2.25rem;
   /* The height of the footer */
   --footer-height: 3.5rem;
+  /* The gap between the header of the release page and the image section */
+  --release-gap: 0.5rem;
 }
 
 @media (min-height: 50rem) {
   :root {
     /* The gap between the header of the release card and the artist + image section */
     --catalogue-gap: 6rem;
+    /* The gap between the header of the release page and the image section */
+    --release-gap: 4rem;
   }
 }
 

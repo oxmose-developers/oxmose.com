@@ -1,4 +1,4 @@
-# Oxmose
+# Oxmose repo
 
 Site is built with Next.js and Sanity, with e-commerce from Shopify.
 

@@ -1,6 +1,5 @@
 import "../styles/global.css";
 
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { cookies } from "next/headers";
@@ -127,8 +126,6 @@ export default async function RootLayout({
             <CartDrawer />
           </Providers>
         </CartProvider>
-
-        <SpeedInsights />
       </body>
 
       {process.env.NODE_ENV === "development" ? null : (
